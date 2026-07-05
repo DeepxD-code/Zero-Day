@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ZeroWatch | SOC Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="sampleData.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#0f172a",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#f59e0b",
+                        "on-tertiary-fixed": "#3c0700",
+                        "primary-fixed": "#e0f2fe",
+                        "surface-variant": "#f1f5f9",
+                        "surface-container": "#f8fafc",
+                        "primary-container": "#0284c7",
+                        "on-tertiary-container": "#aa2600",
+                        "primary": "#0369a1",
+                        "surface-tint": "#0284c7",
+                        "on-secondary-fixed": "#1e293b",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#0369a1",
+                        "surface-container-high": "#e2e8f0",
+                        "on-surface-variant": "#475569",
+                        "on-primary": "#ffffff",
+                        "background": "#f1f5f9",
+                        "error-container": "#fee2e2",
+                        "primary-fixed-dim": "#0284c7",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#f1f5f9",
+                        "surface-container-low": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#0f172a",
+                        "outline-variant": "#cbd5e1",
+                        "secondary-container": "#e2e8f0",
+                        "secondary-fixed": "#e2e8f0",
+                        "tertiary-fixed": "#ffdad2",
+                        "surface": "#ffffff",
+                        "inverse-surface": "#0f172a",
+                        "secondary-fixed-dim": "#cbd5e1",
+                        "on-error-container": "#991b1b",
+                        "error": "#ef4444",
+                        "surface-container-highest": "#cbd5e1",
+                        "surface-bright": "#ffffff",
+                        "on-tertiary-fixed-variant": "#8a1d00",
+                        "outline": "#64748b",
+                        "on-primary-container": "#ffffff",
+                        "tertiary": "#ffdad2",
+                        "on-secondary-fixed-variant": "#475569",
+                        "on-primary-fixed-variant": "#004f58",
+                        "inverse-on-surface": "#f8fafc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "20px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "xs": "4px",
+                        "container-margin": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "data-mono": ["13px", {"lineHeight": "18px", "fontWeight": "450"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="flex overflow-hidden h-screen bg-background text-on-background">
+    <!-- SideNavBar -->
+    <aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-low border-r border-outline-variant flex flex-col py-md z-30 transition-all duration-300 ease-in-out">
+        <div class="px-lg mb-xl">
+            <div class="flex items-center gap-sm">
+                <span class="material-symbols-outlined text-[32px] text-primary" data-icon="shield">shield</span>
+                <div class="flex flex-col">
+                    <span class="text-headline-sm font-headline-sm font-black text-primary leading-tight">ZeroWatch</span>
+                    <span class="text-label-caps font-label-caps text-on-surface-variant tracking-widest opacity-70">Vigilance System</span>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-xs px-sm" id="sidebar-nav">
+            <a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container border-l-4 border-primary group transition-all cursor-pointer nav-link" data-target="view-dashboard">
+                <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                <span class="text-label-caps font-label-caps">Dashboard</span>
+            </a>
+            <a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all cursor-pointer nav-link" data-target="view-threats">
+                <span class="material-symbols-outlined text-[20px]" data-icon="security">security</span>
+                <span class="text-label-caps font-label-caps">Threat Feed</span>
+            </a>
+            <a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all cursor-pointer nav-link" data-target="view-redteam">
+                <span class="material-symbols-outlined text-[20px]" data-icon="biotech">biotech</span>
+                <span class="text-label-caps font-label-caps">Red-Team</span>
+            </a>
+            <a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all cursor-pointer nav-link" data-target="view-health">
+                <span class="material-symbols-outlined text-[20px]" data-icon="query_stats">query_stats</span>
+                <span class="text-label-caps font-label-caps">Model Health</span>
+            </a>
+            <a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all cursor-pointer nav-link" data-target="view-reports">
+                <span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                <span class="text-label-caps font-label-caps">Reports</span>
+            </a>
+            <a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all cursor-pointer nav-link" data-target="view-settings">
+                <span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                <span class="text-label-caps font-label-caps">Settings</span>
+            </a>
+        </nav>
+        <div class="px-lg mb-md">
+            <button class="w-full bg-primary-container text-on-primary-container font-bold py-sm px-md flex items-center justify-center gap-sm hover:brightness-110 active:scale-95 transition-all" onclick="triggerScan()">
+                <span class="material-symbols-outlined text-[18px]">bolt</span>
+                <span class="text-label-caps font-label-caps">Run Scan</span>
+            </button>
+        </div>
+        <div class="border-t border-outline-variant pt-md px-sm space-y-xs">
+            <a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all cursor-pointer" onclick="toggleSupportModal(true)">
+                <span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+                <span class="text-label-caps font-label-caps">Support</span>
+            </a>
+            <a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all cursor-pointer" onclick="toggleSignOutModal(true)">
+                <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                <span class="text-label-caps font-label-caps">Sign Out</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="ml-[280px] flex-1 flex flex-col h-screen overflow-hidden">
+        <!-- TopNavBar -->
+        <header class="h-16 flex justify-between items-center w-full px-lg bg-surface border-b border-outline-variant z-20">
+            <div class="flex items-center gap-xl">
+                <h1 class="text-headline-md font-headline-md font-bold text-primary tracking-tight">ZeroWatch</h1>
+                <nav class="flex gap-lg">
+                    <a class="text-primary font-bold border-b-2 border-primary pb-1 text-label-caps font-label-caps" href="#" onclick="showSection('view-dashboard')">Live</a>
+                    <a class="text-on-surface-variant font-medium hover:bg-surface-container-high transition-colors px-sm py-1 text-label-caps font-label-caps" href="#" onclick="showSection('view-health')">Model: GNN + Drift Monitor</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-md relative">
+                <div class="relative bg-surface-container-high px-md py-1.5 flex items-center gap-sm rounded-sm">
+                    <span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="search">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm w-48 placeholder:text-outline text-on-surface" placeholder="Global system search..." type="text" id="global-search" oninput="handleSearch()"/>
+                </div>
+                <div class="flex gap-sm relative">
+                    <button class="p-2 hover:bg-surface-container-high transition-colors rounded-sm relative" onclick="toggleNotifications()">
+                        <span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+                        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-surface" id="notif-badge"></span>
+                    </button>
+                    <!-- Notification Popover -->
+                    <div id="notif-popover" class="hidden absolute right-0 top-12 w-80 glass-panel border border-outline-variant p-md shadow-xl rounded-sm z-50">
+                        <div class="flex justify-between items-center pb-sm border-b border-outline-variant mb-sm">
+                            <span class="text-label-caps text-primary font-bold">NOTIFICATIONS</span>
+                            <button class="text-[10px] text-on-surface-variant hover:text-primary" onclick="clearNotifs()">CLEAR ALL</button>
+                        </div>
+                        <div class="space-y-sm max-h-48 overflow-y-auto custom-scrollbar" id="notif-list">
+                            <!-- Populated in JS -->
+                        </div>
+                    </div>
+
+                    <div class="system-status ml-2">
+                        <span class="status-indicator online bg-tertiary-fixed-dim" style="box-shadow: 0 0 8px var(--tertiary-fixed-dim);"></span>
+                        <span class="status-label" style="color: var(--tertiary-fixed-dim);">PREVIEW MODE</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 overflow-y-auto custom-scrollbar p-lg space-y-lg relative">
+            
+            <!-- Dashboard View -->
+            <div id="view-dashboard" class="space-y-lg view-section">
+                <!-- KPI Cards Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+                    <!-- KPI 1 -->
+                    <div class="bg-surface-container border border-outline-variant p-lg flex flex-col gap-sm">
+                        <span class="text-label-caps font-label-caps text-on-surface-variant">Packets / Sec</span>
+                        <div class="flex items-end justify-between">
+                            <span class="text-headline-md font-data-mono text-primary" id="packets-sec">12,480</span>
+                            <div class="h-8 w-24">
+                                <svg class="w-full h-full" viewbox="0 0 100 20">
+                                    <path d="M0,15 L10,12 L20,17 L30,10 L40,14 L50,8 L60,11 L70,5 L80,9 L90,4 L100,6" fill="none" stroke="#00e5ff" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- KPI 2 -->
+                    <div class="bg-surface-container border border-outline-variant p-lg flex flex-col gap-sm">
+                        <span class="text-label-caps font-label-caps text-on-surface-variant">Active Flows / Sec</span>
+                        <div class="flex items-end justify-between">
+                            <span class="text-headline-md font-data-mono text-primary" id="flows-sec">1,452</span>
+                            <div class="h-8 w-24">
+                                <svg class="w-full h-full" viewbox="0 0 100 20">
+                                    <path d="M0,5 L10,10 L20,6 L30,12 L40,8 L50,14 L60,9 L70,11 L80,7 L90,13 L100,10" fill="none" stroke="#c3f5ff" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- KPI 3 -->
+                    <div class="bg-surface-container border border-outline-variant p-lg flex flex-col gap-sm">
+                        <span class="text-label-caps font-label-caps text-on-surface-variant">Active Alerts</span>
+                        <div class="flex items-center gap-md">
+                            <span class="text-headline-md font-data-mono text-error" id="active-alerts-count">0</span>
+                            <span class="px-2 py-0.5 bg-error-container text-on-error-container text-label-caps font-label-caps rounded-sm pulse-red hidden" id="critical-alert-badge">CRITICAL</span>
+                        </div>
+                    </div>
+                    <!-- KPI 4 -->
+                    <div class="bg-surface-container border border-outline-variant p-lg flex flex-col gap-sm">
+                        <span class="text-label-caps font-label-caps text-on-surface-variant">Detection Rate</span>
+                        <div class="flex items-baseline gap-sm">
+                            <span class="text-headline-md font-data-mono text-primary-container">98.8%</span>
+                            <span class="text-on-surface-variant font-data-mono text-[11px]">+0.4% vs prev</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Row: Charts -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+                    <!-- Anomaly Chart Panel -->
+                    <div class="lg:col-span-12 bg-surface-container border border-outline-variant p-lg flex flex-col">
+                        <div class="flex justify-between items-center mb-lg">
+                            <h3 class="text-label-caps font-label-caps font-bold">AI Anomaly Score Timeline</h3>
+                            <div class="flex items-center gap-md text-label-caps font-data-mono text-[10px]">
+                                <div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error"></span> ANOMALY SCORE</div>
+                                <div class="flex items-center gap-1 border-b border-dashed border-error">THRESHOLD 0.70</div>
+                            </div>
+                        </div>
+                        <div class="h-64 w-full relative">
+                            <canvas id="anomalyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Threat Feed View (Standalone table wrapper) -->
+            <div id="view-threats" class="space-y-lg view-section hidden">
+                <div class="p-lg bg-surface-container-high border border-outline-variant">
+                    <h2 class="text-headline-sm text-primary mb-md font-bold">Archived Threat Feed Logs</h2>
+                    <p class="text-body-sm text-on-surface-variant">Filterable historical repository of all anomalies flagged by model triggers.</p>
+                </div>
+            </div>
+
+            <!-- Red Team View -->
+            <div id="view-redteam" class="space-y-lg view-section hidden">
+                <div class="bg-surface-container border border-outline-variant p-lg space-y-md">
+                    <h3 class="text-headline-sm font-bold text-primary">Red-Team Simulations & Adversarial Evaluations</h3>
+                    <p class="text-body-sm text-on-surface-variant">Configure and launch adversarial tests to measure model robustness against MIMICRY, SLOW-DRIP, and FEATURE PADDING attack designs.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-md pt-md">
+                        <div class="p-md bg-surface-container-high border border-outline-variant flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-body-lg font-bold text-primary">Mimicry Evaluation</h4>
+                                <p class="text-xs text-on-surface-variant mt-sm">Inject traffic crafted to match typical packet length distribution.</p>
+                            </div>
+                            <button class="mt-lg w-full bg-primary-container text-on-primary-container font-bold py-sm px-sm text-label-caps text-xs hover:brightness-110 active:scale-95" onclick="triggerNotification('Mimicry test scheduled!', 'success')">Deploy Simulation</button>
+                        </div>
+                        <div class="p-md bg-surface-container-high border border-outline-variant flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-body-lg font-bold text-primary">Slow-Drip Portscan</h4>
+                                <p class="text-xs text-on-surface-variant mt-sm">Generate low frequency connections designed to slip past drift sensors.</p>
+                            </div>
+                            <button class="mt-lg w-full bg-primary-container text-on-primary-container font-bold py-sm px-sm text-label-caps text-xs hover:brightness-110 active:scale-95" onclick="triggerNotification('Slow-Drip evaluation started.', 'info')">Deploy Simulation</button>
+                        </div>
+                        <div class="p-md bg-surface-container-high border border-outline-variant flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-body-lg font-bold text-primary">Feature Padding</h4>
+                                <p class="text-xs text-on-surface-variant mt-sm">Append junk bytes to request packets to evade threshold indicators.</p>
+                            </div>
+                            <button class="mt-lg w-full bg-primary-container text-on-primary-container font-bold py-sm px-sm text-label-caps text-xs hover:brightness-110 active:scale-95" onclick="triggerNotification('Feature Padding script active.', 'info')">Deploy Simulation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Health View -->
+            <div id="view-health" class="space-y-lg view-section hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                    <div class="bg-surface-container border border-outline-variant p-lg space-y-sm">
+                        <h4 class="text-label-caps text-on-surface-variant font-bold">Classifier Drift Index</h4>
+                        <div class="h-48 flex items-center justify-center border border-outline-variant/30 bg-[#0d1c2d]">
+                            <span class="text-headline-md text-primary font-data-mono font-bold">0.024 (Within bounds)</span>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container border border-outline-variant p-lg space-y-sm">
+                        <h4 class="text-label-caps text-on-surface-variant font-bold">False Positive Ratio</h4>
+                        <div class="h-48 flex items-center justify-center border border-outline-variant/30 bg-[#0d1c2d]">
+                            <span class="text-headline-md text-primary-container font-data-mono font-bold">0.08%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports View -->
+            <div id="view-reports" class="space-y-lg view-section hidden">
+                <div class="bg-surface-container border border-outline-variant p-lg">
+                    <h3 class="text-headline-sm font-bold text-primary mb-md">Vulnerability & Compliance Reports</h3>
+                    <div class="space-y-sm">
+                        <div class="flex justify-between items-center p-md bg-surface-container-high border border-outline-variant">
+                            <div>
+                                <span class="font-bold block text-body-sm">Monthly Adversarial Robustness Report - June 2026</span>
+                                <span class="text-xs text-on-surface-variant">Model sensitivity audit against T1059.001</span>
+                            </div>
+                            <button class="px-md py-sm bg-primary text-background font-bold text-xs" onclick="triggerNotification('PDF report generation triggered!', 'success')">DOWNLOAD PDF</button>
+                        </div>
+                        <div class="flex justify-between items-center p-md bg-surface-container-high border border-outline-variant">
+                            <div>
+                                <span class="font-bold block text-body-sm">MITRE ATT&CK Mapping Blueprint</span>
+                                <span class="text-xs text-on-surface-variant">Alignment score across modern network signatures</span>
+                            </div>
+                            <button class="px-md py-sm bg-primary text-background font-bold text-xs" onclick="triggerNotification('CSV compilation generated.', 'success')">DOWNLOAD CSV</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="view-settings" class="space-y-lg view-section hidden">
+                <div class="bg-surface-container border border-outline-variant p-lg space-y-md">
+                    <h3 class="text-headline-sm font-bold text-primary">System Configurations</h3>
+                    <div class="space-y-md">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold block text-body-sm">Alert Score Threshold</span>
+                                <span class="text-xs text-on-surface-variant">Default score required to trigger notifications dashboard details</span>
+                            </div>
+                            <input type="number" step="0.05" class="bg-surface-container-low border border-outline text-on-surface text-center p-sm w-24 font-data-mono" value="0.70"/>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold block text-body-sm">Dark Mode Sync</span>
+                                <span class="text-xs text-on-surface-variant">Synchronize design settings across preview monitors</span>
+                            </div>
+                            <input type="checkbox" checked class="rounded-sm bg-surface-container-low border-outline text-primary"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom: Live Threat Feed Table Panel (Always visible below views on Dashboard page, relocates or remains based on style) -->
+            <div id="threat-table-section" class="bg-surface-container border border-outline-variant overflow-hidden">
+                <div class="px-lg py-md border-b border-outline-variant flex justify-between items-center bg-surface-container-high/50">
+                    <div class="flex items-center gap-sm">
+                        <span class="w-2 h-2 bg-primary-container rounded-full pulse-red"></span>
+                        <h3 class="text-label-caps font-label-caps font-bold">Threat Logs</h3>
+                    </div>
+                    <div class="flex gap-sm">
+                        <div class="filters flex gap-sm">
+                            <button class="filter-btn px-md py-1 border border-outline text-label-caps font-label-caps hover:bg-surface-container-high transition-all active bg-primary text-background" data-filter="all">ALL</button>
+                            <button class="filter-btn px-md py-1 border border-outline text-label-caps font-label-caps hover:bg-surface-container-high transition-all" data-filter="adversarial">ADVERSARIAL ONLY</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-surface-container-lowest border-b border-outline-variant">
+                            <tr class="text-label-caps font-label-caps text-on-surface-variant">
+                                <th class="px-lg py-md font-bold">Time</th>
+                                <th class="px-lg py-md font-bold">Source IP</th>
+                                <th class="px-lg py-md font-bold">Dest IP</th>
+                                <th class="px-lg py-md font-bold">Attack Type</th>
+                                <th class="px-lg py-md font-bold">Anomaly</th>
+                                <th class="px-lg py-md font-bold">Risk</th>
+                                <th class="px-lg py-md font-bold">MITRE</th>
+                                <th class="px-lg py-md font-bold">Tags</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5" id="threat-feed-body">
+                            <tr class="empty-state">
+                                <td class="px-lg py-md text-center text-on-surface-variant font-body-sm" colspan="8">Waiting for incoming threat feed data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Alert Detail Drawer -->
+        <div class="fixed top-0 right-0 h-full w-[400px] glass-panel z-40 translate-x-full drawer-transition shadow-2xl flex flex-col" id="alertDrawer">
+            <div class="p-lg border-b border-outline-variant flex justify-between items-center">
+                <div>
+                    <span class="text-label-caps font-label-caps text-error block mb-xs">ALERT DETAILS</span>
+                    <h2 class="text-headline-sm font-headline-sm text-on-surface" id="drawer-title">Mimicry Attack</h2>
+                </div>
+                <button class="p-2 hover:bg-surface-container-highest rounded-full transition-all" onclick="closeDrawer()">
+                    <span class="material-symbols-outlined" data-icon="close">close</span>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar p-lg space-y-lg">
+                <!-- Meta Data -->
+                <div class="grid grid-cols-2 gap-md">
+                    <div class="bg-surface-container-low p-md border border-outline-variant">
+                        <span class="text-label-caps font-label-caps text-on-surface-variant text-[10px] block">ANOMALY SCORE</span>
+                        <span class="text-headline-sm font-data-mono text-error" id="drawer-anomaly">0.924</span>
+                    </div>
+                    <div class="bg-surface-container-low p-md border border-outline-variant">
+                        <span class="text-label-caps font-label-caps text-on-surface-variant text-[10px] block">CONFIDENCE</span>
+                        <span class="text-headline-sm font-data-mono text-primary-container" id="drawer-confidence">98%</span>
+                    </div>
+                </div>
+                <!-- Explanation Section -->
+                <div class="space-y-sm">
+                    <h4 class="text-label-caps font-label-caps font-bold text-primary">Explanation</h4>
+                    <ul class="space-y-md">
+                        <li class="flex gap-md">
+                            <span class="material-symbols-outlined text-error text-[20px]" data-icon="analytics">analytics</span>
+                            <div>
+                                <span class="text-body-sm font-bold block" id="drawer-explanation-title">Unusual DNS request rate</span>
+                                <span class="text-body-sm text-on-surface-variant" id="drawer-explanation-desc">Source exhibited a 400% increase in sub-domain querying over the last 300 seconds, bypassing standard ratelimiting patterns.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Details Mapping -->
+                <div class="space-y-sm">
+                    <h4 class="text-label-caps font-label-caps font-bold text-on-surface-variant">Flow Details</h4>
+                    <div class="bg-surface-container-highest/30 p-md border border-outline-variant space-y-2 text-body-sm font-data-mono">
+                        <div><span class="text-on-surface-variant">SRC:</span> <span id="drawer-src">192.168.1.1</span></div>
+                        <div><span class="text-on-surface-variant">DST:</span> <span id="drawer-dst">10.0.0.1</span></div>
+                        <div><span class="text-on-surface-variant">MITRE:</span> <span class="text-primary" id="drawer-mitre">T1059.001</span></div>
+                    </div>
+                </div>
+                <!-- Action Buttons -->
+                <div class="pt-lg space-y-md">
+                    <button class="w-full bg-error text-on-error font-bold py-md flex items-center justify-center gap-sm hover:brightness-110 active:scale-95 transition-all" onclick="isolateSelectedHost()">
+                        <span class="material-symbols-outlined">block</span>
+                        <span class="text-label-caps font-label-caps">ISOLATE HOST</span>
+                    </button>
+                    <button class="w-full border border-primary text-primary font-bold py-md flex items-center justify-center gap-sm hover:bg-primary/10 active:scale-95 transition-all" onclick="assignCase()">
+                        <span class="material-symbols-outlined">assignment_turned_in</span>
+                        <span class="text-label-caps font-label-caps">ASSIGN TO CASE</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scan Progress Modal Overlay -->
+    <div id="scan-modal" class="hidden fixed inset-0 bg-background/80 backdrop-filter backdrop-blur-md z-50 flex items-center justify-center">
+        <div class="w-96 glass-panel border border-outline-variant p-lg text-center space-y-md">
+            <span class="material-symbols-outlined text-[48px] text-primary animate-spin">sync</span>
+            <h3 class="text-headline-sm font-bold text-primary">Vigilance Scan Running</h3>
+            <p class="text-body-sm text-on-surface-variant" id="scan-step">Analyzing process headers...</p>
+            <div class="w-full bg-surface-container-highest h-2">
+                <div id="scan-progress-bar" class="bg-primary-container h-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Out Modal -->
+    <div id="signout-modal" class="hidden fixed inset-0 bg-background/80 backdrop-filter backdrop-blur-md z-50 flex items-center justify-center">
+        <div class="w-96 glass-panel border border-outline-variant p-lg text-center space-y-md">
+            <span class="material-symbols-outlined text-[48px] text-error">logout</span>
+            <h3 class="text-headline-sm font-bold text-on-surface">Confirm Sign Out</h3>
+            <p class="text-body-sm text-on-surface-variant">Are you sure you want to end your current preview session?</p>
+            <div class="flex gap-md pt-sm">
+                <button class="flex-1 border border-outline text-on-surface-variant font-bold py-sm hover:bg-surface-container-high" onclick="toggleSignOutModal(false)">Cancel</button>
+                <button class="flex-1 bg-error text-on-error font-bold py-sm hover:brightness-110" onclick="performSignOut()">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Modal -->
+    <div id="support-modal" class="hidden fixed inset-0 bg-background/80 backdrop-filter backdrop-blur-md z-50 flex items-center justify-center">
+        <div class="w-96 glass-panel border border-outline-variant p-lg space-y-md">
+            <div class="flex justify-between items-center">
+                <h3 class="text-headline-sm font-bold text-primary">Submit Support Request</h3>
+                <button class="p-1 text-on-surface-variant hover:text-on-surface" onclick="toggleSupportModal(false)">✕</button>
+            </div>
+            <div class="space-y-sm text-body-sm">
+                <label class="block text-on-surface-variant">Topic</label>
+                <select class="w-full bg-surface-container-low border border-outline text-on-surface p-sm" id="support-topic">
+                    <option>Model Drift & Re-tuning</option>
+                    <option>UI Styling Glitches</option>
+                    <option>Custom MITRE Map configurations</option>
+                </select>
+                <label class="block text-on-surface-variant">Details</label>
+                <textarea rows="3" class="w-full bg-surface-container-low border border-outline text-on-surface p-sm" placeholder="Provide event specifics..." id="support-desc"></textarea>
+            </div>
+            <div class="flex gap-md pt-sm">
+                <button class="flex-1 border border-outline text-on-surface-variant font-bold py-sm hover:bg-surface-container-high" onclick="toggleSupportModal(false)">Cancel</button>
+                <button class="flex-1 bg-primary text-background font-bold py-sm hover:brightness-110" onclick="submitSupportTicket()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Toast Alert -->
+    <div id="toast-alert" class="fixed bottom-lg right-lg p-md glass-panel border border-outline-variant text-body-sm hidden flex items-center gap-sm shadow-xl z-50">
+        <span class="material-symbols-outlined text-primary-container" id="toast-icon">check_circle</span>
+        <span class="text-on-surface" id="toast-msg">Action performed successfully.</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
