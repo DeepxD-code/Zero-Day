@@ -1,26 +1,77 @@
 # stub_detector.py
-# Week 1 
-# Replace this with the real autoencoder 
+# Week 2 — now uses real autoencoder model
+
+import torch
+import torch.nn as nn
+import uuid
+from datetime import datetime
+
+
+class Autoencoder(nn.Module):
+    def __init__(self, input_dim=76):
+        super().__init__()
+        self.encoder = nn.Sequential(
+            nn.Linear(input_dim, 32),
+            nn.ReLU(),
+            nn.Linear(32, 8)
+        )
+        self.decoder = nn.Sequential(
+            nn.Linear(8, 32),
+            nn.ReLU(),
+            nn.Linear(32, input_dim),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x):
+        return self.decoder(self.encoder(x))
+
+    def anomaly_score(self, x):
+        with torch.no_grad():
+            recon = self.forward(x)
+            return torch.mean((recon - x) ** 2, dim=1)
+
 
 def score_flow(feature_vector: list) -> dict:
     """
-    Takes a feature vector (list of numbers)
-    Returns an anomaly score between 0 and 1
-    0 = totally normal, 1 = highly anomalous
+    Takes a 76-feature normalized vector.
+    Returns full scored alert matching scored_alert.json schema.
     """
-    # hardcoded for now — real model swaps in next week
+    model = Autoencoder(input_dim=76)
+    model.load_state_dict(torch.load(
+        "detection/autoencoder_v1.pt",
+        map_location="cpu",
+        weights_only=True
+    ))
+    model.eval()
+
+    x = torch.tensor([feature_vector], dtype=torch.float32)
+    score = model.anomaly_score(x).item()
+    threshold = 0.5
+
     return {
-        "anomaly_score": 0.08,
-        "threshold": 0.50,
-        "is_anomaly": False,
-        "model_version": "stub-v1"
+        "alert_id": str(uuid.uuid4()),
+        "timestamp": datetime.utcnow().isoformat(),
+        "src_ip": "0.0.0.0",
+        "dst_ip": "0.0.0.0",
+        "anomaly_score": round(score, 6),
+        "confidence": round(1 - score, 6),
+        "risk_score": int(score * 100),
+        "attack_type_guess": "unknown",
+        "mitre_technique": "unknown",
+        "explanation": [],
+        "model_source": "autoencoder-v1",
+        "is_adversarial_test": False,
+        "feature_vector": feature_vector,
+        "top_features": []
     }
 
 
-# Quick test — run this file directly to confirm it works
 if __name__ == "__main__":
-    fake_vector = [0.1, 0.4, 0.2, 0.9, 0.3, 0.1, 0.5, 0.2,
-                   0.8, 0.1, 0.3, 0.6, 0.4, 0.2, 0.7, 0.1,
-                   0.9, 0.3, 0.1, 0.5]
+    fake_vector = [0.4] * 76
     result = score_flow(fake_vector)
-    print("Stub working:", result)
+    print("Alert output:")
+    for key, value in result.items():
+        if key == "feature_vector":
+            print(f"  feature_vector: [76 values, first 3: {value[:3]}]")
+        else:
+            print(f"  {key}: {value}")

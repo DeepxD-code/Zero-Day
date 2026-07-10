@@ -1,0 +1,9 @@
+{
+  "version": "2.0",
+  "description": "Fixed-length numeric vector representing one network flow",
+  "length": 76,
+  "preprocessing": "MinMaxScaler — all values normalized to range [0, 1]",
+  "note": "Matches CICIDS2017 MachineLearningCSV feature set exactly. Use CICFlowMeter to generate compatible CSVs from raw pcap.",
+  "owner_produces": "A (Data & Capture)",
+  "owner_consumes": "B (Detection Modeling)"
+}

@@ -49,7 +49,16 @@
     },
     "is_adversarial_test": {
       "type": "boolean"
-    }
+    },
+    "feature_vector": {
+  "type": "array",
+  "items": {
+    "type": "number"
+  },
+  "minItems": 76,
+  "maxItems": 76,
+  "description": "Raw 76-element normalized input vector — required by C for SHAP analysis"
+}
   },
   "required": [
     "alert_id",
@@ -63,6 +72,7 @@
     "mitre_technique",
     "explanation",
     "model_source",
-    "is_adversarial_test"
+    "is_adversarial_test",
+    "feature_vector"
   ]
 }
