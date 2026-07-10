@@ -2,3 +2,5 @@
 /Resources**
 /data/
 /venv/
+.vscode/
+README.md

@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import uuid
-from datetime import datetime
+from datetime import datetime, UTC
 
 
 class Autoencoder(nn.Module):
@@ -36,7 +36,8 @@ def score_flow(feature_vector: list) -> dict:
     model = Autoencoder(input_dim=76)
     model.load_state_dict(torch.load(
         "detection/autoencoder_v1.pt",
-        map_location="cpu"
+        map_location="cpu",
+        weights_only=True
     ))
     model.eval()
 
@@ -46,7 +47,7 @@ def score_flow(feature_vector: list) -> dict:
 
     return {
         "flow_id": str(uuid.uuid4()),
-        "timestamp": datetime.now(datetime.UTC).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "anomaly_score": round(score, 6),
         "threshold": threshold,
         "is_anomaly": score > threshold,
