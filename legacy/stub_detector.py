@@ -120,7 +120,7 @@ def _try_shap_explanation(feature_vector: List[float]) -> tuple[Optional[list], 
         from .shap_explainer import SHAPExplainer, guess_attack_type
     except Exception:
         try:
-            from detection.shap_explainer import SHAPExplainer, guess_attack_type
+            from legacy.shap_explainer import SHAPExplainer, guess_attack_type
         except Exception as exc:
             logger.warning("SHAP explanation unavailable: %s", exc)
             return None, None, "unknown", "unknown"

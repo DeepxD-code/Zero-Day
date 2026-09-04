@@ -28,10 +28,12 @@ from sklearn.preprocessing import MinMaxScaler
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "autoencoder_v2-256.pt")
-ATTACK_MAPPER_PATH = os.path.join(os.path.dirname(__file__), "network_attack_mapper.json")
+MODEL_PATH = os.path.join(
+    os.path.dirname(__file__),
+    "m5a_revived_ctx.pt"
+)
 
-FEATURE_NAMES = [
+FLOW_FEATURE_NAMES = [
     "flow_duration", "flow_byts_s", "flow_pkts_s", "fwd_pkts_s", "bwd_pkts_s",
     "tot_fwd_pkts", "tot_bwd_pkts", "totlen_fwd_pkts", "totlen_bwd_pkts",
     "fwd_pkt_len_max", "fwd_pkt_len_min", "fwd_pkt_len_mean", "fwd_pkt_len_std",
@@ -52,6 +54,14 @@ FEATURE_NAMES = [
     "cwr_flag_count", "subflow_fwd_pkts", "subflow_bwd_pkts",
     "subflow_fwd_byts", "subflow_bwd_byts",
 ]
+
+CTX_DIMS = [
+    "ws_flows", "ws_dst", "ws_ports", "ws_fwd", "ws_bwd",
+    "ws_pkts_f", "ws_pkts_b", "ws_dur", "wd_flows", "wd_src", "wd_dur"
+]
+
+REVIVED_FEATURE_NAMES = FLOW_FEATURE_NAMES + CTX_DIMS
+assert len(REVIVED_FEATURE_NAMES) == 87
 
 
 def _resolve_path(path):
