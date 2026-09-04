@@ -1,0 +1,3802 @@
+[
+  {
+    "flow_idx": 0,
+    "anomaly_score": 0.0005897076916880906,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005533657385967672,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005439463420771062,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005256228614598513,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005232110852375627,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.0002348085108678788,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00018030217324849218,
+        "input_scaled": 0.26506802439689636,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.00013522956578526646,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "rst_flag_cnt",
+        "shap_value": 9.654199675424024e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -7.775876292726025e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "flow_duration",
+        "shap_value": -7.75654916651547e-05,
+        "input_scaled": 0.7505607604980469,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 1,
+    "anomaly_score": 0.0005123000591993332,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005601922748610377,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005310954875312746,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005170829826965928,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005148333148099482,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023795949527993798,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00018749333685263991,
+        "input_scaled": 0.26506802439689636,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.0001354434061795473,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "flow_duration",
+        "shap_value": -9.182023495668545e-05,
+        "input_scaled": 0.7505607604980469,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -8.793479355517775e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 8.688624075148255e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 2,
+    "anomaly_score": 0.0005123000591993332,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005601922748610377,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005310954875312746,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005170829826965928,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005148333148099482,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023795949527993798,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00018749333685263991,
+        "input_scaled": 0.26506802439689636,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.0001354434061795473,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "flow_duration",
+        "shap_value": -9.182023495668545e-05,
+        "input_scaled": 0.7505607604980469,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -8.793479355517775e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 8.688624075148255e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 3,
+    "anomaly_score": 0.0005123000591993332,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005601922748610377,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005310954875312746,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005170829826965928,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005148333148099482,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023795949527993798,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00018749333685263991,
+        "input_scaled": 0.26506802439689636,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.0001354434061795473,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "flow_duration",
+        "shap_value": -9.182023495668545e-05,
+        "input_scaled": 0.7505607604980469,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -8.793479355517775e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 8.688624075148255e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 4,
+    "anomaly_score": 0.0006655884790234268,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005522872670553625,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005432797479443252,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005241029430180788,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.000523951428476721,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.0002358331112191081,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00018027723126579076,
+        "input_scaled": 0.26506802439689636,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.00013373998808674514,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "rst_flag_cnt",
+        "shap_value": 8.913812780519947e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -7.821734470780939e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "flow_duration",
+        "shap_value": -7.760825974401087e-05,
+        "input_scaled": 0.7551079392433167,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 5,
+    "anomaly_score": 0.0005234548589214683,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005601515294983983,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005309715634211898,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005169938085600734,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005147770862095058,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023788494581822306,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00018757519137579948,
+        "input_scaled": 0.26506802439689636,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.0001353452098555863,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "flow_duration",
+        "shap_value": -9.269564907299355e-05,
+        "input_scaled": 0.7551079392433167,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -8.80150037119165e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 8.656010322738439e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 6,
+    "anomaly_score": 0.0005234548589214683,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005601515294983983,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005309715634211898,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005169938085600734,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005147770862095058,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023788494581822306,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00018757519137579948,
+        "input_scaled": 0.26506802439689636,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.0001353452098555863,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "flow_duration",
+        "shap_value": -9.269564907299355e-05,
+        "input_scaled": 0.7551079392433167,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -8.80150037119165e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 8.656010322738439e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 7,
+    "anomaly_score": 0.0005234548589214683,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005601515294983983,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005309715634211898,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005169938085600734,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005147770862095058,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023788494581822306,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00018757519137579948,
+        "input_scaled": 0.26506802439689636,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.0001353452098555863,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "flow_duration",
+        "shap_value": -9.269564907299355e-05,
+        "input_scaled": 0.7551079392433167,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -8.80150037119165e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 8.656010322738439e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 8,
+    "anomaly_score": 0.00015948076907079667,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.000572955992538482,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005202799802646041,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005149985081516206,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005131675861775875,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00016580976080149412,
+        "input_scaled": 0.0438002273440361,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00012553560372907668,
+        "input_scaled": 0.0038314175326377153,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -0.00010964774992316961,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.14738416718319e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.946836245129816e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "fin_flag_cnt",
+        "shap_value": -5.47002418898046e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 9,
+    "anomaly_score": 0.00028397957794368267,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005704823997803032,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005217382567934692,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005186758353374898,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005103017902001739,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "flow_duration",
+        "shap_value": -0.00014456789358519018,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013265477900858968,
+        "input_scaled": 0.003412969410419464,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.441488560289145e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_bwd",
+        "shap_value": -6.236860645003617e-05,
+        "input_scaled": 0.5054130554199219,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_dur",
+        "shap_value": -6.0667585785267875e-05,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.842245809617452e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 10,
+    "anomaly_score": 0.0003030006482731551,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005727894022129476,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005199121660552919,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005188921932131052,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005050665349699557,
+        "input_scaled": 0.9663710594177246,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.0001385067735100165,
+        "input_scaled": 0.0025862068869173527,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00011685231584124267,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_dur",
+        "shap_value": -8.15864113974385e-05,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.870514334877953e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.748699186369777e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.633816181216389e-05,
+        "input_scaled": 0.5054130554199219,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 11,
+    "anomaly_score": 0.0003468599170446396,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005712471902370453,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005251741386018693,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005215674173086882,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005011789035052061,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013841487816534936,
+        "input_scaled": 0.004452926106750965,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00011742762580979615,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_dur",
+        "shap_value": -8.700951730133966e-05,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.143913535401225e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.854897608514875e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.460193642647937e-05,
+        "input_scaled": 0.5054130554199219,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 12,
+    "anomaly_score": 0.0001684830931480974,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005394186591729522,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.00049429020145908,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0004821759066544473,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.00045055290684103966,
+        "input_scaled": 0.9663702845573425,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "ws_fwd",
+        "shap_value": -0.0002510290942154825,
+        "input_scaled": 0.13253401219844818,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00022560845536645502,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.00010209767060587183,
+        "input_scaled": 0.054999738931655884,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_ports",
+        "shap_value": -8.381492079934105e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": -7.361362804658711e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_f",
+        "shap_value": -7.111657760106027e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 13,
+    "anomaly_score": 0.00030375615460798144,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005727219977416098,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005198506987653673,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005188098293729126,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005049436585977674,
+        "input_scaled": 0.9663710594177246,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013853865675628185,
+        "input_scaled": 0.002680965233594179,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00011684251512633637,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_dur",
+        "shap_value": -8.183191675925627e-05,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.860544817754999e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.746737224399112e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.6460015912307426e-05,
+        "input_scaled": 0.5054130554199219,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 14,
+    "anomaly_score": 0.00031885647331364453,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005737675237469375,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005171013181097806,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005157344276085496,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005051285261288285,
+        "input_scaled": 0.9663718938827515,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00014002311218064278,
+        "input_scaled": 0.00023578916443511844,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00013160755042918026,
+        "input_scaled": 0.005935759749263525,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_dur",
+        "shap_value": -8.033592894207686e-05,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.50443253107369e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_bwd",
+        "shap_value": -5.960700218565762e-05,
+        "input_scaled": 0.5054130554199219,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "wd_dur",
+        "shap_value": -5.7436522183706984e-05,
+        "input_scaled": 0.8511212468147278,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 15,
+    "anomaly_score": 0.0001608616003068164,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.000572731951251626,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005203592008911073,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.00051440967945382,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005130071076564491,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00017265023780055344,
+        "input_scaled": 0.037663962692022324,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00012540328316390514,
+        "input_scaled": 0.002838605083525181,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -0.00010952198499580845,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.12695691618137e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.8974877902073786e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "fin_flag_cnt",
+        "shap_value": -5.518893522094004e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 16,
+    "anomaly_score": 0.0002751291904132813,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.000570546486414969,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005217678262852132,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005188393988646567,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005105673335492611,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "flow_duration",
+        "shap_value": -0.0001433119468856603,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013228374882601202,
+        "input_scaled": 0.0034246575087308884,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.447223470080644e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_bwd",
+        "shap_value": -6.183508230606094e-05,
+        "input_scaled": 0.5054130554199219,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_dur",
+        "shap_value": -5.9980251535307616e-05,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.86672977078706e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 17,
+    "anomaly_score": 0.0003388813347555697,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005717925378121436,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005251626716926694,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005218795849941671,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005021077231504023,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013904359366279095,
+        "input_scaled": 0.0023125207517296076,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00011711722618201748,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_dur",
+        "shap_value": -8.62024535308592e-05,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.158194785006344e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.8651381550589576e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.4378167988033965e-05,
+        "input_scaled": 0.5054130554199219,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 18,
+    "anomaly_score": 5.8660465583670884e-05,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005645917844958603,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005187393981032073,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005180758307687938,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004802935291081667,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00016494667215738446,
+        "input_scaled": 0.0438002273440361,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00012731474998872727,
+        "input_scaled": 0.0037878789007663727,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -9.364617289975286e-05,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.001327321631834e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_dur",
+        "shap_value": -5.723582944483496e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_dst",
+        "shap_value": -5.331240754458122e-05,
+        "input_scaled": 0.08893483132123947,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 19,
+    "anomaly_score": 0.00022337013797368854,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005786445690318942,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005241900798864663,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005136420950293541,
+        "input_scaled": 0.9663702845573425,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005033646011725068,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023499640519730747,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00020291362307034433,
+        "input_scaled": 0.24593602120876312,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 9.584370855009183e-05,
+        "input_scaled": 0.10999947786331177,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "rst_flag_cnt",
+        "shap_value": -9.119133756030351e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -7.520808867411688e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "flow_duration",
+        "shap_value": -6.267874414334074e-05,
+        "input_scaled": 0.01594567857682705,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 20,
+    "anomaly_score": 0.00021241417562123388,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.000563033448997885,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005188783979974687,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005096181412227452,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004913454758934677,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013453529390972108,
+        "input_scaled": 0.0031712474301457405,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00012212754518259317,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.628923776792362e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "wd_dur",
+        "shap_value": -6.827000470366329e-05,
+        "input_scaled": 0.7133669853210449,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": 6.541005132021382e-05,
+        "input_scaled": 0.3241640031337738,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.448026422527619e-05,
+        "input_scaled": 0.507697343826294,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 21,
+    "anomaly_score": 0.00020767972455359995,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005694014835171402,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005200831801630557,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005149579956196249,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.00048624127521179616,
+        "input_scaled": 0.9663710594177246,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013872717681806535,
+        "input_scaled": 0.0032362460624426603,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.0001058839843608439,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.727821164531633e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -6.62145612295717e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.478837920236401e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.2239589422242716e-05,
+        "input_scaled": 0.507697343826294,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 22,
+    "anomaly_score": 0.0002009831223404035,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005695325671695173,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005202334141358733,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005153208039700985,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004862130153924227,
+        "input_scaled": 0.9663710594177246,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013864683569408953,
+        "input_scaled": 0.0030832476913928986,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00010559817746980116,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.737663352396339e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -6.592254067072645e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.464334026328288e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.189946023165248e-05,
+        "input_scaled": 0.507697343826294,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 23,
+    "anomaly_score": 0.00026808303664438426,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005674169515259564,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005234051495790482,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005183749017305672,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004901388310827315,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.0001388064119964838,
+        "input_scaled": 0.00244840863160789,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00010393789125373587,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.996577576501295e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -5.764497473137453e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.569333370658569e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.1193463150411844e-05,
+        "input_scaled": 0.507697343826294,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 24,
+    "anomaly_score": 0.0001789614761946723,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.000566468108445406,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.000530416495166719,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005197101854719222,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004708432825282216,
+        "input_scaled": 0.9663710594177246,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00017962981655728072,
+        "input_scaled": 0.023866597563028336,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013768264034297317,
+        "input_scaled": 0.003603603458032012,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_dur",
+        "shap_value": -7.240944250952452e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.459918222390115e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "flow_duration",
+        "shap_value": -5.753556251875125e-05,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.116451211506501e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 25,
+    "anomaly_score": 0.0001032085347105749,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005658570444211364,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005173962563276291,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005144226597622037,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.00047801819164305925,
+        "input_scaled": 0.9663715958595276,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00017116959497798234,
+        "input_scaled": 0.03286093473434448,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013804437185171992,
+        "input_scaled": 5.625294943456538e-05,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -7.943163654999807e-05,
+        "input_scaled": 0.005935759749263525,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -7.094282045727596e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.545717042172328e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.404287367127836e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 26,
+    "anomaly_score": 0.0010961969383060932,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005780878127552569,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005274270079098642,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0004960760707035661,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004828655510209501,
+        "input_scaled": 0.9663702845573425,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "ws_fwd",
+        "shap_value": -0.0002198619768023491,
+        "input_scaled": 0.24593602120876312,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.0002151941880583763,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "fwd_iat_std",
+        "shap_value": -9.430151112610474e-05,
+        "input_scaled": 0.007246376946568489,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "syn_flag_cnt",
+        "shap_value": 8.066704322118312e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_bwd",
+        "shap_value": -7.42927222745493e-05,
+        "input_scaled": 0.14499612152576447,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_b",
+        "shap_value": 7.316780829569325e-05,
+        "input_scaled": 0.10999947786331177,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 27,
+    "anomaly_score": 0.00018961128080263734,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005700133624486625,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005206824280321598,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005161772132851183,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004856225859839469,
+        "input_scaled": 0.9663711190223694,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.0001386193180223927,
+        "input_scaled": 0.0026978417299687862,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00010513474990148097,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.710467278026044e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -6.565732473973185e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.430995224742219e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.155521284905262e-05,
+        "input_scaled": 0.507697343826294,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 28,
+    "anomaly_score": 0.00026544518186710775,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005675131105817854,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.000523500784765929,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005184473120607436,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004902473883703351,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013843514898326248,
+        "input_scaled": 0.003562340745702386,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00010372651740908623,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.998235767241567e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -5.777858314104378e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.569829954765737e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_bwd",
+        "shap_value": -5.11208527314011e-05,
+        "input_scaled": 0.507697343826294,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 29,
+    "anomaly_score": 7.731267396593466e-05,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005584441823884845,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005119637353345752,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0004920760984532535,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.000490478822030127,
+        "input_scaled": 0.9663707613945007,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00017091218614950776,
+        "input_scaled": 0.032084956765174866,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00012875409447588027,
+        "input_scaled": 2.4604481950518675e-05,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -0.00010457706230226904,
+        "input_scaled": 0.0012207217514514923,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_bwd",
+        "shap_value": -7.214297511382028e-05,
+        "input_scaled": 0.507697343826294,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.629191193496808e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_dst",
+        "shap_value": -5.686848453478888e-05,
+        "input_scaled": 0.08893483132123947,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 30,
+    "anomaly_score": 0.00023356065503321588,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0006024159374646842,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005462184199132025,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005289637483656406,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0004887584364041686,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.000243273563683033,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_bwd",
+        "shap_value": -6.49790235911496e-05,
+        "input_scaled": 0.507697343826294,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -6.32518349448219e-05,
+        "input_scaled": 0.0012207217514514923,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "bwd_psh_flags",
+        "shap_value": -6.239215144887567e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "syn_flag_cnt",
+        "shap_value": 6.180968193802983e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_f",
+        "shap_value": 5.974600571789779e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 31,
+    "anomaly_score": 0.003585057333111763,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005456952494569123,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005415486521087587,
+        "input_scaled": 0.9975985288619995,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.000515372899826616,
+        "input_scaled": 0.9975985288619995,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.000460538431070745,
+        "input_scaled": 0.9663719534873962,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "flow_duration",
+        "shap_value": -0.00017970286717172712,
+        "input_scaled": 0.7579308748245239,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_dur",
+        "shap_value": -0.0001454842131352052,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00011988238838966936,
+        "input_scaled": 2.6554329224381945e-07,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "wd_dur",
+        "shap_value": -0.00010238628601655364,
+        "input_scaled": 0.8511212468147278,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -9.284175757784396e-05,
+        "input_scaled": 0.11909560114145279,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.021417695796117e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 32,
+    "anomaly_score": 6.566800584550947e-05,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005645825294777751,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005419792723841965,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005255151772871614,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004998501972295344,
+        "input_scaled": 0.9663704037666321,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023823273659218103,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "rst_flag_cnt",
+        "shap_value": 0.00014928518794476986,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -0.00011273253767285496,
+        "input_scaled": 0.7579308748245239,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "bwd_psh_flags",
+        "shap_value": -8.928638999350369e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "wd_dur",
+        "shap_value": -8.313644502777606e-05,
+        "input_scaled": 0.7133669853210449,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "fwd_iat_std",
+        "shap_value": -6.52552698738873e-05,
+        "input_scaled": 0.006410256493836641,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 33,
+    "anomaly_score": 7.716209074715152e-05,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005802244413644075,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005265920772217214,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005110107595100999,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0004997119540348649,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.0002327943657292053,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_fwd",
+        "shap_value": -0.00020238310389686376,
+        "input_scaled": 0.24593602120876312,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_b",
+        "shap_value": 0.00010157097858609632,
+        "input_scaled": 0.10999947786331177,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "rst_flag_cnt",
+        "shap_value": -9.238786878995597e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -6.977975135669112e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "flow_duration",
+        "shap_value": -6.306221621343866e-05,
+        "input_scaled": 0.01570153422653675,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 34,
+    "anomaly_score": 0.00019718424300663173,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.000569607422221452,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005203192122280598,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005155372782610357,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.00048619782319292426,
+        "input_scaled": 0.9663710594177246,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013865777873434126,
+        "input_scaled": 0.0028116214089095592,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00010542160453042015,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.743541598552838e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -6.571689300471917e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.455746577354148e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "wd_dur",
+        "shap_value": -5.171594239072874e-05,
+        "input_scaled": 0.7133669853210449,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 35,
+    "anomaly_score": 0.0001019310366245918,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005658571026287973,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005173622048459947,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005144044989719987,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.00047810663818381727,
+        "input_scaled": 0.9663715958595276,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.0001711741351755336,
+        "input_scaled": 0.03286093473434448,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013771845260635018,
+        "input_scaled": 0.0012254902394488454,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -7.93041181168519e-05,
+        "input_scaled": 0.005935759749263525,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -7.087953417794779e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.54655959806405e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.4062489653006196e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 36,
+    "anomaly_score": 0.00011895801435457543,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005716867744922638,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005221259780228138,
+        "input_scaled": 0.9975985288619995,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005185109912417829,
+        "input_scaled": 0.9975985288619995,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004862770438194275,
+        "input_scaled": 0.966371476650238,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013864475477021188,
+        "input_scaled": 9.628957741369959e-06,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -9.376450907438993e-05,
+        "input_scaled": 0.005935759749263525,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.833611405454576e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_dur",
+        "shap_value": -6.302690599113703e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.399039582698606e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_dst",
+        "shap_value": -4.82935574837029e-05,
+        "input_scaled": 0.08893483132123947,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 37,
+    "anomaly_score": 0.0010974586475640535,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005782096995972097,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005285718943923712,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0004960336373187602,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.00048301249626092613,
+        "input_scaled": 0.9663702845573425,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "ws_fwd",
+        "shap_value": -0.0002197214780608192,
+        "input_scaled": 0.24593602120876312,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00021521079179365188,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "fwd_iat_std",
+        "shap_value": -9.131059050559998e-05,
+        "input_scaled": 0.014492753893136978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "syn_flag_cnt",
+        "shap_value": 7.655804074602202e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_bwd",
+        "shap_value": -7.434724102495238e-05,
+        "input_scaled": 0.14499612152576447,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_b",
+        "shap_value": 7.307203486561775e-05,
+        "input_scaled": 0.10999947786331177,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 38,
+    "anomaly_score": 0.00018946113414131105,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005641505704261363,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005204883054830134,
+        "input_scaled": 0.9975985884666443,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005111010395921767,
+        "input_scaled": 0.9975985884666443,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004709597851615399,
+        "input_scaled": 0.9663726091384888,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00016631193284410983,
+        "input_scaled": 0.046214472502470016,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00012379910913296044,
+        "input_scaled": 5.794803428216255e-07,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_dur",
+        "shap_value": -9.908081847243011e-05,
+        "input_scaled": 0.7286733388900757,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "wd_dur",
+        "shap_value": -9.42069455049932e-05,
+        "input_scaled": 0.7133669853210449,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "flow_duration",
+        "shap_value": -9.114563727052882e-05,
+        "input_scaled": 0.002121004043146968,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_f",
+        "shap_value": 7.761290180496871e-05,
+        "input_scaled": 0.3694271743297577,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 39,
+    "anomaly_score": 0.00010406190267531201,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005721459747292101,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005533932708203793,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005235225544311106,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005036273505538702,
+        "input_scaled": 0.9663702845573425,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.0002401815727353096,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "rst_flag_cnt",
+        "shap_value": 0.00021262963127810508,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "fwd_iat_std",
+        "shap_value": -9.151124686468393e-05,
+        "input_scaled": 0.006060606334358454,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "bwd_psh_flags",
+        "shap_value": -7.796603313181549e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_dst",
+        "shap_value": -5.502749627339654e-05,
+        "input_scaled": 0.08893483132123947,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "flow_duration",
+        "shap_value": -5.49192882317584e-05,
+        "input_scaled": 0.002121004043146968,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 40,
+    "anomaly_score": 0.00021639269834849983,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005793811869807541,
+        "input_scaled": 0.9999988675117493,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005321585340425372,
+        "input_scaled": 0.9975985288619995,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005153539823368192,
+        "input_scaled": 0.9663710594177246,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.000500679190736264,
+        "input_scaled": 0.9975985288619995,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.0001793532574083656,
+        "input_scaled": 0.034490033984184265,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.0001248751941602677,
+        "input_scaled": 0.0071839080192148685,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -0.00012056859850417823,
+        "input_scaled": 0.005935759749263525,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_bwd",
+        "shap_value": -6.501753523480147e-05,
+        "input_scaled": 0.47860416769981384,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.379974754760042e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "fin_flag_cnt",
+        "shap_value": -4.5822020183550194e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 41,
+    "anomaly_score": 0.0003949145902879536,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005572974914684892,
+        "input_scaled": 0.9999988675117493,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005540830898098648,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005208295187912881,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004880666674580425,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "rst_flag_cnt",
+        "shap_value": -0.0002582851448096335,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023047976719681174,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "fwd_urg_flags",
+        "shap_value": 0.00013179708912502974,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "flow_iat_min",
+        "shap_value": 7.041745993774384e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -6.678670615656301e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.615019083255902e-05,
+        "input_scaled": 0.30686405301094055,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 42,
+    "anomaly_score": 0.0005201237509027123,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005874066264368594,
+        "input_scaled": 0.9999988675117493,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005304000223986804,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005265900399535894,
+        "input_scaled": 0.9663714170455933,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005117350374348462,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013582894462160766,
+        "input_scaled": 0.002553191501647234,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00011758409527828917,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_bwd",
+        "shap_value": -6.379615660989657e-05,
+        "input_scaled": 0.47860416769981384,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 4.647456808015704e-05,
+        "input_scaled": 0.30686405301094055,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 4.492474181461148e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "bwd_psh_flags",
+        "shap_value": -3.80293968191836e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 43,
+    "anomaly_score": 0.00065199303207919,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.00058225158136338,
+        "input_scaled": 0.9999988675117493,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005214220727793872,
+        "input_scaled": 0.9975986480712891,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005154177779331803,
+        "input_scaled": 0.9663723111152649,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.000512109836563468,
+        "input_scaled": 0.9975986480712891,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "flow_duration",
+        "shap_value": -0.00013923498045187443,
+        "input_scaled": 0.005935759749263525,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.0001367575750919059,
+        "input_scaled": 8.202099706977606e-05,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": 8.1697988207452e-05,
+        "input_scaled": 0.36980196833610535,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_bwd",
+        "shap_value": -6.485476478701457e-05,
+        "input_scaled": 0.47860416769981384,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "ws_pkts_f",
+        "shap_value": 5.043967757956125e-05,
+        "input_scaled": 0.30686405301094055,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "rst_flag_cnt",
+        "shap_value": 4.225136945024133e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 44,
+    "anomaly_score": 0.00052023766329512,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005873843329027295,
+        "input_scaled": 0.9999988675117493,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005303970538079739,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005265944637358189,
+        "input_scaled": 0.9663714170455933,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005117396940477192,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.0001357058499706909,
+        "input_scaled": 0.0028490028344094753,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00011758434266084805,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_bwd",
+        "shap_value": -6.381066486937925e-05,
+        "input_scaled": 0.47860416769981384,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 4.6472723624901846e-05,
+        "input_scaled": 0.30686405301094055,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 4.4916178012499586e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "bwd_psh_flags",
+        "shap_value": -3.802817809628323e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 45,
+    "anomaly_score": 0.00021641152852680534,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005793753080070019,
+        "input_scaled": 0.9999988675117493,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005321517819538713,
+        "input_scaled": 0.9975985288619995,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005153681850060821,
+        "input_scaled": 0.9663710594177246,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005007025902159512,
+        "input_scaled": 0.9975985288619995,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00017932808259502053,
+        "input_scaled": 0.034490033984184265,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.0001247427862836048,
+        "input_scaled": 0.007645259611308575,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "flow_duration",
+        "shap_value": -0.00012056946434313431,
+        "input_scaled": 0.005935759749263525,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_bwd",
+        "shap_value": -6.500596646219492e-05,
+        "input_scaled": 0.47860416769981384,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 5.382454764912836e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "fin_flag_cnt",
+        "shap_value": -4.584704220178537e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 46,
+    "anomaly_score": 0.0003949145902879536,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005572974914684892,
+        "input_scaled": 0.9999988675117493,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005540830898098648,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005208295187912881,
+        "input_scaled": 0.9975983500480652,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004880666674580425,
+        "input_scaled": 0.9663702249526978,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "rst_flag_cnt",
+        "shap_value": -0.0002582851448096335,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00023047976719681174,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "fwd_urg_flags",
+        "shap_value": 0.00013179708912502974,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "flow_iat_min",
+        "shap_value": 7.041745993774384e-05,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "bwd_psh_flags",
+        "shap_value": -6.678670615656301e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.615019083255902e-05,
+        "input_scaled": 0.30686405301094055,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 47,
+    "anomaly_score": 0.0005201260792091489,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005874061025679111,
+        "input_scaled": 0.9999988675117493,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005303999059833586,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005265900981612504,
+        "input_scaled": 0.9663714170455933,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005117350956425071,
+        "input_scaled": 0.99759840965271,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.00013582617975771427,
+        "input_scaled": 0.0025597268249839544,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "flow_duration",
+        "shap_value": -0.00011758407345041633,
+        "input_scaled": 0.0013427939265966415,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "ws_bwd",
+        "shap_value": -6.379654951160774e-05,
+        "input_scaled": 0.47860416769981384,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "ws_pkts_f",
+        "shap_value": 4.6474502596538514e-05,
+        "input_scaled": 0.30686405301094055,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "rst_flag_cnt",
+        "shap_value": 4.4924570829607546e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "bwd_psh_flags",
+        "shap_value": -3.802937862928957e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 48,
+    "anomaly_score": 0.0007218505488708615,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005510419141501188,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.000502249866258353,
+        "input_scaled": 0.9975985884666443,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0004977440694347024,
+        "input_scaled": 0.9975985884666443,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0004539710935205221,
+        "input_scaled": 0.9663716554641724,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.00015981851902324706,
+        "input_scaled": 0.03110954537987709,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "ws_dur",
+        "shap_value": -0.00015798262029420584,
+        "input_scaled": 0.8511214256286621,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "wd_dur",
+        "shap_value": -0.00014731624105479568,
+        "input_scaled": 0.8511212468147278,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "fwd_iat_std",
+        "shap_value": -0.0001247332984348759,
+        "input_scaled": 1.3602728188288893e-07,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "flow_duration",
+        "shap_value": -0.00010459025361342356,
+        "input_scaled": 0.0020599679555743933,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_pkts_f",
+        "shap_value": 6.844045128673315e-05,
+        "input_scaled": 0.3534018099308014,
+        "direction": "\u2191 anomaly"
+      }
+    ]
+  },
+  {
+    "flow_idx": 49,
+    "anomaly_score": 0.00010432337148813531,
+    "top_features": [
+      {
+        "rank": 1,
+        "feature": "fwd_blk_rate_avg",
+        "shap_value": -0.0005721644265577197,
+        "input_scaled": 0.9999986886978149,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 2,
+        "feature": "init_fwd_win_byts",
+        "shap_value": -0.0005535671953111887,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 3,
+        "feature": "fwd_iat_min",
+        "shap_value": -0.0005234412965364754,
+        "input_scaled": 0.9975982904434204,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 4,
+        "feature": "fwd_iat_mean",
+        "shap_value": -0.0005036050570197403,
+        "input_scaled": 0.9663702845573425,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 5,
+        "feature": "bwd_pkt_len_max",
+        "shap_value": -0.0002401630044914782,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 6,
+        "feature": "rst_flag_cnt",
+        "shap_value": 0.00021284654212649912,
+        "input_scaled": 1.0,
+        "direction": "\u2191 anomaly"
+      },
+      {
+        "rank": 7,
+        "feature": "fwd_iat_std",
+        "shap_value": -9.182500798488036e-05,
+        "input_scaled": 0.004566209856420755,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 8,
+        "feature": "bwd_psh_flags",
+        "shap_value": -7.785460184095427e-05,
+        "input_scaled": 0.0,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 9,
+        "feature": "flow_duration",
+        "shap_value": -5.552118454943411e-05,
+        "input_scaled": 0.0020599679555743933,
+        "direction": "\u2193 anomaly"
+      },
+      {
+        "rank": 10,
+        "feature": "ws_dst",
+        "shap_value": -5.501133273355663e-05,
+        "input_scaled": 0.08893483132123947,
+        "direction": "\u2193 anomaly"
+      }
+    ]
+  }
+]
