@@ -1,36 +1,74 @@
-# Week 1 Data Handover: Syscall Watcher & Practice Datasets
+# 📊 Week 1 Data Handover: Host-Based Telemetry & Practice Datasets
 
-**Author:** Saharsh (Person A)
-**For:** Person B (Detector Modeling), Person C & D (Feature Mapping & Alerts)
+> [!NOTE]
+> **Author:** Saharsh (Person A)  
+> **Audience:** Person B (Detector Modeling), Person C & D (Feature Mapping & Alerts)  
+> **Objective:** Establish the foundation for host-based (syscall) monitoring while keeping the existing network demo operational.
 
-This document summarizes the data collection infrastructure and practice datasets prepared during Week 1. The goal was to establish a foundation for host-based (syscall) monitoring without disrupting the existing network-based detection demo.
+---
 
-## 1. Network Features (Frozen)
-The legacy network feature list has been kept completely **frozen**. No changes were made to `legacy/autoencoder_def.py` or any existing detection pipelines. The current network demo will not break.
+## 🔒 1. Network Features (Frozen)
+> [!IMPORTANT]
+> The legacy network feature list has been strictly frozen. 
 
-## 2. eBPF Syscall Watcher (`capture/ebpf_syscall_watcher.py`)
-To monitor what programs are doing inside the host computer, a new watcher script was created using eBPF and the BPF Compiler Collection (BCC).
+No modifications have been made to `legacy/autoencoder_def.py` or any legacy detection pipelines. The current network-based demo is guaranteed to remain unbroken.
 
-* **What it does:** It attaches hooks directly to the Linux kernel to watch 8 crucial actions (system calls) in real-time.
-* **Tracked Actions:** 
-  1. `open`, `openat` (File opening)
-  2. `execve`, `execveat` (Starting programs)
-  3. `connect` (Connecting to the internet)
-  4. `setuid`, `setgid`, `setresuid` (Changing user privileges)
-* **Output Format:** It streams these events to standard output as `SyscallRecord` objects (simple JSON records containing `timestamp`, `pid`, `uid`, `comm`, `syscall`, and parsed `args`).
-* **Why build this now?** Setting up eBPF watchers requires a compatible Linux environment and root privileges. Getting this foundational piece built in Week 1 ensures we catch any infrastructure or permission problems early, rather than scrambling in Week 6.
+---
 
-### Action for Team:
-* **Linux Requirement:** You must run this script with `sudo python3 capture/ebpf_syscall_watcher.py` on a Linux environment equipped with BCC (`python3-bpfcc`) and kernel headers.
+## 👁️ 2. eBPF Syscall Watcher (`capture/ebpf_syscall_watcher.py`)
+To achieve robust host-based telemetry without high overhead, a new watcher script was developed utilizing **eBPF (Extended Berkeley Packet Filter)** via the **BCC (BPF Compiler Collection)**.
 
-## 3. Practice Datasets (`data/download_practice_datasets.py`)
-To avoid being blocked while the live eBPF watcher is being tested and deployed, two standard Host-based Intrusion Detection (HIDS) practice datasets have been set up.
+### Overview
+This script attaches low-overhead hooks directly into the Linux kernel tracepoints to monitor 8 critical actions in real-time.
 
-* **What the script does:** It automatically downloads, extracts, and parses the datasets, standardizing them into the same `SyscallRecord` JSONL format that the live watcher produces.
-* **Datasets provided:**
-  * **ADFA-LD (Quick Test):** Fully downloaded and parsed. Since ADFA-LD only provides raw syscall integer sequences without timestamps or arguments, the script automatically mocks the missing fields so it exactly matches the `SyscallRecord` schema.
-  * **LID-DS 2021 (Main):** The repository scaffolding is downloaded. (Note: The actual full LID-DS dataset is massive and must be pulled using their specific dataloader scripts).
+| Category | System Calls | Purpose / Attacker Action |
+| :--- | :--- | :--- |
+| **File Access** | `open`, `openat` | Accessing or modifying files (e.g., touching `/etc/passwd`) |
+| **Execution** | `execve`, `execveat` | Spawning new processes or malicious payloads |
+| **Network** | `connect` | Establishing outbound C2 or exfiltration connections |
+| **Privilege Escalation** | `setuid`, `setgid`, `setresuid` | Attempting to escalate to root or switch user contexts |
 
-### Action for Team:
-* **For Person B:** You can run `python data/download_practice_datasets.py` locally. Check the `data/practice/` folder for the `.jsonl` files. You can start using these mock `SyscallRecord` JSONs immediately to begin building the new host-based detector.
-* **For Person C & D:** Review the JSON structures generated in `data/practice/`. This gives you the exact key-value layouts and feature names you will need to map program actions (e.g., `ptrace`) into attacker techniques (e.g., `T1055`).
+### Output Format (`SyscallRecord`)
+The script streams events directly to `stdout` in a standardized JSON format:
+```json
+{
+  "timestamp": 1693849301.123,
+  "pid": 4512,
+  "uid": 1000,
+  "comm": "python3",
+  "syscall": "openat",
+  "args": {
+    "filename": "/etc/hosts",
+    "flags": 0,
+    "mode": 0
+  }
+}
+```
+
+> [!TIP]
+> **Why build this now?** Setting up eBPF requires a properly configured Linux environment, kernel headers, and root privileges. Getting this foundational piece deployed in Week 1 ensures we surface infrastructure and permission blockers immediately, rather than during the final integration in Week 6.
+
+### 🚀 Action Items for the Team
+- **Deployment:** You must run this script with `sudo python3 capture/ebpf_syscall_watcher.py` on a Linux environment equipped with BCC (`python3-bpfcc`) and matching kernel headers.
+
+---
+
+## 🗄️ 3. Practice Datasets (`data/download_practice_datasets.py`)
+To prevent the modeling team from being blocked while the live eBPF watcher is deployed, two standard Host-based Intrusion Detection (HIDS) datasets have been automatically provisioned.
+
+### Dataset Provisioning Script
+The provided script automatically downloads, extracts, and standardizes the datasets into the exact same `SyscallRecord` JSONL schema generated by the live watcher.
+
+| Dataset | Status | Description |
+| :--- | :--- | :--- |
+| **ADFA-LD** | ✅ Fully Parsed | Designed as a quick test. Missing metadata (timestamps/args) were intelligently mocked to ensure schema compliance. |
+| **LID-DS 2021** | ⏳ Scaffolding Ready | The main dataset. The repo scaffolding is downloaded. **Note:** The actual multi-gigabyte trace files must be provisioned via the LID-DS dataloader scripts. |
+
+### 🚀 Action Items for the Team
+> [!TIP]
+> **For Person B (Detection):**  
+> Run `python data/download_practice_datasets.py` locally. Check the `data/practice/` folder for the newly generated `.jsonl` files. You can plug these mock `SyscallRecord` JSONs directly into your pipeline to begin modeling immediately.
+
+> [!TIP]
+> **For Person C & D (Alerts & Explanations):**  
+> Review the JSON structures in `data/practice/`. This will provide the exact key-value layouts and feature names you require to map program actions (e.g., `ptrace`) to MITRE ATT&CK techniques (e.g., `T1055`).
