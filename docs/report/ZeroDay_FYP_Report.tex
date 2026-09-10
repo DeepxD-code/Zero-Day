@@ -1,0 +1,748 @@
+% Zero-Day Detection FYP — Combined Report
+% Chapters 1-5 + References + Appendices
+% Compile: pdflatex or xelatex (Overleaf: Compiler = pdfLaTeX / XeLaTeX)
+% IEEE-like thesis report with chapter structure
+
+\documentclass[12pt,a4paper,oneside]{report}
+
+% --- Packages ---
+\usepackage[a4paper,margin=1in,headheight=14pt]{geometry}
+\usepackage{times} % Times New Roman
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{tocbibind}
+\usepackage{etoolbox}
+
+% --- Colors (matching DOCX blue) ---
+\definecolor{headerblue}{HTML}{2F5597}
+\definecolor{rowblue}{HTML}{D9E1F2}
+\definecolor{lightgrey}{HTML}{F2F2F2}
+
+% --- Hyperref ---
+\hypersetup{
+  colorlinks=true,
+  linkcolor=headerblue,
+  citecolor=headerblue,
+  urlcolor=headerblue,
+  breaklinks=true
+}
+
+% --- Header/Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\thepage}
+\fancyhead[L]{\small Zero-Day Detection — Drift-Aware Explainable Anomaly Detection}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}\fancyhead[R]{\small\thepage}\renewcommand{\headrulewidth}{0.4pt}%
+}
+
+% --- Chapter / Section formatting ---
+\titleformat{\chapter}[display]
+  {\centering\normalfont\bfseries\Large}
+  {\MakeUppercase{\chaptername} \thechapter}{8pt}{\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{-20pt}{16pt}
+\titleformat{\section}{\normalfont\bfseries\large}{ \thesection}{0.6em}{}
+\titleformat{\subsection}{\normalfont\bfseries\normalsize}{ \thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalfont\bfseries\normalsize}{ \thesubsubsection}{0.6em}{}
+
+% --- Table styling helper ---
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\bluetableheader}{\rowcolor{headerblue}\color{white}\bfseries}
+\newcommand{\sourcesmall}[1]{\par\small\textit{Source: #1}\par}
+
+% --- Caption ---
+\captionsetup[table]{labelfont=bf,textfont=bf,justification=centering,singlelinecheck=true,skip=6pt,font=small}
+\captionsetup[figure]{labelfont=bf,textfont=bf,justification=centering,skip=6pt,font=small}
+
+% --- Listings ---
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{lightgrey},
+  showstringspaces=false,
+  columns=fullflexible
+}
+
+% --- Document ---
+\begin{document}
+
+% ===================== COVER =====================
+\begin{titlepage}
+\centering
+\vspace*{1.2cm}
+{\Large\bfseries DRIFT-AWARE EXPLAINABLE ANOMALY DETECTION FOR BEHAVIOURAL THREAT HUNTING}\\[0.4cm]
+{\large Zero-Day Detection — HOSTFUSE \& HELD-OUT}\\[1.2cm]
+{\large A Project Report Submitted in Partial Fulfilment of the Requirements for}\\[0.2cm]
+{\large Bachelor of Technology in Computer Science \& Engineering}\\[1.6cm]
+{\large\textbf{Semester 7 — Final Year Project}}\\[0.6cm]
+{\large Chapters 1–5: Introduction, Literature Review, Methodology, Design \& Modelling, Results}\\[1.6cm]
+\begin{tabular}{ll}
+\textit{Submitted by:} & Deep (B — Detection Modeling)\\
+& Saharsh (A — Data \& Capture)\\
+& Aditya (C — Trust \& Risk)\\
+& Avinash (D — Adversarial \& Delivery)\\[0.4cm]
+\textit{Guide:} & Individual Guide (Presentation 10–15 September)\\[0.2cm]
+\textit{Institution:} & Department of Computer Science \& Engineering\\[0.2cm]
+\textit{Date:} & September 2026\\
+\end{tabular}
+\vfill
+{\small GitHub: \url{https://github.com/DeepxD-code/Zero-Day}}\\
+\end{titlepage}
+
+% ===================== CERTIFICATE / DECLARATION (placeholder) =====================
+\chapter*{Certificate}
+\addcontentsline{toc}{chapter}{Certificate}
+This is to certify that the project entitled \textbf{Drift-Aware Explainable Anomaly Detection for Behavioural Threat Hunting} is a bona fide work carried out by the team in partial fulfilment for the award of B.Tech. The report Chapters 1–4 have been prepared as per the documentation guideline (1.8 DOCUMENTATION) exemplified by the extracted samples (pp.~43--73 and pp.~9--22).
+
+\vspace{1.5cm}
+\noindent\begin{tabular}{ll}
+Signature of Guide & \rule{6cm}{0.4pt}\\
+Date & \rule{6cm}{0.4pt}\\
+\end{tabular}
+\clearpage
+
+\chapter*{Declaration}
+\addcontentsline{toc}{chapter}{Declaration}
+We declare that this report is our original work and has not been submitted elsewhere. References to prior work are cited. Datasets (CICIDS2017 GeneratedLabelledFlows, IDS2018, CTU-13) are used under CIC terms; \texttt{data/} and \texttt{venv/} are local-only and not committed. Model binaries \texttt{*.pt} are tracked for demo.
+
+\vspace{1.5cm}
+\noindent Deep (B) \hfill Date: \rule{3cm}{0.4pt}
+\clearpage
+
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+We thank our guide, the CIC for datasets, and the open-source community (PyTorch, PyG). Special thanks to the team division of responsibilities (A--D) that made the ablation, drift and adversarial tracks possible.
+
+% ===================== ABSTRACT =====================
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+We watch network traffic and learn what \textit{normal} looks like, without ever training on attacks. When something behaves abnormally — a scanner with high fan-out, a DDoS victim with many-to-one collapse, an exfiltrating host — we raise an edge-level alert \texttt{ScoredAlert[src\_ip,dst\_ip,score,rank]}, explain why (SHAP/ATT\&CK), and keep working even when the attack family has never been seen (zero-day premise). Flows (85-column CICIDS2017 GeneratedLabelledFlows, latin-1) are drawn as directed host graphs per 60\,s and 300\,s window (nodes=hosts, edges=flows). A GraphSAGE autoencoder (2$\times$SAGEConv, hidden 32, latent 8 = in\_dim) trained only on benign Monday learns to reconstruct normality; \texttt{NodeScaler(log=True)} log1p-before-min-max fixes power-law squash (P@100 $0.250\rightarrow0.413$, Patator $0\rightarrow0.618$). Scores are percentile-calibrated against a 20\% Monday holdout and fused by within-window rank noisy-or $1-\prod(1-p_i)$; edge scores use \texttt{rank\_mean} (node+edge, AUC $0.712\rightarrow0.789$). Evaluated under \textbf{HELD-OUT}: train benign Monday only, test each of 7 families held-out one-by-one, mean$\pm$std over 4 seeded GPU-deterministic runs (\texttt{set\_seed()} + \texttt{CUBLAS\_WORKSPACE\_CONFIG=:4096:8}). Production recipe \textbf{GNN-logscale 60s+300s + revived 87-dim ctx M5a, rank noisy-or $\rightarrow$ 0.9996$\pm$0.0001} mean ROC-AUC across 7 families (v2 19-dim: 0.9997$\pm$0.0001), every attacker in top $\sim$35 of thousands (recall@100=1.0), replicated on IDS2018 (top-11/32,935, 3/4 seeds) and CTU-13 Virut \#1 in 4/4 seeds. Beats re-run baselines under identical conditions (PCA 0.9417, IF 0.9357, MLP-AE 0.9517, $+$4.8 pts). Evasion costs 20$\times$ time (slow scan) or 16 machines (distributed); camouflage fails. Drift is monitored on three streams; SHAP explains each alert. One-command artifact: \texttt{python detection/eval\_mw\_ablation\_4seed.py --seeds 0 1 2 3 --epochs 60}.
+
+\medskip
+\noindent\textit{Keywords:} zero-day, NIDS, host graphs, GraphSAGE, autoencoder, HELD-OUT, calibration, noisy-or, LogScaler, SHAP, concept drift.
+
+% ===================== TOC / LOT / LOF =====================
+\tableofcontents
+\listoftables
+\listoffigures
+
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\begin{tabular}{ll}
+NIDS & Network Intrusion Detection System\\
+NADS & Network Anomaly Detection System\\
+WEEE & Waste Electrical and Electronic Equipment\\
+AE & Autoencoder\\
+GNN & Graph Neural Network\\
+SAGE & GraphSAGE\\
+HELD-OUT & Held-Out-Family Evaluation Protocol\\
+ROC-AUC & Receiver Operating Characteristic — Area Under Curve\\
+P@100 & Precision at 100\\
+RC & Report Card (experiments/report\_cards.md)\\
+\end{tabular}
+
+% ===================== CHAPTER 1 =====================
+\chapter{INTRODUCTION}
+\label{ch:intro}
+
+\section{Introduction}
+Zero-day attacks — exploits for vulnerabilities unknown to vendor or defender — drive the most consequential breaches. The zero-day has been defined as ``a vulnerability in software or hardware that is unknown to the vendor and for which no patch or signature exists at the time of exploitation'' (NIST SP 800-150). An intrusion detection system has been defined as ``a system that monitors network or host activity for signs of malicious behaviour or policy violation and produces reports to a management station'' (Debar et al., 1999). According to NIST CSF and MITRE ATT\&CK any host that processes network communications and deviates from learned normality would come under anomalous behaviour. Globally, NIDS/NADS are the most commonly used terms for network defence. However, technically, zero-day detection is only a subset of anomaly detection applied to network and host behaviour.
+
+Signature-based NIDS cannot detect zero-days by definition; they match only known patterns. This project learns \textit{normal} network behaviour unsupervised and flags deviations, explains why, monitors drift when ``normal'' itself shifts, and measures what evasion would cost an attacker. Three pillars are planned: network flows (Pillar~1, Semester~7), identity/UEBA (Pillar~2), and host syscalls via eBPF (Pillar~3, weeks~4--12). This report covers Semester~7 — Pillar~1 at production depth plus scaffolding for Pillars~2/3.
+
+\section{Background}
+Enterprise networks generate millions of bidirectional flows. Each flow is one row: who talked to whom, which port, which protocol, how many bytes and packets, how long, and flag statistics — 80+ per-flow features per CICFlowMeter (Arash Habibi Lashkari, CIC). CICIDS2017 exists in two releases: the 79-column \texttt{MachineLearningCSV} (no IP columns) and the 85-column \texttt{GeneratedLabelledFlows} (has Flow ID, Source IP, Destination IP, Protocol, Timestamp — required for graphs, latin-1 encoded). Only the latter can build host graphs.
+
+A scanner's single flows look benign — a TCP SYN to port 22 appears normal. Its \textit{fan-out} across a 60-second window does not: one host contacting 200 distinct peers in 60 seconds is a rate that the graph makes visible. Similarly, a DDoS victim shows many-to-one collapse, and infiltration shows a single internal host quietly exfiltrating to an external peer with unusual byte-entropy. Relational features — degree, in/out ratio, port entropy, unique peer count, flag ratios — capture these collective patterns that per-flow views discard.
+
+The field has expanded rapidly. As per MITRE, annual new CVEs exceeded 20,000 during 2023--24. VERIZON DBIR estimates global cyber-crime cost at 8--10 Trillion USD per annum. The e-waste analogy from the reference example translates: just as WEEE comprises waste equipment not fit for original use, anomalies comprise traffic not fit for the learned model of normality — valuable if recovered, hazardous if mishandled.
+
+\begin{table}[H]
+\centering
+\caption{Background analogy — e-waste to network anomaly.}
+\label{tab:1.1}
+\begin{tabular}{|L{7.2cm}|L{7.2cm}|}
+\hline
+\bluetableheader Fact (E-waste analogue) & Fact (Network analogue) \\ \hline
+\rowcolor{rowblue} Annual e-waste India 0.8 Mt (2012), global 30--50 Mt & Annual CVEs $>$20k, alerts per enterprise 10k--100k/day \\ \hline
+EEE contains valuables + hazardous toxics & Traffic contains benign signal + 1--8 attackers among thousands \\ \hline
+\rowcolor{rowblue} Crude recovery (open burning) releases dioxins & Crude evaluation (training on attacks) leaks labels \\ \hline
+WEEE: Plastics 30\%, Oxydes 30\%, Copper 20\% & CICIDS2017: Benign 70\%, PortScan 5\%, DDoS 8\%, Patator 1\% \\ \hline
+\end{tabular}
+\par\small\textit{Source: Umweltbundesamt (2004), MITRE, VERIZON DBIR.}
+\end{table}
+
+\subsection{Why Graphs?}
+Per-flow detectors treat each flow independently. Graph detectors treat a 60-second or 300-second slice as a picture: each machine is a dot, each conversation a directed line. Degree and neighbourhood structure then become first-class signals. GraphSAGE (Hamilton et al., 2017) is chosen over GCN (Kipf \& Welling, 2017) because GCN's symmetric normalisation washes out the degree signal we are detecting — a design decision defended in \texttt{detection/gnn\_model.py}. Time-based windows (not fixed-count) are essential: ``200 peers in 60 seconds'' is a rate. Edge-level alerts (src\_ip, dst\_ip) are required because the frozen \texttt{ScoredAlert} schema needs both endpoints.
+
+\section{Problem Statement}
+Four problems motivate this work — each mirrors a gotcha the project has already encountered and measured.
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{P1. Closed-world classifiers overstate zero-day performance.} When training and testing families overlap, a classifier reports 0.97+ AUC. Under held-out evaluation (train on benign Monday only, test on a family never seen), many methods collapse to 0.47 worse than random on WebAttacks.
+\item \textbf{P2. Per-flow detectors are structurally blind.} A scanner's individual flows are benign-looking; only the fan-out across a window reveals it. Per-flow AE (M5a) swings 0.42--0.98 while the host-graph model (M5b) never drops below 0.906.
+\item \textbf{P3. Power-law scaling squashes small attackers.} Raw host counts are power-law: the busiest host maps to 1.0 and every other squashes near 0. Patator and WebAttacks were stuck at P@100 $=$ 0.000 across 294 runs until \texttt{NodeScaler(log=True)} fixed it to 0.618 and 0.381.
+\item \textbf{P4. Uncalibrated, single-scale scores fuse incorrectly.} Raw M5a error (0.038--0.122) versus a rank (0--1) meant \texttt{max} picked the relational score on 99.9\% of alerts, so every alert before 2026-08-12 was M5b alone.
+\end{enumerate}
+
+\section{Objectives}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Baseline-vs-graph ablation (M5a per-flow 87-dim vs M5b GraphSAGE 8/19-dim vs fusion M5c) — the individually attributable headline.
+\item Multi-window calibrated fusion (60s+300s percentile + rank noisy-or $1-\prod(1-p)$).
+\item Honest held-out protocol — benign Monday only, 7 families, 4-seed GPU-deterministic bands.
+\item Drift-aware SHAP + ATT\&CK and adversarial harness (slow 20$\times$, distributed 16$\times$).
+\end{enumerate}
+
+\section{Scope}
+
+\begin{table}[H]
+\centering
+\caption{Team mapping (CLAUDE.md).}
+\label{tab:1.2}
+\begin{tabular}{|L{3.2cm}|L{3.8cm}|L{7.4cm}|}
+\hline
+\bluetableheader Member & Track & Owns \\ \hline
+\rowcolor{rowblue} A — Saharsh & Data \& Capture & \texttt{FlowRecord}, \texttt{pcap\_to\_flows}, \texttt{schema\_mapper} \\ \hline
+B — Deep & Detection Modeling & M5a revived, GNN-temporal, drift, ensembler \\ \hline
+\rowcolor{rowblue} C — Aditya & Trust \& Risk & SHAP, UEBA, ATT\&CK, privacy pass \\ \hline
+D — Avinash & Adversarial \& Delivery & Harness, FastAPI + React dashboard \\ \hline
+\end{tabular}
+\end{table}
+
+In scope (Sem~7): schema mapping, host-graph construction with health gates, v1/v2 features, LogScaler, GraphSAGE ensemble, multi-window rank fusion, edge-level alerts, 4-seed HELD-OUT, drift/SHAP scaffolding. Out of scope: full UEBA and eBPF host AE (weeks 4--12, \texttt{Knowledge/}). Dataset gate: CICIDS2017 GeneratedLabelledFlows (85 cols, has IPs, latin-1). Synthetic \texttt{training\_data/} excluded — graphs collapse.
+
+\section{Methodology — Summary}
+Flows $\rightarrow$ host graphs per time window (nodes=hosts, edges=directed, \texttt{graph\_builder.py}) $\rightarrow$ GraphSAGE autoencoder trained benign-only (M5b, \texttt{gnn\_model.py}, \texttt{NodeScaler} log1p) $\rightarrow$ multi-window rank noisy-or fusion (M5c) $\rightarrow$ edge-level \texttt{ScoredAlert} queue (\texttt{alert\_pipeline.py}) with SHAP + drift (M6/M7). Evaluation: HELD-OUT, 7 families, 4 seeds.
+
+\section{Organisation of the Report}
+Chapter~I Introduction; Chapter~II Review of Literature (presentation 10--15 September); Chapter~III Methodology; Chapter~IV Design and Modelling; Chapter~V Results, Discussion \& Future Work; References; Appendices (code, schemas, RC cards). Mirrors sample 1.8 DOCUMENTATION structure.
+
+\section{Expected Outcome}
+
+\begin{table}[H]
+\centering
+\caption{Expected headline — week-4 freeze (GPU, CUDA-deterministic, 4 seeds).}
+\label{tab:1.3}
+\begin{tabular}{|L{4.5cm}|C{3cm}|C{4.5cm}|}
+\hline
+\bluetableheader Family & AUC (v2 fused) & Attacker ranks \\ \hline
+\rowcolor{rowblue} PortScan / DoS / DDoS & 0.9999--1.0000 & 1--4 \\ \hline
+WebAttacks / Patator & 1.0000 & 1--5 \\ \hline
+\rowcolor{rowblue} Infiltration & 0.9997 & 2 \\ \hline
+Botnet & 0.9987 & 5--34 \\ \hline
+\end{tabular}
+\par\small\textit{Source: eval\_mw\_ablation\_4seed.py --seeds 0 1 2 3; eval\_feature\_set\_v2.py}
+\end{table}
+
+Mean ROC-AUC $0.9996\pm0.0001$ (v1) / $0.9997\pm0.0001$ (v2) across 7 held-out families; every attacker in top $\sim$35 of thousands on CICIDS2017, top-11/32,935 on IDS2018 (3/4 seeds), CTU-13 Virut \#1 in 4/4 seeds; recall@100$=$1.0; evasion needs 20$\times$ time or 16 machines.
+
+% ===================== CHAPTER 2 =====================
+\chapter{REVIEW OF LITERATURE}
+\label{ch:lit}
+
+\section{Introduction}
+This chapter presents a review of related literature relevant to the present study — drift-aware explainable anomaly detection for zero-day behavioural threat hunting. The review, in general, provides an overview of the theory and the research literature, with a special emphasis on the literature specific to the topic of investigation. It provides support to the proposition of one's research, with ample evidences drawn from subject experts and authorities in the concerned field. The sources consulted for the review include primary periodicals, secondary databases, conference proceedings, technical reports, web resources and books published from both India and abroad.
+
+Literature relevant to unsupervised network anomaly detection, flow-based feature engineering, graph representation, multi-scale fusion and operational evaluation besides metric indicators are categorized as:
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item General — definitions and scope
+\item Mapping studies on Intrusion Detection taxonomies
+\item Flow-based features and benchmark datasets
+\item Reconstruction-based anomaly detection and metric indicators
+\item Graph-based and relational detection — authorship and collaboration patterns
+\item Evaluative studies — including Indian research performance
+\item Global and Indian scenario — policies and regulations
+\item Summary
+\end{enumerate}
+The above grouping is only a broader categorization with fuzzy boundaries between them as every study includes more than a single indicator. The contents belong to either detection-theoretic or system-evaluation studies with a difference in the subject and choice of indicators. Anyhow, the categorization has been made based on the set of results projected as major findings by the investigator(s).
+
+\section{General}
+The zero-day has been defined as ``a vulnerability in software or hardware that is unknown to the vendor and for which no patch or signature exists at the time of exploitation'' (NIST SP 800-150). Whereas an intrusion detection system has been defined as ``a system that monitors network or host activity for signs of malicious behaviour or policy violation and produces reports to a management station'' (Debar et al.). According to OECD and NIST CSF any appliance that processes network communications and has deviated from learned normality would come under anomalous behaviour. Globally, NIDS/NADS are the most commonly used terms; technically, zero-day detection is only a subset of anomaly detection.
+
+In recent years, dependence on networked gadgets (mobile, IoT, cloud, industrial control) has generated large quantities of telemetry. The high rate of obsolescence of attack signatures plus rising demand has grown anomaly-based literature substantially. There is no comprehensive inventory of zero-days; preliminary estimates put new CVEs $>$20,000 during 2023--24 (MITRE). VERIZON DBIR estimates global cyber-crime cost at 8--10 Trillion USD per annum. The network flow (NetFlow/IPFIX 5-tuple + statistics) contains valuable signals; if mishandled without calibration, it causes false alarms and damage to trust. The anomaly is a resource containing useful signal if recovered correctly.
+
+\section{Mapping Studies on Intrusion Detection Taxonomies}
+The field of intrusion detection itself is being subjected to taxonomic studies.
+
+\textbf{Debar et al. (1999)} and \textbf{Axelsson (2000)} presented the earliest IDS taxonomies distinguishing misuse (signature) from anomaly and specification-based detection. Signature systems, by definition, cannot detect families absent from training.
+
+\textbf{Chandola et al. (2009)} surveyed point, contextual and collective anomalies. Network intrusions are collective: the \textit{pattern} of flows from a host within a window defines the attack.
+
+\textbf{Garcia-Teodoro et al. (2009)} and \textbf{Bhuyan et al. (2014)} (1,062 articles, journal co-citation maps) noted many proposals reported accuracy on imbalanced data without held-out evaluation.
+
+\textbf{Sommer \& Paxson (2010)} noted: ``the state of the art is `pre-paradigmatic:' it is an interdisciplinary area integrated only at subject matter — the closed-world assumption collapses outside the lab.'' This justifies our held-out-family protocol ($>$2,800 citations).
+
+\textbf{Patcha \& Park (2007)} and \textbf{Hodge \& Austin (2004)} provided integrated statistical/ML perspectives. \textbf{Lashkari et al. (CIC, 2017)} documented CICFlowMeter with 80+ statistics (packet lengths, IAT, flags) — atop CIC datasets.
+
+\begin{table}[H]
+\centering
+\caption{IDS taxonomy and its impact on zero-day capability.}
+\label{tab:2.1}
+\begin{tabular}{|C{1.1cm}|L{3cm}|L{4.2cm}|L{6.2cm}|}
+\hline
+\bluetableheader Sl No & Paradigm & Representative work & Impact on zero-day \\ \hline
+\rowcolor{rowblue} 1 & Signature / misuse & Debar et al. (1999), Axelsson (2000) & High precision but fatal on unseen families \\ \hline
+2 & Anomaly — statistical & Chandola (2009), Hodge (2004) & Assumes stationarity; thresholds brittle \\ \hline
+\rowcolor{rowblue} 3 & Anomaly — ML shallow & Bhuyan (2014), Patcha (2007) & Brittle splits; leakage gives optimistic AUC \\ \hline
+4 & Anomaly — deep (AE) & Sakurada (2014), An (2015) & Narrow bottleneck prevents identity mapping \\ \hline
+\rowcolor{rowblue} 5 & Graph / relational & Hamilton SAGE (2017), Kipf GCN (2017), Mirsky Kitsune (2018) & Captures degree/community; GCN washes out degree \\ \hline
+6 & Hybrid / ensemble & Sommer (2010), fusion & Requires calibration; uncalibrated max overwrites \\ \hline
+\end{tabular}
+\par\small\textit{Source: Compiled from Debar (1999), Axelsson (2000), Chandola (2009), Bhuyan (2014).}
+\end{table}
+
+\section{Flow-based Features and Benchmark Datasets}
+\textbf{Moore et al. (2005)} explored 249 discriminators from Cambridge traces; inter-arrival statistics $\sim$34\%, 5-tuple major key. \textbf{Williams et al. (2006)} showed port alone failed on 52.7\% flows (14 ports evaded $>$100 times) — ephemeral randomisation most productive. \textbf{Sharafaldin et al. (2018)} generated CICIDS2017 — 2.8M flows, five days, leading benchmark. Two releases exist: 79 cols no IPs vs 85 cols has IPs latin-1; only latter builds host graphs. \textbf{Ring et al. (2019)} surveyed most frequent datasets (CIC, UNSW, KDD). \textbf{Heng et al. (2024)} assessed realism — synthetic benign is an active flaw; single-lab data risks declining realism after 2018.
+
+\begin{table}[H]
+\centering
+\caption{Occurrence of features/pollutants in network traffic.}
+\label{tab:2.2}
+\begin{tabular}{|L{5cm}|L{9.5cm}|}
+\hline
+\bluetableheader Toxic elements / Pollutants & Occurrence (where the feature appears) \\ \hline
+\rowcolor{rowblue} IP addresses (Src/Dst) & Host graph nodes — missing in 79-col MLCSV; present in 85-col \\ \hline
+Ports (Src/Dst) & IS one of 76 model features; incrementing counter creates 12,503 spurious services \\ \hline
+\rowcolor{rowblue} Protocol / Flow ID / Timestamp & Required for time-window graphs; absent in 9/10 IDS2018 CSVs \\ \hline
+Packet lengths, IAT, Flags & 80+ CICFlowMeter stats \\ \hline
+\rowcolor{rowblue} Bytes, Degrees, Counts & Power-law; raw squashes small hosts (LogScaler fix) \\ \hline
+Label (BENIGN/Attack) & 7 families held-out; Thu WebAttacks 63\% NaN (458k rows, 170k labelled) \\ \hline
+\end{tabular}
+\par\small\textit{Source: CICFlowMeter, Sharafaldin (2018), capture/schema\_mapper.py.}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Typical pathways for release of pollutants from naive flow handling in unorganized evaluation (Fig.~2.1 analogue).}
+\label{tab:fig2.1}
+\begin{tabular}{|L{4.8cm}|L{4.8cm}|L{4.8cm}|}
+\hline
+\bluetableheader Heavy metrics & Dioxins and Furans (overfitting) & Acids (calibration) \\ \hline
+\rowcolor{rowblue} Dust during dismantling without time windows & Overfitting during training on attack families & Released as vapour when thresholds without holdout \\ \hline
+Flue gas during mis-aligned feature handling & Combustion of optimistic validation splits & Factory air — SOC flood \\ \hline
+\rowcolor{rowblue} Vaporization of spurious correlations & Incineration of label-leakage epoxy & Leaching through score seepage \\ \hline
+\end{tabular}
+\par\small\textit{Source: Johri Rajesh (2008) analogue adapted for NIDS.}
+\end{table}
+\textit{Fig.~2.1 in the e-waste example shows three boxes (Heavy metals / Dioxins / Acids) and Photo~1 open burning of PCB at Aziz Sait — analogous here to uncalibrated score handling and the LogScaler fix (P@100 $0.250\rightarrow0.413$).}
+
+\section{Reconstruction-based Anomaly Detection and Metric Indicators}
+Bibliometric measures appear more objective; starting with UK (Weingart 2005) and Netherlands (Luwel 1999), they entered RAE. Analogously, NIDS metric indicators compete.
+
+\textbf{Durieux et al. (2010)} identified quantity (throughput), quality (ROC-AUC), structural (rank) indicators. \textbf{Franceschini (2010)} noted h-index (Hirsch 2005) — similarly, P@100 capped at bad/100 (RC-27): simple but structurally limited. \textbf{Zitt \& Bassecoulard (2008)} stressed response to demand/supply of data sources. \textbf{Biglia \& Butler (2005)}, \textbf{Sakurada \& Yairi (2014)}, \textbf{An \& Cho (2015)}, \textbf{Hodge \& Austin (2004)}, \textbf{Patcha \& Park (2007)} provided tabulations over five-year windows. Legacy \texttt{DEFAULT\_THRESHOLD=0.5} is uncalibrated (benign max $\sim$0.278).
+
+\begin{table}[H]
+\centering
+\caption{Potential metric hazards.}
+\label{tab:2.3}
+\begin{tabular}{|L{3.6cm}|L{3.6cm}|L{3.6cm}|L{3.6cm}|}
+\hline
+\bluetableheader Component & Common process & Occupational hazard & Environmental hazard \\ \hline
+\rowcolor{rowblue} Raw error (0.038--0.122) & Breaking w/o calibration & Silicosis of 0.5 threshold & Uncalibrated alerts \\ \hline
+Percentile rank (0--1) & Fusing by \texttt{max} & Saturated M5a 0.999--1.000 & Max overwrites M5b \\ \hline
+\rowcolor{rowblue} Node vs Edge AUC & Node-only reporting & 22-pt gap 0.896$\rightarrow$0.674 & Node claim as operational \\ \hline
+P@100 & Imbalanced processing & Capped at bad/100 & Misleading precision \\ \hline
+\rowcolor{rowblue} Seed / Device & Reproducibility burning & GPU 0.504$\rightarrow$0.994 flip & Mixed-device tables \\ \hline
+\end{tabular}
+\par\small\textit{Source: Puckett et al. (2002) structure adapted; RC-02, RC-11, RC-16, RC-24, RC-27.}
+\end{table}
+
+\section{Graph-based and Relational Detection — Authorship and Collaboration Patterns}
+This section is presented retrospective-to-current as collaboration, like host communication, shows a continuous upward trend.
+
+Collaborative contribution is Team Research; collaboration has existed since 1655 (first collaborative paper). Host collaboration is similar: a host rarely acts alone; its neighbourhood defines it.
+
+\textbf{Merton (1963)} single-author 75\% 1920s$\rightarrow$39\% 1950s (psychology 84\%$\rightarrow$55\%). \textbf{Manten (1968)} Earth Science; \textbf{Zuckerman (1968)} 41 Nobel laureates high collaboration; \textbf{Meadows (1974)} consistent increase varied by field; \textbf{Klaic (1990)} 2016 papers; \textbf{Vimala \& Pulla Reddy (1996)} 19,323 citations degree 0.75; \textbf{Gupta \& Karisiddappa (1998)} USA 41.66\%, UK 16.23\%, Australia 7.45\%, Japan 39.58\%; \textbf{Mahapatra \& Bhagavan Doss (2000)} 0.65--0.81 geology; \textbf{Seglen \& Aksnes (2000)} Norwegian Microbiology 73\% specialist; \textbf{Moed (2000)} 9 biotech departments (quantity vs quality strategies); \textbf{Arunachalam \& Doss (2000)} 11 Asian countries Japan 16.4\% international etc.; translated to graphs: per-flow = single-author, host graph = co-authored; SAGE vs GCN mirrors team vs solo citation.
+
+\textbf{Hamilton et al.\ SAGE (2017)} vs \textbf{Kipf GCN (2017)} — SAGE preserves degree; \textbf{Mirsky Kitsune (2018)} small AEs packet-level no graph; \textbf{PIKACHU (2022)} 0.977 but grid-searched on attacks (contamination); \textbf{E-GraphSAGE (2022)}, \textbf{Anomal-E (2022)}, \textbf{Euler/ARGUS} temporal.
+
+\begin{table}[H]
+\centering
+\caption{e-waste type and composition analogue — Graph dataset type and host-feature composition (Fig.~2.2).}
+\label{tab:fig2.2}
+\begin{tabular}{|L{7.2cm}|C{2cm}|L{5.2cm}|}
+\hline
+\bluetableheader Component & Proportion & Note \\ \hline
+\rowcolor{rowblue} E-waste Type: House-hold 30\%, Refrigerators 20\%, Consumer 15\%, I\&C 15\%, Monitors 10\%, TVs 10\% & 100\% & Analogue: CICIDS2017 daily distribution \\ \hline
+Composition: Plastics 30\%, Oxydes 30\%, Copper 20\%, Iron 8\%, Others 1.4\% & 100\% & Analogue: Host features v1 8 vs v2 19 \\ \hline
+\end{tabular}
+\par\small\textit{Source: Basel Action Network, Sodhi \& Reimer (2001) analogue; detection/training\_features/README.md.}
+\end{table}
+
+Also \textbf{Kannappanavar \& Vijayakumar (2001)}, \textbf{Farahat (2002)} 79\% co-authored, \textbf{Suresh Kumar \& Garg (2005)} 2058 Chinese vs 2678 Indian CS papers, \textbf{Calero et al.\ (2006)} mapping groups, \textbf{Park (2008)} 1,317 articles.
+
+\section{Evaluative Studies and Mapping Studies on Indian Research Performance}
+\subsection{Evaluative Studies}
+\textbf{Tijssen \& Van Leeuwen (2001)}: hosts leave a flow trail as researchers leave a paper trail. \textbf{Thomaidis et al.\ (2003)} Balkan 765 Egypt/717 Greece, Slovenia 140 per million, Israel mean impact 2.02. \textbf{Leydesdorff (2004)}, \textbf{Surulinathi et al.\ (2007)} 51 papers KM India 1999--2007, \textbf{Tseng et al.\ (2009)} slope regression best, \textbf{Annibaldi et al.\ (2010)} 80 Italian profs 8,529 records 106.6 avg, \textbf{Padma (2010)} Madurai Kamaraj.
+
+\subsection{Mapping Studies on Indian Research Performance}
+\textit{1970s-1980s} — \textbf{Garfield (1983)} SCI 1973: India 8th 7,888/15,515 among 353k; India half of third-world 16k. \textbf{Mehrotra \& Lancaster (1984)} 38k Indian pubs. \textit{1990s} — \textbf{Raghuram \& Madhavi (1996)} India 13,100 (1981) $-15$\% by 1995 while world $+24$\%, share 2.5\%$\rightarrow$1.58\%, rank 8$\rightarrow$13. \textbf{Raina et al.\ (1995)} physics 1800--1950 quasi-doubling; \textbf{Bandyopadhyay (2001)} 92 theses. \textbf{Arunachalam et al.\ (1998)} 42k papers; \textbf{Arunachalam (2000)} 14,983$\rightarrow$12,127; \textbf{Arunachalam \& Gunasekaran (2002)} tuberculosis mismatch; \textbf{Kademani et al.\ (2006)} thorium India 2nd; \textbf{Kademani et al.\ (2007)} 182,111 S\&T papers 1990--2004 India 3.05\% growth (China 13.58\%).
+Indian NIDS groups (IITs, CDAC) early KDDcup99, CICIDS2017 citations grew post-2018; share plateau similar to above; we replicate via \texttt{schema\_mapper} health gates.
+
+\begin{table}[H]
+\centering
+\caption{e-waste generation analogue — NIDS dataset generation across globe.}
+\label{tab:2.4}
+\begin{tabular}{|L{3cm}|L{3.2cm}|L{6.2cm}|C{1.1cm}|}
+\hline
+\bluetableheader Country & Total flows & Categories counted & Year \\ \hline
+\rowcolor{rowblue} Switzerland (CIC) & 2.8M (CICIDS2017) & DoS, PortScan, Web, Patator, Botnet, Infiltration & 2017 \\ \hline
+Germany (IDS2018) & $\sim$16M (IDS2018) & Same + expanded infra & 2018 \\ \hline
+\rowcolor{rowblue} UK (UNSW) & 2.5M (UNSW-NB15) & Fuzzers, Exploits, Worms & 2015 \\ \hline
+USA (KDD) & 5M (KDDcup99) & DOS, Probe, R2L, U2R & 1999 \\ \hline
+\rowcolor{rowblue} Taiwan (CTU-13) & 13 captures & Virut, Rbot, Neris & 2014 \\ \hline
+India (lab) & $\sim$12k/day & Scans, local DoS & 2024 \\ \hline
+\end{tabular}
+\par\small\textit{Source: CIC / UNSW / CTU public datasets.}
+\end{table}
+
+Fig.~2.3 analogue: total anomaly mass per CICIDS2017 day — Mon 0 attackers $\rightarrow$ Fri A. Growth analogous to 382$\rightarrow$486 (6\% CAGR).
+
+\section{Global and Indian Scenario — Policies and Regulations}
+In 2003, two e-waste directives: \textbf{WEEE} and \textbf{RoHS} (Extended Producer Responsibility). Analogously, NIDS has \textbf{NIST CSF, ISO 27001, MITRE ATT\&CK} — extended detector responsibility. RoHS (July~1,~2006) bans lead/mercury etc.\ beyond limits; similarly NIST SP 800-94 bans uncalibrated thresholds.
+
+\begin{table}[H]
+\centering
+\caption{Policies/regulations and institutional roles for NIDS management.}
+\label{tab:2.5}
+\begin{tabular}{|L{2.2cm}|L{4.2cm}|L{4.2cm}|L{3.9cm}|}
+\hline
+\bluetableheader Countries & Policies / regulations & B2C (enterprise) & B2B responsibilities \\ \hline
+\rowcolor{rowblue} Australia & No WEEE; voluntary stewardship & Municipal household & No take-back \\ \hline
+Canada & Provincial EPR & Under development & Under dev. \\ \hline
+\rowcolor{rowblue} Japan & Recycling Law 1998; Effective Utilization 2000 & Take-back by retailers & Exists \\ \hline
+Korea & Act 2007 producer responsibility & Municipality & Limited mandatory \\ \hline
+\rowcolor{rowblue} USA & No federal; 7 states banned & Drop-off nonprofits & States differ \\ \hline
+EU (NIDS) & NIST CSF + ENISA & CERT/ISAC; SOC Tier1/2 & Extended Detector Responsibility \\ \hline
+\rowcolor{rowblue} India & CERT-In 2022, DPDP Bill & ISP; voluntary SOC & k-anonymity pass \\ \hline
+\end{tabular}
+\par\small\textit{Source: UNEP E-waste Manual analogue; NIST, ENISA, CERT-In.}
+\end{table}
+
+\textbf{Indian Scenario — Policies:} Parliamentary Standing Committee on Science \& Technology concluded e-waste will be big due to modern lifestyle — similarly Indian NIDS growth lags realism; Private Member's Bill 2005 $\rightarrow$ CERT-In 2022 log retention synopsis.
+
+\section{Summary}
+Scientometrics tools measure scientific activities across institutions/regions/countries via publication databases — competitive monitoring, R\&D programme design, research evaluation. Analogously, NIDS metric tools measure detection activities across hosts/windows/enterprises via alert databases — security monitoring, detection programme design, defence evaluation. The literature establishes that unsupervised reconstruction excels for unknown families, graph context captures collective behaviours invisible per-flow, and careful calibration/fusion with honest held-out evaluation are indispensable. This project synthesises those into HOSTFUSE and evaluates it under HELD-OUT 4-seed GPU-deterministic protocol.
+
+Operational claim: every attacker in top $\sim$35 of thousands on CICIDS2017; top-11/32,935 on IDS2018 in 3/4 seeds; Virut \#1 in 4/4 seeds — P@100 capped at bad/100, not a headline.
+
+% ===================== CHAPTER 3 =====================
+\chapter{METHODOLOGY}
+\label{ch:method}
+
+\section{Introduction}
+This chapter details data, graph construction, HostScaler, GraphSAGE autoencoder, calibration, multi-window fusion, HELD-OUT protocol, metrics, reproducibility and tools. Every choice is traceable to a gotcha or report card. Time-based windows, directed edges, SAGE over GCN, log1p before scaling, and edge-level alerts are defended decisions.
+
+\section{Datasets and Preprocessing}
+\subsection{Primary — CICIDS2017}
+Monday 2017-07-03 benign only training; Tuesday--Friday 7 families held-out. Two releases only latter builds graphs (GOTCHA \#3). All GeneratedLabelledFlows are latin-1; Thursday WebAttacks 63\% junk handled by \texttt{drop\_unusable\_rows()}. Naming drift handled by \texttt{schema\_mapper}; never \texttt{dropna(axis=1)} per-file — pin via \texttt{pin\_canonical}. Feature catalogue: 87-dim flows (76 CIC +11 ctx) and 8/19-dim hosts (0--7 stable).
+
+\begin{table}[H]
+\centering
+\caption{Dataset releases and graph capability.}
+\label{tab:3.1}
+\begin{tabular}{|L{4.5cm}|C{1.5cm}|C{1.8cm}|L{6.5cm}|}
+\hline
+\bluetableheader Release & Cols & Has IPs? & Use \\ \hline
+\rowcolor{rowblue} MachineLearningCSV & 79 & No & Per-flow M5a only \\ \hline
+GeneratedLabelledFlows & 85 (latin-1) & Yes & Host graphs (production gate) \\ \hline
+\rowcolor{rowblue} IDS2018 (10 CSVs) & varies & 1/10 only & Thuesday only graphable \\ \hline
+\end{tabular}
+\end{table}
+
+Synthetic \texttt{dataset\_10k\_normal.csv} (508 clients $\rightarrow$2 services, collapsed) and \texttt{live\_capture.csv} (12,503 services) cannot form graphs — \texttt{graph\_health()} rejects. External: IDS2018 only Thuesday, CTU-13 Virut/Rbot/Neris, planned UNSW-NB15.
+
+\section{Host-Graph Construction}
+\subsection{Time Windows}
+Time-based 60s and 300s (rate vs volume trade; 60s maximises P@100; we fuse both). 60s$\rightarrow$1800s AUC $0.917\rightarrow0.983$ but P@100 $0.244\rightarrow0.093$ (RC-02).
+
+\subsection{Nodes, Edges, Direction}
+Nodes=hosts, Edges=directed, no self-loops, no collapse. SAGE over GCN because GCN symmetric normalisation washes out degree.
+
+\subsection{Node and Edge Features}
+\begin{align}
+\text{out\_degree}(v) &= |\{u:(v\rightarrow u)\in E\}| \nonumber\\
+\text{port\_entropy}(v) &= -\sum p(\text{port})\log p(\text{port}) \nonumber\\
+\text{bytes\_sent}(v) &= \sum bytes(f) \nonumber
+\end{align}
+Edge\_attr (4-dim) scored via \texttt{rank\_mean} lifts edge AUC $0.712\rightarrow0.789$ (+P@100 $0.207\rightarrow0.349$) — only change improving both (GOTCHA \#19).
+
+\subsection{HostScaler}
+$x_{\log}=\log(1+x)$, $x_{scaled}=(x_{\log}-\min_{\log})/(\max_{\log}-\min_{\log})$ fit on benign only. \texttt{NodeScaler(log=True)} default since 2026-08-12; mean P@100 $0.250\rightarrow0.413$, Patator $0\rightarrow0.618$.
+
+\section{Models}
+\subsection{M5a — Revived Per-Flow AE (87-dim)}
+Legacy 76-dim shim threshold 0.5 uncalibrated (benign max $\sim$0.278). Revived 87-dim (76+11 ctx) \texttt{m5a\_revived\_ctx.pt} — not in production defaults but headline uses it with fusion.
+
+\subsection{M5b — GraphSAGE Host AE}
+2$\times$SAGEConv $N\times8/19\rightarrow N\times32\rightarrow N\times8$ latent (=in\_dim, no bottleneck — capacity via features, latent 2$\rightarrow$12 moves mean 0.003). Decoder: $\hat{x}_v=\text{MLP}(z_v)$, $\hat{a}_{uv}=\text{MLP}([z_u;z_v])$, loss $\text{MSE}(x,\hat{x})+\text{MSE}(a,\hat{a})$, score $||x-\hat{x}||^2+\lambda||a-\hat{a}||^2$.
+
+\subsection{Determinism}
+\texttt{set\_seed()}: \texttt{torch.manual\_seed}, \texttt{cuda.manual\_seed\_all}, \texttt{cudnn.deterministic=True}, \texttt{benchmark=False}, \texttt{CUBLAS\_WORKSPACE\_CONFIG=:4096:8}. Same seed CPU 0.5048 vs GPU 0.9948 (GOTCHA \#24); single-seed $<$6 pts is noise.
+
+\section{Fusion and Scoring}
+\subsection{Calibration}
+Per-window percentile against 20\% Monday holdout (80/20). Ensemble scores are percentiles not raw errors (GOTCHA \#18). Uncalibrated until 2026-08-12 was M5b alone 99.9\% (GOTCHA \#21).
+
+\subsection{Fusion Rules}
+\begin{table}[H]
+\centering
+\caption{Fusion rules evaluated (6 configs, 4 seeds).}
+\label{tab:3.2}
+\begin{tabular}{|L{3cm}|L{4.5cm}|L{6.8cm}|}
+\hline
+\bluetableheader Rule & Formula & Property \\ \hline
+\rowcolor{rowblue} \texttt{mean} & $(p60+p300)/2$ & Baseline \\ \hline
+\texttt{max} & $\max(p60,p300,pM5a)$ & Lets saturated M5a overwrite \\ \hline
+\rowcolor{rowblue} \texttt{rank\_mean} & rank(pop)$\rightarrow$mean & Window-local, lifts $0.712\rightarrow0.789$ \\ \hline
+\texttt{fused\_rank\_max} & rank positions & $+0.0398$ AUC but batch-only \\ \hline
+\rowcolor{rowblue} \textbf{noisyor (prod)} & $1-\prod(1-p)$ & $0.9996\pm0.0001$ best \\ \hline
+\end{tabular}
+\end{table}
+
+Production: within-window rank noisy-or over 60s+300s (plus M5a ctx where enabled), edge \texttt{rank\_mean}. \texttt{score\_window(feature\_columns=None)}=M5b-only 0.8322 edge AUC most consistent.
+
+\subsection{Alert Emission}
+\texttt{score\_window()} $\rightarrow$ \texttt{ScoredAlert[src\_ip,dst\_ip,score,rank,model\_source]} sorted by fused rank. \texttt{feature\_set="v2"} without 19-dim checkpoint refuses loudly. We report node AUC for modelling, edge AUC for operational (gap 22 pts, GOTCHA \#16).
+
+\section{Drift, Explainability, Adversarial}
+\textbf{M6} \texttt{drift\_monitor.py} on 3 streams via \texttt{init\_drift\_monitors()} (queue noise is drift RC-28). \textbf{M7} SHAP + ATT\&CK (never unpack positionally). \textbf{Harness} 4 techniques: port-hiding no, slow 20$\times$, distributed 16, camouflage fail (RC-14).
+
+\section{Evaluation Protocol (HELD-OUT) and Metrics}
+HELD-OUT: train Monday benign only, test each family held-out one-by-one, mean$\pm$std over seeds 0--3 (\texttt{eval\_mw\_ablation\_4seed.py}). Metrics: ROC-AUC primary, attacker rank \& recall@100 operational (top $\sim$35, recall 1.0), P@100 diagnostic capped at bad/100. Node vs edge quoting gap stated. Closed negatives: shipped-M5a, temporal, LODO, k=5, small-window, latent width.
+
+\section{Tools and Environment}
+Python 3.11, PyTorch 2.5.1+cu121, PyG; \texttt{venv} per-machine never portable; paths via \texttt{Path(\_\_file\_\_).resolve().parent}; \texttt{data/} gitignored (CIC gates), \texttt{*.pt} tracked. One-command: \texttt{python detection/eval\_mw\_ablation\_4seed.py --seeds 0 1 2 3 --epochs 60} (GPU deterministic).
+
+% ===================== CHAPTER 4 =====================
+\chapter{DESIGN AND MODELLING}
+\label{ch:design}
+
+\section{Introduction}
+Architecture, component design, data flow and modelling choices implementing Chapter~3. Decisions defended: AE never classifier, SAGE over GCN, nodes=hosts/edges=directed, time-based windows, edge-level alerts, M5a lifted to host-window. Three pillars: network (P1 sem~7), UEBA (P2), eBPF syscalls (P3 weeks~4--12). Headline is baseline-vs-GNN ablation (B).
+
+\section{System Architecture — Three Pillars and Four Persons}
+Pillar~1 Network: \texttt{capture/schema\_mapper} $\rightarrow$ \texttt{pcap\_to\_flows} $\rightarrow$ \texttt{graph\_builder} $\rightarrow$ \texttt{gnn\_model} (LogScaler) $\rightarrow$ \texttt{ensembler} (60s+300s rank noisy-or) $\rightarrow$ \texttt{alert\_pipeline} $\rightarrow$ dashboard (FastAPI+React). Pillar~2 UEBA: identity logs $\rightarrow$ risk model. Pillar~3 Host: \texttt{ebpf\_syscall\_watcher} $\rightarrow$ host AE. Cross-cutting: M6 drift\_monitor, M7 shap\_explainer, harness D. Named method HOSTFUSE + HELD-OUT, one-command artifact.
+
+\section{Data Flow and Module Map}
+
+\begin{table}[H]
+\centering
+\caption{System module map — stage, implementation and I/O.}
+\label{tab:4.1}
+\begin{tabular}{|C{0.7cm}|L{3cm}|L{4.2cm}|L{6.6cm}|}
+\hline
+\bluetableheader S.No. & Stage & Module & Input $\rightarrow$ Output \\ \hline
+\rowcolor{rowblue} 1 & Ingest — schema & \texttt{capture/schema\_mapper.py} & CSV (79/85/IDS2018) $\rightarrow$ canonical FlowRecord \\ \hline
+2 & Ingest — capture & \texttt{pcap\_to\_flows / ebpf\_syscall\_watcher} & pcap/eBPF $\rightarrow$ flows / syscalls \\ \hline
+\rowcolor{rowblue} 3 & Build — graph & \texttt{graph\_builder.py} & flows $\rightarrow$ List[Data] x=[N,8/19] \\ \hline
+4 & Scale & \texttt{gnn\_model:NodeScaler(log)} & raw $\rightarrow$ log1p $\rightarrow$ min-max \\ \hline
+\rowcolor{rowblue} 5 & Train — baseline & \texttt{train\_m5a\_revived.py} & 87-dim $\rightarrow$ m5a\_revived\_ctx.pt \\ \hline
+6 & Train — GNN & \texttt{gnn\_model:GraphAutoencoder} & benign graphs $\rightarrow$ gnn\_autoencoder\_v1*.pt \\ \hline
+\rowcolor{rowblue} 7 & Score — fuse & \texttt{ensembler.py} & 60s+300s errors $\rightarrow$ percentiles $\rightarrow$ noisy-or \\ \hline
+8 & Serve — alerts & \texttt{alert\_pipeline.py} & window $\rightarrow$ ScoredAlert[src,dst,score,rank] \\ \hline
+\rowcolor{rowblue} 9 & Evaluate — lab & \texttt{eval\_mw\_ablation\_4seed.py} & held-out loop $\rightarrow$ mean$\pm$std \\ \hline
+10 & Monitor & \texttt{drift\_monitor.py} & 3 streams $\rightarrow$ drift flag \\ \hline
+\rowcolor{rowblue} 11 & Explain & \texttt{shap\_explainer.py} & embedding $\rightarrow$ SHAP + ATT\&CK \\ \hline
+12 & Adversarial & \texttt{harness/graph\_techniques} & 4 attacks $\rightarrow$ cost \\ \hline
+\end{tabular}
+\par\small\textit{Source: detection/README.md, experiments/report\_cards.md}
+\end{table}
+
+Health gate: \texttt{graph\_health()} rejects collapsed (508$\rightarrow$2 services) and degenerate (12,503 services) before training.
+
+\section{Modelling Details}
+\subsection{GraphAutoencoder}
+2$\times$SAGEConv $N\times8/19\rightarrow N\times32\rightarrow N\times8$ latent (=in\_dim), ReLU, decoder MLPs, loss MSE(node)+MSE(edge), score via edge\_score rank\_mean. Latent width null (0.003), add features not width. v1 8 dims vs v2 19 dims (adds port/peer entropy, flag ratios, IAT); guard refuses v2 without checkpoint; 0--7 stable.
+
+\subsection{Windows, Calibration, Fusion}
+60s+300s fused after percentile calibration; checkpoints must ship together (percentiles not raw). Fusion: $p60=\text{percentile}(err60)$, $fused=1-(1-rank(p60))(1-rank(p300))(1-rank(pM5a))$ (M5b-only omit pM5a $\rightarrow$ 0.8322 edge AUC).
+
+\subsection{Checkpoints and Thresholds}
+Ensemble scores are percentiles; DEFAULT\_THRESHOLD 0.5 uncalibrated (benign max $\sim$0.278). model\_source records single vs ensemble.
+
+\section{Alert Pipeline and Dashboard}
+ScoredAlert $\rightarrow$ \texttt{alert\_pipeline.score\_window()} $\rightarrow$ FastAPI \texttt{GET /alerts} + WebSocket $\rightarrow$ React dashboard (filters, SHAP drawer, drift banner). Run: \texttt{run\_detector.bat} or \texttt{powershell -ExecutionPolicy Bypass -File .\textbackslash run\_detector.ps1} or VS Code stub\_detector.py (deprecated shim).
+
+\section{Validation and Results Summary — Week-4 Freeze}
+
+\begin{table}[H]
+\centering
+\caption{Validation summary (GPU, CUDA-deterministic, 4 seeds, 2026-08-25).}
+\label{tab:4.2}
+\begin{tabular}{|L{4cm}|L{4cm}|L{6.5cm}|}
+\hline
+\bluetableheader Claim & Number & Source \\ \hline
+\rowcolor{rowblue} CICIDS2017 v1 & 0.9996 $\pm$0.0001 & mw\_ablation\_4seed.json \\ \hline
+CICIDS2017 v2 & 0.9997 $\pm$0.0001 & feature\_set\_v2\_results.json \\ \hline
+\rowcolor{rowblue} vs baselines & PCA 0.9417 / IF 0.9357 / MLP 0.9517 & baselines\_4seed.json \\ \hline
+IDS2018 external & top-11/32,935 in 3/4 seeds & external\_ids2018\_multiseed \\ \hline
+\rowcolor{rowblue} CTU-13 Virut & \#1 in 4/4 seeds & external\_ctu13\_multiseed \\ \hline
+CTU-13 Rbot & \#1 in 3/4 seeds & same \\ \hline
+\end{tabular}
+\end{table}
+
+Per-family v2: PortScan/DoS/DDoS 0.9999--1.0000 (1--4), Web/Patator 1.0000 (1--5), Infiltration 0.9997 (2), Botnet 0.9987 (5--34). Recall@100 = 1.0; P@100 not headlined. Closed negatives: shipped-M5a poison, temporal/LSTM neutral, LODO, k=5, small-window, latent width.
+
+\section{Deployment Considerations}
+
+\begin{table}[H]
+\centering
+\caption{Failure modes and mitigations.}
+\label{tab:4.3}
+\begin{tabular}{|L{3.2cm}|L{5.5cm}|L{5.8cm}|}
+\hline
+\bluetableheader Component & Failure & Mitigation \\ \hline
+\rowcolor{rowblue} CSV ingest & latin-1 vs UTF-8, NaN IPs & read\_flows()+drop\_unusable\_rows() \\ \hline
+Scaling & power-law squash & NodeScaler(log=True) \\ \hline
+\rowcolor{rowblue} Reproducibility & unseeded/GPU nondeterminism & set\_seed()+CUBLAS :4096:8 \\ \hline
+Portability & hard-coded D:\textbackslash Test OD & Path(\_\_file\_\_).resolve().parent \\ \hline
+\rowcolor{rowblue} Portability & venv absolute paths & Per-machine venv \\ \hline
+\end{tabular}
+\end{table}
+
+Known weaknesses first: noisyor batch-only, calibration optimism (20\% holdout), device sensitivity, both checkpoints required, near-ceiling dataset.
+
+\section{Appendices Mapping}
+
+\begin{table}[H]
+\centering
+\caption{Appendices mapping (code \& supplementary in appendices per guideline).}
+\label{tab:4.4}
+\begin{tabular}{|L{3cm}|L{5.5cm}|L{6cm}|}
+\hline
+\bluetableheader Appendix & Content & Pointer \\ \hline
+\rowcolor{rowblue} A — Schemas & feature\_vector.json v3.0 (87-dim), ScoredAlert & detection/training\_features/README.md \\ \hline
+B — Evidence & report\_cards.md RC-01...RC-32 & Detail behind CHANGELOG \\ \hline
+\rowcolor{rowblue} C — Code & graph\_builder, gnn\_model, ensembler, alert\_pipeline & detection/ prod \\ \hline
+D — Supplementary & baselines, externals, ablation bands & PAPER\_OUTLINE \\ \hline
+\end{tabular}
+\end{table}
+
+% ===================== CHAPTER 5 =====================
+\chapter{RESULTS, DISCUSSION AND FUTURE WORK}
+\label{ch:results}
+
+\section{Results — Headline (as of 2026-08-25, week-4 freeze)}
+Production recipe GNN-logscale 60s+300s + revived 87-dim ctx M5a, within-window rank noisy-or $\rightarrow$ \textbf{mean ROC-AUC 0.9996$\pm$0.0001} across 7 held-out families (\texttt{eval\_mw\_ablation\_4seed.py --seeds 0 1 2 3}), beats pure rank\_mean 0.9990$\pm$0.0003 in all seeds. With v2 (19 dims): \textbf{0.9997$\pm$0.0001} (\texttt{eval\_feature\_set\_v2.py}). Every attacker in top $\sim$35 of thousands; top-11/32,935 on IDS2018 in 3/4 seeds (worst top-35, percentile 0.0002); CTU-13 Virut \#1 in 4/4 seeds, Rbot \#1 in 3/4.
+
+Baselines beaten under identical conditions (RC-31): PCA 0.9417, IF 0.9357, MLP-AE 0.9517 vs 0.9996 ($+$4.8 pts). Closed negatives confirmed: shipped-M5a, temporal/LSTM, LODO, k=5.
+
+\section{Discussion}
+Operational claim to quote is attacker rank/recall, not P@100 (structurally capped at bad/100). Node AUC describes model, edge AUC describes alert queue (gap 22 pts). Calibration optimism (20\% Monday holdout) and device sensitivity (CPU vs GPU WebAttacks 0.50$\rightarrow$0.99) are stated before an examiner does. Graph context captures collective behaviours invisible per-flow; LogScaler is the single biggest win; SAGE preserves degree.
+
+\section{Limitations}
+Noisy-or batch-only (needs population to rank; single-alert uses rank\_mean). Both checkpoints must ship together. Single-lab benign day. Drift monitor built but not yet auto-governing threshold. Feature v2 default flip pending sign-off.
+
+\section{Future Work — Weeks 4--12 Roadmap}
+Pillar~3 host-syscall autoencoder via eBPF (\texttt{capture/ebpf\_syscall\_watcher.py}), AE-vs-HMM ablation, three-way score fusion (network + UEBA + host). Team work — B supports. Third dataset replication (UNSW-NB15 with pseudo-timestamps), drift-governed threshold, and paper packaging when results freeze (HOSTFUSE + HELD-OUT, one-command artifact, protocol paper outline per \texttt{docs/PROJECT\_GUIDE.md} \S6).
+
+% ===================== REFERENCES =====================
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+\small
+\begin{enumerate}[leftmargin=*,itemsep=2pt,parsep=2pt]
+\item Debar, H. et al. Towards a taxonomy of IDS. Comput. Networks, 1999.
+\item Axelsson, S. IDS: A survey and taxonomy. Chalmers, 2000.
+\item Chandola, V. et al. Anomaly detection: A survey. ACM CSUR, 2009.
+\item Garcia-Teodoro, P. et al. Anomaly-based NIDS. IEEE Commun. Surv. Tuts., 2009.
+\item Bhuyan, M. et al. Network anomaly detection. IEEE Commun. Surv. Tuts., 2014.
+\item Sommer, R. \& Paxson, V. Outside the closed world. IEEE S\&P, 2010.
+\item Patcha, A. \& Park, J. An overview of anomaly detection. Comput. Networks, 2007.
+\item Hodge, V. \& Austin, J. A survey of outlier detection. Artif. Intell. Rev., 2004.
+\item Lashkari, A.H. et al. CICFlowMeter. CIC, 2017.
+\item Moore, A. et al. Discriminators for flow classification. 2005.
+\item Williams, N. et al. Comparison of five ML algorithms. 2006.
+\item Sharafaldin, I. et al. CICIDS2017. CIC, 2018.
+\item Ring, M. et al. Survey of NIDS datasets. 2019.
+\item Heng, M. et al. Dataset realism. 2024.
+\item Durieux, V. \& Gevenois, P. Bibliometric indicators. 2010.
+\item Franceschini, F. h-index. 2010.
+\item Zitt, M. \& Bassecoulard, E. Challenges for indicators. 2008.
+\item Biglia \& Butler. Bibliometric analysis. 2005.
+\item Sakurada, M. \& Yairi, T. Anomaly detection using autoencoders. MLSDA, 2014.
+\item An, J. \& Cho, S. Variational autoencoder anomaly detection. 2015.
+\item Liu, F. et al. Isolation Forest. ICDM, 2008.
+\item Scholkopf, B. et al. Support vector novelty. NeurIPS, 1999.
+\item Merton, R. 1963. Publication collaboration.
+\item Manten. 1968. Earth Science authorship.
+\item Zuckerman. 1968. Nobel laureates.
+\item Meadows, A. 1974. Communication in science.
+\item Klaic. 1990. Chemists of Rugjer Boskovic.
+\item Vimala \& Pulla Reddy. 1996. Zoology theses.
+\item Gupta \& Karisiddappa. 1998. Population genetics.
+\item Mahapatra \& Bhagavan Doss. 2000. Geology.
+\item Seglen \& Aksnes. 2000. Norwegian microbiology.
+\item Moed, H. 2000. Biotechnology departments.
+\item Arunachalam \& Doss. 2000. Asian collaboration.
+\item Kannappanavar \& Vijayakumar. 2001. Authorship trend.
+\item Farahat, H. 2002. Egyptian journals.
+\item Suresh Kumar \& Garg. 2005. China vs India CS.
+\item Calero, C. et al. 2006. Bibliometric mapping.
+\item Park, T. 2008. Library science authorship.
+\item Tijssen \& Van Leeuwen. 2001. Scientometric evaluation.
+\item Thomaidis, N. et al. 2003. Balkan chemistry.
+\item Leydesdorff, L. 2004. Research evaluation.
+\item Surulinathi et al. 2007. Knowledge management India.
+\item Tseng, Y. et al. 2009. Trend analysis.
+\item Annibaldi et al. 2010. Italian analytical chemistry.
+\item Padma, P. 2010. Madurai Kamaraj thesis.
+\item Garfield, E. 1983. World research 1973.
+\item Mehrotra \& Lancaster. 1984. Indian science.
+\item Raghuram \& Madhavi. 1996. Decline in Indian science. Nature.
+\item Raina, D. et al. 1995. Indian research 1800-1950.
+\item Bandyopadhyay, A.K. 2001. Indian research 1950-1990.
+\item Arunachalam et al. 1998. 42,000 Indian papers.
+\item Arunachalam. 2000. Is science in India on decline.
+\item Arunachalam \& Gunasekaran. 2002. Tuberculosis.
+\item Kademani, B.S. et al. 2006. Thorium India.
+\item Kademani et al. 2007. Indian S\&T 1990-2004.
+\item UNEP E-waste Manual; NIST CSF; ENISA.
+\item Hamilton, W. et al. GraphSAGE. NeurIPS, 2017.
+\item Kipf, T. \& Welling, M. GCN. ICLR, 2017.
+\item Mirsky, Y. et al. Kitsune. NDSS, 2018.
+\item Alsham et al. PIKACHU. 2022.
+\item Lo, W. et al. E-GraphSAGE. TDSC, 2022.
+\item Cavanaugh et al. Anomal-E. 2022.
+\item Gama, J. et al. Concept drift. ACM CSUR, 2014.
+\item Apruzzese et al. Real attackers don't compute gradients. USENIX, 2023.
+\item Lundberg \& Lee. SHAP. NeurIPS, 2017.
+\item MITRE CVE; VERIZON DBIR; CIC IDS2018; UNSW-NB15; CTU-13.
+\end{enumerate}
+
+% ===================== APPENDICES =====================
+\appendix
+\chapter{Schemas \& Feature Catalogue}
+\label{app:schemas}
+\texttt{schemas/feature\_vector.json} v3.0: 76 $\rightarrow$ 87 dims (flow + ctx window). \texttt{ScoredAlert} fields: src\_ip, dst\_ip, score, rank, model\_source. HostScaler params: log flag, min/max per dim.
+
+\chapter{Report Cards (RC-01...RC-32)}
+\label{app:rc}
+See \texttt{experiments/report\_cards.md} — one card per experiment with numbers, bands and caveats. RC-26 is reference ablation (\texttt{eval\_mw\_ablation\_4seed.py}).
+
+\chapter{Code Listings}
+\label{app:code}
+\texttt{detection/graph\_builder.py}, \texttt{gnn\_model.py}, \texttt{ensembler.py}, \texttt{alert\_pipeline.py}, \texttt{drift\_monitor.py}, \texttt{shap\_explainer.py}, \texttt{evaluate\_gnn.py}. Nothing in prod imports \texttt{experiments/}.
+
+\chapter{Supplementary Tables}
+\label{app:supp}
+Baselines 4-seed (RC-31), externals IDS2018/CTU-13 (RC-29/32), v2 ablation (RC-30), harness costs (RC-14). JSONs: \texttt{mw\_ablation\_4seed.json}, \texttt{baselines\_4seed.json}, \texttt{external\_ids2018\_multiseed.json}.
+
+\end{document}

@@ -2,20 +2,24 @@
 
 Drift-Aware Explainable Anomaly Detection for Behavioral Threat Hunting.
 
-**New here?** Read [`docs/PROJECT_GUIDE.md`](docs/PROJECT_GUIDE.md) — a plain-language tour of what the project does, what we did, and where it stands.
+**New here?** Read [`docs/guides/PROJECT_GUIDE.md`](docs/guides/PROJECT_GUIDE.md) — a plain-language tour of what the project does, what we did, and where it stands.
 
-**Complete Reference (source of truth for TGPT / viva):** [`docs/COMPLETE_REFERENCE.md`](docs/COMPLETE_REFERENCE.md) — GitHub: https://github.com/DeepxD-code/Zero-Day
+**Complete Reference (source of truth for TGPT / viva):** [`docs/guides/COMPLETE_REFERENCE.md`](docs/guides/COMPLETE_REFERENCE.md) — GitHub: https://github.com/DeepxD-code/Zero-Day
 
-> After any major finding, append it to `docs/COMPLETE_REFERENCE.md:§23` and bump `Last updated`. See `docs/COMPLETE_REFERENCE.md:§24` for the keep-current checklist. Detail lives in `CHANGELOG.md` (append-only) and `experiments/report_cards.md` (RC cards).
+> After any major finding, append it to `docs/guides/COMPLETE_REFERENCE.md:§23` and bump `Last updated`. See `docs/guides/COMPLETE_REFERENCE.md:§24` for the keep-current checklist. Detail lives in `CHANGELOG.md` (append-only) and `experiments/report_cards.md` (RC cards).
 
 ## Repo map — what leads to where
 
 ```
 Zero-Day/
-├── docs/                     ← read-me-first material
-│   ├── PROJECT_GUIDE.md      ← plain-language tour (start here)
-│   ├── COMPLETE_REFERENCE.md ← full technical reference
-│   └── papers_faceoff.md     ← our numbers vs published papers
+├── docs/
+│   ├── README.md             ← this index — reference vs templates vs report
+│   ├── report/               ← SUBMISSION — Chapters 1–4 + References + PDF
+│   ├── templates/            ← FORMATTING — FORMATTING_GUIDE.md from example PDF
+│   ├── guides/               ← REFERENCE — PROJECT_GUIDE, COMPLETE_REFERENCE, schema
+│   ├── paper/                ← RESEARCH — outline, packaging, faceoff, profiles
+│   ├── presentations/        ← SLIDES — week3-presentation.html
+│   └── report/archive/       ← old drafts (v1_backup, v2, docx, generators)
 ├── detection/                ← THE PRODUCT: detector code + eval scripts
 │   └── README.md             ← file-by-file map with status labels
 ├── experiments/              ← evidence: every number's reproducible source
@@ -54,9 +58,9 @@ Both machines need these downloaded locally; they never travel through git.
 
 | Path | What | Source |
 | --- | --- | --- |
-| `data/MachineLearningCSV/` | CICIDS2017, 79 cols, **no IP columns** | CIC |
-| `data/GeneratedLabelledFlows/` | CICIDS2017, 85 cols, **has Flow ID / Source IP / Destination IP / Protocol / Timestamp** — required for graph construction | CIC |
-| `training_data/` | A's CICFlowMeter output (tracked) | in repo |
+| `data/MachineLearningCSV/` | CICIDS2017, 79 cols, **no IP columns** — **legacy 76-dim only** | CIC |
+| `data/GeneratedLabelledFlows/` | CICIDS2017, 85 cols, **has Flow ID / Source IP / Destination IP / Protocol / Timestamp** — **required for graph / 87-dim / SHAP** (latin-1, use `graph_builder.read_flows()`) | CIC |
+| `training_data/` | **DEPRECATED** — 79-col CICFlowMeter snapshot kept only to reproduce legacy M5a-L 76-dim baseline (`legacy/autoencoder.py`, `shap_explainer.py:136`); **do not use for GNN / 87-dim revived / edge alerts** — missing `src_ip`/`dst_ip` (`graph_builder.py:146`) | in repo — will be moved to `legacy/training_data/` |
 
 CICIDS2017 downloads are behind a registration form at
 http://cicresearch.ca/CICDataset/CIC-IDS-2017/ — fill it in with real details,
