@@ -2,6 +2,21 @@
 
 Append-only log of what changed and why. **Pull, then read the top of this file.**
 
+## 2026-09-16 — Ch2 literature audit: PIKACHU attribution corrected, 2412.18218 v1/v2 drift flagged
+**Author:** Deep (Person B — Detection Modeling)
+
+### What changed
+* `docs/report/References.md:[19]` was "S. Alsham et al., PIKACHU: Unsupervised host-graph anomaly detection, 2022" with a "0.977 mean AUC on CICIDS2017" prior-bar claim in Ch2. Web-verified (arXiv abs + GitHub rpaudel42/Pikachu, twice): PIKACHU is **R. Paudel and H. Huang, temporal-walk dynamic graph embedding, NOMS 2022**, evaluated on provenance graphs (DARPA OpTC/LANL, recall 0.987) — NOT a CICIDS2017 host-graph AE. No "Alsham et al. 2022 PIKACHU" record found. Ch2 rewritten to the verified facts; the 0.977-CICIDS2017 figure's provenance is now marked unverified and is no longer quoted as a literature result.
+* `docs/report/References.md:[53]` (Marchetti et al., arXiv:2412.18218v1 problem-space structural attacks): the identifier's **current v2 is a different paper** (Bostani et al., Rubik Android-malware AT). Entry pinned to **v1 explicitly** with a drift note. Lesson: re-verify arXiv IDs at submission time; preprint identifiers can be replaced.
+* `docs/report/References.md:[54]`: corrected 24th→**23rd** IEEE NCA (Lisbon 2025, doi 10.1109/NCA67271.2025.00043); authors Galli, Venturi, Stabili, Andreolini, Marchetti.
+* `docs/report/References.md:[21]`: "Cavanaugh"→**Caville** (E. Caville, W. W. Lo, S. Layeghy, M. Portmann, KBS 2022).
+* [37]/[58] merged (same Panchal et al. IJCA paper listed twice in team Excel P12/P33); [56] dropped (unverifiable authors). Counts now 61 studies (7+7+11+12+24).
+
+### Why
+Agent-2's verify-twice pass caught all five. Literature numbers this project beats must be traceable to real papers — an examiner checking [19] would have found a different paper than described. Past entries quoting the 0.977 bar are left intact (append-only); this entry supersedes them.
+
+---
+
 ## 2026-09-04b — Final Args Verification, Trace Regeneration, and Verified Status Transition (Week 4 Role D)
 **Author:** Avinash (Person D — Adversarial Eval & Delivery)
 **Commit:** 26e4b75

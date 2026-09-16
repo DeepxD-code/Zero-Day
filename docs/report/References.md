@@ -20,48 +20,47 @@ Format: IEEE style. Use as References section at end of report (after Ch 4, befo
 [16] J. An and S. Cho, "Variational autoencoder based anomaly detection…," *SNU*, 2015.
 [17] S. Lundberg and S.-I. Lee, "A unified approach to interpreting model predictions," in *Proc. NeurIPS*, 2017.
 [18] Y. Mirsky, T. Doitshman, Y. Elovici, and A. Shabtai, "Kitsune: An ensemble of autoencoders for online NIDS," in *Proc. NDSS*, 2018.
-[19] S. Alsham et al., "PIKACHU: Unsupervised host-graph anomaly detection," 2022. [Cited as prior bar; grid-search caveat]
+[19] R. Paudel and H. Huang, "PIKACHU: Temporal walk based dynamic graph embedding for network anomaly detection," in *Proc. IEEE/IFIP Network Operations and Management Symp. (NOMS)*, 2022. [Provenance-graph APT detection, DARPA OpTC/LANL; evaluated on labelled APT captures, not held-out families]
 [20] W. Lo et al., "E-GraphSAGE: A graph neural network based intrusion detection system," *IEEE Trans. Depend. Secure Comput.*, 2022.
-[21] S. Cavanaugh et al., "Anomal-E: A self-supervised network intrusion detection system…," 2022.
+[21] E. Caville, W. W. Lo, S. Layeghy, and M. Portmann, "Anomal-E: A self-supervised network intrusion detection system based on graph neural networks," *Knowledge-Based Systems*, vol. 258, p. 110030, 2022. doi: 10.1016/j.knosys.2022.110030.
 [22] J. Gama et al., "A survey on concept drift adaptation," *ACM Comput. Surv.*, vol. 46, no. 4, 2014.
 [23] D. Apruzzese et al., "Real attackers don't compute gradients…," in *Proc. USENIX Sec.*, 2023.
-[24] A. Habibi Lashkari, CICFlowMeter. Canadian Institute for Cybersecurity.
+[24] A. H. Lashkari, CICFlowMeter (formerly ISCXFlowMeter), Canadian Institute for Cybersecurity, 2017. [Online]. Available: https://github.com/ahlashkari/CICFlowMeter
 [25] N. Shone et al., "A deep learning approach to network intrusion detection," *IEEE Trans. Emerg. Topics Comput. Intell.*, 2018.
-[26] "Deep PackGen: A deep reinforcement learning framework for adversarial network packet generation," *ACM Trans. Privacy and Security*, 2025. [Online]. Available: https://dblp.org/pid/132/5837
-[27] "Adversarial attacks specifically tailored for GNN in network intrusion detection," *arXiv preprint arXiv:2403.11830*, 2024. [Online]. Available: https://arxiv.org/pdf/2403.11830
+[26] S. Hore, J. Ghadermazi, D. Paudel, A. Shah, T. K. Das, and N. D. Bastian, "Deep PackGen: A deep reinforcement learning framework for adversarial network packet generation," *ACM Trans. Privacy and Security*, vol. 28, no. 2, Art. no. 15, pp. 1–33, Feb. 2025. doi: 10.1145/3712307.
+[27] A. Venturi, D. Stabili, and M. Marchetti, "Problem space structural adversarial attacks for network intrusion detection systems based on graph neural networks," *arXiv preprint arXiv:2403.11830*, 2024. [Submitted to IEEE TIFS]
 [28] "Graph neural networks for cyberattack detection: A systematic literature review," *MDPI Information*, vol. 16, no. 6, 2025. [Online]. Available: https://www.mdpi.com/2078-2489/16/6/470
-[29] "In-context pre-training and dense categorical representations for few-shot GNN-NIDS," *arXiv preprint arXiv:2402.18986*, 2024. [Online]. Available: https://arxiv.org/pdf/2402.18986
-[30] "On the reproducibility and replicability of graph-based network intrusion detection systems," *arXiv preprint arXiv:2503.20281*, 2025. [Online]. Available: https://arxiv.org/pdf/2503.20281
-[31] "Neuro-symbolic AI in cybersecurity: A systematic review," *arXiv preprint arXiv:2509.06921*, 2026.
-[32] "Continual learning with strategic selection and forgetting for network intrusion detection," *IEEE / arXiv:2412.16264*, 2024.
+[29] Z. Gu, D. T. Lopez, L. Alrahis, and O. Sinanoglu, "Always be pre-training: Representation learning for network intrusion detection with GNNs," in *Proc. Int. Symp. Quality Electronic Design (ISQED)*, 2024. arXiv:2402.18986.
+[30] C. Wang, P. Zheng, J. Gui, C. Hua, and W. U. Hassan, "Are we there yet? Unraveling the state-of-the-art graph network intrusion detection systems," *arXiv preprint arXiv:2503.20281*, 2025.
+[31] S. B. Hakim, M. Adil, A. Velasquez, S. Xu, and H. H. Song, "Neuro-symbolic AI for cybersecurity: State of the art, challenges, and opportunities," *arXiv preprint arXiv:2509.06921*, 2026.
+[32] X. Zhang, R. Zhao, Z. Jiang, H. Chen, Y. Ding, E. C. H. Ngai, and S.-H. Yang, "Continual learning with strategic selection and forgetting for network intrusion detection," in *Proc. IEEE Int. Conf. Computer Communications (INFOCOM)*, 2025. arXiv:2412.16264.
 [33] "DRIFT-CL: Feature-space Gaussian-kernel MMD drift detection with gradient adaptation," *MDPI Mathematics*, 2026.
-[34] "ReCDA: Concept drift adaptation with representation enhancement for network intrusion detection," *IEEE Trans.*, 2025.
-[35] "RES-DARE: Recursive evolving specialists-digital adaptive reasoning ensemble," *arXiv preprint arXiv:2607.02687*, 2026.
-[36] "Explainable AI for intrusion detection systems: LIME and SHAP applications," *IEEE Access*, 2024.
-[37] "XAI-driven IDS and threat response automation (XAI-IDR)," *IJCA Publication*, 2026.
+[34] S. Yang, X. Zheng, J. Li, J. Xu, X. Wang, and E. C. H. Ngai, "ReCDA: Concept drift adaptation with representation enhancement for network intrusion detection," in *Proc. 30th ACM SIGKDD Conf. Knowledge Discovery and Data Mining*, 2024, pp. 3818–3828. doi: 10.1145/3637528.3672007. [Journal version: "Self-supervised adaptation method to concept drift…," *IEEE Trans.*, 2025]
+[35] R. Aftab, A. Prasad, S. Mazumdar, V. K. Rakesh, and T. Samanta, "RES-DARE: Failure-aware expert adaptation and rollback-safe self-repair for intrusion detection," *arXiv preprint arXiv:2607.02687*, 2026.
+[36] D. Gaspar, P. Silva, and C. Silva, "Explainable AI for intrusion detection systems: LIME and SHAP applicability on multi-layer perceptron," *IEEE Access*, 2024. doi: 10.1109/ACCESS.2024.3368377.
+[37] R. V. Panchal, R. Snehkunj, and V. V. Panchal, "Explainable artificial intelligence (XAI) for intelligent intrusion detection systems and threat response automation (XAI-IDR)," *Int. J. Computer Applications*, vol. 187, no. 74, pp. 51–55, Jan. 2026. doi: 10.5120/ijca2026926262. [Also listed as team paper P33; single entry]
 [38] "Enhancing UEBA in SIEM systems using AI-powered anomaly detection," *Int. J. Mechatronics & AI*, 2025.
-[39] "An explainable UEBA-based anomaly detection framework using deep autoencoders," *AIMS Mathematics*, 2025.
-[40] "Deep learning-based user behavior analytics for insider threat detection," *F1000Research*, 2026.
+[39] J. Fuentes, I. Ortega-Fernandez, N. M. Villanueva, and M. Sestelo, "Cybersecurity threat detection based on a UEBA framework using deep autoencoders," *AIMS Mathematics*, vol. 10, no. 10, pp. 23496–23517, 2025. doi: 10.3934/math.20251043.
+[40] P. Akampurira et al., "A deep learning-based user behavior analytics model for proactive cyber threat detection and risk management," *F1000Research*, vol. 15, p. 674, 2026. doi: 10.12688/f1000research.178351.1. [Systematic review; attention-based LSTM, ISO/IEC 27001 alignment]
 [41] Mchina, Mduma, and Sinde, "Adaptive decision-level intrusion detection for known and zero-day attacks," *MDPI Network*, 2026.
-[42] "Drift-aware variational autoencoder-based anomaly detection with two-level ensembling," *arXiv preprint arXiv:2602.12976*, 2026.
-[43] Sharma, Xue, Sun, Lin, and Xiong, "Enhancing adversarial robustness of IoT intrusion detection via SHAP-based hardening," *arXiv preprint arXiv:2511.06197*, 2025. [Online]. Available: https://arxiv.org/pdf/2511.06197
-[44] "An adversarial robustness benchmark for enterprise network intrusion detection," *arXiv preprint arXiv:2402.16912*, 2024.
-[45] "Detecting adversarial evasion attacks against autoencoder-based network intrusion detection," *arXiv preprint arXiv:2607.01194*, 2026.
-[46] "Timestamp-aware spatio-temporal graph contrastive learning for network intrusion detection," *arXiv preprint arXiv:2606.17109*, 2026.
+[42] J. Li, K. Malialis, C. G. Panayiotou, and M. M. Polycarpou, "Drift-aware variational autoencoder-based anomaly detection with two-level ensembling (VAE++ESDD)," *arXiv preprint arXiv:2602.12976*, 2026.
+[43] D. P. Sharma, L. Xue, X. Sun, X. Lin, and P. Xiong, "Enhancing adversarial robustness of IoT intrusion detection via SHAP-based attribution fingerprinting," in *Proc. IEEE Int. Conf. Trust, Security and Privacy in Computing and Communications (TrustCom)*, 2025. doi: 10.1109/Trustcom66490.2025.00125.
+[44] J. Vitorino, M. Silva, E. Maia, and I. Praça, "An adversarial robustness benchmark for enterprise network intrusion detection," in *Proc. Int. Symp. Foundations and Practice of Security (FPS)*, 2023. arXiv:2402.16912. doi: 10.1007/978-3-031-57537-2_1.
+[45] N. Bunzel and A. Siwakoti, "Detecting adversarial evasion attacks against autoencoder-based network intrusion detection systems," *arXiv preprint arXiv:2607.01194*, 2026. [RLD + FPC detectors vs PANDA attacks, UQ-IoT, F1 ≥ 0.99]
+[46] J. Dai, G. Wu, J. Li, W. Wang, A. He, and X. Xiao, "Timestamp-aware spatio-temporal graph contrastive learning for network intrusion detection," *arXiv preprint arXiv:2606.17109*, 2026. [E-GraphSAGE + LSTM encoder, 4 timestamped datasets]
 [47] Ding, Liu, Ma, Chen, and Liu, "A temporal graph neural network approach for network attack detection," in *Proc. PAKDD (LNCS)*, 2026.
 [48] "A decision tree model for intrusion detection using MITRE ATT&CK," *J. Advances in Information Technology*, 2026.
 [49] Bagui, Mink, Bagui, Ghosh, and McElroy, "Detecting reconnaissance and discovery tactics from the MITRE ATT&CK framework," *MDPI Sensors*, 2022.
 [50] Aceto, Giampaolo, Guida, Izzo, Pescape, Piccialli, and Prezioso, "Synthetic and privacy-preserving traffic trace generation using generative AI models for training network intrusion detection systems," *J. Network and Computer Applications*, vol. 229, 2024. doi: 10.1016/j.jnca.2024.103926.
-[51] "Artificial intelligence-based insider-threat detection: A hybrid explainable approach," *MDPI Computers*, vol. 15, no. 7, 2026.
+[51] A. R. Alkharabsheh, G. Binsalma, M. Alharmi, R. Alshateri, S. Altaee, and M. Sweidan, "Artificial intelligence-based insider-threat detection: A hybrid explainable framework with automated response and privilege containment," *MDPI Computers*, vol. 15, no. 7, p. 426, 2026. doi: 10.3390/computers15070426.
 [52] Almuhana and Dardouri, "A deep learning/machine learning approach for anomaly-based network intrusion detection," *Frontiers in Artificial Intelligence*, 2025. doi: 10.3389/frai.2025.1625891.
-[53] Marchetti, Carminati, and Polino, "Problem space structural adversarial attacks for network intrusion detection systems based on graph neural network classifiers," *arXiv preprint arXiv:2412.18218*, 2024. [Online]. Available: https://arxiv.org/abs/2412.18218
-[54] "Hardening GNN-based network intrusion detection systems against structural adversarial attacks," in *Proc. 24th IEEE Int. Conf. on Network Computing and Applications (NCA)*, 2025. [Online]. Available: https://arxiv.org/abs/2608.24454
+[53] M. Marchetti, S. Carminati, and G. Polino, "Problem space structural adversarial attacks for network intrusion detection systems based on graph neural network classifiers," *arXiv preprint arXiv:2412.18218v1*, 2024. [Cited as v1; the identifier now resolves to a replaced v2 on a different topic — v1 content per team list]
+[54] D. Galli, A. Venturi, D. Stabili, M. Andreolini, and M. Marchetti, "Defending network intrusion detection systems based on graph neural networks against structural adversarial attacks," in *Proc. 23rd IEEE Int. Symp. Network Computing and Applications (NCA)*, Lisbon, 2025. doi: 10.1109/NCA67271.2025.00043.
 [55] Mancini, Das, Heydari, et al., "Adversarial challenges in network intrusion detection systems: Research and practice," *IEEE Access*, vol. 13, 2025.
-[56] "Automated incident response using reinforcement learning in multi-cloud environments," *arXiv preprint*, 2025.
-[57] "A review of the duality of adversarial learning in network intrusion detection," *arXiv preprint arXiv:2412.13880*, 2024.
-[58] Panchal, Kadam, and More, "Explainable artificial intelligence (XAI) for intelligent intrusion detection systems and threat response automation (XAI-IDR)," *Int. J. Computer Applications*, vol. 187, no. 74, 2026. [Online]. Available: https://www.ijcaonline.org/archives/volume187/number74/panchal-2026-ijca-926262.pdf
-[59] "A deep learning-based user behavior analytics model for proactive cyber threat detection and risk management," Team manuscript (paper1.pdf), n.d.
-[60] "Toward human-centered explainability: Natural language explanations for anomaly detection," Team manuscript (paper2.pdf), n.d.
-[61] S. Lundberg et al., "Explainable AI for trees: From local explanations to global understanding," *Nature Machine Intelligence*, 2020.
-[62] "Attention-augmented deep learning architectures for malware detection through system call sequence analysis," Team manuscript (paper4.pdf), n.d.
-[63] S. Forrest, S. Hofmeyr, A. Somayaji, and T. Longstaff, "A sense of self for Unix processes," in *Proc. IEEE Symp. Security and Privacy*, 1996.
+[57] S. Saini, A. Chennamaneni, and B. Sawyerr, "A review of the duality of adversarial learning in network intrusion: Attacks and countermeasures," *arXiv preprint arXiv:2412.13880*, 2024.
+
+[58] "A deep learning-based user behavior analytics model for proactive cyber threat detection and risk management," Team manuscript (paper1.pdf), n.d.
+[59] "Toward human-centered explainability: Natural language explanations for anomaly detection," Team manuscript (paper2.pdf), n.d.
+[60] S. Lundberg et al., "Explainable AI for trees: From local explanations to global understanding," *Nature Machine Intelligence*, 2020.
+[61] "Attention-augmented deep learning architectures for malware detection through system call sequence analysis," Team manuscript (paper4.pdf), n.d.
+[62] S. Forrest, S. Hofmeyr, A. Somayaji, and T. Longstaff, "A sense of self for Unix processes," in *Proc. IEEE Symp. Security and Privacy*, 1996.
