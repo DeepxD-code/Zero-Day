@@ -59,7 +59,7 @@ Format: IEEE style. Use as References section at end of report (after Ch 4, befo
 [55] Mancini, Das, Heydari, et al., "Adversarial challenges in network intrusion detection systems: Research and practice," *IEEE Access*, vol. 13, 2025.
 [56] S. Saini, A. Chennamaneni, and B. Sawyerr, "A review of the duality of adversarial learning in network intrusion: Attacks and countermeasures," *arXiv preprint arXiv:2412.13880*, 2024.
 
-[57] "Toward human-centered explainability: Natural language explanations for anomaly detection," Team manuscript (paper2.pdf), n.d.
+[57] H. Padin-Torrente, V. Carneiro-Diaz, and I. Ortega-Fernandez, "Toward human-centered explainability: Natural language explanations for anomaly detection," *Information Systems Frontiers*, 2026. doi: 10.1007/s10796-026-10717-3.
 [58] S. Lundberg et al., "Explainable AI for trees: From local explanations to global understanding," *Nature Machine Intelligence*, 2020. [Supplied via team papers (Paper3)]
-[59] "Attention-augmented deep learning architectures for malware detection through system call sequence analysis," Team manuscript (paper4.pdf), n.d.
+[59] J. Adejoh, N. Owoh, F. Ale, R. Prasad, M. Ashawa, and S. Hosseinzadeh, "Attention-augmented deep learning architectures for malware detection through system call sequence analysis," *Cureus J. Computer Science*, Mar. 2026. doi: 10.7759/s44389-026-00046-6.
 [60] S. Forrest, S. Hofmeyr, A. Somayaji, and T. Longstaff, "A sense of self for Unix processes," in *Proc. IEEE Symp. Security and Privacy*, 1996.
