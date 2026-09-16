@@ -95,7 +95,7 @@ Example p.33:
 - Source line below caption, italic.
 - Refer in text as (Fig. 2.4) — parenthetical, italic Fig.
 
-No figures yet in Ch1–4; use this block when you add architecture diagram / ROC plots.
+Ch2 ships Figs 2.1–2.2 as rendered PNGs in `docs/report/figures/` (generator: `figures/make_figures.py`); use the same block for architecture / ROC plots.
 
 ## 6. Citations & References
 
