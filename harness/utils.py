@@ -46,7 +46,11 @@ def load_malicious_samples(csv_path, n=50):
     identified via diagnostic validation (indexes 25, 17, 11, 19, 9).
     Includes an assertion check to guarantee that pre-evasion samples cross the 0.5 threshold.
     """
-    from detection.stub_detector import score_flow
+    try:
+        from detection.stub_detector import score_flow
+    except ModuleNotFoundError:
+        # shim removed in cd420f59; legacy path kept alive (audit 2026-09-20, B)
+        from legacy.stub_detector import score_flow
     
     benign_samples = load_benign_samples(csv_path, n=n)
     malicious_samples = []

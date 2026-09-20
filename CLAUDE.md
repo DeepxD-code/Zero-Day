@@ -194,7 +194,7 @@ push it.** It holds the full spec PDF and the weeks 4–6 roadmap.
 
 | File | Module | What it is |
 | --- | --- | --- |
-| `stub_detector.py` | M5a-L | **deprecated shim** → real code in `legacy/`. Checkpoint-1/dashboard import path kept alive; never extend |
+| `stub_detector.py` | M5a-L | **REMOVED from `detection/` in cd420f59** — import via `legacy.stub_detector` (all live files carry the fallback since the 2026-09-20 audit). Never extend |
 | `autoencoder.py` | M5a-L | *(moved to `legacy/`)* trained the stale baseline AE |
 | `train_m5a_revived.py` / `exp_m5a_revival.py` | M5a-R | revived per-flow AE with 11 ctx dims (87-dim) → `m5a_revived_ctx.pt`. **Not in production defaults — decision pending (see 2026-08-25c/d)** |
 | `graph_builder.py` | M5b | flows → per-window host graphs; `graph_health()`, `read_flows()`; v1 (8) + v2 (19) feature sets |

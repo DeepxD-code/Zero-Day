@@ -47,7 +47,14 @@ from evaluate_gnn import FLOWS, malicious_hosts, roc_auc
 from graph_builder import build_graphs, normalize_columns, read_flows
 from gnn_model import (EdgeScaler, ScoreCalibrator, train_edge_model,
                        GraphAutoencoder, NodeScaler, train, save_ensemble)
-from stub_detector import _get_model
+try:
+    from stub_detector import _get_model
+except ModuleNotFoundError:
+    try:
+        from detection.stub_detector import _get_model
+    except ModuleNotFoundError:
+        # shim removed in cd420f59 (audit 2026-09-20)
+        from legacy.stub_detector import _get_model
 import alert_pipeline as AP
 import ensembler as ENS
 

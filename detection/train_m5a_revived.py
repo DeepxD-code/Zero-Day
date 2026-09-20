@@ -21,9 +21,13 @@ sys.path.insert(0, str(ROOT))
 
 from detection.graph_builder import normalize_columns, read_flows, _window_key
 from detection.evaluate_gnn import FLOWS
-from detection.stub_detector import EXPECTED_FEATURES
-from detection.exp_m5a_revival import (pin_canonical, flow_matrix, build_ctx,
-                                       MinMax, CtxScaler, RevivedAE, CTX_DIMS)
+try:
+    from detection.stub_detector import EXPECTED_FEATURES
+except ModuleNotFoundError:
+    # shim removed in cd420f59 (audit 2026-09-20)
+    from legacy.stub_detector import EXPECTED_FEATURES
+from experiments.exp_m5a_revival import (pin_canonical, flow_matrix, build_ctx,
+                                         MinMax, CtxScaler, RevivedAE, CTX_DIMS)
 
 OUT = Path(__file__).resolve().parent / "m5a_revived_ctx.pt"
 

@@ -47,16 +47,28 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import torch
 
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from graph_builder import build_graphs, normalize_columns, read_flows
 from evaluate_gnn import FLOWS, malicious_hosts, roc_auc
 from gnn_model import train
-from stub_detector import EXPECTED_FEATURES, _get_model
+try:
+    from stub_detector import EXPECTED_FEATURES, _get_model
+except ModuleNotFoundError:
+    try:
+        from detection.stub_detector import EXPECTED_FEATURES, _get_model
+    except ModuleNotFoundError:
+        # shim removed in cd420f59; legacy path kept alive (audit 2026-09-20)
+        from legacy.stub_detector import EXPECTED_FEATURES, _get_model
 
 OUT_DIR = Path(__file__).resolve().parent
 OUT_MD = OUT_DIR / "ablation_table.md"

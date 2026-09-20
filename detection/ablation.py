@@ -43,7 +43,14 @@ import torch
 
 from graph_builder import build_graphs, normalize_columns
 from gnn_model import GraphAutoencoder, NodeScaler, train
-from stub_detector import EXPECTED_FEATURES, _get_model
+try:
+    from stub_detector import EXPECTED_FEATURES, _get_model
+except ModuleNotFoundError:
+    try:
+        from detection.stub_detector import EXPECTED_FEATURES, _get_model
+    except ModuleNotFoundError:
+        # shim removed in cd420f59 (audit 2026-09-20)
+        from legacy.stub_detector import EXPECTED_FEATURES, _get_model
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_CSV = REPO_ROOT / "training_data" / "dataset_10k_normal.csv"

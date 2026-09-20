@@ -21,7 +21,11 @@ import torch
 
 from detection.graph_builder import build_graphs, normalize_columns, read_flows
 from detection.gnn_model import train as train_gnn
-from detection.stub_detector import EXPECTED_FEATURES, _get_model
+try:
+    from detection.stub_detector import EXPECTED_FEATURES, _get_model
+except ModuleNotFoundError:
+    # shim removed in cd420f59 (audit 2026-09-20)
+    from legacy.stub_detector import EXPECTED_FEATURES, _get_model
 from detection.evaluate_gnn import FLOWS, malicious_hosts, roc_auc
 
 
