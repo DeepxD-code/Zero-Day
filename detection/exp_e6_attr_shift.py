@@ -44,7 +44,7 @@ def main():
     med = np.median(Xtr, axis=0)
     inv = {i: n for n, i in pin["vocab"].items()}
 
-    blob = torch.load(CKPT, map_location="cpu", weights_only=False)
+    blob = torch.load(CKPT, map_location="cpu", weights_only=True)
     model = HostAutoencoder(input_dim=blob["n_dim"])
     model.load_state_dict(blob["model"])
     model.eval().to(device)

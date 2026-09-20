@@ -49,7 +49,7 @@ def main():
     V = lambda ts: np.stack([count_vector(t["seq"], pin) for t in ts])
     Xv_b, Xv_a, Xt_b, Xt_a = V(val_b), V(val_a), V(test_b), V(test_a)
 
-    blob = torch.load(CKPT, map_location="cpu", weights_only=False)
+    blob = torch.load(CKPT, map_location="cpu", weights_only=True)
     ae = HostAutoencoder(input_dim=blob["n_dim"])
     ae.load_state_dict(blob["model"])
     ae.eval().to(device)

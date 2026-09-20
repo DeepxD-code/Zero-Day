@@ -38,7 +38,7 @@ def main():
     traces = load_adfa()
     tr = [t for t in traces if t["split"] == "train"]
     pin = pin_vocab([t["seq"] for t in tr])
-    blob = torch.load(CKPT, map_location="cpu", weights_only=False)
+    blob = torch.load(CKPT, map_location="cpu", weights_only=True)
     model = HostAutoencoder(input_dim=blob["n_dim"])
     model.load_state_dict(blob["model"])
     model.eval().to(device)

@@ -86,7 +86,7 @@ def main():
     ap.add_argument("--quick", action="store_true")
     args = ap.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    blob = torch.load(CKPT, map_location="cpu", weights_only=False)
+    blob = torch.load(CKPT, map_location="cpu", weights_only=True)
     model = GraphAutoencoder(in_dim=19)
     model.load_state_dict(blob["model"])
     model.eval().to(device)

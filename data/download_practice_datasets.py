@@ -21,6 +21,13 @@ def download_and_extract(url, extract_to):
         
     print(f"Extracting {zip_path}...")
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        # AUDIT 2026-09-20 (B, A's file — Saharsh to review): Zip Slip guard.
+        # Refuse members that would write outside extract_to.
+        base = extract_to.resolve()
+        for member in zip_ref.namelist():
+            target = (extract_to / member).resolve()
+            if base not in target.parents and target != base:
+                raise ValueError(f"Refusing unsafe zip member: {member!r}")
         zip_ref.extractall(extract_to)
         
     os.remove(zip_path)

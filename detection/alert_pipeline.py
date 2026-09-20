@@ -94,7 +94,7 @@ def _load_m5b(feature_set: str = "v1"):
                 f"{path.name} not found -- train it first with "
                 "`python detection/gnn_model.py <benign.csv>`"
             )
-        blob = torch.load(path, map_location="cpu", weights_only=False)
+        blob = torch.load(path, map_location="cpu", weights_only=True)  # plain tensors only (audit 2026-09-20)
         model = GraphAutoencoder(in_dim=in_dim)
         model.load_state_dict(blob["model"])
         model.eval()
@@ -124,7 +124,7 @@ def _load_revived():
                 "Production fusion requires it. Train it now: "
                 "`python detection/train_m5a_revived.py --seed 0`"
             )
-        blob = torch.load(REVIVED_PATH, map_location="cpu", weights_only=False)
+        blob = torch.load(REVIVED_PATH, map_location="cpu", weights_only=False)  # noqa: audit 2026-09-20 — revived blob pickles a custom scaler object; refactor to plain dicts before flipping this
         model = RevivedAE(blob["input_dim"])
         model.load_state_dict(blob["state_dict"])
         model.eval()
