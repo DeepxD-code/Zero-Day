@@ -150,7 +150,14 @@ class NodeScaler:
 
 
 def set_seed(seed: int = 0):
-    """Deterministic seeding for GPU reproducibility (gotcha #24)."""
+    """Deterministic seeding for GPU reproducibility (gotcha #24, E5 finding).
+
+    cudnn flags alone do NOT pin SAGEConv's CUDA scatter (same seed gave
+    0.75-0.90 across processes). torch.use_deterministic_algorithms closes
+    it (verified bit-identical 0.8073 x2). Callers must ALSO export
+    PYTHONHASHSEED + CUBLAS_WORKSPACE_CONFIG before the interpreter starts
+    (setting them here is too late once CUDA is initialised).
+    """
     import os
     import random
     import numpy as np
@@ -158,6 +165,7 @@ def set_seed(seed: int = 0):
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
+    torch.use_deterministic_algorithms(True)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
         torch.backends.cudnn.deterministic = True
