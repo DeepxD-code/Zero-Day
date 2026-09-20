@@ -1,0 +1,18 @@
+{
+ "M1_interleave": {
+  "mean_rho": 0.7615,
+  "std_rho": 0.0653
+ },
+ "M2_substitute": {
+  "mean_rho": 0.7971,
+  "std_rho": 0.0657
+ },
+ "M3_reshuffle": {
+  "mean_rho": 0.9998,
+  "std_rho": 0.0034
+ },
+ "baseline_unpaired": {
+  "mean_rho": 0.7397,
+  "std_rho": 0.1036
+ }
+}
