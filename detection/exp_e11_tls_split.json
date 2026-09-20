@@ -1,0 +1,41 @@
+{
+ "PortScan": {
+  "n_tls": 26935,
+  "n_rest": 259532,
+  "tls_attack_share": 0.0089,
+  "tls443": {
+   "auc": 0.21391224382553864,
+   "n_edges": 11438
+  },
+  "rest": {
+   "auc": 0.6603813956914528,
+   "n_edges": 19690
+  }
+ },
+ "WebAttacks": {
+  "n_tls": 35833,
+  "n_rest": 134533,
+  "tls_attack_share": 0.0,
+  "tls443": {
+   "auc": null,
+   "n_edges": 0
+  },
+  "rest": {
+   "auc": 0.8416781625181365,
+   "n_edges": 28080
+  }
+ },
+ "DoS": {
+  "n_tls": 100229,
+  "n_rest": 592474,
+  "tls_attack_share": 0.0,
+  "tls443": {
+   "auc": 0.2328971003335899,
+   "n_edges": 38971
+  },
+  "rest": {
+   "auc": 0.7568831673003915,
+   "n_edges": 63770
+  }
+ }
+}
