@@ -1,0 +1,34 @@
+{
+ "thr": 0.1324,
+ "n_tp": 228,
+ "k": {
+  "1": {
+   "topk_flip": 0.0658,
+   "rand_flip": 0.0053
+  },
+  "3": {
+   "topk_flip": 0.0789,
+   "rand_flip": 0.0219
+  },
+  "5": {
+   "topk_flip": 0.3509,
+   "rand_flip": 0.0333
+  },
+  "10": {
+   "topk_flip": 0.3246,
+   "rand_flip": 0.0132
+  }
+ },
+ "top_dims": [
+  "extra_151",
+  "semtimedop",
+  "nr_265",
+  "setxattr",
+  "shmdt",
+  "io_cancel",
+  "lsetxattr",
+  "getcpu",
+  "setuid",
+  "sched_get_priority_max"
+ ]
+}
