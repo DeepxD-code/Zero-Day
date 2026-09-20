@@ -156,3 +156,69 @@ def port_narrowing(benign, n_targets=200, ports=(8, 4, 3, 2, 1), **kw):
 
 
 ALL_TECHNIQUES = (slow_scan, distributed_scan, cover_traffic, port_narrowing)
+
+
+# ---------------------------------------------------------------------------
+# P02 structural injections (ADDED 2026-09-20, B drifting into D's vertical —
+# Avinash to review). Venturi et al. 2403.11830: GNN-NIDS shrug off feature
+# attacks but fall to structural ones — a single injected benign edge (C2x_B)
+# or an injected node rewires the victim's neighbourhood aggregation.
+# Same fairness rule: injected flows are untouched real benign flows; only
+# src_ip/dst_ip/timestamp are rewritten. Operates on the ATTACK-DAY df
+# itself (not a standalone craft) so windows/neighbours stay realistic.
+# ---------------------------------------------------------------------------
+
+def edge_injection(day_df, attacker: str = ATTACKER, n_inject: int = 1,
+                   seed: int = 0) -> pd.DataFrame:
+    """Attacker -> k most-popular benign hosts (C2x_B single-edge primitive).
+
+    Dilutes the attacker's one-to-many scan shape with legitimate-looking
+    client edges. Costs the attacker nothing but k flows — the "free" evasion
+    the harness must price.
+    """
+    rng = np.random.default_rng(seed)
+    benign = day_df[day_df["label"].astype(str).str.strip().str.upper() == "BENIGN"]
+    popular = benign["dst_ip"].value_counts().head(20).index.tolist()
+    inj = _benign_pool(benign, n_inject, seed)
+    inj["src_ip"] = attacker
+    inj["dst_ip"] = [popular[i % len(popular)] for i in range(n_inject)]
+    ts = pd.to_datetime(day_df["timestamp"])
+    lo, hi = ts.min(), ts.max()
+    span = (hi - lo).total_seconds()
+    inj["timestamp"] = [lo + pd.Timedelta(seconds=float(rng.uniform(0, span)))
+                        for _ in range(n_inject)]
+    return pd.concat([day_df, inj], ignore_index=True)
+
+
+def node_injection(day_df, attacker: str = ATTACKER, n_nodes: int = 1,
+                   flows_per_node: int = 20, seed: int = 0) -> pd.DataFrame:
+    """Inject k brand-new benign-looking hosts; attacker links to each once.
+
+    Fresh IPs have no history, so their neighbourhood is whatever the attacker
+    shapes: normal client edges to popular hosts plus one attacker edge each.
+    Perturbs SAGE neighbourhood aggregation around the attacker (P02 add-node).
+    Returns day_df + injected flows. Fresh-node IPs are 192.168.99.210+k.
+    """
+    rng = np.random.default_rng(seed)
+    benign = day_df[day_df["label"].astype(str).str.strip().str.upper() == "BENIGN"]
+    popular = benign["dst_ip"].value_counts().head(20).index.tolist()
+    ts = pd.to_datetime(day_df["timestamp"])
+    lo, hi = ts.min(), ts.max()
+    span = (hi - lo).total_seconds()
+    parts = [day_df]
+    fresh = [f"192.168.99.{210 + k}" for k in range(n_nodes)]
+    for k, fip in enumerate(fresh):
+        cover = _benign_pool(benign, flows_per_node, seed + 100 + k)
+        cover["src_ip"] = fip
+        cover["dst_ip"] = [popular[i % len(popular)] for i in range(flows_per_node)]
+        link = _benign_pool(benign, 1, seed + 200 + k)
+        link["src_ip"] = attacker
+        link["dst_ip"] = fip
+        both = pd.concat([cover, link], ignore_index=True)
+        both["timestamp"] = [lo + pd.Timedelta(seconds=float(rng.uniform(0, span)))
+                             for _ in range(len(both))]
+        parts.append(both)
+    return pd.concat(parts, ignore_index=True)
+
+
+P02_TECHNIQUES = (edge_injection, node_injection)
