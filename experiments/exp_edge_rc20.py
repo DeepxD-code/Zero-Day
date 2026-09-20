@@ -184,6 +184,8 @@ def main():
     ap.add_argument("--window", type=int, default=300)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--out", default="experiments/exp_edge_rc20.json")
+    ap.add_argument("--stages", nargs="+", default=None,
+                    help="E2: run only named stages (e.g. S2_log_v2_T5_joint)")
     args=ap.parse_args()
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Edge-level RC-20 repro | device={device} torch={torch.__version__} window={args.window}s epochs={args.epochs} limit={args.limit}")
@@ -199,7 +201,8 @@ def main():
         ("S4_log_v2_T3_twostage",dict(scaler="log",   feature_set="v2", seq_len=3, training="twostage")),
     ]
     all_results={}
-    for stage_name, cfg in stages:
+    stages_run = [s for s in stages if args.stages is None or s[0] in args.stages]
+    for stage_name, cfg in stages_run:
         print(f"\n{'='*70}\nSTAGE {stage_name} | {cfg}\n{'='*70}")
         stage_out={}
         for seed in args.seeds:
@@ -253,7 +256,7 @@ def main():
     print(f"\n{'='*70}\nEDGE-LEVEL SUMMARY (mean AUC on covered edges)\n{'='*70}")
     print(f"| Stage | Mean Graph | Mean Fused | Delta |")
     print(f"|---|---|---:|---:|---:|")
-    for sname, _ in stages:
+    for sname, _ in stages_run:
         for seed in args.seeds:
             mg=all_results[sname][str(seed)]["mean_graph"]; mf=all_results[sname][str(seed)]["mean_fused"]; d=all_results[sname][str(seed)]["delta"]
             print(f"| {sname} s{seed} | {mg:.4f} | {mf:.4f} | {d:+.4f} |")
