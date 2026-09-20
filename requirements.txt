@@ -26,6 +26,9 @@ matplotlib==3.11.0
 --extra-index-url https://download.pytorch.org/whl/cu128
 torch==2.11.0+cu128
 
+# ── Week 5: host HMM baseline (detection/exp_host_ablation.py) ──────
+hmmlearn==0.3.3
+
 # ── Explainability (Person C seam / used by detection/shap_explainer.py) ──
 # NOT currently installed in the laptop venv, which is why
 # stub_detector._try_shap_explanation() silently falls back to "unknown".

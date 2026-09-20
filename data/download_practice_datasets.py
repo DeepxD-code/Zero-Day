@@ -31,40 +31,61 @@ def parse_adfa_ld_to_syscall_records(extracted_dir):
     adfa_dir = extracted_dir / "a-labelled-version-of-the-ADFA-LD-dataset-master"
     out_dir = DATA_DIR / "ADFA-LD_SyscallRecords"
     out_dir.mkdir(parents=True, exist_ok=True)
-    
-    # We will search for all .txt files which contain space-separated syscall numbers
-    for txt_file in adfa_dir.rglob("*.txt"):
-        if txt_file.name == "readme.txt":
+
+    # FIX (2026-09-20, B drifting into A's vertical — Saharsh to review):
+    # the repo zip holds a nested ADFA-LD.zip with the real traces plus a
+    # C header (ADFA-LD+Syscall+List.txt) that is NOT a trace. The old code
+    # globbed every *.txt and ingested the header as syscalls ("#if", ...).
+    import re
+    nested = adfa_dir / "ADFA-LD.zip"
+    inner = extracted_dir / "ADFA-LD"
+    if nested.exists() and not inner.exists():
+        with zipfile.ZipFile(nested, 'r') as zip_ref:
+            zip_ref.extractall(extracted_dir)
+    base = inner / "ADFA-LD" if (inner / "ADFA-LD").exists() else adfa_dir
+
+    nr_map: dict[int, str] = {}
+    for header in base.rglob("ADFA-LD+Syscall+List.txt"):
+        for line in header.read_text(errors="replace").splitlines():
+            mo = re.match(r"#define\s+__NR_(\w+)\s+(\d+)", line.strip())
+            if mo:
+                nr_map[int(mo.group(2))] = mo.group(1)
+        break  # one header is enough
+
+    def is_trace(txt_file: Path) -> bool:
+        # real traces: numeric-only content under a *_Master dir; skip headers/readmes
+        if txt_file.name.lower().startswith(("adfa-ld+syscall", "readme")):
+            return False
+        try:
+            toks = txt_file.read_text(errors="replace").split()
+        except OSError:
+            return False
+        return bool(toks) and all(t.isdigit() for t in toks)
+
+    n = 0
+    for txt_file in sorted(base.rglob("*.txt")):
+        if not is_trace(txt_file):
             continue
-            
-        with open(txt_file, 'r') as f:
-            content = f.read().strip()
-            
-        if not content:
-            continue
-            
-        syscalls = content.split()
-        
-        # Determine category based on path
-        category = "normal" if "Training_Data_Master" in str(txt_file) or "Validation_Data_Master" in str(txt_file) else "attack"
-        
-        out_file = out_dir / (txt_file.stem + ".jsonl")
-        
+        toks = txt_file.read_text(errors="replace").split()
+        sp = str(txt_file)
+        category = "normal" if "Training_Data_Master" in sp or "Validation_Data_Master" in sp else "attack"
+        out_file = out_dir / (txt_file.parent.name + "__" + txt_file.stem + ".jsonl")
         with open(out_file, 'w') as out_f:
-            # Note: ADFA-LD doesn't have timestamps, PIDs, or arguments. 
-            # We mock these to fit the SyscallRecord format.
-            for i, syscall_num in enumerate(syscalls):
+            for i, syscall_num in enumerate(toks):
                 record = {
-                    "timestamp": float(i),  # Mock timestamp based on sequence
-                    "pid": 1000,            # Mock PID
-                    "uid": 1000,            # Mock UID
-                    "comm": category,       # Using comm to store the category
-                    "syscall": str(syscall_num),
-                    "args": {}              # No arguments available
+                    "timestamp": float(i),
+                    "pid": 1000,
+                    "ppid": 1,
+                    "uid": 1000,
+                    "comm": txt_file.stem,
+                    "syscall": nr_map.get(int(syscall_num), f"nr_{syscall_num}"),
+                    "args": {},
+                    "ret": 0,
                 }
                 out_f.write(json.dumps(record) + "\n")
-                
-    print(f"Parsed ADFA-LD to {out_dir}")
+        n += 1
+
+    print(f"Parsed {n} ADFA-LD traces to {out_dir}")
 
 def parse_lid_ds_to_syscall_records(extracted_dir):
     print("Parsing LID-DS to SyscallRecords...")

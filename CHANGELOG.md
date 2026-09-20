@@ -2,6 +2,43 @@
 
 Append-only log of what changed and why. **Pull, then read the top of this file.**
 
+## 2026-09-20b — Hiccup fixes: venv rebuilt, hmmlearn pinned, A's ADFA parse repaired, ablation reproduced bit-identically
+**Author:** Deep (Person B — Detection Modeling)
+
+### What changed
+* `venv/` rebuilt from scratch on this machine (system Python 3.13.14): deleted the broken env pointing at `C:\Users\asus\...`, fresh `python -m venv venv` + full `pip install -r requirements.txt` — all green, incl. torch 2.11.0+cu128 (CUDA live), torch-geometric 2.8.0, shap 0.52.0. Supersedes the "venv broken" caveat in 2026-09-20.
+* `requirements.txt`: pinned `hmmlearn==0.3.3` (was installed ad-hoc for the HMM arm).
+* `data/download_practice_datasets.py` — **B drifted into A's vertical, Saharsh to review**: `parse_adfa_ld_to_syscall_records` now extracts the nested `ADFA-LD.zip`, skips the C header via numeric-content check, and maps numbers→names (`nr_N` fallback). Verified: 5951 traces, zero `#if`-style garbage. Old output dir replaced with the corrected 5951 JSONLs.
+* Re-ran the full ablation in the fresh venv: AE 0.7768±0.0050 / HMM 0.7217 — **bit-identical** to 2026-09-20 across interpreters. `detection/ablation_host.json` restored (a `--quick` smoke run had overwritten it mid-verification).
+
+### Why
+Every hiccup from the 2026-09-20 session is now closed in code, not just documented. Numbers stand as published.
+
+---
+
+## 2026-09-20 — Week-5 host AE-vs-HMM ablation on ADFA-LD: AE 0.7768±0.0050 beats HMM 0.7217; 60-epoch overtraining collapse
+**Author:** Deep (Person B — Detection Modeling)
+
+### What changed
+* `detection/host_features.py` (new): ADFA-LD loader + pinned vocab (V=150 from benign-train only, N=153 count vectors) + `__NR_` number→name map from the bundled unistd header + SyscallRecord JSONL writer (5951 traces into `data/practice/ADFA-LD_SyscallRecords/`). Heals `data/download_practice_datasets.py`'s ADFA parse, which assumed `*.txt`-per-trace layout and instead ingested the C header as trace content ("#if" syscalls).
+* `detection/exp_host_ablation.py` (new): controlled AE-vs-HMM ablation, both arms benign-only on Training_Data_Master (833), val = 50% Validation benign + 50% attacks stratified, threshold = argmax F1 on VAL. Epochs picked by VAL AUC from {10,20,40,60} (never test).
+* `detection/host_autoencoder_adfa.pt` (new, 108 KB): production host checkpoint (seed 1, 40 epochs) + scaler + pinned vocab for C/D wiring.
+* `detection/ablation_host.json` (new): full numbers.
+
+### Results (GPU torch 2.11.0+cu128, AE CUDA / HMM hmmlearn 0.3.3 CPU, seeds 0–3)
+* AE test ROC-AUC **0.7768±0.0050**, F1 0.4646±0.0096 vs HMM-16 0.7217 / 0.3683. AE wins 5/6 families on recall (Adduser 0.783 … Web_Shell 0.619); loses Hydra_SSH (0.457 vs 0.511).
+* **60 epochs collapses the AE on 3/4 seeds** (val AUC 0.75→0.43–0.49); 10/20/40 flat ~0.75–0.76. Overtraining, not architecture — count histograms live in a low-dim subspace the AE eventually memorises past. Cap host-AE training at ≤40 epochs until revisited.
+
+### Caveats
+* ADFA-LD is the quick-proto stand-in; LID-DS 2021 full is 100GB+ and deferred (loader stub stays A's week-5 item). "FADO HMM" names no artifact in this repo — the HMM arm is a classical CategoricalHMM (states picked on val from {4,8,16}), which is what the roadmap's ablation needs.
+* Commit-local `venv/` is broken again (points at `C:\Users\asus\...Python312`, gotcha #1) — all numbers ran on system Python 3.13 (torch/sklearn/hmmlearn present). Rebuild venv from `requirements.txt` + `pip install hmmlearn`; do NOT copy venvs between machines.
+* Val/test share the Validation-benign pool (threshold is one scalar; accepted). Test is 6:1 benign:attack — F1 is threshold-sensitive, AUC is the stable claim.
+
+### Why
+Week-5 B deliverable (roadmap: host-AE on normal + max-F1 threshold + HMM ablation). "Controlled comparison" result for the report; checkpoint unblocks C (3rd risk-model input) and D (host evasion + fusion card).
+
+---
+
 ## 2026-09-16 — Ch2 literature audit: PIKACHU attribution corrected, 2412.18218 v1/v2 drift flagged
 **Author:** Deep (Person B — Detection Modeling)
 
