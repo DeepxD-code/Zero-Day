@@ -1,0 +1,62 @@
+{
+ "thr_emb": 0.00969870924949646,
+ "thr_score": 0.00048009634017944327,
+ "families": {
+  "PortScan": {
+   "delay_emb": null,
+   "delay_score": null,
+   "delay_m6": null,
+   "auc_emb": 0.0,
+   "auc_score": 0.0,
+   "n_blocks": 3
+  },
+  "DDoS": {
+   "delay_emb": null,
+   "delay_score": null,
+   "delay_m6": null,
+   "auc_emb": 0.0,
+   "auc_score": 0.25,
+   "n_blocks": 1
+  },
+  "Botnet": {
+   "delay_emb": null,
+   "delay_score": null,
+   "delay_m6": null,
+   "auc_emb": 0.0,
+   "auc_score": 0.3125,
+   "n_blocks": 4
+  },
+  "Infiltration": {
+   "delay_emb": null,
+   "delay_score": null,
+   "delay_m6": null,
+   "auc_emb": 0.0,
+   "auc_score": 0.0,
+   "n_blocks": 4
+  },
+  "WebAttacks": {
+   "delay_emb": null,
+   "delay_score": null,
+   "delay_m6": null,
+   "auc_emb": 0.0,
+   "auc_score": 0.1875,
+   "n_blocks": 4
+  },
+  "Patator": {
+   "delay_emb": 0,
+   "delay_score": null,
+   "delay_m6": null,
+   "auc_emb": 1.0,
+   "auc_score": 0.3056,
+   "n_blocks": 9
+  },
+  "DoS": {
+   "delay_emb": null,
+   "delay_score": null,
+   "delay_m6": null,
+   "auc_emb": 0.05,
+   "auc_score": 0.075,
+   "n_blocks": 10
+  }
+ }
+}
