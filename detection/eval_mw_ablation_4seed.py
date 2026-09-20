@@ -42,7 +42,7 @@ except ModuleNotFoundError:
     # shim removed in cd420f59 (imports hard-fail loud); legacy path kept alive
     # for the Checkpoint-1 contract. Fixed 2026-09-20 audit.
     from legacy.stub_detector import _get_model
-from detection.exp_m5a_revival import (
+from experiments.exp_m5a_revival import (
     RevivedAE, CtxScaler, build_ctx, train_ae, CTX_DIMS,
 )
 
