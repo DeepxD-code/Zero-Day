@@ -1,0 +1,22 @@
+{
+ "none_k0": {
+  "auc": 0.8714,
+  "n_edges": 30613
+ },
+ "centroid_k2": {
+  "auc": 0.5951,
+  "n_edges": 30613
+ },
+ "centroid_k3": {
+  "auc": 0.6833,
+  "n_edges": 30613
+ },
+ "drop-small_k2": {
+  "auc": 0.9143,
+  "n_edges": 15801
+ },
+ "drop-small_k3": {
+  "auc": 0.9763,
+  "n_edges": 1729
+ }
+}
