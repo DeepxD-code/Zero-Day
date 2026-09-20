@@ -30,13 +30,10 @@ torch==2.11.0+cu128
 hmmlearn==0.3.3
 
 # ── Explainability (Person C seam / used by detection/shap_explainer.py) ──
-# NOT currently installed in the laptop venv, which is why
-# stub_detector._try_shap_explanation() silently falls back to "unknown".
-shap
+# Pinned 2026-09-20 (audit): unpinned shap resolved differently per machine.
+shap==0.52.0
 
 # ── Week 3: graph construction + GNN (detection/graph_builder.py) ────
 # PyTorch Geometric is the toolkit locked in the reference PDF §10.
-torch-geometric
-
-# Pin `shap` and `torch-geometric` to exact versions after the first
-# successful install on both machines (pip freeze | grep -E 'shap|geometric').
+# Pinned 2026-09-20 (audit).
+torch-geometric==2.8.0.post1

@@ -36,7 +36,12 @@ sys.path.insert(0, str(ROOT))
 from detection.graph_builder import build_graphs, normalize_columns, read_flows, _window_key
 from detection.gnn_model import GraphAutoencoder
 from detection.evaluate_gnn import FLOWS, malicious_hosts, roc_auc
-from detection.stub_detector import _get_model
+try:
+    from detection.stub_detector import _get_model
+except ModuleNotFoundError:
+    # shim removed in cd420f59 (imports hard-fail loud); legacy path kept alive
+    # for the Checkpoint-1 contract. Fixed 2026-09-20 audit.
+    from legacy.stub_detector import _get_model
 from detection.exp_m5a_revival import (
     RevivedAE, CtxScaler, build_ctx, train_ae, CTX_DIMS,
 )
