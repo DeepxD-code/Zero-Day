@@ -222,3 +222,55 @@ def node_injection(day_df, attacker: str = ATTACKER, n_nodes: int = 1,
 
 
 P02_TECHNIQUES = (edge_injection, node_injection)
+
+
+# ---------------------------------------------------------------------------
+# U1 slow-drip timing (ADDED 2026-09-20, B drifting into D's vertical —
+# Avinash to review). V4 verification: TANTRA/TEGA-style timing-only evasion
+# (same endpoints, reshaped timing) is the one published >70%-kill class never
+# tested against M5b. It passes through structure untouched and lands on the
+# load-bearing 60s-window assumption. Operates on the ATTACK-DAY df itself:
+# only attacker timestamps are rewritten; endpoints, counts, features intact.
+# ---------------------------------------------------------------------------
+
+def spread_dilate(day_df, attacker: str = ATTACKER, factor: float = 2.0,
+                  seed: int = 0) -> pd.DataFrame:
+    """Stretch attacker timeline by `factor` (dilutes per-window degree at
+    zero extra-edge cost). t' = t0 + (t - t0) * factor; windows extend past
+    the day end, which is exactly the attacker's cost (time)."""
+    df = day_df.copy()
+    m = df["src_ip"] == attacker
+    ts = pd.to_datetime(df.loc[m, "timestamp"])
+    t0 = ts.min()
+    df.loc[m, "timestamp"] = (t0 + (ts - t0) * factor).dt.strftime("%Y-%m-%d %H:%M:%S")
+    return df
+
+
+def burst_shape(day_df, attacker: str = ATTACKER, mode: str = "front",
+                window_seconds: int = WINDOW_SECONDS) -> pd.DataFrame:
+    """Reshape INTRA-window attacker timing: front-load (first 5s), back-load
+    (last 5s), or even spacing. Same windows, same endpoints — tests IAT and
+    window-boundary sensitivity only. mode in {front, back, even}."""
+    df = day_df.copy()
+    ts = pd.to_datetime(df["timestamp"])
+    win = (ts - ts.min()).dt.total_seconds() // window_seconds
+    out = df["timestamp"].copy()
+    for w in sorted(win.unique()):
+        idx = df.index[(win == w) & (df["src_ip"] == attacker)]
+        if len(idx) == 0:
+            continue
+        base = ts.min() + pd.Timedelta(seconds=float(w * window_seconds))
+        n = len(idx)
+        if mode == "front":
+            offs = np.linspace(0, 5, n)
+        elif mode == "back":
+            offs = np.linspace(window_seconds - 5, window_seconds - 1, n)
+        else:
+            offs = np.linspace(0, window_seconds - 1, n)
+        out.loc[idx] = [(base + pd.Timedelta(seconds=float(o))).strftime("%Y-%m-%d %H:%M:%S")
+                        for o in offs]
+    df["timestamp"] = out
+    return df
+
+
+U1_TECHNIQUES = (spread_dilate, burst_shape)
