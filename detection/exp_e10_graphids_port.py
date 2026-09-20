@@ -17,6 +17,7 @@ Branch-only (exp/host-seqae-p37).
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -49,6 +50,21 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 
+def fit_edge_scale(graphs, dim: int = 5):
+    """log1p + per-dim max from Monday (edge_attr carries raw byte counts up
+    to 5M — unscaled they blow the edge MLP to +-12M at init, NaN in 1 step).
+    Same log philosophy as NodeScaler."""
+    import math
+    mx = torch.zeros(dim)
+    for g in graphs:
+        mx = torch.maximum(mx, torch.log1p(g.edge_attr[:, :dim].float().clamp(min=0)).max(dim=0).values)
+    return torch.where(mx > 0, mx, torch.ones_like(mx))
+
+
+def scale_ea(ea: torch.Tensor, emax: torch.Tensor):
+    return torch.log1p(ea.float().clamp(min=0)) / emax.to(ea.device)
+
+
 class EGraphSAGEEnc(nn.Module):
     """Edge-aware SAGE (Lo et al.): edges updated from endpoint pairs, nodes
     aggregate the updated edge embeddings alongside neighbour features."""
@@ -62,7 +78,12 @@ class EGraphSAGEEnc(nn.Module):
     def forward(self, x, edge_index, edge_attr):
         s, d = edge_index[0], edge_index[1]
         e = self.e1(torch.cat([x[s], x[d], edge_attr], dim=1))
-        agg = scatter(e, d, dim=0, dim_size=x.size(0), reduce="mean")
+        # NOTE: scatter mean over in-edges is NaN for isolated nodes (0/0) —
+        # sum then divide by clamped in-degree instead (E10 NaN root cause).
+        agg = scatter(e, d, dim=0, dim_size=x.size(0), reduce="sum")
+        indeg = scatter(torch.ones_like(d, dtype=e.dtype), d, dim=0,
+                        dim_size=x.size(0), reduce="sum").unsqueeze(-1).clamp(min=1.0)
+        agg = agg / indeg
         h = torch.relu(self.conv1(x, edge_index))
         return self.conv2(torch.cat([h, agg], dim=1), edge_index)
 
@@ -112,14 +133,14 @@ def train_ours(graphs, scaler, device, epochs: int, seed: int):
     return model
 
 
-def train_port(graphs, scaler, device, epochs: int, seed: int, edge_dim: int):
+def train_port(graphs, scaler, emax, device, epochs: int, seed: int, edge_dim: int):
     set_seed(seed + 5000, deterministic=not FAST)
     in_dim = graphs[0].x.shape[1]
     model = GraphIDSPort(in_dim, edge_dim).to(device)
-    opt = torch.optim.Adam(model.parameters(), lr=1e-3)
+    opt = torch.optim.Adam(model.parameters(), lr=1e-4)  # transformer: low lr + clip (E10: 1e-3 diverged to NaN)
     lf = nn.MSELoss()
     pre = [(scaler.transform(g.x).to(device), g.edge_index.to(device),
-            g.edge_attr[:, :edge_dim].to(device).float()) for g in graphs]
+            scale_ea(g.edge_attr[:, :edge_dim], emax).to(device)) for g in graphs]
     mask_ratio = 0.25
     for _ in range(epochs):
         for x, ei, ea in pre:
@@ -128,18 +149,20 @@ def train_port(graphs, scaler, device, epochs: int, seed: int, edge_dim: int):
             m[torch.randperm(n, device=device)[:max(1, int(mask_ratio * n))]] = True
             recon = model(x, ei, ea, m)
             loss = lf(recon[m], x[m])
-            opt.zero_grad(); loss.backward(); opt.step()
+            opt.zero_grad(); loss.backward()
+            nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            opt.step()
     return model
 
 
 @torch.no_grad()
-def host_auc(graphs, model, scaler, device, bad: set, port: bool):
+def host_auc(graphs, model, scaler, emax, device, bad: set, port: bool):
     best: dict[str, float] = {}
     for g in graphs:
         x = scaler.transform(g.x).to(device)
         ei = g.edge_index.to(device)
         if port:
-            ea = g.edge_attr[:, :5].to(device).float()
+            ea = scale_ea(g.edge_attr[:, :5], emax).to(device)
             ns = model.node_scores(x, ei, ea).cpu().numpy()
         else:
             ns = model.node_scores(x, ei).cpu().numpy()
@@ -154,12 +177,31 @@ def host_auc(graphs, model, scaler, device, bad: set, port: bool):
 
 
 def main():
+    ap = argparse.ArgumentParser(description="E10 GraphIDS port (stage it: train then eval).")
+    ap.add_argument("--stage", choices=["train", "eval"], default="train")
+    args = ap.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     mon = normalize_columns(read_flows(FLOWS / "Monday-WorkingHours.pcap_ISCX.csv"))
     mon = mon[mon["label"].astype(str).str.strip().str.upper() == "BENIGN"]
     bg = build_graphs(mon, window_seconds=60, feature_set="v2")
-    print(f"Monday benign 60s v2: {len(bg)} graphs, edge_dim={bg[0].edge_attr.shape[1]}")
+    print(f"Monday benign 60s v2: {len(bg)} graphs, edge_dim={bg[0].edge_attr.shape[1]}", flush=True)
     scaler = NodeScaler(log=True).fit(bg)
+    emax = fit_edge_scale(bg)
+    torch.save({"emax": emax}, ROOT / "experiments/exp_e10_emax.pt")
+    torch.save({"lo": scaler.lo, "hi": scaler.hi, "log": scaler.log},
+               ROOT / "experiments/exp_e10_scaler.pt")
+    if args.stage == "train":
+        for sd in [0, 1, 2, 3]:
+            po, pp = ROOT / f"experiments/exp_e10_ours_{sd}.pt", ROOT / f"experiments/exp_e10_port_{sd}.pt"
+            if not po.exists():
+                mo = train_ours(bg, scaler, device, 100, sd)
+                torch.save(mo.state_dict(), po)
+            print(f"saved ours seed {sd}", flush=True)
+            if not pp.exists():
+                mp = train_port(bg, scaler, emax, device, 100, sd, edge_dim=5)
+                torch.save({k: v.cpu() for k, v in mp.state_dict().items()}, pp)
+            print(f"saved port seed {sd}", flush=True)
+        return
     fams = {}
     for fam, fn in FAMS.items():
         df = normalize_columns(read_flows(FLOWS / fn))
@@ -170,17 +212,23 @@ def main():
 
     res = {"ours": {}, "port": {}}
     for sd in [0, 1, 2, 3]:
-        mo = train_ours(bg, scaler, device, 100, sd)
-        mp = train_port(bg, scaler, device, 100, sd, edge_dim=5)
+        mo = GraphAutoencoder(in_dim=19).to(device)
+        mo.load_state_dict(torch.load(ROOT / f"experiments/exp_e10_ours_{sd}.pt",
+                                      map_location=device, weights_only=True))
+        mo.eval()
+        mp = GraphIDSPort(19, 5).to(device)
+        mp.load_state_dict(torch.load(ROOT / f"experiments/exp_e10_port_{sd}.pt",
+                                      map_location=device, weights_only=True))
+        mp.eval()
         ro, rp = {}, {}
         for fam, (g, bad) in fams.items():
-            ro[fam] = host_auc(g, mo, scaler, device, bad, False)
-            rp[fam] = host_auc(g, mp, scaler, device, bad, True)
+            ro[fam] = host_auc(g, mo, scaler, emax, device, bad, False)
+            rp[fam] = host_auc(g, mp, scaler, emax, device, bad, True)
         res["ours"][str(sd)] = ro
         res["port"][str(sd)] = rp
         mo_m = np.mean([v for v in ro.values() if v is not None])
         mp_m = np.mean([v for v in rp.values() if v is not None])
-        print(f"seed {sd}: ours {mo_m:.4f} vs port {mp_m:.4f} (delta {mp_m - mo_m:+.4f})")
+        print(f"seed {sd}: ours {mo_m:.4f} vs port {mp_m:.4f} (delta {mp_m - mo_m:+.4f})", flush=True)
     for arm in ["ours", "port"]:
         arr = np.array([[res[arm][str(s)][f] for f in FAMS] for s in ["0", "1", "2", "3"]],
                        dtype=float)
