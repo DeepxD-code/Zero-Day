@@ -1,0 +1,90 @@
+% Zero-Day Detection FYP — Combined Report
+% Chapters 1-5 + References + Appendices
+% Compile: pdflatex or xelatex (Overleaf: Compiler = pdfLaTeX / XeLaTeX)
+% IEEE-like thesis report with chapter structure
+
+\documentclass[12pt,a4paper,oneside]{report}
+
+% --- Packages ---
+\usepackage[a4paper,margin=1in,headheight=14pt]{geometry}
+\usepackage{times} % Times New Roman
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{tocbibind}
+\usepackage{etoolbox}
+
+% --- Colors (matching DOCX blue) ---
+\definecolor{headerblue}{HTML}{2F5597}
+\definecolor{rowblue}{HTML}{D9E1F2}
+\definecolor{lightgrey}{HTML}{F2F2F2}
+
+% --- Hyperref ---
+\hypersetup{
+  colorlinks=true,
+  linkcolor=headerblue,
+  citecolor=headerblue,
+  urlcolor=headerblue,
+  breaklinks=true
+}
+
+% --- Header/Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\thepage}
+\fancyhead[L]{\small Zero-Day Detection — Drift-Aware Explainable Anomaly Detection}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}\fancyhead[R]{\small\thepage}\renewcommand{\headrulewidth}{0.4pt}%
+}
+
+% --- Chapter / Section formatting ---
+\titleformat{\chapter}[display]
+  {\centering\normalfont\bfseries\Large}
+  {\MakeUppercase{\chaptername} \thechapter}{8pt}{\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{-20pt}{16pt}
+\titleformat{\section}{\normalfont\bfseries\large}{ \thesection}{0.6em}{}
+\titleformat{\subsection}{\normalfont\bfseries\normalsize}{ \thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalfont\bfseries\normalsize}{ \thesubsubsection}{0.6em}{}
+
+% --- Table styling helper ---
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\bluetableheader}{\rowcolor{headerblue}\color{white}\bfseries}
+\newcommand{\sourcesmall}[1]{\par\small\textit{Source: #1}\par}
+
+% --- Caption ---
+\captionsetup[table]{labelfont=bf,textfont=bf,justification=centering,singlelinecheck=true,skip=6pt,font=small}
+\captionsetup[figure]{labelfont=bf,textfont=bf,justification=centering,skip=6pt,font=small}
+
+% --- Listings ---
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{lightgrey},
+  showstringspaces=false,
+  columns=fullflexible
+}
+
+% --- Document ---
+
+\onehalfspacing
+\begin{document}
+\setcounter{chapter}{1}
+\chapter{REVIEW OF LITERATURE}
+\input{ch2_v3/ch2_body}
+\end{document}

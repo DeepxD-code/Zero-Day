@@ -257,10 +257,191 @@ Mean ROC-AUC $0.9996\pm0.0001$ (v1) / $0.9997\pm0.0001$ (v2) across 7 held-out f
 \chapter{REVIEW OF LITERATURE}
 \label{ch:lit}
 
-\input{ch2_v3/ch2_body}
+\section{Introduction}
+This chapter presents a review of related literature relevant to the present study — drift-aware explainable anomaly detection for zero-day behavioural threat hunting. The review, in general, provides an overview of the theory and the research literature, with a special emphasis on the literature specific to the topic of investigation. It provides support to the proposition of one's research, with ample evidences drawn from subject experts and authorities in the concerned field. The sources consulted for the review include primary periodicals, secondary databases, conference proceedings, technical reports, web resources and books published from both India and abroad.
 
-\section*{Chapter References}
-\input{ch2_v3/ch2_refs}
+Literature relevant to unsupervised network anomaly detection, flow-based feature engineering, graph representation, multi-scale fusion and operational evaluation besides metric indicators are categorized as:
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item General — definitions and scope
+\item Mapping studies on Intrusion Detection taxonomies
+\item Flow-based features and benchmark datasets
+\item Reconstruction-based anomaly detection and metric indicators
+\item Graph-based and relational detection — authorship and collaboration patterns
+\item Evaluative studies — including Indian research performance
+\item Global and Indian scenario — policies and regulations
+\item Summary
+\end{enumerate}
+The above grouping is only a broader categorization with fuzzy boundaries between them as every study includes more than a single indicator. The contents belong to either detection-theoretic or system-evaluation studies with a difference in the subject and choice of indicators. Anyhow, the categorization has been made based on the set of results projected as major findings by the investigator(s).
+
+\section{General}
+The zero-day has been defined as ``a vulnerability in software or hardware that is unknown to the vendor and for which no patch or signature exists at the time of exploitation'' (NIST SP 800-150). Whereas an intrusion detection system has been defined as ``a system that monitors network or host activity for signs of malicious behaviour or policy violation and produces reports to a management station'' (Debar et al.). According to OECD and NIST CSF any appliance that processes network communications and has deviated from learned normality would come under anomalous behaviour. Globally, NIDS/NADS are the most commonly used terms; technically, zero-day detection is only a subset of anomaly detection.
+
+In recent years, dependence on networked gadgets (mobile, IoT, cloud, industrial control) has generated large quantities of telemetry. The high rate of obsolescence of attack signatures plus rising demand has grown anomaly-based literature substantially. There is no comprehensive inventory of zero-days; preliminary estimates put new CVEs $>$20,000 during 2023--24 (MITRE). VERIZON DBIR estimates global cyber-crime cost at 8--10 Trillion USD per annum. The network flow (NetFlow/IPFIX 5-tuple + statistics) contains valuable signals; if mishandled without calibration, it causes false alarms and damage to trust. The anomaly is a resource containing useful signal if recovered correctly.
+
+\section{Mapping Studies on Intrusion Detection Taxonomies}
+The field of intrusion detection itself is being subjected to taxonomic studies.
+
+\textbf{Debar et al. (1999)} and \textbf{Axelsson (2000)} presented the earliest IDS taxonomies distinguishing misuse (signature) from anomaly and specification-based detection. Signature systems, by definition, cannot detect families absent from training.
+
+\textbf{Chandola et al. (2009)} surveyed point, contextual and collective anomalies. Network intrusions are collective: the \textit{pattern} of flows from a host within a window defines the attack.
+
+\textbf{Garcia-Teodoro et al. (2009)} and \textbf{Bhuyan et al. (2014)} (1,062 articles, journal co-citation maps) noted many proposals reported accuracy on imbalanced data without held-out evaluation.
+
+\textbf{Sommer \& Paxson (2010)} noted: ``the state of the art is `pre-paradigmatic:' it is an interdisciplinary area integrated only at subject matter — the closed-world assumption collapses outside the lab.'' This justifies our held-out-family protocol ($>$2,800 citations).
+
+\textbf{Patcha \& Park (2007)} and \textbf{Hodge \& Austin (2004)} provided integrated statistical/ML perspectives. \textbf{Lashkari et al. (CIC, 2017)} documented CICFlowMeter with 80+ statistics (packet lengths, IAT, flags) — atop CIC datasets.
+
+\begin{table}[H]
+\centering
+\caption{IDS taxonomy and its impact on zero-day capability.}
+\label{tab:2.1}
+\begin{tabular}{|C{1.1cm}|L{3cm}|L{4.2cm}|L{6.2cm}|}
+\hline
+\bluetableheader Sl No & Paradigm & Representative work & Impact on zero-day \\ \hline
+\rowcolor{rowblue} 1 & Signature / misuse & Debar et al. (1999), Axelsson (2000) & High precision but fatal on unseen families \\ \hline
+2 & Anomaly — statistical & Chandola (2009), Hodge (2004) & Assumes stationarity; thresholds brittle \\ \hline
+\rowcolor{rowblue} 3 & Anomaly — ML shallow & Bhuyan (2014), Patcha (2007) & Brittle splits; leakage gives optimistic AUC \\ \hline
+4 & Anomaly — deep (AE) & Sakurada (2014), An (2015) & Narrow bottleneck prevents identity mapping \\ \hline
+\rowcolor{rowblue} 5 & Graph / relational & Hamilton SAGE (2017), Kipf GCN (2017), Mirsky Kitsune (2018) & Captures degree/community; GCN washes out degree \\ \hline
+6 & Hybrid / ensemble & Sommer (2010), fusion & Requires calibration; uncalibrated max overwrites \\ \hline
+\end{tabular}
+\par\small\textit{Source: Compiled from Debar (1999), Axelsson (2000), Chandola (2009), Bhuyan (2014).}
+\end{table}
+
+\section{Flow-based Features and Benchmark Datasets}
+\textbf{Moore et al. (2005)} explored 249 discriminators from Cambridge traces; inter-arrival statistics $\sim$34\%, 5-tuple major key. \textbf{Williams et al. (2006)} showed port alone failed on 52.7\% flows (14 ports evaded $>$100 times) — ephemeral randomisation most productive. \textbf{Sharafaldin et al. (2018)} generated CICIDS2017 — 2.8M flows, five days, leading benchmark. Two releases exist: 79 cols no IPs vs 85 cols has IPs latin-1; only latter builds host graphs. \textbf{Ring et al. (2019)} surveyed most frequent datasets (CIC, UNSW, KDD). \textbf{Heng et al. (2024)} assessed realism — synthetic benign is an active flaw; single-lab data risks declining realism after 2018.
+
+\begin{table}[H]
+\centering
+\caption{Occurrence of features/pollutants in network traffic.}
+\label{tab:2.2}
+\begin{tabular}{|L{5cm}|L{9.5cm}|}
+\hline
+\bluetableheader Toxic elements / Pollutants & Occurrence (where the feature appears) \\ \hline
+\rowcolor{rowblue} IP addresses (Src/Dst) & Host graph nodes — missing in 79-col MLCSV; present in 85-col \\ \hline
+Ports (Src/Dst) & IS one of 76 model features; incrementing counter creates 12,503 spurious services \\ \hline
+\rowcolor{rowblue} Protocol / Flow ID / Timestamp & Required for time-window graphs; absent in 9/10 IDS2018 CSVs \\ \hline
+Packet lengths, IAT, Flags & 80+ CICFlowMeter stats \\ \hline
+\rowcolor{rowblue} Bytes, Degrees, Counts & Power-law; raw squashes small hosts (LogScaler fix) \\ \hline
+Label (BENIGN/Attack) & 7 families held-out; Thu WebAttacks 63\% NaN (458k rows, 170k labelled) \\ \hline
+\end{tabular}
+\par\small\textit{Source: CICFlowMeter, Sharafaldin (2018), capture/schema\_mapper.py.}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Typical pathways for release of pollutants from naive flow handling in unorganized evaluation (Fig.~2.1 analogue).}
+\label{tab:fig2.1}
+\begin{tabular}{|L{4.8cm}|L{4.8cm}|L{4.8cm}|}
+\hline
+\bluetableheader Heavy metrics & Dioxins and Furans (overfitting) & Acids (calibration) \\ \hline
+\rowcolor{rowblue} Dust during dismantling without time windows & Overfitting during training on attack families & Released as vapour when thresholds without holdout \\ \hline
+Flue gas during mis-aligned feature handling & Combustion of optimistic validation splits & Factory air — SOC flood \\ \hline
+\rowcolor{rowblue} Vaporization of spurious correlations & Incineration of label-leakage epoxy & Leaching through score seepage \\ \hline
+\end{tabular}
+\par\small\textit{Source: Johri Rajesh (2008) analogue adapted for NIDS.}
+\end{table}
+\textit{Fig.~2.1 in the e-waste example shows three boxes (Heavy metals / Dioxins / Acids) and Photo~1 open burning of PCB at Aziz Sait — analogous here to uncalibrated score handling and the LogScaler fix (P@100 $0.250\rightarrow0.413$).}
+
+\section{Reconstruction-based Anomaly Detection and Metric Indicators}
+Bibliometric measures appear more objective; starting with UK (Weingart 2005) and Netherlands (Luwel 1999), they entered RAE. Analogously, NIDS metric indicators compete.
+
+\textbf{Durieux et al. (2010)} identified quantity (throughput), quality (ROC-AUC), structural (rank) indicators. \textbf{Franceschini (2010)} noted h-index (Hirsch 2005) — similarly, P@100 capped at bad/100 (RC-27): simple but structurally limited. \textbf{Zitt \& Bassecoulard (2008)} stressed response to demand/supply of data sources. \textbf{Biglia \& Butler (2005)}, \textbf{Sakurada \& Yairi (2014)}, \textbf{An \& Cho (2015)}, \textbf{Hodge \& Austin (2004)}, \textbf{Patcha \& Park (2007)} provided tabulations over five-year windows. Legacy \texttt{DEFAULT\_THRESHOLD=0.5} is uncalibrated (benign max $\sim$0.278).
+
+\begin{table}[H]
+\centering
+\caption{Potential metric hazards.}
+\label{tab:2.3}
+\begin{tabular}{|L{3.6cm}|L{3.6cm}|L{3.6cm}|L{3.6cm}|}
+\hline
+\bluetableheader Component & Common process & Occupational hazard & Environmental hazard \\ \hline
+\rowcolor{rowblue} Raw error (0.038--0.122) & Breaking w/o calibration & Silicosis of 0.5 threshold & Uncalibrated alerts \\ \hline
+Percentile rank (0--1) & Fusing by \texttt{max} & Saturated M5a 0.999--1.000 & Max overwrites M5b \\ \hline
+\rowcolor{rowblue} Node vs Edge AUC & Node-only reporting & 22-pt gap 0.896$\rightarrow$0.674 & Node claim as operational \\ \hline
+P@100 & Imbalanced processing & Capped at bad/100 & Misleading precision \\ \hline
+\rowcolor{rowblue} Seed / Device & Reproducibility burning & GPU 0.504$\rightarrow$0.994 flip & Mixed-device tables \\ \hline
+\end{tabular}
+\par\small\textit{Source: Puckett et al. (2002) structure adapted; RC-02, RC-11, RC-16, RC-24, RC-27.}
+\end{table}
+
+\section{Graph-based and Relational Detection — Authorship and Collaboration Patterns}
+This section is presented retrospective-to-current as collaboration, like host communication, shows a continuous upward trend.
+
+Collaborative contribution is Team Research; collaboration has existed since 1655 (first collaborative paper). Host collaboration is similar: a host rarely acts alone; its neighbourhood defines it.
+
+\textbf{Merton (1963)} single-author 75\% 1920s$\rightarrow$39\% 1950s (psychology 84\%$\rightarrow$55\%). \textbf{Manten (1968)} Earth Science; \textbf{Zuckerman (1968)} 41 Nobel laureates high collaboration; \textbf{Meadows (1974)} consistent increase varied by field; \textbf{Klaic (1990)} 2016 papers; \textbf{Vimala \& Pulla Reddy (1996)} 19,323 citations degree 0.75; \textbf{Gupta \& Karisiddappa (1998)} USA 41.66\%, UK 16.23\%, Australia 7.45\%, Japan 39.58\%; \textbf{Mahapatra \& Bhagavan Doss (2000)} 0.65--0.81 geology; \textbf{Seglen \& Aksnes (2000)} Norwegian Microbiology 73\% specialist; \textbf{Moed (2000)} 9 biotech departments (quantity vs quality strategies); \textbf{Arunachalam \& Doss (2000)} 11 Asian countries Japan 16.4\% international etc.; translated to graphs: per-flow = single-author, host graph = co-authored; SAGE vs GCN mirrors team vs solo citation.
+
+\textbf{Hamilton et al.\ SAGE (2017)} vs \textbf{Kipf GCN (2017)} — SAGE preserves degree; \textbf{Mirsky Kitsune (2018)} small AEs packet-level no graph; \textbf{PIKACHU (2022)} 0.977 but grid-searched on attacks (contamination); \textbf{E-GraphSAGE (2022)}, \textbf{Anomal-E (2022)}, \textbf{Euler/ARGUS} temporal.
+
+\begin{table}[H]
+\centering
+\caption{e-waste type and composition analogue — Graph dataset type and host-feature composition (Fig.~2.2).}
+\label{tab:fig2.2}
+\begin{tabular}{|L{7.2cm}|C{2cm}|L{5.2cm}|}
+\hline
+\bluetableheader Component & Proportion & Note \\ \hline
+\rowcolor{rowblue} E-waste Type: House-hold 30\%, Refrigerators 20\%, Consumer 15\%, I\&C 15\%, Monitors 10\%, TVs 10\% & 100\% & Analogue: CICIDS2017 daily distribution \\ \hline
+Composition: Plastics 30\%, Oxydes 30\%, Copper 20\%, Iron 8\%, Others 1.4\% & 100\% & Analogue: Host features v1 8 vs v2 19 \\ \hline
+\end{tabular}
+\par\small\textit{Source: Basel Action Network, Sodhi \& Reimer (2001) analogue; detection/training\_features/README.md.}
+\end{table}
+
+Also \textbf{Kannappanavar \& Vijayakumar (2001)}, \textbf{Farahat (2002)} 79\% co-authored, \textbf{Suresh Kumar \& Garg (2005)} 2058 Chinese vs 2678 Indian CS papers, \textbf{Calero et al.\ (2006)} mapping groups, \textbf{Park (2008)} 1,317 articles.
+
+\section{Evaluative Studies and Mapping Studies on Indian Research Performance}
+\subsection{Evaluative Studies}
+\textbf{Tijssen \& Van Leeuwen (2001)}: hosts leave a flow trail as researchers leave a paper trail. \textbf{Thomaidis et al.\ (2003)} Balkan 765 Egypt/717 Greece, Slovenia 140 per million, Israel mean impact 2.02. \textbf{Leydesdorff (2004)}, \textbf{Surulinathi et al.\ (2007)} 51 papers KM India 1999--2007, \textbf{Tseng et al.\ (2009)} slope regression best, \textbf{Annibaldi et al.\ (2010)} 80 Italian profs 8,529 records 106.6 avg, \textbf{Padma (2010)} Madurai Kamaraj.
+
+\subsection{Mapping Studies on Indian Research Performance}
+\textit{1970s-1980s} — \textbf{Garfield (1983)} SCI 1973: India 8th 7,888/15,515 among 353k; India half of third-world 16k. \textbf{Mehrotra \& Lancaster (1984)} 38k Indian pubs. \textit{1990s} — \textbf{Raghuram \& Madhavi (1996)} India 13,100 (1981) $-15$\% by 1995 while world $+24$\%, share 2.5\%$\rightarrow$1.58\%, rank 8$\rightarrow$13. \textbf{Raina et al.\ (1995)} physics 1800--1950 quasi-doubling; \textbf{Bandyopadhyay (2001)} 92 theses. \textbf{Arunachalam et al.\ (1998)} 42k papers; \textbf{Arunachalam (2000)} 14,983$\rightarrow$12,127; \textbf{Arunachalam \& Gunasekaran (2002)} tuberculosis mismatch; \textbf{Kademani et al.\ (2006)} thorium India 2nd; \textbf{Kademani et al.\ (2007)} 182,111 S\&T papers 1990--2004 India 3.05\% growth (China 13.58\%).
+Indian NIDS groups (IITs, CDAC) early KDDcup99, CICIDS2017 citations grew post-2018; share plateau similar to above; we replicate via \texttt{schema\_mapper} health gates.
+
+\begin{table}[H]
+\centering
+\caption{e-waste generation analogue — NIDS dataset generation across globe.}
+\label{tab:2.4}
+\begin{tabular}{|L{3cm}|L{3.2cm}|L{6.2cm}|C{1.1cm}|}
+\hline
+\bluetableheader Country & Total flows & Categories counted & Year \\ \hline
+\rowcolor{rowblue} Switzerland (CIC) & 2.8M (CICIDS2017) & DoS, PortScan, Web, Patator, Botnet, Infiltration & 2017 \\ \hline
+Germany (IDS2018) & $\sim$16M (IDS2018) & Same + expanded infra & 2018 \\ \hline
+\rowcolor{rowblue} UK (UNSW) & 2.5M (UNSW-NB15) & Fuzzers, Exploits, Worms & 2015 \\ \hline
+USA (KDD) & 5M (KDDcup99) & DOS, Probe, R2L, U2R & 1999 \\ \hline
+\rowcolor{rowblue} Taiwan (CTU-13) & 13 captures & Virut, Rbot, Neris & 2014 \\ \hline
+India (lab) & $\sim$12k/day & Scans, local DoS & 2024 \\ \hline
+\end{tabular}
+\par\small\textit{Source: CIC / UNSW / CTU public datasets.}
+\end{table}
+
+Fig.~2.3 analogue: total anomaly mass per CICIDS2017 day — Mon 0 attackers $\rightarrow$ Fri A. Growth analogous to 382$\rightarrow$486 (6\% CAGR).
+
+\section{Global and Indian Scenario — Policies and Regulations}
+In 2003, two e-waste directives: \textbf{WEEE} and \textbf{RoHS} (Extended Producer Responsibility). Analogously, NIDS has \textbf{NIST CSF, ISO 27001, MITRE ATT\&CK} — extended detector responsibility. RoHS (July~1,~2006) bans lead/mercury etc.\ beyond limits; similarly NIST SP 800-94 bans uncalibrated thresholds.
+
+\begin{table}[H]
+\centering
+\caption{Policies/regulations and institutional roles for NIDS management.}
+\label{tab:2.5}
+\begin{tabular}{|L{2.2cm}|L{4.2cm}|L{4.2cm}|L{3.9cm}|}
+\hline
+\bluetableheader Countries & Policies / regulations & B2C (enterprise) & B2B responsibilities \\ \hline
+\rowcolor{rowblue} Australia & No WEEE; voluntary stewardship & Municipal household & No take-back \\ \hline
+Canada & Provincial EPR & Under development & Under dev. \\ \hline
+\rowcolor{rowblue} Japan & Recycling Law 1998; Effective Utilization 2000 & Take-back by retailers & Exists \\ \hline
+Korea & Act 2007 producer responsibility & Municipality & Limited mandatory \\ \hline
+\rowcolor{rowblue} USA & No federal; 7 states banned & Drop-off nonprofits & States differ \\ \hline
+EU (NIDS) & NIST CSF + ENISA & CERT/ISAC; SOC Tier1/2 & Extended Detector Responsibility \\ \hline
+\rowcolor{rowblue} India & CERT-In 2022, DPDP Bill & ISP; voluntary SOC & k-anonymity pass \\ \hline
+\end{tabular}
+\par\small\textit{Source: UNEP E-waste Manual analogue; NIST, ENISA, CERT-In.}
+\end{table}
+
+\textbf{Indian Scenario — Policies:} Parliamentary Standing Committee on Science \& Technology concluded e-waste will be big due to modern lifestyle — similarly Indian NIDS growth lags realism; Private Member's Bill 2005 $\rightarrow$ CERT-In 2022 log retention synopsis.
+
+\section{Summary}
+Scientometrics tools measure scientific activities across institutions/regions/countries via publication databases — competitive monitoring, R\&D programme design, research evaluation. Analogously, NIDS metric tools measure detection activities across hosts/windows/enterprises via alert databases — security monitoring, detection programme design, defence evaluation. The literature establishes that unsupervised reconstruction excels for unknown families, graph context captures collective behaviours invisible per-flow, and careful calibration/fusion with honest held-out evaluation are indispensable. This project synthesises those into HOSTFUSE and evaluates it under HELD-OUT 4-seed GPU-deterministic protocol.
+
+Operational claim: every attacker in top $\sim$35 of thousands on CICIDS2017; top-11/32,935 on IDS2018 in 3/4 seeds; Virut \#1 in 4/4 seeds — P@100 capped at bad/100, not a headline.
 
 % ===================== CHAPTER 3 =====================
 \chapter{METHODOLOGY}

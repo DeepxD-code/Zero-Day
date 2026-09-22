@@ -1,0 +1,142 @@
+LITERATURE REVIEW: PAPER-BY-PAPER ANALYSIS
+
+Supervisor Review Draft | Nine Supplied Sources
+
+Scope note: This draft is based only on the nine supplied paper-review files, reference notes, and the linked arXiv record. Project-specific comparisons, team roles, proposed architecture, and project results have been intentionally excluded.
+
+How to read this chapter
+
+Each paper is analysed using the same review dimensions: research problem, foundation, methodology, architecture and model, strengths, weaknesses, improvements, significance, unaddressed aspects, remaining scope, results comparison, publication strength, and feature encoding. Reported metrics are retained only where they were present in the supplied material. They should be checked against the original publications before final submission.
+
+IEEE-style citation numbers are assigned in order of first appearance and remain unchanged throughout the chapter. The bracketed numbers in this draft, such as [1] and [2], refer to the reference list at the end.
+
+Paper inventory
+
+No. | Paper | Primary contribution
+1 | EULER: Detecting Network Lateral Movement via Scalable Temporal Link Prediction | Parallel temporal graph link prediction for large authentication-log streams.
+2 | Problem-Space Structural Adversarial Attacks for NIDS Based on GNNs | Realistic addition-only attacks that manipulate graph structure rather than flow features.
+3 | Systematic Review of Graph Neural Network for Malicious Attack Detection | PRISMA-based synthesis and taxonomy of GNN architectures for cyberattack detection.
+4 | Explainable AI for Intelligent Intrusion Detection Systems and Threat Response Automation | Hybrid detection, SHAP/LIME explanations, and confidence-gated response automation.
+5 | Always Be Pre-Training: Representation Learning for Network Intrusion Detection with GNNs | Self-supervised representation learning intended to reduce label-dependent preprocessing.
+6 | Explainable AI for Intrusion Detection Systems: LIME and SHAP Applicability on MLP | Empirical comparison of post-hoc explainers for tabular intrusion detection.
+7 | A Deep Learning-Based User Behavior Analytics Model for Proactive Cyber Threat Detection and Risk Management: A Review | Systematic review of deep learning architectures for UBA/UEBA.
+8 | Toward Human-Centered Explainability: Natural Language Explanations for Anomaly Detection | Human-facing natural-language explanations for anomaly-detection outputs.
+9 | Are We There Yet? Unraveling the State-of-the-Art Graph Network Intrusion Detection Systems | Reproduction, replication, and adversarial robustness evaluation of GIDS.
+
+Paper 1 — EULER: Detecting Network Lateral Movement via Scalable Temporal Link Prediction [1]
+
+EULER addresses the scalability bottleneck in temporal graph intrusion detection. Earlier GNN–RNN systems process graph snapshots and temporal states in a tightly serial sequence, which limits parallelism when authentication logs reach very large volumes. The study represents enterprise authentication activity as a sequence of directed temporal graphs, with accounts or machines as nodes and authentication events as edges. Its central improvement is to parallelise spatial graph encoding across workers while retaining chronological temporal integration in a leader process.
+
+EULER uses replicated GCN or GraphSAGE encoders on independent time slices, followed by a GRU/LSTM-style temporal component and inner-product decoding for link prediction. The supplied notes report a 30-minute snapshot interval, dynamic thresholding, and strong AUC on Facebook and LANL data, together with near-linear back-propagation scaling under distributed training. The most important strength is that the design addresses a real systems constraint rather than only adding model complexity. It also provides an unsupervised formulation suited to rare-event detection.
+
+The main weaknesses are operational and methodological. The reported false-positive rate, although numerically small, can still create a large daily alert burden at enterprise scale. The fixed discrete slicing makes continuous-time adaptation difficult, and the supplied notes report vulnerability to injected normal-looking authentication events. The work also leaves the relationship between scalability, threshold calibration, and analyst workload insufficiently resolved. Its results are strong for temporal link prediction, but comparisons across datasets remain difficult because graph construction, labels, and attack definitions differ.
+
+The remaining research scope is significant: continuous-time updates, drift-aware thresholds, structural adversarial defence, calibrated uncertainty, and replication on independent enterprise data are open problems. Feature encoding is primarily graph-native: identity and machine categories are represented as nodes, while authentication events become directed edges. This avoids one-hot expansion of entities but makes results dependent on graph construction choices. Publication strength: 8/10, because the systems contribution and scale argument are substantial, although operational false positives and adversarial robustness remain gaps.
+
+Paper 2 — Problem-Space Structural Adversarial Attacks for NIDS Based on GNNs [2]
+
+This paper studies whether GNN-based NIDS can be evaded by modifying graph structure, not merely by perturbing packet or flow features. It uses CTU-13 and ToN-IoT, evaluates flow-graph and line-graph representations, and adopts a gray-box attacker who controls a compromised host but not the exporter, graph builder, or model internals. The methodology imposes four realistic constraints: addition-only transformations, preserved malicious functionality, plausible traffic, and survival through preprocessing defences.
+
+The evaluated detectors are E-GraphSAGE for edge classification and LineGraphSAGE for node classification, with Random Forest used as a conventional baseline. The structural attacks include benign-neighbourhood dilution, malicious-neighbourhood pollution, addition of new nodes, and an excluded spoofing variant. The supplied report gives strong clean-data F1 results and shows that a small amount of injected traffic can sharply reduce detection for some attack families. LineGraphSAGE is reported as more robust than E-GraphSAGE, but with greater computational cost.
+
+Its main strength is realism: the attacks manipulate actions available in the network rather than granting an attacker arbitrary graph-edit access. It also compares two graph formulations and evaluates multiple attack families. However, the study focuses on binary, per-attack classifiers and does not test a unified anomaly detector, fused multi-signal system, or defensive countermeasure. Spoofing is excluded rather than empirically validated, and combined feature-plus-structure attacks are not evaluated. The observed robustness difference between line graphs and flow graphs is reported more clearly than it is mechanistically explained.
+
+The paper introduces an important threat model, but its improvements are significant mainly for evaluating GNN security, not for improving detection itself. Scope remains for adversarial training, structural randomisation, graph ensembles, cross-plane attacks, continuous adaptation, and defences against combined perturbations. Encoding is structural: netflows are edges in one representation and nodes in the line graph. This is appropriate for relational reasoning, but it increases preprocessing and may amplify sensitivity to graph-construction assumptions. Publication strength: 8/10, due to its realistic attack formulation and comparative experiments, with the absence of defence evaluation as the major limitation.
+
+Paper 3 — Systematic Review of Graph Neural Network for Malicious Attack Detection [3]
+
+This systematic review addresses fragmentation in GNN-based cyberattack-detection research. It applies a PRISMA-oriented search across major academic databases and synthesises 28 primary studies from an initial pool of 200 records. The review organises the field by architecture, dataset, attack type, evaluation metric, and operational limitation. Its core value is comparative structure rather than a new detection model.
+
+The taxonomy highlights GCN, GAT, and hybrid GNN frameworks. The supplied notes report that GCN appears most frequently, while GAT is used for dynamic transaction-heavy settings but carries greater memory and parameter costs. The review also collects high reported F1 scores across provenance, phishing, and IoT botnet tasks. Its strength is breadth and the attempt to identify recurring trends across heterogeneous domains.
+
+The major weakness is comparability. Different studies use different preprocessing, feature representations, splits, label definitions, and metrics, so headline scores cannot be interpreted as a common leaderboard. Systematic reviews can also inherit reporting bias because unsuccessful or irreproducible systems are less visible. The review identifies an interpretability void, standardisation deficit, and encrypted-payload blind spot, but does not itself experimentally test those gaps. Therefore, its conclusions are useful as a research map rather than as proof that one architecture is universally superior.
+
+The improvements are organisational and methodological: the review makes scattered evidence easier to compare and identifies recurring gaps. Significant scope remains in reproducibility studies, common protocols, cross-dataset evaluation, uncertainty, drift, encryption-aware telemetry, and human-centred explanations. Feature encoding varies across the surveyed papers; categorical protocol or application fields may be one-hot encoded, target encoded, embedded, or represented as graph identities. The review should distinguish encoding choices that are theoretically justified from those made only because of dataset or hardware constraints. Publication strength: 7/10 as a review, because the taxonomy is valuable but its conclusions depend on heterogeneous primary studies.
+
+Paper 4 — Explainable AI for Intelligent IDS and Threat Response Automation [4]
+
+This paper proposes XAI-IDR to address the operational opacity of high-performing IDS models. It combines a hybrid detection engine with SHAP and LIME explanations and a policy-driven response layer. The research problem is not simply whether attacks can be classified, but whether automated containment can be made safe enough for security operations by requiring both prediction confidence and explanation stability.
+
+The framework combines a 1D CNN–LSTM branch with XGBoost and Random Forest components, then generates local and global explanations through SHAP, LIME, and attention information. The supplied report describes evaluation on NSL-KDD, CIC-IDS2017, CIC-IDS2018, and IoT Botnet data, with reported F1 and ROC-AUC values in the high range. Its strongest contribution is the dual gate: uncertain or unstable explanations are escalated to a human rather than automatically contained.
+
+The operational framing and human-in-the-loop policy are clear strengths. However, the supplied report identifies unquantified real-time latency, qualitative rather than experimental evaluation of explanation poisoning, no MITRE ATT&CK mapping, and no treatment of concept drift or continual learning. The high benchmark scores should therefore not be interpreted as evidence of production readiness. The architecture also introduces several components, making attribution of improvement difficult without ablation studies.
+
+The improvement is significant for safe response orchestration, but substantial research remains in latency measurement, explanation faithfulness, adversarial explanation robustness, drift, calibration, and longitudinal deployment. Feature encoding is inherited from the tabular IDS pipeline: continuous flow features are normalised, redundant attributes are removed, and categorical values are transformed for the hybrid learners. The exact encoding rationale should be verified from the original paper because the supplied review does not document every categorical field. Publication strength: 7/10 based on the supplied material; the practical idea is strong, while missing latency and robustness experiments weaken the evidence.
+
+Paper 5 — Always Be Pre-Training: Representation Learning for NIDS with GNNs [5]
+
+This paper focuses on the label dependence hidden inside network-intrusion preprocessing. The supplied review states that target encoding of categorical network fields can use attack labels, creating a leakage risk in settings presented as unsupervised or zero-day detection. The proposed direction is in-context self-supervised pre-training with dense representations so that useful feature structure can be learned without relying on target labels.
+
+The architecture uses GNN-based representation learning and a pre-training stage before the downstream intrusion-detection task. Its methodological contribution is to separate representation learning from labelled classification and to treat categorical network attributes as learnable vectors rather than direct target statistics. This is a strong conceptual improvement because it addresses the boundary between preprocessing and supervision.
+
+The key strength is that it identifies a subtle but important methodological error: target encoding can make an apparently unsupervised pipeline depend on labels. The main limitations are the need to verify the exact pre-training tasks, datasets, splits, and downstream comparison from the original publication, since the supplied review summary is abbreviated. A further gap is whether the learned representations transfer to unseen attack families without fine-tuning or hidden label leakage.
+
+The improvement is significant when target encoding would otherwise contaminate evaluation. Scope remains in leakage audits, cross-dataset transfer, online pre-training, resource-aware embeddings, and comparison with one-hot and frequency encoding under identical protocols. Categorical fields are represented as dense vectors learned from context; continuous fields are normally retained or scaled. This choice is justified by reducing sparse dimensionality and avoiding target statistics, but it can still encode dataset-specific regularities. Publication strength: 8/10 provisionally, subject to verification of the original experimental protocol and reproducibility evidence.
+
+Paper 6 — Explainable AI for IDS: LIME and SHAP Applicability on MLP [6]
+
+This study examines whether post-hoc explainability methods can make an MLP-based IDS understandable to analysts. Rather than changing the detector itself, it compares LIME and SHAP as explanation mechanisms for tabular intrusion data. The central questions concern explanation quality, stability, computational cost, and whether the resulting feature attributions are useful for security interpretation.
+
+The model is an MLP classifier trained on network-flow features, while LIME constructs local surrogate explanations and SHAP estimates contribution values based on cooperative feature attribution. The supplied review describes a comparison of explanation behaviour and notes practical differences in latency, stability, and readability. Its value is that it treats explanation as an empirical object rather than assuming that any attribution method is automatically trustworthy.
+
+The main strength is direct comparison of two widely used explainers on a security model. Weaknesses include dependence on a single model family or dataset, possible instability under correlated features, and the risk that an explanation is plausible without being faithful to the detector. Post-hoc explanations also do not solve concept drift, calibration, or adversarial manipulation by themselves. Any human-evaluation results should be checked against the original paper before being presented as general evidence.
+
+The improvement is interpretive rather than predictive: it makes model decisions more inspectable. Significant scope remains in explanation faithfulness tests, counterfactual explanations, analyst studies, temporal and graph explanations, and explanation robustness. Continuous features are normally retained and scaled; categorical network fields require careful encoding before reaching the MLP. One-hot encoding is transparent but high-dimensional, while target encoding can leak labels; the correct choice must be judged against the paper’s actual protocol. Publication strength: 7/10, because the comparison is practically relevant but bounded by post-hoc explanation limitations.
+
+Paper 7 — Deep Learning-Based UBA for Proactive Threat Detection and Risk Management [7]
+
+This paper is a systematic review of deep-learning-based User and Entity Behavior Analytics. It surveys how RNNs, LSTMs, GRUs, CNNs, Transformers, VAEs, GANs, and hybrid models are used to model user behaviour and insider-threat risk. The review also considers class imbalance, scalability, uncertainty, compliance alignment, and the move from reactive rules toward proactive risk management.
+
+The authors report a PRISMA-style search across multiple databases, screening 2,660 records to a synthesis pool of 159 papers. The review compares sequential models for long-term behaviour, attention and Transformers for contextual correlation, generative models for normal-behaviour reconstruction, and hybrid structures for combining temporal representation with more interpretable classifiers. Its strength is the broad taxonomy and explicit discussion of operational constraints.
+
+The weaknesses are typical of large reviews: reported metrics come from heterogeneous datasets and protocols, and many primary studies lack uncertainty estimates, drift evaluation, or real-time deployment evidence. The supplied report also notes questions about reproducibility and the omission of concrete compliance mappings in much of the literature. High accuracy or AUC across CERT, NSL-KDD, or CIC-IDS2017 should therefore not be treated as directly comparable. The review is strongest as a gap map, not as a benchmark of one best architecture.
+
+The paper improves synthesis by connecting algorithmic choice with temporal dependence, imbalance, uncertainty, and compliance. Major scope remains in reproducible protocols, open-world evaluation, calibrated risk, continual learning, human evaluation, and deployment latency. Encoding differs by domain: user and entity identifiers may be categorical embeddings, event types may be one-hot or embedded, and time, volume, and frequency features are continuous. The correct encoding depends on preserving temporal order and avoiding identity memorisation. Publication strength: 8/10 as a systematic review, with comparability and reproducibility as the main remaining concerns.
+
+Paper 8 — Toward Human-Centered Explainability: Natural Language Explanations [8]
+
+This paper moves beyond feature-importance scores by generating natural-language explanations for anomaly-detection results. Its research problem is that SHAP or LIME outputs may be technically correct but difficult for non-specialist analysts to interpret. The work therefore treats explanation as a human-centred communication task involving wording, relevance, and analyst trust.
+
+The supplied review describes a pipeline that translates anomaly evidence into natural-language explanations and evaluates the resulting explanations through human-facing criteria. The approach is significant because it separates the detector from the communication layer: the anomaly score identifies an unusual event, while an explanation module converts contributing evidence into readable reasoning. The model’s exact generation and evaluation protocol should be checked in the original publication before final citation.
+
+Its main strength is usability and a clear focus on the analyst rather than only the model developer. Weaknesses include the possibility of fluent but inaccurate explanations, dependence on the quality of the underlying anomaly attribution, and the challenge of evaluating natural-language faithfulness. The study may also be limited by the size and expertise of its human evaluation sample. A natural-language explanation is not automatically causal or correct simply because it is readable.
+
+The improvement is significant for human interaction, but there is still substantial scope in faithfulness checks, uncertainty-aware language, adversarial testing, domain taxonomies, multilingual explanations, and longitudinal analyst studies. Encoding is indirect: raw categorical and continuous features must first be represented for the anomaly detector, while the explanation layer operates on structured evidence or attributions. Publication strength: 7/10 provisionally, because the human-centred direction is valuable but explanation correctness and generalisation require careful validation.
+
+Paper 9 — Are We There Yet? Reproducibility and Robustness of GIDS [9]
+
+This study asks whether state-of-the-art graph intrusion-detection results can be reproduced and replicated reliably. The arXiv record states that the authors evaluate GIDS across three public datasets and a newly collected large-scale enterprise dataset, while also testing adversarial robustness. The paper’s central contribution is a systematic reproduction and replication assessment rather than a new GNN architecture.
+
+The study critically assesses published systems, extends or clarifies their implementations, and compares the effects of dataset scale, model inputs, and implementation settings. The abstract reports significant performance discrepancies, difficulty reproducing results, especially for false-positive rates, and weaknesses under adversarial attacks. This methodology is important because it tests whether reported improvements survive outside the exact conditions of the original papers.
+
+The strongest contribution is methodological honesty: it exposes the difference between a result reported in a paper and a result that an independent researcher can reproduce. Its limitations may include dependence on available code, undocumented implementation details, dataset access, and the challenge of comparing systems with different original assumptions. Because it is an arXiv preprint, venue status and final publication details should be checked before assigning a final publication rating.
+
+The improvement is highly significant for the field because reproducibility and false-positive measurement are prerequisites for trustworthy deployment. Scope remains in standardised data splits, full-code release, continuous-time replication, calibration, drift, structural adversarial defences, and independent enterprise validation. Feature encoding is a major comparison variable: changes in categorical handling, graph construction, node/edge definitions, or input features can alter results more than the nominal GNN architecture. Publication strength: 8/10 provisionally for methodological significance, pending peer-review and final-version verification.
+
+Cross-paper synthesis
+
+Across the nine sources, three recurring issues dominate. First, graph and temporal models offer relational or sequential information that ordinary tabular models miss, but their results depend heavily on graph construction, time windows, feature definitions, and computational resources. Second, high benchmark scores are not sufficient evidence of operational readiness: false positives, top-of-queue precision, drift, latency, adversarial robustness, and reproducibility are repeatedly under-measured. Third, explainability is moving from feature attribution toward human-centred communication and safe response, but explanations still require faithfulness, stability, and security validation.
+
+The literature also shows that feature encoding is not a minor preprocessing detail. Target encoding can introduce label dependence; one-hot encoding can create sparse high-dimensional inputs; embeddings can improve representation but may memorise dataset-specific regularities; and graph construction can encode assumptions about what constitutes an entity, interaction, or time step. Therefore, future comparisons should report encoding, graph-building, split strategy, and threshold calibration explicitly.
+
+Taken together, the papers leave meaningful research space. A convincing future study should compare models under a common protocol, evaluate both ranking metrics and operational alert quality, report resource and latency costs, test drift and adversarial conditions, and provide explanations whose faithfulness is measured rather than assumed.
+
+References
+
+[1] I. J. King and H. H. Huang, “EULER: Detecting network lateral movement via scalable temporal link prediction,” NDSS, 2022; extended work reported in IEEE/ACM Transactions on Privacy and Security.
+
+[2] A. Venturi, D. Stabili, and M. Marchetti, “Problem-space structural adversarial attacks for network intrusion detection systems based on graph neural networks,” arXiv preprint arXiv:2403.11830, 2024.
+
+[3] S. M. Alshehri, S. A. Sharaf, and R. A. Molla, “Systematic review of graph neural network for malicious attack detection,” Information, 2025.
+
+[4] R. V. Panchal, R. S. Panchal, and V. V. Panchal, “Explainable artificial intelligence for intelligent intrusion detection systems and threat response automation,” International Journal of Computer Applications, vol. 187, no. 74, 2026.
+
+[5] Z. Gu, D. T. Lopez, L. Alrahis, and O. S. Sinanoglu, “Always be pre-training: Representation learning for network intrusion detection with GNNs,” ISQED, 2024.
+
+[6] D. Gaspar, P. Silva, and C. Silva, “Explainable AI for intrusion detection systems: LIME and SHAP applicability on MLP,” IEEE Access, vol. 12, 2024.
+
+[7] P. Akampurira, E. Edozie, B. O. Sadiq, and M. D. Buhari, “A deep learning-based user behavior analytics model for proactive cyber threat detection and risk management: A review,” F1000Research, vol. 15, article 674, 2026.
+
+[8] H. Padín-Torrente, V. Carneiro-Diaz, and I. Ortega-Fernandez, “Toward human-centered explainability: Natural language explanations for anomaly detection,” Information Systems Frontiers, 2026.
+
+[9] C. Wang, P. Zheng, J. Gui, C. Hua, and W. U. Hassan, “Are we there yet? Unraveling the state-of-the-art graph network intrusion detection systems,” arXiv preprint arXiv:2503.20281, 2025. doi: 10.48550/arXiv.2503.20281.

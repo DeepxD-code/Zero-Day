@@ -2,6 +2,25 @@
 
 Append-only log of what changed and why. **Pull, then read the top of this file.**
 
+## 2026-09-21 — Chapter 2 v3 direct-field redraft (40 studies, 25pp, boss-passed) + docs cleanup
+**Author:** Deep (Person B — Detection Modeling)
+
+### What changed
+* `docs/report/Chapter2_Literature_Review_v3.md` (new): 40-study direct-field redraft in the old baseline arrangement (count paragraph, comparative problems→methodologies→systems→performances paragraphs, Tables 2.1–2.7, Figs 2.1–2.2). Local cites [1]–[40] with repo map. No short forms in prose. Old 60-study draft moved to `docs/report/archive/` as v1.
+* Verified by 3-agent claim check + comparator/boss loop to full PASS ( venue fixes: ICISSP, NOMS E-GraphSAGE, SaTML, AIES; PIKACHU figures reinstated as TPR 95.1%/98.7% with DOI; R+R camera-ready title @ ACSAC 2025; unpinnable figures withheld with Table 2.7 record).
+* `docs/report/Chapter2_40_papers.xlsx` (new): single 40-row register, rows 1–9 = team nine (color-coded assignees), all links verified. Old registers + nine-paper working files moved to `docs/report/archive/`; `Verification_22.md` moved to `docs/evidence/`.
+* `docs/report/References.md`: corrected [7], [20], [23], plus venue/DOI/page upgrades across ~20 entries; appended [61]–[73] (EULER, provenance trio, CERT, TANTRA, A2PM, MARS, TA-RS preprint, Slack, LID-DS); PIKACHU [19] now carries DOI + TPR figures.
+* `docs/report/ch2_v3/Chapter2_only.pdf` (new): 25-page chapter-only build (MiKTeX pdflatex ×2, zero errors, 40/40 markers); `ZeroDay_FYP_Report.pdf` rebuilt to 34pp with v3 spliced in.
+* `docs/report/ch2_v3/` holds build sources (`ch2_body.tex` generated from the chapter via `md2tex.py`, `Chapter2_only.tex` reusing the main preamble).
+
+### Caveats
+* Team-paper assignments in the XL are per Deep's 2026-09-21 mapping (Deep: EULER/GNN-review/R+R; Avinash: structural/XAI-IDR; Saharsh: pre-training/LIME-SHAP; Aditya: UBA/NLE) — members to confirm.
+* MAGIC venue cross-note (USENIX vs NDSS listing) flagged for a later venue-confirmation pass; does not affect the chapter.
+
+Assisted-by: Muse Spark (opencode)
+
+---
+
 ## 2026-09-20b — Hiccup fixes: venv rebuilt, hmmlearn pinned, A's ADFA parse repaired, ablation reproduced bit-identically
 **Author:** Deep (Person B — Detection Modeling)
 

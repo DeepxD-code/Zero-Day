@@ -1,0 +1,979 @@
+\n===== Avinash-2.pdf =====\nLITERATURE REVIEW REPORT
+Explainable AI for Intelligent Intrusion Detection & Threat Response Automation
+Paper Title: Explainable Artificial Intelligence (XAI) for Intelligent Intrusion Detection Systems and Threat Response
+Automation
+Authors: Rupal Vitthalbhai Panchal (Ph.D. Scholar), Rupal Snehkunj, PhD, Vinaykumar V. Panchal
+Affiliation: Department of Computer Science, Sarvajanik University, Surat, India
+Publication: International Journal of Computer Applications (IJCA), Vol. 187, No. 74 (January 2026)
+1. EXECUTIVE SUMMARY & PROBLEM STATEMENT
+Modern deep learning and machine learning-based Intrusion Detection Systems (IDS) achieve high detection
+accuracy but operate as black boxes, with internal decision logic that is completely opaque to users. This
+opacity poses a severe challenge in Security Operations Centres (SOCs): analysts struggle to trust automated
+alerts, incident triage is slowed down, and automated response mechanisms remain highly risky to deploy. A
+single false positive or misclassified benign flow subjected to automatic containment (such as a port block or
+subnet quarantine) can disrupt critical business operations. Conversely, requiring manual human verification for
+every alert leads to severe triage bottlenecks.
+To bridge this operational gap, the authors propose XAI-IDR (Explainable AI-driven Intrusion Detection and
+Response), an integrated framework that couples a high-performance hybrid detection engine with
+model-agnostic explainability modules (SHAP, LIME) and a policy-driven automated response layer. This
+design ensures that security analysts and downstream automation layers can act upon interpretable,
+confidence-scored alerts, enabling safe automation while retaining human-in-the-loop controls for ambiguous
+scenarios.
+2. CORE RESEARCH QUESTIONS
+The researchers designed and evaluated the XAI-IDR framework to address four key questions:
+l
+Detection vs. Explainability Trade-off: Can a hybrid detection engine (deep learning combined with tree-based
+ensembles) match or exceed the accuracy of standalone black-box models while remaining more amenable to
+explanation?
+l
+Real-Time Explanation Latency: Can model-agnostic explainability methods (such as SHAP and LIME) be
+integrated into a live network pipeline to provide per-alert justifications without degrading real-time throughput?
+l
+Safe Automation Gating: Can explanation outputs be leveraged to safely gate automated response actions,
+using 'explanation stability' and 'prediction confidence' as dual triggers for automatic containment while escalating
+ambiguous cases?
+l
+Explainability Robustness: How resilient is the explainability layer to adversarial manipulation or
+explanation-poisoning attacks aimed at misleading security analysts?
+Sarvajanik University · Department of Computer Science Page 1 CONFIDENTIAL\nLITERATURE REVIEW: XAI-IDR JANUARY 2026
+3. METHODOLOGY & FRAMEWORK COMPONENTS
+The XAI-IDR methodology spans four primary benchmark datasets: NSL-KDD, CIC-IDS2017, CIC-IDS2018,
+and IoT Botnet datasets. These cover diverse attack types (including DDoS, brute force, botnet traffic, and
+scanning reconnaissance) under highly imbalanced, realistic traffic distributions. Preprocessing includes feature
+normalization, redundancy removal, and synthetic class balancing to offset majority-class bias.
+Three Coupled Framework Pillars
+The framework is composed of three interconnected modules designed to transition network traffic from
+detection to explained response:
+l
+Hybrid Detection Engine: Fuses spatial/temporal deep models (1D CNN + LSTM) with tree-based learners
+(XGBoost + Random Forest). The deep branch captures complex sequential traffic patterns, while the tree branch
+learns structured, tabular feature interactions and contributes a naturally interpretable signal to the overall
+ensemble score.
+l
+Explanation Modules (XAI): Generates both instance-level explanations ('why was this specific flow flagged?')
+and global explanations ('which features are driving the model's overall decisions?') utilizing model-agnostic SHAP
+and LIME, alongside attention weights from the deep branch.
+l
+Policy-Driven Response Orchestrator: Applies an automated gating logic. Actions are triggered automatically
+only when prediction confidence and explanation stability clear predefined thresholds. If either fails to meet the
+criteria, the alert is immediately escalated to a human SOC analyst.
+4. SYSTEM ARCHITECTURE & DATA FLOW
+The architectural diagram below illustrates the end-to-end data flow. Raw network flows enter the hybrid
+engine, are scored, run through SHAP/LIME explanation pipelines, and are processed by the policy engine to
+output either automated mitigation actions or human-in-the-loop escalations, keeping a complete audit log of
+both the action and the explanation payload.
+Sarvajanik University · Department of Computer Science Page 2 CONFIDENTIAL\nLITERATURE REVIEW: XAI-IDR JANUARY 2026
+Figure 1: XAI-IDR End-to-End Architectural Pipeline.
+Sarvajanik University · Department of Computer Science Page 3 CONFIDENTIAL\nLITERATURE REVIEW: XAI-IDR JANUARY 2026
+5. GATED DECISION ORCHESTRATION
+A key contribution of the paper is the confidence-gated response logic. Traditional IDSs suffer from binary
+decision-making where a high-threat prediction immediately triggers mitigation, resulting in costly false
+containment. XAI-IDR introduces a secondary safety gate based on explanation stability. When a detection
+occurs, the model's prediction confidence is evaluated against threshold tn. If passed, the system computes
+local SHAP feature attributions and evaluates their mathematical stability under minor input perturbations
+against threshold tn. An automated action is only taken if both thresholds are cleared. Otherwise, the threat is
+escalated to the SOC analyst with the pre-computed feature attributions appended to the ticket, drastically
+reducing human triage time.
+Figure 2: Policy-Driven Gated Automated Response Flowchart.
+6. PERFORMANCE & EVALUATION RESULTS
+The authors evaluated XAI-IDR across multiple dimensions, showing that the hybrid ensemble not only
+matches standalone deep learning models in precision but significantly improves automation safety and
+explanation quality. Below are the summarized tables detailing detection performance and model comparison:
+Table 1: Dataset-Wise Detection Performance
+Dataset Precision Recall F1-Score ROC-AUC FPR
+NSL-KDD 0.97 0.95 0.96 0.98 0.03
+CIC-IDS2017 0.96 0.97 0.97 0.98 0.02
+CIC-IDS2018 0.95 0.96 0.96 0.97 0.03
+IoT Botnet 0.92 0.91 0.91 0.94 0.05
+Sarvajanik University · Department of Computer Science Page 4 CONFIDENTIAL\nLITERATURE REVIEW: XAI-IDR JANUARY 2026
+Table 2: Comparative Model & Architectural Analysis
+Model / Framework Dataset Type F1-Score Explainability Automation Safety
+Medium (Manual
+Standalone CNN + LSTM NSL-KDD 0.92 Low (Black-Box)
+Triaging)
+Standalone Random Forest CIC-IDS 0.90 Medium (Feature Gini) Low (Alert Flooding)
+High (Gated
+Proposed XAI-IDR Framework Multi-Dataset 0.96–0.97 High (SHAP & LIME)
+Automation)
+Sarvajanik University · Department of Computer Science Page 5 CONFIDENTIAL\nLITERATURE REVIEW: XAI-IDR JANUARY 2026
+7. CORE STRENGTHS & VALUE PROPOSITION
+l
+Operational Focus: Targets a critical operational gap in SOC workflow trust, prioritizing safe, automated
+mitigation over simply achieving incremental improvements in standalone classification accuracy.
+l
+Hybrid Architectural Synergy: Deep learning networks provide raw detection capabilities, while tree-based
+classifiers stabilize overall feature attributions and enable robust, human-aligned interpretations.
+l
+Dual Gated Gating Pattern: Introducing 'explanation stability' as a secondary safety gate is a highly novel,
+literature-backed approach to mitigating the risk of false-positive automated quarantines.
+l
+Robust Threat Modeling: Unlike many XAI-IDS publications, the paper explicitly accounts for
+explanation-poisoning and feature-manipulation attacks targeted directly at misleading explainability pipelines.
+8. CRITICAL WEAKNESSES & RESEARCH GAPS
+l
+Unquantified Real-Time Latency: The claim of 'lightweight, near real-time explanation generation' is stated but
+lacks concrete latency benchmarking (e.g., CPU/GPU costs, milliseconds per flow) to verify scalable performance.
+l
+Qualitative Robustness Claims: Robustness to adversarial perturbation and XAI-pipeline threats is discussed
+narratively, but is not validated experimentally via named adversarial attacks or quantified attack success rates.
+l
+Lack of ATT&CK Mapping: Explanations are restricted to mathematical, feature-level attributions (e.g., flow
+duration, packet rate). They are not mapped to a standardized taxonomy (e.g., MITRE ATT&CK), limiting direct
+SOC actionability.
+l
+Static Training Protocol: The authors do not address model retraining, concept drift, or continual learning as
+network traffic and threat distributions evolve over time.
+9. RELEVANCE & INTEGRATION TO OUR SYSTEM
+For our Final Year Project (FYP) and the design of Pillar C (Trust & Risk), this paper serves as direct,
+peer-reviewed validation. We adopt several concepts while actively addressing the gaps identified in the
+authors' research:
+l
+Validation of SHAP Layer: Validates our architectural selection of SHAP for producing stable, domain-aligned
+feature attributions across multiple benchmark IDS datasets (Objective 4.4 / Section 7.3 design).
+l
+Closing Gaps with MITRE ATT&CK Mapping: While XAI-IDR's explanations stop at feature attribution (e.g.,
+'high packet count'), our system actively maps these feature attributions to standardized MITRE ATT&CK
+techniques. This provides SOC analysts with clear, actionable threat context instead of raw statistical indices.
+l
+Benchmarking Explanation Latency: To address the paper's main gap, our project explicitly measures and
+reports explanation-generation latency, mitigating overhead via TreeSHAP and an asynchronous explain queue.
+l
+Red-Team Explanation Hardening: We extend our red-team testing harness (Objective 4.5) to include
+explanation-integrity attacks, directly demonstrating and testing the XAI-pipeline vulnerability that the paper only
+names conceptually.
+l
+Adoption of MTTC: We incorporate Mean Time to Containment (MTTC) as a core evaluation metric alongside
+triage time to quantify operational improvements in a live, multi-pillar testbed environment.
+Synthesis & Action Plan: XAI-IDR provides the foundational confidence-gating pattern for automated threat
+containment. Our project directly builds upon this work by expanding explanations from mathematical feature
+scores to human-actionable MITRE ATT&CK threat techniques, while explicitly quantifying XAI latency and
+red-teaming explanation-poisoning threats.
+Sarvajanik University · Department of Computer Science Page 6 CONFIDENTIAL\n===== Avinash-1.pdf =====\nPPT Content — Literature Review Paper
+“Problem-Space Structural Adversarial Attacks for Network Intrusion
+Detection Systems Based on Graph Neural Networks”
+1. Paper Overview
+Field Detail
+Title Problem-Space Structural Adversarial Attacks for Network
+Intrusion Detection Systems Based on Graph Neural
+Networks
+Authors Andrea Venturi, Dario Stabili, Mirco Marchetti
+Affiliation University of Modena and Reggio Emilia; University of
+Bologna
+Year 2024 (arXiv:2403.11830v2, updated Apr 2024)
+Venue arXiv preprint (cs.CR)
+Problem the paper addresses: GNN-based Network Intrusion Detection Systems (NIDS) are
+increasingly popular because they use both flow features and network topology to detect attacks.
+Prior adversarial-ML research only tested these models against feature-level perturbations (changing
+packet size, duration, etc.). No one had tested whether attackers could evade GNN-NIDS by
+manipulating the graph structure itself — i.e., the actual property that makes GNNs different from
+traditional classifiers. This paper closes that gap.
+2. Objective / Research Problem
+The researchers set out to answer:
+1. Can adversarial attacks be designed that specifically target the graph structure (not just
+features) that GNN-based NIDS rely on?
+2. What real-world constraints limit an attacker who wants to alter a network graph without direct
+access to the model or the graph-generation pipeline?
+3. How vulnerable are state-of-the-art GNN-NIDS (E-GraphSAGE and LineGraphSAGE) to these
+structural attacks compared to their known resilience against feature attacks?
+In short: “GNN-NIDS resist feature attacks — but are they equally resistant to structural ones?”
+3. Methodology / Approach
+Datasets used: - CTU-13 — real botnet traffic (5 malware families: Neris, Rbot, Virut, Menti, Murlo) -
+ToN-IoT — IoT network traffic with 8 attack types (Backdoor, DDoS, DoS, Injection, Password,
+Ransomware, Scanning, XSS)
+Preprocessing: - Standard netflow preprocessing pipeline (per prior GNN-NIDS literature) - 80:20
+train/test split - Malicious : benign ratio fixed at 1:10 per set (to mimic real-world class imbalance) - One
+binary classifier trained per attack type (per dataset), i.e., 13 classifiers total\nExperimental setup: - Two graph representations tested: flow graph (edges = netflows) and line
+graph (nodes = netflows, via a linearization procedure) - Gray-box threat model: attacker knows a
+GNN-NIDS is deployed but has no access to the flow exporter, graph generator, or model internals;
+attacker has already compromised ≥1 host
+Proposed methodology — problem-space constraints: The authors formalize four constraints any
+realistic structural attack must satisfy: 1. Available transformations — only addition operations (new
+edges/nodes) are feasible; deletions require access to protected infrastructure 2. Preserved
+semantics — the original malicious traffic’s functionality must not break 3. Plausibility — injected
+netflows must look like authentic traffic 4. Robustness to preprocessing — must survive defenses
+like anti-spoofing filters
+4. Models / Architecture
+Detectors evaluated: - E-GraphSAGE — GraphSAGE applied to a flow graph (nodes = IP:port pairs,
+edges = netflows); performs edge classification - LineGraphSAGE — GraphSAGE applied to a line
+graph derived from the flow graph via linearization (each netflow becomes a node); performs node
+classification - Baseline comparison: Random Forest (RF) — traditional ML classifier, used to
+benchmark feature-attack severity
+Attack architecture (4 structural attack variants, all addition-based):\nFigure 1. Gray-box threat model. The attacker controls only a compromised host and injects addition-only traffic; this traffic
+passes untouched through the flow exporter and graph generator before reaching the GNN-based NIDS.
+The four attack variants (triple: source σ, destination δ, traffic-type τ):\nAttack Source Destination Traffic Strategy
+C2xB Compromised node Random node Benign Inject extra benign
+flows from a
+compromised host to
+dilute its malicious
+neighborhood
+C2xM Compromised node Random node Malicious Inject extra malicious
+flows to spread/pollute
+the attack pattern
+U2x Uncompromised node Random node Benign Spoof an
+(spoofed IP) uncompromised host’s
+IP to inject flows
+(excluded from
+experiments —
+blocked by anti-
+spoofing)
+Add Node Compromised node New node (not in Benign/Malicious Communicate with a
+graph) brand-new endpoint to
+expand the graph
+itself\nFigure 2. End-to-end architecture under attack. The attacker’s addition-only traffic and the C2xB / C2xM / Add-Node structural
+attacks both enter at the flow-exporter stage, then propagate identically into the flow-graph (E-GraphSAGE, edge classification)
+and line-graph (LineGraphSAGE, node classification) pipelines.\nFigure 3. C2xB attack mechanics. Before the attack, compromised node C1’s neighborhood is entirely malicious (scan traffic).
+After injecting just a couple of extra benign netflows, C1’s neighborhood embedding is diluted enough that the GNN misclassifies
+the ongoing scan as benign.
+5. Results / Performance
+Baseline (no attack) — both models perform strongly:
+Dataset E-GraphSAGE F1 LineGraphSAGE F1
+CTU-13 (avg) 0.942 0.951
+ToN-IoT (avg) 0.978 0.986
+Feature-based attacks (existing method, adapted from prior RF-evasion work): - Random
+Forest detection rate collapses to ~0.10 by the largest perturbation step - Both GNN models remain
+robust — negligible performance drop → confirms GNNs resist feature-only attacks
+Structural attacks (this paper’s core contribution) — severe degradation:
+Attack Effect
+C2xB Just β = 1 extra benign netflow per compromised node
+collapses E-GraphSAGE detection rate on several CTU-13
+botnets. LineGraphSAGE degrades more gradually but still
+falls below 0.5 when β > 5
+C2xM Similar decline; a few attack types (Neris, Menti, Injection,
+XSS) show detection rate increasing at very high θ — excess
+malicious injection becomes its own recognizable pattern
+Add Node Needs larger scale (η ≥ 100, γ ≥ 5) to matter, but at η =
+1000 detection rate approaches zero for almost all attacks
+Comparative claim (Table 5 in paper): prior work achieves at most Precision 0.85 → 0.5 under
+attack; this paper drives Detection Rate to 0 using only realistic, constrained perturbations — the
+largest reported degradation in the literature to date.
+Key takeaway: LineGraphSAGE (node classification / line graph) is consistently more robust than E-
+GraphSAGE (edge classification / flow graph), but at higher computational cost (linearization overhead).\n6. Strengths
+First formal treatment of structural (not just feature) adversarial attacks against GNN-NIDS
+Defines rigorous, realistic problem-space constraints — attacks are grounded in what an
+attacker can actually do (only traffic-level actions), not idealized graph-editing access
+Tests two representative graph paradigms (flow graph vs. line graph), giving a genuinely
+comparative result
+Uses two real, well-known public datasets with multiple attack families each (13 classifiers
+total) — not a single toy scenario
+Releases open-source code for reproducibility
+Directly compares against prior adversarial-GNN-NIDS literature with a clear performance table
+7. Weaknesses / Limitations
+Binary, single-attack classifiers only — models trained per attack family, not as a unified multi-
+class or fused detector; may not reflect real deployment
+U2x (IP-spoofing) attack excluded from experiments — assumed blocked by anti-spoofing,
+but this is not empirically tested in their own testbed
+No defense or mitigation proposed — the paper is purely offensive; no adversarial training,
+ensemble hardening, or retraining strategy is evaluated
+No fused/multi-signal detector tested — only a standalone GNN is attacked; unclear whether
+fusing with other signals (identity, host) would blunt the attack
+Network-plane only — no equivalent structural-attack analysis for host-based or identity-based
+graphs
+Relies on public datasets (CTU-13, ToN-IoT) which, like most IDS benchmarks, carry known label-
+noise and realism limitations
+8. Research Gaps
+1. No study of structural attacks against fused/ensembled detectors (e.g., AE + GNN, or
+multi-pillar systems) — only standalone GNN-NIDS tested
+2. No defensive countermeasures proposed or evaluated against structural attacks
+3. No host-plane analog — structural/graph-based adversarial attacks are unexplored for system-
+call or process-based graphs
+4. Mechanistic explanation missing — the paper observes LineGraphSAGE is more robust than E-
+GraphSAGE but does not fully explain why linearization confers this robustness
+5. Combined feature + structural attacks not evaluated — attacks are tested in isolation, not
+stacked
+9. Relevance to Our Project ⭐
+Our FYP (“Zero-Day Attack Detection Using Autoencoder-Based Anomaly Scoring,” with a network AE +
+graph-temporal (GNN) pillar, an identity/UEBA pillar, and a new eBPF host/syscall pillar, fused into one
+calibrated ScoredAlert) intersects this paper directly:
+Our P1 network pillar explicitly includes a GNN-temporal model (GNN + LSTM) trained on host-
+to-host flow graphs — the exact class of model this paper attacks. This is a direct warning: our
+GNN component, if flow-graph-based like E-GraphSAGE, could be evaded by an attacker adding just
+one extra benign flow per compromised host.
+Our red-team harness (Objective 4.5) currently focuses on gradient-guided feature mutations.\nThis paper gives us a ready-made, cheap, high-yield structural attack family (C2xB / C2xM
+/ Add-Node) to fold into our adversarial evaluation — these attacks are schema-compatible, since
+they only synthesize extra FlowRecord instances, matching our frozen-schema architecture.
+Our central fusion thesis is exactly the open question this paper leaves untested: does
+fusing network + identity + host signals catch what a structurally-evaded GNN pillar misses? We
+can frame this as a concrete, literature-grounded hypothesis for our own fused-vs-isolated-pillar
+ablation.
+Reinforces our project’s existing “Susceptibility to Gradient-Guided Evasion” problem statement —
+we should broaden it explicitly to include structural, graph-level evasion, not just feature-
+level evasion.
+What we’re taking from this paper: 1. Add C2xB/C2xM/Add-Node style structural attacks to our red-
+team harness for the network pillar 2. Treat “graph structural robustness” as a named metric in our AE-
+vs-GNN ablation (Objective 4.1) 3. Use this paper’s threat model (gray-box, compromised host, addition-
+only) as the template for our own network-plane adversarial protocol 4. Position our 3-pillar fusion as a
+candidate defense against exactly the vulnerability this paper exposes
+10. Scope
+In Scope (per the paper): - Linux/general network telemetry — netflow-based graphs only -
+Inductive GNN architectures only (models that generalize to unseen nodes/graphs) — required for
+realistic deployment - Two graph representations: flow graph and line graph - Integrity-violation
+(evasion) attacks only — not confidentiality or availability attacks - Gray-box attacker with at least
+one already-compromised host - Addition-only structural perturbations (edge addition, node
+addition) — deletion/rewiring excluded as infeasible in practice - Evaluation on two public benchmark
+datasets (CTU-13, ToN-IoT)
+Out of Scope (per the paper): - Transductive GNNs (require full graph at training time —
+impractical for live traffic) — explicitly excluded - Removal-based attacks (edge/node deletion,
+rewiring) — require attacker access to flow exporter or graph generator, deemed unrealistic - U2x (IP-
+spoofing) attacks — theoretically defined but not experimentally evaluated (assumed blocked by anti-
+spoofing) - Defense/mitigation design — the paper is attack-only, no countermeasures proposed -
+Host-based or identity-based graph structures — network flow graphs only - White-box attacks
+(full model access) — not considered; only gray-box realism is tested - Multi-class or
+fused/ensembled detectors — only standalone binary GNN-NIDS evaluated
+Summary
+This paper is the first to formalize and test structural (graph-topology) adversarial attacks against
+GNN-based NIDS, in contrast to the feature-level attacks the field had focused on until now. Using a
+realistic, addition-only threat model, the authors show that while E-GraphSAGE and LineGraphSAGE are
+highly robust to feature perturbations (unlike traditional Random Forest classifiers), they are severely
+vulnerable to structural perturbations — in the worst case, injecting a single extra benign netflow
+from a compromised host is enough to collapse detection rate on several botnet families.
+LineGraphSAGE (line-graph/node-classification) is consistently more robust than E-GraphSAGE (flow-
+graph/edge-classification), but neither is immune at scale. The paper leaves defenses, fused-detector
+robustness, and host-plane analogs unaddressed — which is exactly where our FYP’s three-pillar, fusion-
+based, red-team-hardened architecture is positioned to contribute: we can adopt these structural
+attacks into our own adversarial harness, treat structural robustness as an explicit ablation axis for our
+GNN-temporal pillar, and test whether our fusion of network, identity, and host signals is more resilient
+to this class of evasion than a standalone GNN detector.\n===== saharsh-2.pdf =====\nLITERATURE REVIEW BENCHMARK REPORT (cid:127) GROUP 8 (cid:127) SUBJECT CODE: BCS753
+FINAL YEAR PROJECT LITERATURE REVIEW
+BENCHMARK REPORT
+EXPLAINABLE AI FOR INTRUSION DETECTION
+SYSTEMS: LIME AND SHAP APPLICABILITY ON
+MLP
+Reviewed Paper: Explainable AI for Intrusion Detection Systems: LIME and SHAP Applicability on MLP
+Diogo Gaspar, Paulo Silva, Catarina Silva — Laboratório de Informática e Sistemas (LIS),
+Instituto Pedro Nunes; Dept. of Informatics Engineering, University of Coimbra, Portugal
+— IEEE Access, Vol. 12, 2024
+Compared Against Our Zero-Day Attack Detection Using Autoencoder-Based Anomaly Scoring on Network Flow
+Project: Streams
+(Group 8 Synopsis + Weeks 4–6 Three-Pillar Roadmap: Network AE+GNN / Identity
+UEBA / Host eBPF Syscall AE)
+Institution: KCC Institute of Technology and Management, Greater Noida (Subject Code: BCS753 ·
+Group Number 8)
+Submitted To / Session: Dr. Mohd. Wazih Ahmad | Session / Academic Year: 2025–2026
+1. Paper Overview & Core Contribution
+Deep learning models for Intrusion Detection Systems (IDS), such as Multi-Layer Perceptrons (MLPs), achieve
+high detection accuracy but suffer from extreme black-box opacity. While Explainable AI (XAI) is widely studied
+in computer vision and healthcare, its applicability to network security and host system telemetry is
+under-explored. This paper applies two prominent post-hoc, model-agnostic XAI methods—LIME (Local
+Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations)—to a black-box IoT
+intrusion detection MLP. The authors take a crucial step further by experimentally validating the explanations
+through a feature perturbation protocol and conducting a 24-person human survey to evaluate user trust and
+usability.
+Core Discovery: While generating local explanations is easy, verifying their correctness is harder. The paper
+shows that LIME and SHAP generate broadly similar aggregate feature attributions but diverge on specific
+instances, indicating complex non-linear feature interactions. In user surveys, LIME was preferred for
+user-friendly visuals, while technical experts leaned toward SHAP for its theoretical consistency.
+2. Objectives & Research Problem
+Existing XAI-for-IDS literature suffers from a fatal flaw: it assumes explanations are truthful without validating
+them. This paper addresses this gap by exploring:
+Document prepared for internal PPT drafting — Group 8. Page 1\nLITERATURE REVIEW BENCHMARK REPORT (cid:127) GROUP 8 (cid:127) SUBJECT CODE: BCS753
+(cid:127) Objective I - Local Explanation Generation: Generate local feature attributions using LIME and SHAP for
+system call sequence predictions.
+(cid:127) Objective II - Perturbation Validation: Establish a rigorous validation protocol to test if removing or
+replacing the top-10 highlighted features actually flips the black-box classifier's predictions.
+(cid:127) Objective III - User Preference Survey: Evaluate which framework (LIME vs. SHAP) real human analysts
+find more trustworthy and readable.
+Document prepared for internal PPT drafting — Group 8. Page 2\nLITERATURE REVIEW BENCHMARK REPORT (cid:127) GROUP 8 (cid:127) SUBJECT CODE: BCS753
+3. Methodology & Approach
+Dataset: Utilizes a generated version of the ADFA-LD dataset consisting of system call sequences. Sequences
+of 30 system calls (drawn from 149 distinct syscall types) are labeled with attack patterns (Password Brute
+Force, Denial of Service, Network Scan). The finalized dataset contains 52,656 instances.
+Feature Engineering: Processes system call logs via 2-gram vectorization, generating 2,805 distinct n-gram
+features. Dimensionality reduction is applied using a Chi-squared selector, yielding a final fixed 150-feature
+vector per instance weighted using a TF-IDF-style representation.
+Post-hoc XAI Methods: Applies LimeTabularExplainer and KernelExplainer (SHAP) to the black-box MLP,
+extracting the top-10 most influential features/syscalls per flow.
+Validation Perturbation Protocol: Tests explanation correctness via three batches:
+1. Remove Top-10: Eliminate the top-10 explained system calls from each sequence and re-evaluate.
+2. Class-Exclusive Replacement: Replace the top-10 explained syscalls with syscalls exclusive to the
+opposite outcome class.
+3. Random Replacement: Replace the top-10 explained syscalls with random system calls as a control
+baseline.
+4. Models & Architecture Verified
+Gaspar et al.'s Model: A supervised 4-layer feed-forward Multi-Layer Perceptron (MLP) Classifier. It consists
+of one input layer (150 features) and three dense layers: Dense 1 (128 units, ReLU), Dense 2 (64 units, ReLU),
+and Dense 3 (1 unit, Sigmoid) yielding binary anomaly labels. Implemented in TensorFlow/Keras.
+Our Host Pillar (P3): An unsupervised, symmetric Reconstruction Autoencoder. It takes a host FeatureVector
+(eBPF syscall sequences, PIDs, timings) and passes it through an encoder bottleneck (64fi32fi16fi8) and a
+symmetrical decoder (8fi16fi32fi64fiN). It trains only on normal traffic and flags anomalies based on
+reconstruction error.
+Document prepared for internal PPT drafting — Group 8. Page 3\nLITERATURE REVIEW BENCHMARK REPORT (cid:127) GROUP 8 (cid:127) SUBJECT CODE: BCS753
+Figure 1: MLP Classification and Explanation Validation Pipeline (Gaspar
+et al. 2024)
+Figure 1 illustrates the feature engineering pipeline, MLP classification, and the LIME/SHAP validation framework.
+Document prepared for internal PPT drafting — Group 8. Page 4\nLITERATURE REVIEW BENCHMARK REPORT (cid:127) GROUP 8 (cid:127) SUBJECT CODE: BCS753
+Figure 2: Our Host Pillar (P3) Symmetric Reconstruction Autoencoder &
+Semantic Mapping
+Figure 2 diagrams our Host Pillar (P3) with the eBPF telemetry loop, unsupervised autoencoder, and TreeSHAP MITRE
+mapping pipeline.
+5. Results, Perturbation & User Survey
+MLP Classification Performance: Evaluated on 52,656 instances of system call sequences, achieving high
+classification success: Accuracy of 93.71%, F1-score of 93.56%, Precision of 98.06%, Sensitivity (Recall) of
+89.46%, and Specificity of 98.16%. True Positives: 24,038, False Negatives: 2,832, True Negatives: 25,311,
+False Positives: 475.
+Perturbation Results: Simply removing the top-10 features led to only modest prediction changes (6% to 61%
+shift), likely because removal breaks sequence structure. However, replacing top-10 features with
+class-exclusive alternatives was highly effective: substituting setsockopt with accept flipped 90% of False
+Negatives (FN) to True Positives (TP), while nfsservctl replacement flipped ~100% of False Positives (FP) to
+True Negatives (TN). LIME and SHAP yielded similar aggregate flip rates.
+Document prepared for internal PPT drafting — Group 8. Page 5\nLITERATURE REVIEW BENCHMARK REPORT (cid:127) GROUP 8 (cid:127) SUBJECT CODE: BCS753
+Human Evaluation: A 24-participant survey revealed that LIME is preferred by general users due to more
+intuitive local tabular visualizations. However, technically expert participants favored SHAP because of its
+rigorous theoretical foundations and mathematical consistency. Computationally, SHAP was found to be orders
+of magnitude more expensive than LIME, with no mitigation strategies applied in the study.
+Document prepared for internal PPT drafting — Group 8. Page 6\nLITERATURE REVIEW BENCHMARK REPORT (cid:127) GROUP 8 (cid:127) SUBJECT CODE: BCS753
+6. Strengths & Limitations
+Strengths:
+(cid:127) Rigorous XAI Validation: First paper to validate local explanations in NIDS/HIDS via a structured
+perturbation protocol.
+(cid:127) Human-Subject Benchmarking: Integrates a real human preference survey, which is highly unique in XAI
+security studies.
+(cid:127) Clean Feature Engineering: Implements a highly reproducible system call n-gram and chi-squared pipeline.
+Limitations:
+(cid:127) Supervised and In-Distribution: Relies on labeled attack traces; zero-day capabilities on unseen attacks
+are never demonstrated.
+(cid:127) Raw Feature Explanations: Explanations are limited to raw system call names rather than actionable,
+high-level threat semantics.
+(cid:127) Real-Time Cost: Mentions SHAP's extreme latency as a barrier to real-time deployment but proposes no
+mitigations (e.g., TreeSHAP).
+7. Relevance, Contradictions & Gaps
+This reference paper provides a strong precedent for using system call sequence analysis (ADFA-LD) and
+SHAP-based feature attribution, which we adapt for our Host Pillar (P3). It confirms several major
+improvements in our design:
+1. The Supervised Contradiction: Gaspar et al.'s MLP is a supervised classifier that requires attack labels. In
+contrast, our P3 Autoencoder is completely unsupervised (one-class), trained only on normal syscall
+sequences. This is a deliberate design choice: a supervised classifier cannot detect zero-day attacks
+because it lacks training labels for unseen attack patterns. Our model is zero-day capable.
+2. MITRE ATT&CK Mapping: Gaspar et al. stop at raw syscall features. We map syscall patterns directly to
+actionable MITRE technique IDs (e.g., ptrace + process_vm_readv fi T1055.008) to provide security
+analysts with high-level semantic threat intelligence.
+3. Cost Mitigations: To handle SHAP's high computational cost, we implement TreeSHAP, sampling
+approximations, and an asynchronous explain queue to guarantee real-time host monitoring.
+4. Reusable Technique: We propose to adopt their replace/remove perturbation protocol to validate our
+SHAP outputs in P3.
+Document prepared for internal PPT drafting — Group 8. Page 7\nLITERATURE REVIEW BENCHMARK REPORT (cid:127) GROUP 8 (cid:127) SUBJECT CODE: BCS753
+8. Detailed Dimensional Comparison Table
+Dimension Gaspar et al. (IEEE Access 2024) Our Host Pillar (P3) Design
+Detection Scope Host system calls only (single plane Network + Identity + Host multi-vantage fusion
+detection)
+Model Type Supervised 4-layer MLP Classifier (ReLU, Unsupervised Symmetric Autoencoder (one-class
+Sigmoid) NIDS/HIDS)
+Training Data Normal + labeled attack traces Normal traffic/syscall sequences only (one-class)
+(supervised)
+Evaluation Protocol In-distribution train/test split (standard Zero-day (held-out attack family) protocol on live host sets
+validation)
+Explainability LIME + SHAP (raw system call feature SHAP feature attribution mapped to MITRE ATT&CK;
+attribution) techniques
+Explanation Perturbation protocol (remove/replace Same remove/replace perturbation protocol proposed for
+Validation top-10 features) P3
+Adversarial Testing None conducted Red-team evasion testing via gradient-guided mutations
+Concept Drift Not addressed ADWIN / Kolmogorov-Smirnov monitors with incremental
+retraining
+Fusion N/A (single standalone model) Learned ensembler, calibrated fusion of 3 sub-scores
+Overhead Not addressed eBPF syscall collector with strict target < 2% CPU
+Engineering overhead
+Human Evaluation 24-person survey comparing LIME vs. Not currently in scope (focused on automated detection)
+SHAP readability
+Document prepared for internal PPT drafting — Group 8. Page 8\n===== saharsh-1.pdf =====\nREFERENCE PAPER REVIEW
+Always Be Pre-Training: Representation Learning for Network Intrusion Detection with
+GNNs
+Reviewed Paper: Always be Pre-Training: Representation Learning for Network Intrusion Detection with GNNs
+Zhengyao Gu, Diego Troy Lopez, Lilas Alrahis, Ozgur Sinanoglu (NYU / NYU Abu Dhabi) -
+ISQED'24
+Compared Against: Zero-Day Attack Detection Using Autoencoder-Based Anomaly Scoring on Network Flow Streams
+Group 8 Synopsis + Weeks 4–6 Three-Pillar Roadmap (Network AE+GNN / Identity UEBA / Host
+eBPF)
+Institution: KCC Institute of Technology and Management, Greater Noida (Subject Code: BCS753, Group 8)
+Submitted To: Dr. Mohd. Wazih Ahmad | Session: 2025–2026
+1. Paper Overview & Core Contribution
+Graph Neural Network (GNN)-based Network Intrusion Detection Systems (NIDS) achieve state-of-the-art
+results on synthetic benchmarks, but they rely heavily on target encoding to pre-process categorical
+features (such as HTTP/TCP protocol fields). Target encoding computes the empirical correlation between
+these categories and labels, silently depending on annotated labels even in supposedly 'unsupervised'
+setups. This paper addresses this label dependency bottleneck by introducing in-context self-supervised
+pre-training combined with dense vector representations.
+Core Discovery: By using dense vector embeddings for categorical features alongside self-supervised
+pre-training (Anomal-E), the proposed model breaks target encoding's hidden label dependency. It reaches
+over 98% of fully supervised state-of-the-art performance using less than 4% of labeled data on the
+NF-UQ-NIDS-V2 dataset.
+2. Objectives & Key Research Questions
+The primary focus of the researchers was to investigate whether self-supervised pre-training could mitigate
+the high annotation cost of NIDS deployment. Three specific questions are explored:
+• Q1. Performance of Dense Representation: How does dense representation perform compared to target
+encoding when both are evaluated without pre-training?
+• Q2. Value of Pre-training: Does in-context self-supervised pre-training consistently enhance GNN
+classification performance?
+• Q3. Labeled Data Efficiency: Can in-context pre-training yield high-performing intrusion detection even
+when labeled data is scarce?\nREFERENCE PAPER REVIEW • GROUP 8 • BCS753 GNN NIDS BENCHMARKING
+3. Methodology & Approach
+Datasets & Sub-sampling: Evaluated on ToN-IoT (461,043 records, 40 features, 31 categorical) and
+NF-UQ-NIDS-V2 (75,987,976 records, 43 features, 15 categorical; compiled from UNSW-NB15, ToN-IoT,
+CSE-CIC-IDS2018, and BoT-IoT). Training sets are sub-sampled and class-balanced to 130,000 training
+and 50,000 testing flow records.
+Graph Construction: Constructed undirected multi-graphs where hosts represent nodes and flows
+represent edges. Numeric and categorical edge features are concatenated. Node features are initialized as
+constant vectors of 1's (length 64), meaning the topology and edge characteristics carry the signal, rather
+than node identity. Source IPs are synthetically generated to anonymize topology.
+Feature Representation: Numeric features undergo learned linear projection. Categorical features are
+mapped via one-hot encoding followed by linear projection (proved mathematically equivalent to a learned
+embedding lookup). These embeddings are merged into a final edge/node representation.
+Self-Supervised Pre-training: Implements Anomal-E, a contrastive Self-Supervised Learning (SSL)
+technique based on Deep Graph Infomax (DGI). It maximizes the mutual information between local edge
+embeddings and a global graph summary, contrasting the real graph against a corrupted graph generated by
+randomly shuffling edge features.
+4. Models & Architecture Verified
+Gu et al.'s Model: Consists of an E-GraphSAGE encoder (2 layers, hidden dimension 128, edge
+representation 256) and an Anomal-E discriminator during pre-training. For detection, the pre-trained
+encoder is fine-tuned by appending a supervised classification head.
+Our Network Pillar (P1): A dual-path model running a baseline reconstruction Autoencoder (for
+zero-label anomaly detection) in parallel with a GNN-temporal model (GNN + LSTM over host-to-host graph
+snapshots) to capture relational and sequence patterns. The sub-scores are then fused via a learned
+ensembler.
+Document prepared for internal PPT drafting — Group 8. Page 2\nREFERENCE PAPER REVIEW • GROUP 8 • BCS753 GNN NIDS BENCHMARKING
+Figure 1: Gu et al. (2024) Self-Supervised Pre-Training and Fine-Tuning Pipeline.
+Figure 2: Our Network Pillar (P1) Dual-Path Relational and Temporal Fusion.
+Document prepared for internal PPT drafting — Group 8. Page 3\nREFERENCE PAPER REVIEW • GROUP 8 • BCS753 GNN NIDS BENCHMARKING
+5. Results & Performance
+Full-Data Performance: The dense pre-trained GNN model (D-SSL) achieved the best performance. On
+ToN-IoT, SSL pre-training improved the dense model's mean F1-score by +8.32%. On the harder
+NF-UQ-NIDS-V2, it improved F1 by +0.87%. Pre-training also reduced F1-score variance across 5 trials by
+82.45% and 29.73% respectively.
+Few-Shot Efficiency: The SSL pre-trained model (D-SSL) was highly data-efficient. It reached 99.8%
+(ToN-IoT) and 95.11% (NF-UQ-NIDS-V2) of its best full-data performance using only 3.7% of the original
+labeled training dataset (less than 5,000 labeled flows). Decision Trees and non-pretrained models
+required significantly more labeled data to compete.
+6. Strengths & Limitations
+Strengths:
+• Resolves Label-Dependency: Directly addresses the critical problem of high annotation cost in GNN
+NIDS.
+• Elegant 'In-Context' SSL: Sources pre-training data directly from the target network, bypassing
+cross-domain mismatches.
+• Rigorous Verification: Proves that one-hot + linear projection mathematically equates to embedding
+lookup. Evaluates on heterogeneous multi-class datasets and reports 5-trial variance.
+• Hardware Verified: Explicitly verifies CPU-only NIDS deployability to address edge-device constraints.
+Limitations:
+• Few-Shot, Not Zero-Label: The model still requires labeled calibration data for the fine-tuning
+classification head.
+• No Temporal Modeling: Captures static per-batch graphs; lacks sequential modeling (like LSTM) for
+coordinated attacks.
+• Evaluation Gaps: Assessed only on synthetic benchmarks. Lacks adversarial robustness testing and
+explainability (XAI).
+7. Relevance & Gaps Relative to Our Project
+This reference paper directly corroborates the GNN-based network-flow modeling chosen for our Network
+Pillar (P1). The finding that dense label-free embeddings outperform label-derived target encodings supports
+our design decisions. However, our FYP addresses several major gaps left open by this paper:
+1. Zero-Label Detection: Our AE path is fully one-class/unsupervised, avoiding few-shot label
+dependencies entirely.
+2. Temporal Dynamics: We explicitly chain our GNN with an LSTM to capture sequential and relational
+semantics.
+Document prepared for internal PPT drafting — Group 8. Page 4\nREFERENCE PAPER REVIEW • GROUP 8 • BCS753 GNN NIDS BENCHMARKING
+3. Multi-vantage Fusion: We fuse the P1 network sub-score with Host (P3) and Identity (P2) sub-scores via
+an ensembler.
+4. Node Features: While Gu et al. initialize node features as constant 1's, we use real host/flow statistics for
+higher fidelity.
+Document prepared for internal PPT drafting — Group 8. Page 5\nREFERENCE PAPER REVIEW • GROUP 8 • BCS753 GNN NIDS BENCHMARKING
+8. Detailed Dimensional Comparison Table
+The following table contrasts the design dimensions of the reviewed paper against our 3-Pillar Zero-Day
+Detection Project's Network Pillar (P1):
+Dimension Gu et al. (ISQED'24) Our Network Pillar (P1) Design
+Detection Scope Network flow graphs only (single plane Network + Identity + Host multi-vantage fusion
+NIDS)
+GNN Backbone E-GraphSAGE (2 layers, hidden dim 128, GNN + LSTM (GraphSAGE with sequential temporal
+edge repr 256) tracking)
+GNN Training Signal Contrastive SSL pre-training Parallel dual-path: Reconstruction Autoencoder
+(Anomal-E/DGI) followed by supervised (unsupervised) + temporal GNN branch
+few-shot fine-tuning
+Label Requirement Few-shot: needs labeled subsets Zero-shot on the AE side (normal-only, trained
+(minimum 3.7% of flows) to train without attack labels)
+classification head
+Categorical Features Central contribution: dense embeddings Not primary focus: utilizes flow and telemetry
+compared against target-encoding statistics in FeatureVector
+baselines
+Temporal Modelling None — static per-batch graphs built from Explicit sequence modeling via LSTM over graph
+flow records snapshots
+Evaluation Protocol In-distribution train/test split (micro-F1 Zero-day (held-out attack family) protocol on live and
+score on balanced datasets) public sets
+Adversarial Testing None addressed Red-team evasion harness using gradient-guided
+mutations
+Explainability None provided SHAP feature attribution mapped to MITRE
+ATT&CK; technique IDs
+Concept Drift Not addressed ADWIN / Kolmogorov-Smirnov monitors with
+incremental retraining
+Data Context Synthetic balanced benchmarks only Public datasets combined with a live, consented
+(ToN-IoT, NF-UQ-NIDS-V2) campus testbed
+Document prepared for internal PPT drafting — Group 8. Page 6\n===== Aditya-2.pdf =====\nLITERATURE REVIEW BENCHMARK REPORT • GROUP 8 • SUBJECT CODE: BCS753
+FINAL YEAR PROJECT LITERATURE REVIEW BENCHMARK
+REPORT
+EXPLAINABLE AI FOR INTRUSION DETECTION SYSTEMS: NATURAL LANGUAGE
+EXPLANATIONS
+Dimension Project details / Values
+Reviewed Paper: Toward Human-Centered Explainability: Natural Language Explanations for
+Anomaly Detection
+Héctor Padín-Torrente, Victor Carneiro-Diaz, Ines Ortega-Fernandez — Universidade da
+Coruña, Center for Research in Information and Communication Technologies (CITIC);
+Galician Research and Development Center in Advanced Telecommunications
+(GRADIANT), Spain — Information Systems Frontiers, 2026
+Compared Against Our Zero-Day Attack Detection Using Autoencoder-Based Anomaly Scoring on Network Flow
+Project: Streams (Group 8 Synopsis + Weeks 4–6 Three-Pillar Roadmap: Network AE+GNN /
+Identity UEBA / Host eBPF Syscall AE)
+Institution: KCC Institute of Technology and Management, Greater Noida (Subject Code: BCS753 •
+Group Number 8)
+Submitted To / Session: Dr. Mohd. Wazih Ahmad | Session / Academic Year: 2025–2026
+1. Paper Overview & Core Contribution
+Modern network security heavily relies on deep learning architectures like autoencoders to identify complex
+anomalies and zero-day attacks. However, these complex models operate as opaque 'black boxes', generating
+outputs whose underlying logic is entirely unintelligible to human operators (Sovrano & Vitali, 2024). To bridge this
+gap, Padín-Torrente et al. (2026) introduce a novel, Human-Centered Explainable AI (HC-XAI) pipeline designed
+to translate technical anomaly scores and SHAP-based feature attributions into intuitive, context-aware Natural
+Language Explanations (NLEs) tailored specifically for Security Operations Center (SOC) analysts.
+The core contribution of this work lies in its integrated, end-to-end architecture that combines unsupervised network
+anomaly detection, local feature attribution, and natural language synthesis. By leveraging lightweight,
+locally-hosted Large Language Models (LLMs) loaded with 4-bit double quantization, the pipeline generates
+high-quality, actionable alerts without the privacy, regulatory, and financial constraints of cloud-based APIs. Crucially,
+the authors integrate a Human-in-the-Loop (HITL) feedback loop powered by Retrieval-Augmented Generation
+(RAG). When a security analyst refines an alert explanation, the updated pair is saved back into the database,
+dynamically grounding future explanations in validated human expertise and allowing the system to adapt to
+emerging threats and zero-day attacks without model retraining.
+2. Objectives & Research Problem
+Traditional explainable AI (XAI) frameworks in cybersecurity stop at visual or saliency-based feature attributions (such
+as bar charts of SHAP or LIME values). While technically accurate, these outputs are highly abstract, adding
+cognitive load and leading to frequent misunderstandings during high-stress incident responses (Szymanski et al.,
+Document prepared for internal PPT drafting — Group 8 Page 1\nLITERATURE REVIEW BENCHMARK REPORT • GROUP 8 • SUBJECT CODE: BCS753
+2021). To resolve these limitations, this research addresses four primary objectives:
+(cid:127) Objective I - Unsupervised Network-Level Detection: Train a deep autoencoder solely on benign traffic from
+the complex, highly imbalanced CIC-IDS-2018 dataset to reliably flag multi-class network anomalies based on
+reconstruction error.
+(cid:127) Objective II - Efficient Local Feature Attribution: Adapt KernelSHAP to approximate feature-level
+contributions for high-reconstruction-error variables, utilizing K-means clustering to summarize massive
+background distributions into 100 representative centroids.
+(cid:127) Objective III - Grounded Natural Language Explanations: Develop a local, quantized LLM generation
+framework to translate technical SHAP outputs into natural language, enriched with expert knowledge via a RAG
+retrieval database (using k=3 alerts).
+(cid:127) Objective IV - Structured Benchmarking Framework: Benchmarking local open-weight LLMs (ranging from 4B
+to 32B parameters) against a comprehensive, domain-specific evaluation rubric (Content Accuracy,
+Clarity/Coherence, Relevance/Focus, Conciseness, and Threat Awareness) using the LLM-as-a-Judge
+paradigm.
+Document prepared for internal PPT drafting — Group 8 Page 2\n3. Methodology & Approach
+The proposed HC-XAI workflow operates in five distinct phases. (1) Data Analysis & Preprocessing: Uses the
+CIC-IDS-2018 dataset, representing realistic enterprise network traffic with over 13 million benign flows and 14
+distinct attack types (Sharafaldin et al., 2018). Raw data is cleaned, multi-day captures are merged (excluding the
+inconsistent Feb 20 capture), and normalized using a two-step approach: Robust Scaling to minimize outlier
+influence, followed by Min-Max Scaling to aid optimization. (2) Anomaly Detection: An unsupervised deep
+autoencoder is trained on benign-only data (60% training, 10% validation). Anomaly threshold is established as the
+95th percentile of validation errors. (3) SHAP Integration: For any anomaly, the top N features with the highest
+reconstruction error are isolated. KernelSHAP is applied to explain the reconstructed values of these features using
+the K-means-summarized background centroids. (4) Human-Centered Explanations: Local LLMs combine technical
+SHAP values with RAG context. (5) NLE Alignment & HITL Feedback: Security analysts review LLM alerts,
+contributing expert-level corrections directly back into the RAG database to ground subsequent alerts in validated
+knowledge.
+4. Models & Architecture Verified
+The unsupervised anomaly detection architecture consists of a symmetric deep autoencoder neural network with 6
+hidden layers in the encoder and 6 hidden layers in the decoder (plus a central latent space layer).
+Hyperparameters derived from extensive tuning include: 100 epochs with early stopping on MSE loss, learning rate of
+0.01, batch size of 256, dropout rate of 0.01, L2 regularization of 0.001, and ReLU activation function (except the final
+reconstruction layers). For explanation synthesis, the authors evaluate five instruction-tuned local LLMs under 4-bit
+double quantization to minimize local VRAM footprint: Qwen1.5-4B-Chat, Mistral-7B-Instruct-v0.3,
+Llama-3.1-8B-Instruct, Gemma-2-9b-it, and Qwen2.5-32B-Instruct.
+Figure 1: Proposed Human-Centered Explainable AI (HC-XAI) Pipeline (Padín-Torrente et al. 2026) showing the flow from extraction to
+HITL-RAG feedback loop.\nFigure 2: t-SNE visualizations of attack categories in CIC-IDS-2018 showing benign traffic overlap and attack-specific detection capabilities
+under the 95th percentile threshold.\nFigure 3: SHAP-based explanation of an Infiltration alert. It highlights the top three high-reconstruction-error features (Fwd Seg Size Min,
+Protocol, Init Bwd Win Byts) and identifies the specific co-occurring variables driving the error.
+5. Results, Perturbation & Evaluation
+The deep autoencoder achieved robust overall classification performance across the highly imbalanced
+CIC-IDS-2018 dataset, as verified by a 10-fold cross-validation protocol. It achieved a mean Area Under the ROC
+Curve (ROC-AUC) of 91.14% and a mean PR-AUC of 86.27%, representing state-of-the-art unsupervised detection.
+The model's overall metrics are presented in Table 2 below.
+Metric Mean ± Std (10-Fold CV)
+Accuracy (%) 89.12 ± 1.16
+Precision (%) 86.22 ± 0.66
+Recall (%) 75.10 ± 3.87
+F1-Score (%) 80.24 ± 2.47
+ROC-AUC (%) 91.14 ± 0.73
+PR-AUC (%) 86.27 ± 1.21
+Inference Time (µs) 2794 ± 89
+As expected, the autoencoder's detection rates vary significantly by attack type. High-volume, highly distinguishable
+attacks like DDoS-LOIC, SSH-BruteForce, FTP-BruteForce, and DoS-Hulk achieved near-perfect (99.9%-100%)
+detection rates. In contrast, highly subtle or slow attacks like Infiltration (11.39%), Bot (30.60%), SQL Injection
+(31.26%), and Brute Force-Web (42.98%) proved extremely difficult to distinguish from benign flows. This is because
+their flow-based features strongly overlap with normal network traffic distributions (as illustrated in Figure 2's t-SNE
+plot). The detailed breakdown of reconstruction errors and detection rates across individual attack categories is\npresented in Table 3.
+Attack Category Mean Reconstruction Error Detection Accuracy (%)
+Benign (Normal Traffic) (4.85 ± 0.99) × 10-6 94.99 ± 0.05
+DDoS-LOIC-UDP 1.83 ± 0.03 100.00 ± 0.00
+SSH-BruteForce (2.12 ± 1.29) × 10-4 99.99 ± 0.00
+DoS-Hulk (6.47 ± 4.54) × 10-5 99.99 ± 0.00
+FTP-BruteForce (9.30 ± 5.82) × 10-4 99.95 ± 0.16
+DoS-SlowHTTPTest (5.80 ± 4.15) × 10-4 99.90 ± 0.32
+DoS-GoldenEye (5.46 ± 2.21) × 10-5 99.74 ± 0.61
+DoS-Slowloris (1.60 ± 0.51) × 10-3 89.62 ± 10.69
+DDoS-HOIC (7.68 ± 20.86) × 10-4 54.21 ± 37.40
+Brute Force-XSS (2.69 ± 1.54) × 10-5 49.26 ± 0.64
+Brute Force-Web (1.65 ± 0.72) × 10-5 42.98 ± 6.22
+SQL Injection (1.49 ± 0.72) × 10-5 31.26 ± 11.47
+Bot (Malicious Botnet) (1.33 ± 1.53) × 10-5 30.60 ± 24.83
+Infiltration (Intrusion) (1.26 ± 0.37) × 10-5 11.39 ± 0.91\nFigure 4: Retrieval Composition of similar labels for each attack type with k=3. For highly distinctive attacks, retrieval accuracy is 100%.
+Infiltration shows high diversity/confusion due to subtle deviations.
+Figure 5: Peak GPU memory allocation across the five evaluated local LLMs under 4-bit double quantization, demonstrating Qwen-32B's
+heavy resource requirement.
+6. Strengths & Limitations
+Key Strengths: (1) High Interpretability: First framework to successfully translate high-dimensional technical SHAP
+values into readable, structured natural language narratives, dramatically reducing analyst cognitive fatigue and
+improving time-to-incident resolution. (2) Dynamic Expert Grounding: The HITL-RAG feedback loop enables
+security analysts to refine explanations and update the system dynamically without expensive LLM fine-tuning or
+model retraining. (3) Local and Private Deployment: The use of 4-bit quantized local models ensures compliance
+with strict data sovereignty regulations (such as the EU AI Act or GDPR) by keeping sensitive telemetry within
+corporate network boundaries.\nCritical Limitations: (1) Inherent Detector Dependence: The NLE explanation module depends entirely on the
+autoencoder. If the detector generates a False Positive (FP), the LLM will still attempt to explain the anomalous
+feature deviations, though this transparency also reveals the false logic. (2) Extreme Operational Latency: While
+detection is fast (2.8 ms), KernelSHAP feature attribution takes 19.83s, and LLM NLE generation takes 28s to 88s,
+creating a massive real-time barrier.
+7. Relevance, Contradictions & Gaps
+This seminal paper is highly relevant to our Group 8 Synopsis / Roadmaps but highlights several critical
+architectural contradictions:
+(1) Detection Scope (Single vs. Multi-Vantage): Padín-Torrente et al. rely exclusively on flow-based network traffic
+logs (single-plane network detection). Our three-pillar roadmap integrates a calibrated fusion of P1: Network
+AE+GNN, P2: Identity UEBA, and P3: Host eBPF Syscall AE to eliminate blind spots.
+(2) Explainability Medium (Semantic Text vs. Technique Mapping): The paper leverages local LLMs to
+synthesize natural language paragraphs (NLEs). Our host pillar (P3) design maps raw syscall feature attributions
+directly into actionable MITRE ATT&CK Technique IDs (e.g., ptrace + process_vm_readv → T1055.008) for
+immediate defensive indexing.
+(3) Human Evaluation: Padín-Torrente et al. evaluate quality via LLM-as-a-Judge with expert feedback loops. Our
+roadmap is currently focused on automated thresholds, red-team gradient mutations, and online drift detection
+(ADWIN) without direct HITL feedback.
+(4) Computational Latency Mitigations: The reviewed paper accepts a ~1.5 minute alert-to-explanation latency,
+proposing quarantine hold states as a mitigation. In contrast, our P3 design implements extremely fast TreeSHAP
+approximations, sampling optimizations, and an asynchronous, non-blocking queue to keep host overhead under
+2% CPU in real-time.\n8. Detailed Dimensional Comparison Table
+The following table provides a rigorous dimensional benchmark comparing Gaspar et al. (2024), Padín-Torrente et al.
+(2026), and our Group 8 multi-vantage intrusion detection design.
+Dimension Gaspar et al. (IEEE Access Padín-Torrente et al. (2026) Our Project (Group 8 Design)
+2024)
+Detection Scope Host system calls only (single Network traffic flows only Network (AE+GNN) + Identity
+plane detection) (single plane network-level) (UEBA) + Host (eBPF AE)
+multi-vantage fusion
+Model Type Supervised 4-layer Multi-Layer Unsupervised Deep Unsupervised Symmetric
+Perceptron Classifier (ReLU, Autoencoder (6 hidden layers Autoencoder (one-class
+Sigmoid) in encoder & decoder) anomaly scoring)
+Training Data Normal + labeled attack traces Normal (benign) network traffic Normal traffic/syscall
+(supervised, in-distribution) flows only (unsupervised, sequences only (unsupervised,
+one-class) one-class)
+Evaluation Protocol In-distribution train/test split 10-fold cross-validation on Zero-day (held-out attack family)
+(standard supervised metrics) benign and attack categories protocol on live host and
+(detection rates) network streams
+Explainability LIME + SHAP (extracting SHAP feature attributions SHAP feature attributions
+top-10 raw system call feature translated into Natural mapped directly to actionable
+attributions) Language Explanations (NLEs) MITRE ATT&CK Technique IDs
+Human-in-the-Loop 24-person human survey Continuous analyst feedback Not currently in scope (fully
+comparing LIME vs. SHAP loops updating a RAG focused on automated, real-time
+readability database of expert NLEs alert loops)
+Adversarial Testing None conducted or discussed None conducted (future work Red-team evasion testing via
+proposes user trust studies) gradient-guided input feature
+mutations
+Concept Drift Not addressed Not addressed ADWIN and
+Kolmogorov-Smirnov drift
+monitors with incremental
+model retraining
+Overhead & Latency Not addressed; SHAP latency Noted (1.5 min delay). TreeSHAP approximations,
+noted as a barrier but Proposes quarantine hold K-means background, and
+unresolved states as operational async non-blocking queue;
+workaround strict < 2% CPU target
+References
+(cid:127) Antwarg, L., Miller, R. M., Shapira, B., & Rokach, L. (2021). Explaining anomalies detected by autoencoders using Shapley
+additive explanations. Expert Systems with Applications, 186, 115736.
+(cid:127) Lundberg, S. M., & Lee, S.-I. (2017). A unified approach to interpreting model predictions. Advances in Neural Information
+Processing Systems, 30, 4765-4774.
+(cid:127) Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). 'Why should I trust you?': Explaining the predictions of any classifier.
+Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 1135-1144.
+(cid:127) Sharafaldin, I., Lashkari, A. H., & Ghorbani, A. A. (2018). Toward generating a new intrusion detection dataset and intrusion
+traffic characterization. International Conference on Information Systems Security and Privacy.
+(cid:127) Sovrano, F., & Vitali, F. (2024). Explanatory artificial intelligence (YAI): Human-centered explanations of explainable AI and
+complex data. Data Mining and Knowledge Discovery, 38(5), 3141-3168.\n(cid:127) Szymanski, M., Millecamp, M., & Verbert, K. (2021). Visual, textual or hybrid: The effect of user expertise on different
+explanations. Proceedings of the 26th International Conference on Intelligent User Interfaces, 109-119.\n===== Aditya-1.pdf =====\nFINAL YEAR PROJECT • LITERATURE REVIEW BENCHMARK REPORT GROUP 8 • SUBJECT CODE: BCS753
+LITERATURE REVIEW BENCHMARK REPORT • SUBJECT CODE: BCS753 • GROUP 8
+IDENTITY-CENTRIC USER BEHAVIOR ANALYTICS
+FOR INSIDER THREAT DETECTION
+Benchmarking deep learning-based contextual architectures and systematic review frameworks against our
+multi-vantage intrusion detection paradigm.
+Reviewed Paper: A Deep Learning-Based User Behavior Analytics Model for Proactive Cyber Threat
+Detection and Risk Management: A Review
+Paul Akampurira, Enerst Edozie, Bashir Olaniyi Sadiq, Mohammed Dahiru Buhari
+Kampala International University - Western Campus, Uganda
+F1000Research, Vol. 15, Article 674, Published: 06 May 2026 (Version 1; 2 Approved with
+Reservations)
+Compared Against Our Zero-Day Attack Detection Using Autoencoder-Based Anomaly Scoring on Network Flow
+Project: Streams
+Group 8 Synopsis + Weeks 4–6 Multi-Vantage Roadmap:
+• Pillar 1 (P1): Network AE+GNN (Network Anomaly Engine)
+• Pillar 2 (P2): Identity UEBA (User & Entity Behavior Analytics) — Directly Benchmarked Here
+• Pillar 3 (P3): Host eBPF Syscall AE (Host eBPF Anomaly Engine)
+Institution & Session: KCC Institute of Technology and Management, Greater Noida (Subject Code: BCS753 • Group
+Number 8)
+Submitted to: Dr. Mohd. Wazih Ahmad | Session / Academic Year: 2025–2026
+1. PAPER OVERVIEW &AMP; CORE CONTRIBUTION
+In the modern threat landscape, organizational perimeters are increasingly compromised from within. Insider
+threats—whether stemming from negligent employees or malicious actors leveraging authenticated access—account
+for a massive portion of contemporary cybersecurity breaches [19, 24]. Traditional intrusion detection mechanisms
+struggle to spot these anomalies because the transactions are initiated by trusted accounts. Gaspar et al. and
+Akampurira et al. note that the average cost of an insider-related incident has grown catastrophically, reaching
+$15.38 million per breach in recent industry analyses [2, 24].
+This benchmark paper presents a rigorous, systematic review of deep learning-based User Behavior Analytics (UBA)
+and User and Entity Behavior Analytics (UEBA) models for proactive cyber threat detection [19]. The authors analyze
+how context-aware deep learning architectures—specifically Recurrent Neural Networks (RNNs), Long Short-Term
+Memory (LSTM) networks, Gated Recurrent Units (GRUs), Convolutional Neural Networks (CNNs), and
+Transformer-based models—can be integrated to mitigate insider threats [19, 31]. The paper highlights the paradigm
+shift from static, reactive security policies to proactive risk management driven by personalized risk profiling, user
+micro-segmentation, and dynamic, automated interventions aligned with ISO/IEC 27001:2022 standards [19, 28, 29].
+2. OBJECTIVES &AMP; RESEARCH PROBLEM
+Traditional rule-based and signature-based detection systems rely on static threat definitions and predetermined
+patterns, failing to generalize to unseen, dynamic attack vectors [23]. To resolve these limitations, this paper
+systematically explores:
+Reviewed Paper: Akampurira et al. (F1000Research, 2026) Page 1\nFINAL YEAR PROJECT • LITERATURE REVIEW BENCHMARK REPORT GROUP 8 • SUBJECT CODE: BCS753
+• Objective I - Algorithmic Taxonomy & Landscape: Categorize and critically assess the performance, strengths,
+and implementation challenges of various machine learning and deep learning algorithms utilized in UBA/UEBA
+frameworks [31, 47].
+• Objective II - Efficacy of Sequential Modeling: Investigate the capacity of sequential architectures (LSTMs,
+GRUs) and attention mechanisms to model long-term temporal dependencies in user logs and identify
+slow-and-stealthy insider indicators [19, 41].
+• Objective III - Compliance & Standards Alignment: Evaluate how deep learning-driven UEBA architectures can
+map dynamically to standard risk management frameworks, specifically ISO/IEC 27001:2022 and the NIST
+Cybersecurity Framework (CSF) [19, 30].
+• Objective IV - Real-world Constraints: Pinpoint core operational bottlenecks including extreme class imbalance,
+'epistemic blindness' of deterministic networks, scalability, and latency constraints of real-time edge processing
+[31, 32].
+Figure 1 (Left): Cyber Threat Breakdown showing major vulnerability vectors with insiders representing 38–52% of organizational risks [50].
+Figure 2 (Right): Multi-dimensional consequences of an insider breach, encompassing operational, financial, and safety domains [85].
+Reviewed Paper: Akampurira et al. (F1000Research, 2026) Page 2\nFINAL YEAR PROJECT • LITERATURE REVIEW BENCHMARK REPORT GROUP 8 • SUBJECT CODE: BCS753
+3. METHODOLOGY &AMP; SEARCH STRATEGY (PRISMA PROCESS)
+To ensure high scientific rigor, reproducibility, and transparent reporting, the authors executed this systematic review
+in strict compliance with the **PRISMA (Preferred Reporting Items for Systematic Reviews and Meta-Analyses)**
+guidelines [137]. A multi-database search was conducted across core repositories: IEEE Xplore, SpringerLink, ACM
+Digital Library, ScienceDirect, Web of Science, Scopus, and arXiv.org [138]. The search queries restricted literature
+published between 2010 and 2025 (later updated through mid-2026 to incorporate cutting-edge publications) [139,
+140].
+The search syntax combined deep learning descriptors and domain-specific terms using explicit Boolean operators,
+e.g., ('deep learning in cybersecurity' OR 'user and entity behavior analytics (UEBA)' OR 'LSTM for anomaly
+detection' OR 'GRU for insider threat detection') [139]. Out of an initial pool of 2,660 records identified across all
+sources, a stringent multi-stage screening funnel was applied, resulting in a final synthesis pool of **159 high-quality
+peer-reviewed papers** [142].
+Figure 4 (Left): The systematic literature filtering funnel following PRISMA standards, reducing 2,660 records down to 159 studies [142].
+Figure 3 (Right): Standard feedforward Deep Neural Network schematic demonstrating multilayer processing mappings [100].
+4. COMPARATIVE ANALYSIS OF REVIEWED ALGORITHMS
+Paper 1 provides a comprehensive taxonomic evaluation mapping several Machine Learning (ML) and Deep
+Learning (DL) algorithms to behavioral anomaly detection [47]. Key findings highlight distinct structural characteristics
+across model categories:
+Traditional Machine Learning (KNN, SVM, RF, DBSCAN): These models are fast, simple to implement, and
+computationally lightweight, making them highly effective for localized anomaly detection [52, 53, 54, 57]. However,
+they rely heavily on handcrafted feature engineering, fail to capture sequential temporal relationships, and suffer
+severe performance degradation when exposed to highly complex, multi-dimensional security streams [146].
+Deep Learning Sequential Models (LSTM, GRU, RNN): Architectures specifically engineered to process sequential
+logs by utilizing internal gating mechanisms to maintain historical cell states and resolve the vanishing gradient
+problem [19, 103]. While highly effective at modeling temporal user baselines, they are computationally intensive and
+sensitive to hyperparameter initialization [64, 65].
+Reviewed Paper: Akampurira et al. (F1000Research, 2026) Page 3\nFINAL YEAR PROJECT • LITERATURE REVIEW BENCHMARK REPORT GROUP 8 • SUBJECT CODE: BCS753
+Attention Mechanisms & Transformers: Self-attention processes allow the network to dynamically assign weights
+to critical high-risk behavioral features (e.g., unusual login times combined with massive exfiltration volumes) across
+massive time scales [104, 106]. The parallelizability of Transformers allows scaling, though training requires
+substantial data and high computational power [106].
+Generative & Hybrid Models (VAE, GAN, LSTM-RF): Generative models like Variational Autoencoders (VAEs)
+learn to reconstruct normal behavior baselines and flag anomalies via reconstruction error [69]. Hybrid structures
+(such as combining an LSTM's sequential features with a Random Forest classifier) attempt to unify sequential
+tracking with robust, transparent decision-making [108].
+Reviewed Paper: Akampurira et al. (F1000Research, 2026) Page 4\nFINAL YEAR PROJECT • LITERATURE REVIEW BENCHMARK REPORT GROUP 8 • SUBJECT CODE: BCS753
+5. SUMMARY OF REVIEWED MODELS' PERFORMANCE
+To benchmark historical achievements, Paper 1 compiles key experimental performances of various state-of-the-art
+architectures on standard security datasets like CERT, NSL-KDD, and CIC-IDS2017 [72, 74]. This compilation
+underscores the capabilities and inherent operational limitations of different approaches:
+Author / Year Paper Title / Dataset Model Architecture Reported Metrics & Operational Weaknesses
+Yuan et al. Insider Threat Detection with LSTM + CNN Hybrid • Metrics: AUC 0.9449
+(2018) Deep Neural Network • Key Weakness: Complete lack of interpretability
+or confidence metrics; fails to capture dynamic
+Dataset: CERT v4.2 user behavior drift.
+Nasir et al. Behavioral Based Insider LSTM-based behavior • Metrics: ROC-AUC 0.9140
+(2021) Threat Detection Using DL analysis • Key Weakness: Lower detection bounds; lacks
+hybridization and context-aware mitigation logic.
+Dataset: CMU-CERT r4.2
+S. Wang et al. Res-TranBiLSTM: Intrusion Transformer + BiLSTM + • Metrics: Accuracy 90.99% (NSL) / 99.15%
+(2023) Detection in the IoT Feature Fusion (CIC-IDS)
+• Key Weakness: Excessive architectural
+Datasets: NSL-KDD, complexity dramatically increases latency; no
+CIC-IDS2017 uncertainty estimation.
+AlSlaiman et Enhancing False Negative & Deep learning with • Metrics: AUC 97.0%, FP 0.29%, FN 2.47%
+al. Positive Rates for Insider temporal encoding • Key Weakness: Metric-centric optimization with
+(2023) Threat zero human-in-the-loop or adaptive mitigation
+systems.
+Dataset: CERT r4.2
+C. Zhang et al. Intrusion Detection based on Transformer + • Metrics: Accuracy 99.80%, F1 99.81%
+(2025) Transformer + CNN-BiLSTM CNN-BiLSTM + SMOTE • Key Weakness: Evaluated strictly as static
+classification; lacks operational confidence
+Datasets: CIC-IDS2017, scoring for alert filtering.
+BoT-IoT
+Naeem et al. Efficient IoT IDS with CNN-BiLSTM + Attention • Metrics: Accuracy 99.00%
+(2025) Attention-Based Mechanism • Key Weakness: Attention mechanism improves
+CNN-BiLSTM accuracy but fails to provide explainability to
+security analysts.
+Dataset: N-BaIoT
+6. RELEVANCE, CONTRADICTIONS &AMP; GAPS
+The systematic findings of Paper 1 provide a powerful scientific precedent for the architectural design choices of our
+**Identity UEBA Pillar (P2)**, while identifying critical gaps that we actively address:
+1. Resolving the Epistemic Blindness of Deterministic DL: The authors of Paper 1 make a critical theoretical
+observation: while attention mechanisms highlight important features, they remain deterministic and 'epistically
+blind'—meaning they cannot express how certain a model is about its classification [200, 202]. To resolve this, our
+**P2 Engine implements Monte Carlo (MC) Dropout as an Epistemic Uncertainty Estimator**. By executing random
+dropout masks during live inference, we construct a probability distribution over the anomaly score, allowing us to
+Reviewed Paper: Akampurira et al. (F1000Research, 2026) Page 5\nFINAL YEAR PROJECT • LITERATURE REVIEW BENCHMARK REPORT GROUP 8 • SUBJECT CODE: BCS753
+publish both an anomaly index and a confidence boundary [207]. This directly addresses a major gap highlighted in
+Paper 1.
+2. Strict Alignment with ISO/IEC 27001:2022 and NIST: Paper 1 notes that DL-driven UEBA literature rarely details
+concrete mapping to compliance controls [260]. In our P2 Pillar, we map user baselines directly to specific revised
+controls: **Control A.5.7 (Threat Intelligence)** via live feed of suspicious behaviors, **Control A.8.16 (Monitoring
+Activities)** by establishing continuous session verification, and **Control A.8.2 (Privileged Access Rights)** by
+immediately escalating the risk scoring of administrative accounts demonstrating temporal baseline anomalies.
+3. Context-Aware Multi-Head Attention: Insiders easily blend in with normal activities unless evaluated within
+context [125]. P2 implements a **Multi-Head Self-Attention Layer** that contextually correlates active directory logs,
+geolocation anomalies, authentication timings, and resource transfer volumes [162]. This prevents uniform
+thresholding and reduces false positives on legitimate but rare actions.
+4. Low-Latency Automated Interventions: While the literature focuses on retrospective analysis, our P2 design
+triggers live **automated micro-segmentation** and **user isolation** (leveraging SOAR integrations) immediately
+when a high-risk transaction exceeds confidence thresholds [181, 183].
+Reviewed Paper: Akampurira et al. (F1000Research, 2026) Page 6\nFINAL YEAR PROJECT • LITERATURE REVIEW BENCHMARK REPORT GROUP 8 • SUBJECT CODE: BCS753
+7. DETAILED DIMENSIONAL COMPARISON TABLE
+To formalize our positioning, this table contrasts the generalized characteristics of the deep learning UEBA
+architectures reviewed in Paper 1 against the specific, engineered features of our **Group 8 Identity Pillar (P2)
+Design**:
+Analysis Dimension State-of-the-Art Reviewed Limits (Paper 1) Our Identity Pillar (P2) Unified Design
+Detection Paradigm Predominantly supervised or binary classification Completely unsupervised, multi-vantage
+models that assume static, in-distribution traffic anomaly scoring with continuous incremental
+[31]. baselining [112].
+Uncertainty Awareness Highly deterministic models suffering from Monte Carlo Dropout uncertainty co-estimation;
+'epistemic blindness'; overconfident in outputs dynamic confidence intervals to avoid
+out-of-distribution traffic [200]. alert fatigue [207].
+Contextual Correlation Context is often auxiliary or added as Multi-Head Self-Attention layer natively modeling
+handcrafted static rules, leading to uniform active directory logs, geo-location, and resource
+threshold application [204]. volume concurrently [162].
+Regulatory Integration Conceptual discussion of compliance without Direct mapping of identity deviations to ISO/IEC
+empirical controls mapping or specific audit-log 27001:2022 Controls A.5.7, A.8.16, and A.8.2
+integration [260]. [253].
+Active Mitigation Post-hoc offline analysis or simple alerting; lacks Active real-time SOAR integration executing
+real-time automated intervention mechanisms dynamic user isolation and automated
+[180]. micro-segmentation [183].
+Data Imbalance & Drift Struggles with extreme class imbalances in SMOTE-resampling at input layer combined with
+standard CERT benchmarks; fails on active drift active ADWIN drift-detection for incremental
+[153]. retraining [154, 167].
+Reviewed Paper: Akampurira et al. (F1000Research, 2026) Page 7\nFINAL YEAR PROJECT • LITERATURE REVIEW BENCHMARK REPORT GROUP 8 • SUBJECT CODE: BCS753
+Figure 5: High-level architectural flowchart of Group 8's Identity Pillar (P2), incorporating multi-head contextual attention, sequential
+GRU/LSTM encoding, and the Monte Carlo Dropout epistemic uncertainty engine.
+8. PEER REVIEW REFLECTIONS &AMP; ACADEMIC RIGOR
+A key element of Paper 1's scholarly context is its public peer-review status on the F1000Research gateway [18,
+142]. The manuscript achieved **'Approved with Reservations'** from two prominent international experts. In
+compiling this benchmark report, Group 8 has integrated the core critical feedback of these reviewers into our
+architectural positioning, ensuring a standard of academic rigor that addresses their technical reservations:
+• Reviewer 1 (Abayomi Titilola Olutimehin, Royal Holloway University of London): Highlighted that many
+reviewed models overstate their operational readiness, relying heavily on static benchmark datasets (such as CERT
+and KDD99) without discussing the risks of synthetic dataset dependence [256, 258]. In our P2 Pillar, we address this
+critical limitation by evaluating our architecture on live, heterogeneous organizational Active Directory telemetry and
+deploying active ADWIN monitors to capture real-world data drift in real-time [167].
+• Reviewer 2 (Hewa Majeed Zangana, Duhok Polytechnic University): Criticized the lack of standby reproducibility
+in the paper's methodology, noting that search parameters and Boolean strings were omitted in the main text [252].
+Furthermore, Zangana requested a concrete mapping of UEBA capabilities to specific ISO/IEC 27001:2022 Annex A
+controls [253]. We have resolved this by providing explicit, standalone search strings in Section 3 and structurally
+engineering direct mappings to Controls A.5.7, A.8.16, and A.8.2 in our architectural comparative matrix [253].
+Reviewed Paper: Akampurira et al. (F1000Research, 2026) Page 8

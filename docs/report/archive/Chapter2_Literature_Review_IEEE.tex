@@ -1,0 +1,108 @@
+% Chapter 2 — Literature Review (IEEE Condensed, standalone)
+% Compile with: pdflatex Chapter2_Literature_Review_IEEE.tex
+% Class: IEEEtran conference. Matches Chapter2_Literature_Review_IEEE.md.
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\begin{document}
+
+\title{Literature Review: Unsupervised Host-Graph Anomaly Detection for Zero-Day Network Intrusion Detection (Condensed)}
+\author{\IEEEauthorblockN{Deep (Detection Modeling)}
+\IEEEauthorblockA{Department of Computer Science \& Engineering\\Final Year Project, Semester 7}}
+\maketitle
+
+\begin{abstract}
+This condensed review covers intrusion-detection taxonomies, flow datasets, reconstruction detectors, graph detectors, and drift/adversarial evaluation. It keeps 30 archival references and removes team-internal papers, preprints, and template artifacts. Numbering is local; mapping to the full 60-entry \texttt{References.md} is noted per entry.
+\end{abstract}
+
+\section{Taxonomies and Evaluation Protocol}
+Signature systems match stored rules and miss unseen families by definition \cite{debar1999,axelsson2000}. Anomaly detection models normality and flags deviation, at the cost of thresholds and false alarms \cite{chandola2009,bhuyan2014}. Network intrusions are collective anomalies: one scanner flow looks benign; fan-out across a window does not \cite{chandola2009}.
+
+Training and testing on the same capture with overlapping families reports memorisation, not detection \cite{sommer2010}. We follow \cite{sommer2010}: train on benign traffic only, hold out each family in turn, fix the alert unit before quoting metrics, and report multi-seed bands. Drift surveys add score-stream monitoring and flag-governed recalibration \cite{gama2014}.
+
+\section{Datasets and Flow Features}
+CICIDS2017 is the primary benchmark: five days, benign plus seven families, $\sim$2.8M flows \cite{sharafaldin2018}. Only the 85-column \texttt{GeneratedLabelledFlows} release (IP addresses, ports, protocol, timestamp, latin-1) builds host graphs; the 79-column release has no IP columns \cite{sharafaldin2018}. CSE-CIC-IDS2018 repeats the pattern with 1 of 10 files graph-usable \cite{ids2018}. CTU-13 and UNSW-NB15 supply external replication \cite{garcia2014,moustafa2015}.
+
+Flow vocabulary follows CICFlowMeter: 80+ statistics over lengths, inter-arrival times, flags, and segments \cite{lashkari2017}. Ports alone fail as keys under ephemeral randomisation. Two constraints dominate: NaN-address rows must be dropped before host-set construction, and power-law byte/packet counts require log-compression before scaling.
+
+\begin{table}[htbp]
+\caption{Benchmark captures.}
+\label{tab:captures}
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Capture & Scale & Graph-usable \\
+\midrule
+CICIDS2017 \cite{sharafaldin2018} & $\sim$2.8M, 7 families & 85-col only \\
+IDS2018 \cite{ids2018} & $\sim$16M & 1 of 10 files \\
+CTU-13 \cite{garcia2014} & 13 scenarios & Yes, mapped \\
+UNSW-NB15 \cite{moustafa2015} & $\sim$2.5M, 9 families & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Reconstruction Detectors}
+Isolation Forest, one-class SVM, and PCA are the shallow references \cite{liu2008,scholkopf1999,hodge2004}. Deterministic and variational autoencoders beat them on network data while remaining per-flow \cite{sakurada2014,an2015}. Stacked autoencoders on flow features confirm the pattern at scale \cite{shone2018}. Kitsune distributes capacity across per-cluster experts for online scoring but still scores flows, not neighbourhoods \cite{mirsky2018}. The limit is scope: an attacker's single flow is individually normal. The next section keeps reconstruction and changes scope to neighbourhoods.
+
+\section{Graph Detectors}
+GraphSAGE preserves degree signal via mean aggregation; GCN smooths it away via symmetric normalisation \cite{hamilton2017,kipf2017}. Temporal-walk embeddings report recall 0.987 on provenance captures, but on labelled APT replays rather than held-out families \cite{paudel2022}. E-GraphSAGE adds edge features but trains supervised \cite{lo2022}. Anomal-E learns edge embeddings self-supervised \cite{caville2022}. Few-shot pre-training keeps most of supervised performance on under 4\% of labels \cite{gu2024}. Cross-dataset audits caution that CICIDS2017 leaders degrade on second captures \cite{wang2025}. Node scores describe the model; alerts must be emitted per edge and quoted separately.
+
+\begin{table}[htbp]
+\caption{Graph detectors.}
+\label{tab:graphs}
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+System & Backbone & Standing \\
+\midrule
+GraphSAGE \cite{hamilton2017} & Mean aggregation & Preserves degree \\
+GCN \cite{kipf2017} & Symmetric norm. & Washes out degree \\
+Temporal-walk \cite{paudel2022} & Dynamic walks & Recall 0.987, APT eval \\
+E-GraphSAGE \cite{lo2022} & Edge SAGE & Supervised only \\
+Anomal-E \cite{caville2022} & Self-supervised & Granularity open \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Drift, Adversarial Cost, Explanations}
+Unsupervised drift detectors watch score streams, not labels \cite{gama2014}. Traffic-shaping moves malicious flows toward benign regions \cite{debar1999,bhuyan2014}; gradient-free problem-space rewrites are the realistic threat model \cite{apruzzese2023}. Fixed-threat benchmarks rank robustness across models and captures \cite{vitorino2023}. Structural attacks target neighbourhoods rather than features \cite{paudel2022,lo2022,caville2022,wang2025}; hardened training against edge injection recovers part of the loss \cite{galli2025}. SHAP gives per-alert attributions for triage \cite{lundberg2017}; LIME/SHAP agreement on IDS models holds within correlation limits \cite{gaspar2024}. Controls used here: held-out families, per-window percentile calibration, edge-level alerts, multi-seed device-annotated bands, and harness-measured attacker cost.
+
+\section{Summary and Gap}
+Reconstruction handles unseen families, graphs capture collective behaviour, and calibration plus held-out evaluation decide transfer. The gap addressed is unsupervised host-graph reconstruction with benign-only training, edge alerts, calibrated multi-window fusion, and held-out bands, replicated on IDS2018/CTU-13.
+
+\begin{thebibliography}{99}
+\bibitem{debar1999} H. Debar, M. Dacier, and A. Wespi, ``Towards a taxonomy of intrusion-detection systems,'' \textit{Comput. Networks}, vol.~31, no.~8, pp.~805--822, 1999. [repo 2]
+\bibitem{axelsson2000} S. Axelsson, ``Intrusion detection systems: A survey and taxonomy,'' Chalmers Univ., Tech. Rep. 99-15, 2000. [repo 1]
+\bibitem{chandola2009} V. Chandola, A. Banerjee, and V. Kumar, ``Anomaly detection: A survey,'' \textit{ACM Comput. Surv.}, vol.~41, no.~3, pp.~1--58, 2009. [repo 3]
+\bibitem{sommer2010} R. Sommer and V. Paxson, ``Outside the closed world: On using machine learning for network intrusion detection,'' in \textit{Proc. IEEE Symp. Security and Privacy}, 2010, pp.~305--316. [repo 4]
+\bibitem{bhuyan2014} M. Bhuyan, D. Bhattacharyya, and J. Kalita, ``Network anomaly detection: Methods, systems and tools,'' \textit{IEEE Commun. Surveys Tuts.}, vol.~16, no.~1, pp.~303--336, 2014. [repo 5]
+\bibitem{gama2014} J. Gama \textit{et al.}, ``A survey on concept drift adaptation,'' \textit{ACM Comput. Surv.}, vol.~46, no.~4, 2014. [repo 22]
+\bibitem{sharafaldin2018} I. Sharafaldin, A.~H. Lashkari, and A.~A. Ghorbani, ``Toward generating a new intrusion detection dataset and intrusion traffic characterization,'' in \textit{Proc. ICISSP}, 2018. [repo 7]
+\bibitem{ids2018} Canadian Institute for Cybersecurity, ``CSE-CIC-IDS2018 dataset,'' 2018. [repo 8]
+\bibitem{garcia2014} S. Garcia \textit{et al.}, ``An empirical comparison of botnet detection methods,'' \textit{Comput. Secur.}, vol.~45, pp.~100--123, 2014. [repo 9]
+\bibitem{moustafa2015} N. Moustafa and J. Slay, ``UNSW-NB15: A comprehensive data set for network intrusion detection systems,'' in \textit{Proc. MilCIS}, 2015. [repo 10]
+\bibitem{lashkari2017} A.~H. Lashkari, ``CICFlowMeter,'' Canadian Institute for Cybersecurity, 2017. [repo 24]
+\bibitem{liu2008} F.~T. Liu, K.~M. Ting, and Z.-H. Zhou, ``Isolation forest,'' in \textit{Proc. IEEE ICDM}, 2008. [repo 13]
+\bibitem{scholkopf1999} B. Sch\"olkopf \textit{et al.}, ``Support vector method for novelty detection,'' in \textit{Proc. NeurIPS}, 1999. [repo 14]
+\bibitem{hodge2004} A. Hodge and J. Austin, ``A survey of outlier detection methodologies,'' \textit{Artif. Intell. Rev.}, vol.~22, pp.~85--126, 2004. [repo 6]
+\bibitem{sakurada2014} M. Sakurada and T. Yairi, ``Anomaly detection using autoencoders with nonlinear dimensionality reduction,'' in \textit{Proc. MLSDA}, 2014. [repo 15]
+\bibitem{an2015} J. An and S. Cho, ``Variational autoencoder based anomaly detection using reconstruction probability,'' 2015. [repo 16]
+\bibitem{shone2018} N. Shone \textit{et al.}, ``A deep learning approach to network intrusion detection,'' \textit{IEEE Trans. Emerg. Topics Comput. Intell.}, 2018. [repo 25]
+\bibitem{mirsky2018} Y. Mirsky \textit{et al.}, ``Kitsune: An ensemble of autoencoders for online network intrusion detection,'' in \textit{Proc. NDSS}, 2018. [repo 18]
+\bibitem{hamilton2017} W. Hamilton, R. Ying, and J. Leskovec, ``Inductive representation learning on large graphs,'' in \textit{Proc. NeurIPS}, 2017. [repo 11]
+\bibitem{kipf2017} T. Kipf and M. Welling, ``Semi-supervised classification with graph convolutional networks,'' in \textit{Proc. ICLR}, 2017. [repo 12]
+\bibitem{paudel2022} R. Paudel and H. Huang, ``PIKACHU: Temporal walk based dynamic graph embedding for network anomaly detection,'' in \textit{Proc. IEEE/IFIP NOMS}, 2022. [repo 19]
+\bibitem{lo2022} W. Lo \textit{et al.}, ``E-GraphSAGE: A graph neural network based intrusion detection system,'' \textit{IEEE Trans. Dependable Secure Comput.}, 2022. [repo 20]
+\bibitem{caville2022} E. Caville \textit{et al.}, ``Anomal-E: A self-supervised network intrusion detection system based on graph neural networks,'' \textit{Knowl.-Based Syst.}, vol.~258, p.~110030, 2022. [repo 21]
+\bibitem{gu2024} Z. Gu \textit{et al.}, ``Always be pre-training: Representation learning for network intrusion detection with GNNs,'' in \textit{Proc. ISQED}, 2024. [repo 29]
+\bibitem{wang2025} C. Wang \textit{et al.}, ``Are we there yet? Unraveling the state-of-the-art graph network intrusion detection systems,'' \textit{arXiv:2503.20281}, 2025. [repo 30]
+\bibitem{lundberg2017} S. Lundberg and S.-I. Lee, ``A unified approach to interpreting model predictions,'' in \textit{Proc. NeurIPS}, 2017. [repo 17]
+\bibitem{gaspar2024} D. Gaspar, P. Silva, and C. Silva, ``Explainable AI for intrusion detection systems: LIME and SHAP applicability on multi-layer perceptron,'' \textit{IEEE Access}, 2024. [repo 36]
+\bibitem{apruzzese2023} D. Apruzzese \textit{et al.}, ``Real attackers don't compute gradients: Bridging the gap between adversarial ML research and practice,'' in \textit{Proc. USENIX Security}, 2023. [repo 23]
+\bibitem{vitorino2023} J. Vitorino \textit{et al.}, ``An adversarial robustness benchmark for enterprise network intrusion detection,'' in \textit{Proc. FPS}, 2023. [repo 44]
+\bibitem{galli2025} D. Galli \textit{et al.}, ``Defending network intrusion detection systems based on graph neural networks against structural adversarial attacks,'' in \textit{Proc. 23rd IEEE NCA}, 2025. [repo 54]
+\end{thebibliography}
+
+\end{document}
