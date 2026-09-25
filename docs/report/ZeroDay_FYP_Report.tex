@@ -259,8 +259,7 @@ Mean ROC-AUC $0.9996\pm0.0001$ (v1) / $0.9997\pm0.0001$ (v2) across 7 held-out f
 
 \input{ch2_v3/ch2_body}
 
-\section*{Chapter References}
-\input{ch2_v3/ch2_refs}
+% Chapter references are printed at the end of ch2_body.tex (thebibliography k1-k40).
 
 % ===================== CHAPTER 3 =====================
 \chapter{METHODOLOGY}
@@ -474,77 +473,51 @@ Noisy-or batch-only (needs population to rank; single-alert uses rank\_mean). Bo
 Pillar~3 host-syscall autoencoder via eBPF (\texttt{capture/ebpf\_syscall\_watcher.py}), AE-vs-HMM ablation, three-way score fusion (network + UEBA + host). Team work — B supports. Third dataset replication (UNSW-NB15 with pseudo-timestamps), drift-governed threshold, and paper packaging when results freeze (HOSTFUSE + HELD-OUT, one-command artifact, protocol paper outline per \texttt{docs/PROJECT\_GUIDE.md} \S6).
 
 % ===================== REFERENCES =====================
-\chapter*{References}
-\addcontentsline{toc}{chapter}{References}
-\small
-\begin{enumerate}[leftmargin=*,itemsep=2pt,parsep=2pt]
-\item Debar, H. et al. Towards a taxonomy of IDS. Comput. Networks, 1999.
-\item Axelsson, S. IDS: A survey and taxonomy. Chalmers, 2000.
-\item Chandola, V. et al. Anomaly detection: A survey. ACM CSUR, 2009.
-\item Garcia-Teodoro, P. et al. Anomaly-based NIDS. IEEE Commun. Surv. Tuts., 2009.
-\item Bhuyan, M. et al. Network anomaly detection. IEEE Commun. Surv. Tuts., 2014.
-\item Sommer, R. \& Paxson, V. Outside the closed world. IEEE S\&P, 2010.
-\item Patcha, A. \& Park, J. An overview of anomaly detection. Comput. Networks, 2007.
-\item Hodge, V. \& Austin, J. A survey of outlier detection. Artif. Intell. Rev., 2004.
-\item Lashkari, A.H. et al. CICFlowMeter. CIC, 2017.
-\item Moore, A. et al. Discriminators for flow classification. 2005.
-\item Williams, N. et al. Comparison of five ML algorithms. 2006.
-\item Sharafaldin, I. et al. CICIDS2017. CIC, 2018.
-\item Ring, M. et al. Survey of NIDS datasets. 2019.
-\item Heng, M. et al. Dataset realism. 2024.
-\item Durieux, V. \& Gevenois, P. Bibliometric indicators. 2010.
-\item Franceschini, F. h-index. 2010.
-\item Zitt, M. \& Bassecoulard, E. Challenges for indicators. 2008.
-\item Biglia \& Butler. Bibliometric analysis. 2005.
-\item Sakurada, M. \& Yairi, T. Anomaly detection using autoencoders. MLSDA, 2014.
-\item An, J. \& Cho, S. Variational autoencoder anomaly detection. 2015.
-\item Liu, F. et al. Isolation Forest. ICDM, 2008.
-\item Scholkopf, B. et al. Support vector novelty. NeurIPS, 1999.
-\item Merton, R. 1963. Publication collaboration.
-\item Manten. 1968. Earth Science authorship.
-\item Zuckerman. 1968. Nobel laureates.
-\item Meadows, A. 1974. Communication in science.
-\item Klaic. 1990. Chemists of Rugjer Boskovic.
-\item Vimala \& Pulla Reddy. 1996. Zoology theses.
-\item Gupta \& Karisiddappa. 1998. Population genetics.
-\item Mahapatra \& Bhagavan Doss. 2000. Geology.
-\item Seglen \& Aksnes. 2000. Norwegian microbiology.
-\item Moed, H. 2000. Biotechnology departments.
-\item Arunachalam \& Doss. 2000. Asian collaboration.
-\item Kannappanavar \& Vijayakumar. 2001. Authorship trend.
-\item Farahat, H. 2002. Egyptian journals.
-\item Suresh Kumar \& Garg. 2005. China vs India CS.
-\item Calero, C. et al. 2006. Bibliometric mapping.
-\item Park, T. 2008. Library science authorship.
-\item Tijssen \& Van Leeuwen. 2001. Scientometric evaluation.
-\item Thomaidis, N. et al. 2003. Balkan chemistry.
-\item Leydesdorff, L. 2004. Research evaluation.
-\item Surulinathi et al. 2007. Knowledge management India.
-\item Tseng, Y. et al. 2009. Trend analysis.
-\item Annibaldi et al. 2010. Italian analytical chemistry.
-\item Padma, P. 2010. Madurai Kamaraj thesis.
-\item Garfield, E. 1983. World research 1973.
-\item Mehrotra \& Lancaster. 1984. Indian science.
-\item Raghuram \& Madhavi. 1996. Decline in Indian science. Nature.
-\item Raina, D. et al. 1995. Indian research 1800-1950.
-\item Bandyopadhyay, A.K. 2001. Indian research 1950-1990.
-\item Arunachalam et al. 1998. 42,000 Indian papers.
-\item Arunachalam. 2000. Is science in India on decline.
-\item Arunachalam \& Gunasekaran. 2002. Tuberculosis.
-\item Kademani, B.S. et al. 2006. Thorium India.
-\item Kademani et al. 2007. Indian S\&T 1990-2004.
-\item UNEP E-waste Manual; NIST CSF; ENISA.
-\item Hamilton, W. et al. GraphSAGE. NeurIPS, 2017.
-\item Kipf, T. \& Welling, M. GCN. ICLR, 2017.
-\item Mirsky, Y. et al. Kitsune. NDSS, 2018.
-\item Alsham et al. PIKACHU. 2022.
-\item Lo, W. et al. E-GraphSAGE. TDSC, 2022.
-\item Cavanaugh et al. Anomal-E. 2022.
-\item Gama, J. et al. Concept drift. ACM CSUR, 2014.
-\item Apruzzese et al. Real attackers don't compute gradients. USENIX, 2023.
-\item Lundberg \& Lee. SHAP. NeurIPS, 2017.
-\item MITRE CVE; VERIZON DBIR; CIC IDS2018; UNSW-NB15; CTU-13.
-\end{enumerate}
+\\chapter*{References}
+\\addcontentsline{toc}{chapter}{References}
+\\small
+\\begin{enumerate}[leftmargin=*,itemsep=2pt,parsep=2pt]
+\\item H. Debar, M. Dacier, and A. Wespi, "Towards a taxonomy of intrusion-detection systems," \\textit{Comput. Networks}, vol. 31, no. 8, pp. 805–822, 1999.
+\\item S. Axelsson, "Intrusion detection systems: A survey and taxonomy," Dept. Comput. Eng., Chalmers Univ., Tech. Rep. 99-15, 2000.
+\\item V. Chandola, A. Banerjee, and V. Kumar, "Anomaly detection: A survey," \\textit{ACM Comput. Surv.}, vol. 41, no. 3, Art. no. 15, pp. 1–58, 2009.
+\\item R. Sommer and V. Paxson, "Outside the closed world: On using machine learning for network intrusion detection," in \\textit{Proc. IEEE S\\&P}, 2010, pp. 305–316.
+\\item I. Sharafaldin, A. H. Lashkari, and A. A. Ghorbani, "Toward generating a new intrusion detection dataset and intrusion traffic characterization," in \\textit{Proc. 4th Int. Conf. Information Systems Security and Privacy (ICISSP)}, Funchal, Portugal, 2018, pp. 108–116. doi: 10.5220/0006639801080116.
+\\item I. Sharafaldin et al., CSE-CIC-IDS2018 dataset, Canadian Institute for Cybersecurity, 2018.
+\\item S. Garcia, M. Grill, J. Stiborek, and A. Zunino, "An empirical comparison of botnet detection methods," \\textit{Comput. Secur.}, vol. 45, pp. 100–123, 2014. doi: 10.1016/j.cose.2014.05.011. (CTU-13)
+\\item N. Moustafa and J. Slay, "UNSW-NB15: A comprehensive data set…," in \\textit{Proc. Military Commun. Inf. Syst. Conf. (MilCIS)}, Canberra, Australia, 2015, pp. 1–6. doi: 10.1109/MilCIS.2015.7348942.
+\\item A. H. Lashkari, CICFlowMeter (formerly ISCXFlowMeter), Canadian Institute for Cybersecurity, 2017. [Online]. Available: https://github.com/ahlashkari/CICFlowMeter
+\\item F. T. Liu, K. M. Ting, and Z.-H. Zhou, "Isolation forest," in \\textit{Proc. 8th IEEE Int. Conf. Data Mining (ICDM)}, Pisa, Italy, 2008, pp. 413–422. doi: 10.1109/ICDM.2008.17.
+\\item J. An and S. Cho, "Variational autoencoder based anomaly detection using reconstruction probability," SNU Data Mining Center, Tech. Rep. SNUDM-TR-2015-03, Dec. 2015.
+\\item M. Sakurada and T. Yairi, "Anomaly detection using autoencoders with nonlinear dimensionality reduction," in \\textit{Proc. MLSDA 2014 2nd Workshop on Machine Learning for Sensory Data Analysis}, 2014, pp. 4–11. doi: 10.1145/2689746.2689747.
+\\item Y. Mirsky, T. Doitshman, Y. Elovici, and A. Shabtai, "Kitsune: An ensemble of autoencoders for online NIDS," in \\textit{Proc. NDSS}, 2018.
+\\item W. Hamilton, R. Ying, and J. Leskovec, "Inductive representation learning on large graphs," in \\textit{Proc. NeurIPS}, 2017.
+\\item T. Kipf and M. Welling, "Semi-supervised classification with graph convolutional networks," in \\textit{Proc. ICLR}, 2017.
+\\item R. Paudel and H. Huang, "PIKACHU: Temporal walk based dynamic graph embedding for network anomaly detection," in \\textit{Proc. IEEE/IFIP Network Operations and Management Symp. (NOMS)}, 2022, pp. 1-7. doi: 10.1109/NOMS54207.2022.9789921. [Provenance-graph APT detection, DARPA OpTC/LANL; true-positive rates 95.1\\% LANL / 98.7\\% OpTC on labelled APT captures, not held-out families]
+\\item I. J. King and H. H. Huang, "Euler: Detecting network lateral movement via scalable temporal graph link prediction," in \\textit{Proc. Network and Distributed System Security Symp. (NDSS)}, 2022. doi: 10.14722/ndss.2022.24107. [Batch-A verified REAL; temporal-GNN baseline for M5b-fused ablation]
+\\item W. W. Lo, S. Layeghy, M. Sarhan, M. Gallagher, and M. Portmann, "E-GraphSAGE: A graph neural network based intrusion detection system for IoT," in \\textit{Proc. IEEE/IFIP Network Operations and Management Symp. (NOMS)}, Budapest, Hungary, 2022, pp. 1–9. doi: 10.1109/NOMS54207.2022.9789878.
+\\item E. Caville, W. W. Lo, S. Layeghy, and M. Portmann, "Anomal-E: A self-supervised network intrusion detection system based on graph neural networks," \\textit{Knowledge-Based Systems}, vol. 258, p. 110030, 2022. doi: 10.1016/j.knosys.2022.110030.
+\\item Z. Gu, D. T. Lopez, L. Alrahis, and O. Sinanoglu, "Always be pre-training: Representation learning for network intrusion detection with GNNs," in \\textit{Proc. Int. Symp. Quality Electronic Design (ISQED)}, 2024. arXiv:2402.18986.
+\\item Z. Jia et al., "MAGIC: Detecting advanced persistent threats via masked graph representation learning," in \\textit{Proc. 33rd USENIX Security Symp. (USENIX Security 24)}, Philadelphia, PA, 2024, pp. 5197–5214. arXiv:2310.09831. [Batch-A REAL; masked graph autoencoder + benign-only K-D-tree kNN outlier — host-side analogue of M5b]
+\\item S. Wang et al., "THREATRACE: Detecting and Tracing Host-Based Threats in Node Level Through Provenance Graph Learning," \\textit{IEEE Trans. Inf. Forensics Security}, vol. 17, pp. 3972–3987, 2022. doi: 10.1109/tifs.2022.3208815. arXiv:2111.04333. [Batch-A REAL; GraphSAGE per-role node classifier — direct host-side analogue]
+\\item C. Wang, P. Zheng, J. Gui, C. Hua, and W. U. Hassan, "R+R: From claims to crashes: A systematic re-evaluation of graph-based network intrusion detection systems," in \\textit{Proc. Annual Computer Security Applications Conf. (ACSAC)}, Honolulu, HI, USA, 2025. arXiv:2503.20281. (Per-paper DOI pending — do not invent.)
+\\item S. M. Alshehri, S. A. Sharaf, and R. A. Molla, "Systematic review of graph neural network for malicious attack detection," \\textit{MDPI Information}, vol. 16, no. 6, p. 470, 2025. doi: 10.3390/info16060470. [28 studies 2020–2025]
+\\item A. Venturi, D. Stabili, and M. Marchetti, "Problem space structural adversarial attacks for network intrusion detection systems based on graph neural networks," \\textit{arXiv preprint arXiv:2403.11830}, 2024. [Submitted to IEEE TIFS]
+\\item M. Marchetti, S. Carminati, and G. Polino, "Problem space structural adversarial attacks for network intrusion detection systems based on graph neural network classifiers," \\textit{arXiv preprint arXiv:2412.18218v1}, 2024. [Cited as v1; the identifier now resolves to a replaced v2 on a different topic — v1 content per team list]
+\\item D. Galli, A. Venturi, D. Stabili, M. Andreolini, and M. Marchetti, "Defending network intrusion detection systems based on graph neural networks against structural adversarial attacks," in \\textit{Proc. 23rd IEEE Int. Symp. Netw. Comput. and Appl. (NCA)}, Lisbon, Portugal, 2025, pp. 219–228. doi: 10.1109/NCA67271.2025.00043.
+\\item J. Gama, I. Žliobaitė, A. Bifet, M. Pechenizkiy, and A. Bouchachia, "A survey on concept drift adaptation," \\textit{ACM Comput. Surv.}, vol. 46, no. 4, Art. 44, 2014. doi: 10.1145/2523813.
+\\item S. Lundberg and S.-I. Lee, "A unified approach to interpreting model predictions," in \\textit{Proc. Adv. Neural Inf. Process. Syst. (NIPS)}, Long Beach, CA, 2017.
+\\item G. Apruzzese et al., "Real attackers don't compute gradients: Bridging the gap between adversarial ML research and practice," in \\textit{Proc. 1st IEEE Conf. Secure and Trustworthy Machine Learning (SaTML)}, 2023. doi: 10.1109/SaTML54575.2023.00031. arXiv:2212.14315.
+\\item J. Vitorino, M. Silva, E. Maia, and I. Praça, "An adversarial robustness benchmark for enterprise network intrusion detection," in \\textit{Proc. 16th Int. Symp. Foundations and Practice of Security (FPS)}, Bordeaux, France, 2023, \\textit{Lecture Notes in Comput. Sci.}, vol. 14551, pp. 3–17. Springer, 2023. arXiv:2402.16912. doi: 10.1007/978-3-031-57537-2\\_1.
+\\item Y. Sharon, D. Berend, Y. Liu, A. Shabtai, and Y. Elovici, "TANTRA: Timing-based adversarial network traffic reshaping attack," \\textit{IEEE Trans. Inf. Forensics Security}, vol. 17, 2022. doi: 10.1109/TIFS.2022.3201377. arXiv:2103.06297. [Batch-B REAL; timing-only evasion — harness attack class for flow time features]
+\\item J. Vitorino, N. Oliveira, and I. Praça, "Adaptative Perturbation Patterns: Realistic Adversarial Learning for Robust Intrusion Detection," \\textit{Future Internet}, vol. 14, no. 4, p. 108, 2022. doi: 10.3390/fi14040108. arXiv:2203.04234. [Batch-B REAL; realism filter — reject gradient-noise breaking port/protocol semantics]
+\\item X. Zhang, R. Zhao, Z. Jiang, H. Chen, Y. Ding, E. C. H. Ngai, and S.-H. Yang, "Continual learning with strategic selection and forgetting for network intrusion detection," in \\textit{Proc. IEEE Int. Conf. Comput. Commun. (INFOCOM)}, 2025. doi: 10.1109/INFOCOM55648.2025.11044615. arXiv:2412.16264.
+\\item S. Yang, X. Zheng, J. Li, J. Xu, X. Wang, and E. C. H. Ngai, "ReCDA: Concept drift adaptation with representation enhancement for network intrusion detection," in \\textit{Proc. 30th ACM SIGKDD Conf. Knowledge Discovery and Data Mining}, 2024, pp. 3818–3828. doi: 10.1145/3637528.3672007. [Journal version: "Self-Supervised Adaptation Method to Concept Drift for Network Intrusion Detection," \\textit{IEEE Trans. Dependable and Secure Comput.}, vol. 22, no. 6, 2025. doi: 10.1109/TDSC.2025.3599321.]
+\\item D. Gaspar, P. Silva, and C. Silva, "Explainable AI for intrusion detection systems: LIME and SHAP applicability on multi-layer perceptron," \\textit{IEEE Access}, vol. 12, pp. 30164–30175, 2024. doi: 10.1109/ACCESS.2024.3368377.
+\\item D. Slack, S. Hilgard, E. Jia, S. Singh, and H. Lakkaraju, "Fooling LIME and SHAP: Adversarial attacks on post hoc explanation methods," in \\textit{Proc. AAAI/ACM Conf. AI, Ethics, and Society (AIES)}, 2020, pp. 180–186. doi: 10.1145/3375627.3375830. arXiv:1911.02508. [Batch-B REAL, venue corrected FAT*→AIES 2020; SHAP/LIME are attackable — robustness-check M7]
+\\item H. Padin-Torrente, V. Carneiro-Diaz, and I. Ortega-Fernandez, "Toward human-centered explainability: Natural language explanations for anomaly detection," \\textit{Information Systems Frontiers}, 2026. doi: 10.1007/s10796-026-10717-3.
+\\item P. Akampurira et al., "A deep learning-based user behavior analytics model for proactive cyber threat detection and risk management," \\textit{F1000Research}, vol. 15, p. 674, 2026. doi: 10.12688/f1000research.178351.1. [Systematic review; attention-based LSTM, ISO/IEC 27001 alignment. Also listed as team paper paper1.pdf; single entry]
+\\item R. V. Panchal, R. Snehkunj, and V. V. Panchal, "Explainable artificial intelligence (XAI) for intelligent intrusion detection systems and threat response automation (XAI-IDR)," \\textit{Int. J. Computer Applications}, vol. 187, no. 74, pp. 51–55, Jan. 2026. doi: 10.5120/ijca2026926262. [Team Excel P12 and P33 are this one paper; single entry]
+\\end{enumerate}
 
 % ===================== APPENDICES =====================
 \appendix

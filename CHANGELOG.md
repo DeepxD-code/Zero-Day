@@ -2,6 +2,20 @@
 
 Append-only log of what changed and why. **Pull, then read the top of this file.**
 
+## 2026-09-22 — References [1]-[40] only + Ch2-only scope + 25pp rebuild
+**Author:** Deep (Person B — Detection Modeling)
+
+### What changed
+* `docs/report/References.md`: trimmed 73 → exactly 40 entries in chapter order (primary-home). PIKACHU [16] carries DOI + true-positive rates 95.1%/98.7%.
+* `docs/report/Chapter2_Literature_Review.md`: local-to-repo map replaced with plain References ([1]-[40]) list; zero `repo [N]` tags, body cites exactly [1]-[40].
+* `docs/report/ZeroDay_FYP_Report.tex`: removed broken `ch2_v3/ch2_refs` input (bibliography ships inside `ch2_body.tex`); stale References block (bibliometrics filler, Alsham/Cavanaugh/USENIX errors) replaced with the correct 40.
+* `docs/report/Chapter3_Methodology.md`, `Chapter4_Design_and_Modelling.md`: removed (Ch2-only scope).
+* `docs/report/ch2_v3/Chapter2_only.pdf`: rebuilt 25 pages, zero errors, 40/40 markers (trex2-machine MiKTeX package set filled via CLI).
+
+Assisted-by: Muse Spark (opencode)
+
+---
+
 ## 2026-09-21 — Chapter 2 v3 direct-field redraft (40 studies, 25pp, boss-passed) + docs cleanup
 **Author:** Deep (Person B — Detection Modeling)
 
