@@ -19,3 +19,6 @@ __pycache__/
 
 # Session sidecars (local only, synced via relay not git)
 /.opencode/
+
+# Chapter build artifacts (regenerable via pdflatex)
+docs/report/ch2_v3/out/
