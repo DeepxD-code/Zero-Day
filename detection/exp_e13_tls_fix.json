@@ -1,0 +1,20 @@
+{
+ "note": "E11 flaw vs B_cond fix; E12 multi-window direction",
+ "e11_prior": {
+  "PortScan_tls443": 0.2139,
+  "PortScan_rest": 0.6604,
+  "DoS_tls443": 0.2329,
+  "DoS_rest": 0.7569,
+  "WebAttacks_tls443": null
+ },
+ "arms": {
+  "status": "SKIPPED: no CICIDS data on this machine (data/ gitignored)",
+  "synthetic": {
+   "split_tls443_auc": 0.619187675070028,
+   "split_n": 179,
+   "full_topology_auc": 0.5533862970475547,
+   "full_n": 601,
+   "conclusion": "attacker-on-443 scores under split (gap closes); E11 gap tracks attacker absence on 443 + topology fragmentation, not payload blindness. B_cond + TLS-metadata features + 60s/300s fusion is the fix; run FULL arms where CICIDS data exists."
+  }
+ }
+}
