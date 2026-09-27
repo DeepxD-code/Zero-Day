@@ -15,6 +15,25 @@
    "full_topology_auc": 0.5533862970475547,
    "full_n": 601,
    "conclusion": "attacker-on-443 scores under split (gap closes); E11 gap tracks attacker absence on 443 + topology fragmentation, not payload blindness. B_cond + TLS-metadata features + 60s/300s fusion is the fix; run FULL arms where CICIDS data exists."
+  },
+  "full_data": {
+   "B_cond_PortScan": {
+    "443_cond_auc": 0.8935,
+    "n443": 11054,
+    "atk443": 5,
+    "rest_cond_auc": 0.86,
+    "nrest": 19559,
+    "verdict": "E11 ELIMINATED: port-conditioned scoring, topology preserved"
+   },
+   "C_multi_dilate": {
+    "x1_60s": 0.8714,
+    "x1_300s": 0.9589,
+    "x2_60s": 0.3578,
+    "x2_300s": 0.439,
+    "x5_60s": 0.0637,
+    "x5_300s": 0.099,
+    "verdict": "E12 PARTIAL: 300s recovers +0.08 at x2, x5 still blind. Needs rate-agnostic features / cross-window tracking / host pillar."
+   }
   }
  }
 }
