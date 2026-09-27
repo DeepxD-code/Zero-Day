@@ -60,8 +60,13 @@ if hasattr(sys.stdout, "reconfigure"):
 
 def main():
     from sklearn.metrics import roc_auc_score
+    import argparse as _ap
+    _p = _ap.ArgumentParser()
+    _p.add_argument("--ckpt", default=str(CKPT))
+    _p.add_argument("--out", default=str(OUT))
+    _a = _p.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    blob = torch.load(CKPT, map_location="cpu", weights_only=True)
+    blob = torch.load(_a.ckpt, map_location="cpu", weights_only=True)
     model = GraphAutoencoder(in_dim=19)
     model.load_state_dict(blob["model"])
     model.eval().to(device)
@@ -121,8 +126,8 @@ def main():
         print(f"{fam:12s} AUC {auc} CI {row['ci95']} "
               f"best_rank {row['best_attacker_rank']} "
               f"atk {n_pos}/{len(y)} {row['verdict'][:16]}", flush=True)
-    OUT.write_text(json.dumps(card, indent=1))
-    print(f"-> {OUT.name}")
+    Path(_a.out).write_text(json.dumps(card, indent=1))
+    print(f"-> {_a.out}")
 
 
 if __name__ == "__main__":
