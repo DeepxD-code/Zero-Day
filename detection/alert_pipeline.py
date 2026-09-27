@@ -167,11 +167,17 @@ def init_drift_monitors(baseline_rel_scores: list[float], baseline_flow_scores: 
 def score_window(df: pd.DataFrame, feature_columns: list[str] | None = None,
                  threshold: float | None = None, window_seconds: int = 60, k: int = 0,
                  feature_set: str = "v2", drift: DetectorDriftMonitors | None = None,
-                 use_revived: bool = True) -> list[dict]:
+                 use_revived: bool = True, top_k: int | None = None) -> list[dict]:
     """Score a window of flows with both detectors and emit ScoredAlerts.
 
     Production recipe (2026-08-25e): GNN-logscale + REVIVED 87-dim per-flow AE,
     fused by within-window rank noisyor. feature_set="v2" (19 host feats).
+
+    Thresholding (E13 R1: frozen raw thresholds do NOT transfer across days —
+    Monday p95 gives precision 0.037 on Friday):
+      * threshold=None (default): no flagging, caller calibrates downstream.
+      * top_k=N: flag the top-N fused edges in THIS window (rank cut,
+        transfers by construction). Overrides `threshold` when both given.
 
     Hard requirements — this function FAILS rather than silently degrading:
       * revived checkpoint missing            -> RuntimeError
@@ -266,23 +272,34 @@ def score_window(df: pd.DataFrame, feature_columns: list[str] | None = None,
     # ---- pass 2: within-window rank fusion (noisyor; gotcha #17 batch-only)
     rel_r = _rank01(np.array([e["relational"] for e in edges]))
     rev_r = _rank01(np.array([e["revived_raw"] for e in edges])) if use_rev else None
-    alerts = []
+    fused_all = []
     for i, e in enumerate(edges):
         if use_rev:
-            fused = float(_noisyor(rel_r[i], rev_r[i]))
-            revived_pct = float(rev_r[i])
+            fused_all.append(float(_noisyor(rel_r[i], rev_r[i])))
         else:
-            fused = e["relational"]  # fallback: raw relational (no revived checkpoint)
-            revived_pct = 0.0
+            fused_all.append(e["relational"])  # fallback: raw relational
+    # E13 R1: top_k rank cut replaces frozen raw thresholds (no cross-day transfer).
+    topk_set: set[int] | None = None
+    if top_k is not None:
+        order = np.argsort(np.argsort(np.array(fused_all)))
+        cut = len(fused_all) - int(top_k)
+        topk_set = {i for i, r in enumerate(order) if r >= max(cut, 0)}
+    alerts = []
+    for i, e in enumerate(edges):
+        fused = fused_all[i]
+        revived_pct = float(rev_r[i]) if use_rev else 0.0
 
         # Feed drift monitors (M6) if wired — tracks queue saturation (RC-27/28)
         dm = drift if drift is not None else _drift_monitors
         if dm is not None:
             dm.add(e["relational"], e["revived_raw"] if use_rev else None, fused)
 
-        # Threshold: if None, caller should use percentile-calibrated threshold downstream;
-        # default 0.5 only for backward compat when fused is raw MSE (uncalibrated gotcha #7).
-        is_anomaly = (fused > threshold) if threshold is not None else False
+        # E13 R1: top_k rank cut (transfers across days) overrides frozen raw
+        # thresholds (do not transfer — Monday p95 gives precision 0.037 Friday).
+        if topk_set is not None:
+            is_anomaly = i in topk_set
+        else:
+            is_anomaly = (fused > threshold) if threshold is not None else False
         node = e["node"]
         alerts.append({
             "alert_id": str(uuid.uuid4()),
@@ -299,7 +316,7 @@ def score_window(df: pd.DataFrame, feature_columns: list[str] | None = None,
                              else ("gnn-v1-logscale" if LOGSCALE_PATH.exists() else "gnn-v1")),
             "is_adversarial_test": False,
             "is_anomaly": is_anomaly,
-            "threshold": threshold,
+            "threshold": threshold if topk_set is None else f"top_k={top_k}",
             "feature_vector": [0.0] * EXPECTED_FEATURES,
             "network_subscores": {
                 "per_flow": round(e["per_flow"], 6),
