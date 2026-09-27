@@ -1,0 +1,11 @@
+{
+ "data": "CICIDS2017_improved/thursday",
+ "model": "gnn_autoencoder_improved_monday_v2.pt",
+ "family": "Infiltration(+Portscan)",
+ "single_window_rank": 0.76,
+ "transductive_mean": 0.9735,
+ "causal_running_mean": 0.9082,
+ "n_edges": 55202,
+ "n_atk": 866,
+ "verdict": "E13 R3 generalizes: causal reputation lifts Inf 0.76->0.91 live. Deploy via HostReputation."
+}
