@@ -83,33 +83,44 @@ def main():
     print(f"flows {len(df)} attempted-excluded {int(attempted.sum())}",
           flush=True)
     df = df[~attempted].copy()
-    lab = df["label"].astype(str).str.strip()
-    df = df.sort_values("timestamp")
+    # NOTE (E17 fix): _window_key is RELATIVE to df.min(), so a concatenated
+    # multi-day df collides days into shared windows. Score each day-file
+    # separately (absolute per-day windows), pool edges per family after.
+    dayframes = []
+    for f in DAYFILES:
+        d = normalize_columns(pd.read_csv(DATA / f, low_memory=True))
+        d = d[d["src_ip"].map(lambda v: isinstance(v, str))
+              & d["dst_ip"].map(lambda v: isinstance(v, str))]
+        l = d["label"].astype(str).str.strip()
+        d = d[~l.str.endswith("- Attempted")].copy()
+        d = d.sort_values("timestamp")
+        dayframes.append(d)
 
     card = {}
     for fam, labels in FAMS.items():
         ys, ss = [], []
         n_graphs = 0
-        for _, w in df.groupby(_window_key(df, 60)):
-            gs = build_graphs(w, window_seconds=60, feature_set="v2")
-            if not gs:
-                continue
-            g = gs[0]
-            n_graphs += 1
-            with torch.no_grad():
-                ns = model.node_scores(scaler.transform(g.x).to(device),
-                                       g.edge_index.to(device)).cpu().numpy()
-            ei = g.edge_index.cpu().numpy()
-            rel = (ns[ei[0]] + ns[ei[1]]) / 2.0
-            o = np.argsort(np.argsort(rel))
-            r = o / max(len(rel) - 1, 1)
-            wl = lab.loc[w.index]
-            # attacker edge = src host that launches `fam` anywhere that day
-            fam_srcs = set(w["src_ip"][wl.isin(labels).to_numpy()])
-            for e in range(g.num_edges):
-                src = g.hosts[int(ei[0, e])]
-                ys.append(1 if src in fam_srcs else 0)
-                ss.append(float(r[e]))
+        for d in dayframes:
+            lab_d = d["label"].astype(str).str.strip()
+            for _, w in d.groupby(_window_key(d, 60)):
+                gs = build_graphs(w, window_seconds=60, feature_set="v2")
+                if not gs:
+                    continue
+                g = gs[0]
+                n_graphs += 1
+                with torch.no_grad():
+                    ns = model.node_scores(scaler.transform(g.x).to(device),
+                                           g.edge_index.to(device)).cpu().numpy()
+                ei = g.edge_index.cpu().numpy()
+                rel = (ns[ei[0]] + ns[ei[1]]) / 2.0
+                o = np.argsort(np.argsort(rel))
+                r = o / max(len(rel) - 1, 1)
+                wl = lab_d.loc[w.index]
+                fam_srcs = set(w["src_ip"][wl.isin(labels).to_numpy()])
+                for e in range(g.num_edges):
+                    src = g.hosts[int(ei[0, e])]
+                    ys.append(1 if src in fam_srcs else 0)
+                    ss.append(float(r[e]))
         y = np.array(ys)
         s = np.array(ss)
         auc = float(roc_auc_score(y, s)) if 0 < y.sum() < len(y) else None
