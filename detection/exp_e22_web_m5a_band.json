@@ -1,0 +1,26 @@
+{
+ "data": "CICIDS2017_improved/thursday",
+ "family": "WebAttacks",
+ "n_atk": 104,
+ "m5b_graph_band": {
+  "mean": 0.8129,
+  "std": 0.0907,
+  "seeds": [
+   0.931,
+   0.849,
+   0.79,
+   0.682
+  ]
+ },
+ "m5a_flow_band": {
+  "mean": 0.8953,
+  "std": 0.0257,
+  "seeds": [
+   0.8783,
+   0.9065,
+   0.865,
+   0.9306
+  ]
+ },
+ "verdict": "M5a stable where M5b flips (seed3: graph 0.68 vs flow 0.93). Complementary pillars; fusion stabilizes Web."
+}
