@@ -1,0 +1,25 @@
+{
+ "data": "CICIDS2017_improved/friday",
+ "m5b_ckpt": "gnn_autoencoder_improved_monday_v2.pt",
+ "m5a_ckpt": "m5a_revived_improved_ctx.pt",
+ "rule": "60s edge AUC, rank-noisyor fusion",
+ "Botnet": {
+  "m5b": 0.3505,
+  "m5a": 0.6606,
+  "fused": 0.5053,
+  "atk": 2376
+ },
+ "PortScan": {
+  "m5b": 0.979,
+  "m5a": 0.9186,
+  "fused": 0.9704,
+  "atk": 27
+ },
+ "DDoS": {
+  "m5b": 0.9974,
+  "m5a": 0.9955,
+  "fused": 0.9795,
+  "atk": 26
+ },
+ "verdict": "M5a alone best for Botnet (0.66); fusion dilutes (M5b rank noise). Network caps at 0.66; host pillar next."
+}
