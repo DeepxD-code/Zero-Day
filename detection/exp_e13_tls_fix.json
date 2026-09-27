@@ -40,6 +40,31 @@
     "all_auc": 0.9946,
     "method": "mean host score across 60s windows + 300s, 50/50 fuse, edge=(src+dst)/2",
     "verdict": "0.89 -> 1.0 YES. Caveats: 5 atk edges on 443; transductive day-level fusion (running-reputation in prod, not single-window realtime)."
+   },
+   "RISK_VERIFY": {
+    "R1_Monday_thr": {
+     "AUC": 0.9998,
+     "F1": 0.0714,
+     "prec": 0.037,
+     "rec": 1.0,
+     "verdict": "CONFIRMED: ranking transfers, operating point does not. Quote ranks."
+    },
+    "R2_small_sample": {
+     "443_CI95": [
+      0.708,
+      1.0
+     ],
+     "ALL_CI95": [
+      0.9758,
+      1.0
+     ],
+     "verdict": "CONFIRMED: 443 slice +/-0.19, quote ALL not 443."
+    },
+    "R3_causal": {
+     "transductive": 1.0,
+     "causal_running_mean": 0.9997,
+     "verdict": "CLEARED: running average works live, deployable as host reputation."
+    }
    }
   }
  }
