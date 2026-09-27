@@ -33,6 +33,13 @@
     "x5_60s": 0.0637,
     "x5_300s": 0.099,
     "verdict": "E12 PARTIAL: 300s recovers +0.08 at x2, x5 still blind. Needs rate-agnostic features / cross-window tracking / host pillar."
+   },
+   "D_fused_hostscore": {
+    "443_cond_auc": 1.0,
+    "rest_cond_auc": 0.9907,
+    "all_auc": 0.9946,
+    "method": "mean host score across 60s windows + 300s, 50/50 fuse, edge=(src+dst)/2",
+    "verdict": "0.89 -> 1.0 YES. Caveats: 5 atk edges on 443; transductive day-level fusion (running-reputation in prod, not single-window realtime)."
    }
   }
  }
