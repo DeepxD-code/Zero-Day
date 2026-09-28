@@ -2,6 +2,31 @@
 
 Append-only log of what changed and why. **Pull, then read the top of this file.**
 
+## 2026-09-28 — Exp-branch session E10–E27: clean data, bands, fusion wins, risks fixed in code
+**Author:** Deep (Person B — Detection Modeling) · branch `exp/host-seqae-p37`
+
+### What changed
+* Downloaded CICIDS2017_improved (CNS2022, 328 MB) to `data/` (gitignored); schema-checked (91 cols, graphable, 486 Monday graphs).
+* Retrained M5b (v2 19-dim, 200 ep) + revived M5a (93-dim, 60 ep) on improved Monday; 4-seed bands for both (checkpoints `gnn_improved_s{1,2,3}.pt`, `m5a_revived_improved_s{1,2,3}.pt`).
+* New modules: `detection/thresholds.py` (top-k + rolling percentile), `detection/eval_utils.py` (AUC 95% CI + slice guard), `detection/host_reputation.py` (causal running-mean tracker). `score_window(..., top_k=N)` added (`alert_pipeline.py:167`).
+* New experiments E13–E27 (scripts + JSONs in `detection/`): TLS fix, slow-drip, report cards orig/clean, val-epochs, combined-Monday, fusion shootout, ensemble, reputation, Web-M5a band.
+* Unblocked hmmlearn via Python 3.12 `venv312/` (gitignored); host AE-vs-HMM reproduced bit-identically (AE 0.7768±0.0050 vs HMM 0.7217).
+
+### Headline results (clean data, 4 seeds, within-window-rank metric)
+* M5b band: Patator 0.943±0.029, DoS 0.963±0.020, Web 0.813±0.091, Infiltration 0.755±0.012, Botnet 0.456±0.024, PortScan 0.948±0.024, DDoS 0.972±0.001.
+* Fusion shootout (Friday): repfuse wins Botnet 0.667±0.012, tied-top PortScan/DDoS → new fusion default.
+* Reputation kills slow-drip x5 (0.064→0.979) and lifts Infiltration 0.76→0.91 live (causal).
+* Val-picked epochs fix Web undertraining (0.813±0.091 → 0.896±0.033).
+* Rejected with data: E11 port-split eval (method flaw), E27 combined-Monday (negative transfer both sides), Web seed-ensemble (0.808, stabilizes only).
+* Verified risks: Monday thresholds don't transfer (prec 0.037); 443-slice CI 0.71–1.00 (quote ALL, not slices).
+
+### Still open
+* seqAE full run (E1, CPU) — killed twice by machine restarts, never completed.
+* Botnet host fusion — needs LID-DS loader (A's item).
+* Cross-testbed gap — per-testbed models stand; needs domain adaptation, not pooling.
+
+---
+
 ## 2026-09-20b — Hiccup fixes: venv rebuilt, hmmlearn pinned, A's ADFA parse repaired, ablation reproduced bit-identically
 **Author:** Deep (Person B — Detection Modeling)
 

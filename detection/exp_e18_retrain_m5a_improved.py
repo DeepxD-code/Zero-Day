@@ -38,7 +38,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 
-def main(epochs=60, seed=0):
+def main(epochs=60, seed=0, out=str(OUT)):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     torch.manual_seed(seed); torch.cuda.manual_seed_all(seed); np.random.seed(seed)
     torch.backends.cudnn.deterministic = True; torch.backends.cudnn.benchmark = False
@@ -91,8 +91,8 @@ def main(epochs=60, seed=0):
         "window_seconds": 60,
         "seed": seed,
         "train": "CICIDS2017_improved/monday benign-only",
-    }, OUT)
-    print(f"Saved -> {OUT.name}")
+    }, Path(out))
+    print(f"Saved -> {Path(out).name}")
 
 
 def pd_read(p):
@@ -105,5 +105,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--epochs", type=int, default=60)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--out", default=str(OUT))
     a = ap.parse_args()
-    main(a.epochs, a.seed)
+    main(a.epochs, a.seed, a.out)
