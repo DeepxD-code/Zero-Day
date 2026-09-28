@@ -1,0 +1,23 @@
+{
+ "seeds_fixed": [
+  0.931,
+  0.849,
+  0.79,
+  0.682
+ ],
+ "seeds_valpicked": [
+  0.931,
+  0.849,
+  0.913,
+  0.891
+ ],
+ "band_fixed": [
+  0.813,
+  0.091
+ ],
+ "band_val": [
+  0.896,
+  0.033
+ ],
+ "verdict": "E26 CONFIRMED: val-picked epochs fix undertraining; Web band 0.813+-0.091 -> 0.896+-0.033"
+}
