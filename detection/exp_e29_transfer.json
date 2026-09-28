@@ -1,0 +1,16 @@
+{
+ "base": "gnn_autoencoder_improved_monday_v2.pt",
+ "recipe": "20ep lr=1e-4 replay (487 orig + 97 improved Monday graphs)",
+ "ORIG-PS": {
+  "plain_ft": 0.8685,
+  "replay": 0.9056,
+  "orig_only": 0.8714
+ },
+ "CLEAN-PS": {
+  "improved_only": 0.9708,
+  "plain_ft": 0.8308,
+  "replay": 0.9033
+ },
+ "rejected": "dual-max ensemble (0.475/0.617)",
+ "verdict": "E29 SOLVED (PortScan): replay-tune holds both testbeds >=0.90. Ship base + per-site tune."
+}
