@@ -1,0 +1,180 @@
+{
+ "Patator": {
+  "flows": 445909,
+  "graphs": 488,
+  "edges": 100984,
+  "attackers": [
+   "172.16.0.1"
+  ],
+  "n_atk_edges": 144,
+  "edge_auc": 0.86089180742871,
+  "ci95": [
+   0.8224394506022141,
+   0.8993441642552058
+  ],
+  "best_attacker_rank": 10,
+  "recall_at_100": 0.034722222222222224,
+  "tls443": {
+   "auc": null,
+   "n": 37402,
+   "n_atk": 0,
+   "ci95": null,
+   "verdict": "DIAGNOSTIC-ONLY: 0 positives < 30 \u2014 quote the pooled ALL number with its CI, not this slice."
+  }
+ },
+ "DoS": {
+  "flows": 692703,
+  "graphs": 509,
+  "edges": 101481,
+  "attackers": [
+   "172.16.0.1"
+  ],
+  "n_atk_edges": 231,
+  "edge_auc": 0.684102078990968,
+  "ci95": [
+   0.6458676491174558,
+   0.7223365088644802
+  ],
+  "best_attacker_rank": 16,
+  "recall_at_100": 0.021645021645021644,
+  "tls443": {
+   "auc": null,
+   "n": 38030,
+   "n_atk": 0,
+   "ci95": null,
+   "verdict": "DIAGNOSTIC-ONLY: 0 positives < 30 \u2014 quote the pooled ALL number with its CI, not this slice."
+  }
+ },
+ "WebAttacks": {
+  "flows": 170366,
+  "graphs": 241,
+  "edges": 43608,
+  "attackers": [
+   "172.16.0.1"
+  ],
+  "n_atk_edges": 76,
+  "edge_auc": 0.7730039486983562,
+  "ci95": [
+   0.7107953488887311,
+   0.8352125485079813
+  ],
+  "best_attacker_rank": 133,
+  "recall_at_100": 0.0,
+  "tls443": {
+   "auc": null,
+   "n": 15648,
+   "n_atk": 0,
+   "ci95": null,
+   "verdict": "DIAGNOSTIC-ONLY: 0 positives < 30 \u2014 quote the pooled ALL number with its CI, not this slice."
+  }
+ },
+ "Infiltration": {
+  "flows": 288602,
+  "graphs": 245,
+  "edges": 52483,
+  "attackers": [
+   "192.168.10.8"
+  ],
+  "n_atk_edges": 3330,
+  "edge_auc": 0.6097944922726726,
+  "ci95": [
+   0.5993444385325931,
+   0.620244546012752
+  ],
+  "best_attacker_rank": 20,
+  "recall_at_100": 0.005405405405405406,
+  "tls443": {
+   "auc": 0.6213540797527684,
+   "n": 20126,
+   "n_atk": 2097,
+   "ci95": [
+    0.6079767451124357,
+    0.634731414393101
+   ],
+   "verdict": "quotable"
+  }
+ },
+ "Botnet": {
+  "flows": 191033,
+  "graphs": 241,
+  "edges": 46774,
+  "attackers": [
+   "192.168.10.12",
+   "192.168.10.14",
+   "192.168.10.15",
+   "192.168.10.17",
+   "192.168.10.5",
+   "192.168.10.8",
+   "192.168.10.9",
+   "205.174.165.73"
+  ],
+  "n_atk_edges": 21060,
+  "edge_auc": 0.5369752508435068,
+  "ci95": [
+   0.5317215192947098,
+   0.5422289823923039
+  ],
+  "best_attacker_rank": 1,
+  "recall_at_100": 0.00251661918328585,
+  "tls443": {
+   "auc": 0.6351523187615942,
+   "n": 16108,
+   "n_atk": 11797,
+   "ci95": [
+    0.6259588520973337,
+    0.6443457854258546
+   ],
+   "verdict": "quotable"
+  }
+ },
+ "PortScan": {
+  "flows": 286467,
+  "graphs": 150,
+  "edges": 30613,
+  "attackers": [
+   "172.16.0.1"
+  ],
+  "n_atk_edges": 29,
+  "edge_auc": 0.5780422713702003,
+  "ci95": [
+   0.46920814606989114,
+   0.6868763966705094
+  ],
+  "best_attacker_rank": 39,
+  "recall_at_100": 0.06896551724137931,
+  "tls443": {
+   "auc": 0.3141189247895737,
+   "n": 11054,
+   "n_atk": 5,
+   "ci95": [
+    0.1151118468338623,
+    0.5131260027452851
+   ],
+   "verdict": "DIAGNOSTIC-ONLY: 5 positives < 30 \u2014 quote the pooled ALL number with its CI, not this slice."
+  }
+ },
+ "DDoS": {
+  "flows": 225745,
+  "graphs": 93,
+  "edges": 14741,
+  "attackers": [
+   "172.16.0.1",
+   "192.168.10.50"
+  ],
+  "n_atk_edges": 554,
+  "edge_auc": 0.6319169886296984,
+  "ci95": [
+   0.6065883674959216,
+   0.6572456097634751
+  ],
+  "best_attacker_rank": 2,
+  "recall_at_100": 0.07220216606498195,
+  "tls443": {
+   "auc": null,
+   "n": 5391,
+   "n_atk": 0,
+   "ci95": null,
+   "verdict": "DIAGNOSTIC-ONLY: 0 positives < 30 \u2014 quote the pooled ALL number with its CI, not this slice."
+  }
+ }
+}

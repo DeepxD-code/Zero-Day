@@ -28,6 +28,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
 
@@ -53,11 +54,19 @@ def main():
     ap.add_argument("--val-frac", type=float, default=0.0,
                     help="E26: fraction of LAST Monday windows held out as "
                          "validation; best-val epoch saved (0 = off, legacy).")
+    ap.add_argument("--extra-monday", default=None,
+                    help="E27: second Monday CSV (combined-testbed training). "
+                         "Host graph features are derived aggregates "
+                         "(IP/ports/bytes/duration), so schemas need not match.")
     args = ap.parse_args()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     set_seed(args.seed)
     df = normalize_columns(read_flows(MONDAY))
+    if args.extra_monday:
+        dx = normalize_columns(read_flows(args.extra_monday))
+        df = pd.concat([df, dx], ignore_index=True)
+        print(f"E27 combined Mondays: {len(df)} flows", flush=True)
     df = df[df["label"].astype(str).str.strip().str.upper() == "BENIGN"]
     df = df[df["src_ip"].map(lambda v: isinstance(v, str))
             & df["dst_ip"].map(lambda v: isinstance(v, str))]

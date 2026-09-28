@@ -1,0 +1,93 @@
+{
+ "Patator": {
+  "edges": 59391,
+  "graphs": 487,
+  "n_atk_edges": 126,
+  "edge_auc": 0.993444161882532,
+  "ci95": [
+   0.9834961565972398,
+   1.0
+  ],
+  "verdict": "quotable",
+  "best_attacker_rank": 3,
+  "recall_at_100": 0.23015873015873015
+ },
+ "DoS": {
+  "edges": 58535,
+  "graphs": 508,
+  "n_atk_edges": 78,
+  "edge_auc": 0.9347340780402689,
+  "ci95": [
+   0.8966301554292297,
+   0.972838000651308
+  ],
+  "verdict": "quotable",
+  "best_attacker_rank": 8,
+  "recall_at_100": 0.15384615384615385
+ },
+ "WebAttacks": {
+  "edges": 55202,
+  "graphs": 486,
+  "n_atk_edges": 62,
+  "edge_auc": 0.7310597950085999,
+  "ci95": [
+   0.6593116190040027,
+   0.802807971013197
+  ],
+  "verdict": "quotable",
+  "best_attacker_rank": 324,
+  "recall_at_100": 0.0
+ },
+ "Infiltration": {
+  "edges": 55202,
+  "graphs": 486,
+  "n_atk_edges": 866,
+  "edge_auc": 0.799299323837717,
+  "ci95": [
+   0.781466048660803,
+   0.8171325990146309
+  ],
+  "verdict": "quotable",
+  "best_attacker_rank": 1,
+  "recall_at_100": 0.008083140877598153
+ },
+ "Botnet": {
+  "edges": 53082,
+  "graphs": 483,
+  "n_atk_edges": 2376,
+  "edge_auc": 0.460485553413412,
+  "ci95": [
+   0.4489422295700223,
+   0.47202887725680176
+  ],
+  "verdict": "quotable",
+  "best_attacker_rank": 74,
+  "recall_at_100": 0.0008417508417508417
+ },
+ "PortScan": {
+  "edges": 53082,
+  "graphs": 483,
+  "n_atk_edges": 27,
+  "edge_auc": 0.9627092081243434,
+  "ci95": [
+   0.912653433282248,
+   1.0
+  ],
+  "verdict": "DIAGNOSTIC-ONLY: 27 positives < 30 \u2014 quote the pooled ALL number with its CI, not this slice.",
+  "best_attacker_rank": 135,
+  "recall_at_100": 0.0
+ },
+ "DDoS": {
+  "edges": 53082,
+  "graphs": 483,
+  "n_atk_edges": 26,
+  "edge_auc": 0.9813314089032198,
+  "ci95": [
+   0.9447154625847362,
+   1.0
+  ],
+  "verdict": "DIAGNOSTIC-ONLY: 26 positives < 30 \u2014 quote the pooled ALL number with its CI, not this slice.",
+  "best_attacker_rank": 351,
+  "recall_at_100": 0.0
+ }
+}
