@@ -1,0 +1,535 @@
+{
+ "flow_counts": {
+  "udp": {
+   "orig": 224178,
+   "clean": 224023
+  },
+  "tcp": {
+   "orig": 305423,
+   "clean": 147204
+  }
+ },
+ "arms": {
+  "udp_only": {
+   "label": "UDP only",
+   "n_dims_compared": 19,
+   "ks_median": 0.0027,
+   "ks_p90": 0.4496,
+   "n_dims_shifted_gt_1sd": 1,
+   "dims": [
+    {
+     "dim": 0,
+     "name": "out_degree",
+     "ks": 0.0017,
+     "std_shift": 0.0,
+     "mean_orig": 1.0268,
+     "mean_clean": 1.0276
+    },
+    {
+     "dim": 1,
+     "name": "in_degree",
+     "ks": 0.0018,
+     "std_shift": 0.0,
+     "mean_orig": 1.0268,
+     "mean_clean": 1.0276
+    },
+    {
+     "dim": 2,
+     "name": "out_flows",
+     "ks": 0.0032,
+     "std_shift": 0.0,
+     "mean_orig": 20.2656,
+     "mean_clean": 20.2424
+    },
+    {
+     "dim": 3,
+     "name": "in_flows",
+     "ks": 0.002,
+     "std_shift": 0.0,
+     "mean_orig": 20.2656,
+     "mean_clean": 20.2424
+    },
+    {
+     "dim": 4,
+     "name": "bytes_sent",
+     "ks": 0.4276,
+     "std_shift": 0.392,
+     "mean_orig": 2323.7773,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 5,
+     "name": "bytes_recv",
+     "ks": 0.5375,
+     "std_shift": 0.134,
+     "mean_orig": 7052.9697,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 6,
+     "name": "unique_dst_ports",
+     "ks": 0.0025,
+     "std_shift": 0.015,
+     "mean_orig": 0.7058,
+     "mean_clean": 0.6903
+    },
+    {
+     "dim": 7,
+     "name": "mean_duration",
+     "ks": 0.0043,
+     "std_shift": 0.003,
+     "mean_orig": 1281422.25,
+     "mean_clean": 1305209.125
+    },
+    {
+     "dim": 8,
+     "name": "bytes_ratio",
+     "ks": 0.4276,
+     "std_shift": 1.139,
+     "mean_orig": 0.3875,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 9,
+     "name": "flows_per_out_peer",
+     "ks": 0.0029,
+     "std_shift": 0.0,
+     "mean_orig": 14.7675,
+     "mean_clean": 14.7679
+    },
+    {
+     "dim": 10,
+     "name": "flows_per_in_peer",
+     "ks": 0.0018,
+     "std_shift": 0.0,
+     "mean_orig": 8.4854,
+     "mean_clean": 8.4875
+    },
+    {
+     "dim": 11,
+     "name": "bytes_sent_per_flow",
+     "ks": 0.4276,
+     "std_shift": 0.361,
+     "mean_orig": 94.046,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 12,
+     "name": "bytes_recv_per_flow",
+     "ks": 0.5375,
+     "std_shift": 0.055,
+     "mean_orig": 2780.2773,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 13,
+     "name": "unique_src_ports",
+     "ks": 0.0022,
+     "std_shift": 0.0,
+     "mean_orig": 20.1011,
+     "mean_clean": 20.0871
+    },
+    {
+     "dim": 14,
+     "name": "dst_port_entropy",
+     "ks": 0.0027,
+     "std_shift": 0.008,
+     "mean_orig": 0.1171,
+     "mean_clean": 0.1147
+    },
+    {
+     "dim": 15,
+     "name": "protocol_entropy",
+     "ks": 0.0,
+     "std_shift": 0.0,
+     "mean_orig": 0.0,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 16,
+     "name": "tcp_frac",
+     "ks": 0.0,
+     "std_shift": 0.0,
+     "mean_orig": 0.0,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 17,
+     "name": "udp_frac",
+     "ks": 0.0015,
+     "std_shift": 0.003,
+     "mean_orig": 0.4277,
+     "mean_clean": 0.4261
+    },
+    {
+     "dim": 18,
+     "name": "duration_std",
+     "ks": 0.0037,
+     "std_shift": 0.003,
+     "mean_orig": 1799711.0,
+     "mean_clean": 1782989.5
+    }
+   ],
+   "per_window": {
+    "orig": {
+     "nodes": 22.761316872427983,
+     "edges": 23.372427983539094,
+     "edges_per_node": 1.0268486711263787
+    },
+    "clean": {
+     "nodes": 22.81855670103093,
+     "edges": 23.44742268041237,
+     "edges_per_node": 1.0275594108611186
+    }
+   }
+  },
+  "tcp_only": {
+   "label": "TCP only",
+   "n_dims_compared": 19,
+   "ks_median": 0.427,
+   "ks_p90": 0.5547,
+   "n_dims_shifted_gt_1sd": 1,
+   "dims": [
+    {
+     "dim": 0,
+     "name": "out_degree",
+     "ks": 0.5123,
+     "std_shift": 0.06,
+     "mean_orig": 1.4698,
+     "mean_clean": 1.0325
+    },
+    {
+     "dim": 1,
+     "name": "in_degree",
+     "ks": 0.0846,
+     "std_shift": 0.143,
+     "mean_orig": 1.4698,
+     "mean_clean": 1.0325
+    },
+    {
+     "dim": 2,
+     "name": "out_flows",
+     "ks": 0.5123,
+     "std_shift": 0.069,
+     "mean_orig": 3.9885,
+     "mean_clean": 2.4694
+    },
+    {
+     "dim": 3,
+     "name": "in_flows",
+     "ks": 0.0846,
+     "std_shift": 0.13,
+     "mean_orig": 3.9885,
+     "mean_clean": 2.4694
+    },
+    {
+     "dim": 4,
+     "name": "bytes_sent",
+     "ks": 0.427,
+     "std_shift": 0.132,
+     "mean_orig": 3348.7397,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 5,
+     "name": "bytes_recv",
+     "ks": 0.7242,
+     "std_shift": 0.025,
+     "mean_orig": 122840.9375,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 6,
+     "name": "unique_dst_ports",
+     "ks": 0.5123,
+     "std_shift": 0.371,
+     "mean_orig": 1.3383,
+     "mean_clean": 0.1513
+    },
+    {
+     "dim": 7,
+     "name": "mean_duration",
+     "ks": 0.5117,
+     "std_shift": 0.097,
+     "mean_orig": 1354086.625,
+     "mean_clean": 2360724.0
+    },
+    {
+     "dim": 8,
+     "name": "bytes_ratio",
+     "ks": 0.427,
+     "std_shift": 0.689,
+     "mean_orig": 0.1716,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 9,
+     "name": "flows_per_out_peer",
+     "ks": 0.5123,
+     "std_shift": 0.356,
+     "mean_orig": 1.4217,
+     "mean_clean": 0.1442
+    },
+    {
+     "dim": 10,
+     "name": "flows_per_in_peer",
+     "ks": 0.0846,
+     "std_shift": 0.036,
+     "mean_orig": 2.433,
+     "mean_clean": 2.2325
+    },
+    {
+     "dim": 11,
+     "name": "bytes_sent_per_flow",
+     "ks": 0.427,
+     "std_shift": 0.134,
+     "mean_orig": 110.8614,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 12,
+     "name": "bytes_recv_per_flow",
+     "ks": 0.7242,
+     "std_shift": 0.019,
+     "mean_orig": 83442.625,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 13,
+     "name": "unique_src_ports",
+     "ks": 0.0846,
+     "std_shift": 0.057,
+     "mean_orig": 2.1593,
+     "mean_clean": 2.4608
+    },
+    {
+     "dim": 14,
+     "name": "dst_port_entropy",
+     "ks": 0.1892,
+     "std_shift": 0.557,
+     "mean_orig": 0.3725,
+     "mean_clean": 0.0452
+    },
+    {
+     "dim": 15,
+     "name": "protocol_entropy",
+     "ks": 0.0,
+     "std_shift": 0.0,
+     "mean_orig": 0.0,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 16,
+     "name": "tcp_frac",
+     "ks": 0.5123,
+     "std_shift": 1.303,
+     "mean_orig": 0.5832,
+     "mean_clean": 0.0709
+    },
+    {
+     "dim": 17,
+     "name": "udp_frac",
+     "ks": 0.0,
+     "std_shift": 0.0,
+     "mean_orig": 0.0,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 18,
+     "name": "duration_std",
+     "ks": 0.2022,
+     "std_shift": 0.042,
+     "mean_orig": 1375847.75,
+     "mean_clean": 1716180.25
+    }
+   ],
+   "per_window": {
+    "orig": {
+     "nodes": 157.24024640657083,
+     "edges": 231.1088295687885,
+     "edges_per_node": 1.4697816548265774
+    },
+    "clean": {
+     "nodes": 122.65637860082305,
+     "edges": 126.63786008230453,
+     "edges_per_node": 1.032460451930013
+    }
+   }
+  },
+  "tcp_downsampled": {
+   "label": "orig TCP downsampled to clean count",
+   "n_dims_compared": 19,
+   "ks_median": 0.3727,
+   "ks_p90": 0.4889,
+   "n_dims_shifted_gt_1sd": 1,
+   "dims": [
+    {
+     "dim": 0,
+     "name": "out_degree",
+     "ks": 0.4493,
+     "std_shift": 0.039,
+     "mean_orig": 1.292,
+     "mean_clean": 1.0325
+    },
+    {
+     "dim": 1,
+     "name": "in_degree",
+     "ks": 0.1325,
+     "std_shift": 0.114,
+     "mean_orig": 1.292,
+     "mean_clean": 1.0325
+    },
+    {
+     "dim": 2,
+     "name": "out_flows",
+     "ks": 0.4493,
+     "std_shift": 0.007,
+     "mean_orig": 2.5929,
+     "mean_clean": 2.4694
+    },
+    {
+     "dim": 3,
+     "name": "in_flows",
+     "ks": 0.1325,
+     "std_shift": 0.017,
+     "mean_orig": 2.5929,
+     "mean_clean": 2.4694
+    },
+    {
+     "dim": 4,
+     "name": "bytes_sent",
+     "ks": 0.3727,
+     "std_shift": 0.138,
+     "mean_orig": 2173.95,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 5,
+     "name": "bytes_recv",
+     "ks": 0.6471,
+     "std_shift": 0.02,
+     "mean_orig": 79500.2188,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 6,
+     "name": "unique_dst_ports",
+     "ks": 0.4493,
+     "std_shift": 0.417,
+     "mean_orig": 0.9831,
+     "mean_clean": 0.1513
+    },
+    {
+     "dim": 7,
+     "name": "mean_duration",
+     "ks": 0.4486,
+     "std_shift": 0.064,
+     "mean_orig": 1662568.625,
+     "mean_clean": 2360724.0
+    },
+    {
+     "dim": 8,
+     "name": "bytes_ratio",
+     "ks": 0.3727,
+     "std_shift": 0.752,
+     "mean_orig": 0.2026,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 9,
+     "name": "flows_per_out_peer",
+     "ks": 0.4493,
+     "std_shift": 0.4,
+     "mean_orig": 0.978,
+     "mean_clean": 0.1442
+    },
+    {
+     "dim": 10,
+     "name": "flows_per_in_peer",
+     "ks": 0.1325,
+     "std_shift": 0.133,
+     "mean_orig": 1.6457,
+     "mean_clean": 2.2325
+    },
+    {
+     "dim": 11,
+     "name": "bytes_sent_per_flow",
+     "ks": 0.3727,
+     "std_shift": 0.097,
+     "mean_orig": 128.7552,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 12,
+     "name": "bytes_recv_per_flow",
+     "ks": 0.6471,
+     "std_shift": 0.017,
+     "mean_orig": 61487.1328,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 13,
+     "name": "unique_src_ports",
+     "ks": 0.151,
+     "std_shift": 0.187,
+     "mean_orig": 1.6162,
+     "mean_clean": 2.4608
+    },
+    {
+     "dim": 14,
+     "name": "dst_port_entropy",
+     "ks": 0.1356,
+     "std_shift": 0.445,
+     "mean_orig": 0.2587,
+     "mean_clean": 0.0452
+    },
+    {
+     "dim": 15,
+     "name": "protocol_entropy",
+     "ks": 0.0,
+     "std_shift": 0.0,
+     "mean_orig": 0.0,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 16,
+     "name": "tcp_frac",
+     "ks": 0.4493,
+     "std_shift": 1.131,
+     "mean_orig": 0.5202,
+     "mean_clean": 0.0709
+    },
+    {
+     "dim": 17,
+     "name": "udp_frac",
+     "ks": 0.0,
+     "std_shift": 0.0,
+     "mean_orig": 0.0,
+     "mean_clean": 0.0
+    },
+    {
+     "dim": 18,
+     "name": "duration_std",
+     "ks": 0.1415,
+     "std_shift": 0.015,
+     "mean_orig": 1589418.375,
+     "mean_clean": 1716180.25
+    }
+   ],
+   "n_tcp_flows_used": 147204,
+   "per_window": {
+    "orig_downsampled": {
+     "edges_per_node": 1.2919521603579167
+    },
+    "clean": {
+     "edges_per_node": 1.032460451930013
+    }
+   }
+  }
+ },
+ "verdict": {
+  "udp_agrees_more_than_tcp": true,
+  "downsampling_tcp_reduces_divergence": true,
+  "confirmed": true
+ }
+}

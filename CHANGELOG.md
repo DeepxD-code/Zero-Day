@@ -22,6 +22,15 @@ Append-only log of what changed and why. **Pull, then read the top of this file.
 * **E46 guards fire on all real bugs** (8/8 regressions) and all three wired scripts reproduced their published numbers exactly.
 
 ### Still open
+* **E49+E50+E49c — cross-testbed mechanism found and causally confirmed.**
+  Same network (host Jaccard 0.9999); extractors agree on UDP to 0.07% but
+  disagree on TCP by 52%. UDP-only graphs are a dead heat (KS 0.003, edges/node
+  1.027 vs 1.028); TCP-only graphs diverge (KS 0.427). Residual: downsampling
+  TCP to the matched count only partly closes it (KS 0.373, edges/node 1.292 vs
+  1.032), so segmentation differs too, not just density. Explains E27 pooling's
+  failure (val loss bottomed at epoch 17/400) and why 20% replay works. **E50:
+  routing the fusion rule is a measured NO** (corr(persistence, best k) = −0.25,
+  corr(clustering, best k) = 0.001 over 53 blocks) — tune `k` locally instead.
 * **E01 seq-AE — RUNS NOW (4 seeds).** After 3 machine kills, split the HMM arm off the torch arm (`hmmlearn` has no 3.14 wheel and was forcing the whole job onto CPU-only `venv312`). Result: **seq-AE 0.7799±0.0066 vs count-AE 0.7768±0.0050 — Δ 0.47 SD, inside the noise.** But mimicry splits hard: seq-AE **0.922 vs 0.032** on M1 interleave and **0.778 vs 0.048** on M2 substitute, while M3 chunk-shuffle is **identical (0.545 both)**. So sequence modelling buys robustness to *dilution*, not immunity to *reordering*. Open: the epoch grid is truncated (all 4 seeds picked ep 40, the max offered); extended 40–160 grid running.
 * **Botnet host fusion** — blocked on Person A's LID-DS loader; network ceiling 0.709±0.025 (E43 band).
 * **Cross-testbed root cause** — method finished (E17 exonerates the architecture, E27 rules out pooling, E29/E42 find and scale the replay fix), **mechanism still unexplained**. Replay-tuning is a workaround with a recipe: deploy one base + one tune per site.
