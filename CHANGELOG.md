@@ -2,6 +2,33 @@
 
 Append-only log of what changed and why. **Pull, then read the top of this file.**
 
+## 2026-09-29 — Exp-branch session E42–E46: transfer table, fusion closes, TLS reality check, pairing guards
+**Author:** Deep (Person B — Detection Modeling) · branch `exp/host-seqae-p37`
+
+### What changed
+* **E42** — replay-tune transfer applied to all 7 families, both testbeds, 4 seeds. First run invalid (base scored with the replay-mix scaler); corrected and re-run.
+* **E43** — three closes for the family-dependent fusion rule (persistence-routed, rule-rank-max, burst-aware dual-timescale). First run invalid (ranks within 5000-row chunks, not 60s windows); corrected.
+* **E44** — residual evasions: host rotation ×5, sub-threshold ×10, and both fixes. **Corrects E24**: reputation's rescue holds to ×5 (0.974) but collapses at ×10 (0.098).
+* **E45** — measured the encrypted-attack share of the whole corpus.
+* **E46** — new module `detection/eval_guards.py` + `detection/eval_guards_selftest.py` (24 tests), wired into E42/E43/E44. **Closes the archive's dominant error mode** (model paired with wrong data/scaler/rank group), which produced six wrong numbers across E07, A3, E11, E16, E42, E43.
+* Archive reorganised into numbered folders E01–E46, each with a README; root TOC with verdicts. `detection/CHECKPOINTS.md` added; loose `.pt` files catalogued.
+
+### Headline results
+* **Replay-tune transfers on 5 of 7 families** (ORIG side): Web 0.519→**0.959**, PortScan 0.408→**0.919**, DoS 0.638→**0.957**, DDoS 0.545→**0.817**, Patator 0.917→**0.975**. Fails on Infiltration and Botnet — the two already at chance, which is the recipe's stated boundary. Costs 0.04–0.20 on the clean side, so checkpoints are **site-adapted, not universal**.
+* **Fusion rule**: burst-aware OPT3 best on 4/5, Web 0.798→**0.957**, but Botnet 0.723→0.486. OPT1 rejected. **OPT2 (rule rank-max) is the defensible single default.** No rule wins everywhere; whether the rule should depend on attack persistence is a *design* question, not a tuning one.
+* **E44 corrects E24**: reputation holds 0.974 at ×5, **collapses to 0.098 at ×10** — a real, unfixed evasion needing Pillar 3. **IP rotation alone is NOT an evasion** (0.954 vs 0.969 control): volume, not identity, is the signal.
+* **E45: only 0.24% of attack traffic corpus-wide is on encrypted ports** (3,256 of 1,351,679), and 6 of 8 original day-files contain none. E13's "0.89 on 443" was a 5-positive slice of an almost-empty population. The public encrypted-traffic datasets (CSTNET-TLS1.3, CESNET-TLS22) are **app-classification, not IDS**. **The claim must be structural** — "no feature needs decryption" — never "evaluated on encrypted traffic".
+* **E46 guards fire on all real bugs** (8/8 regressions) and all three wired scripts reproduced their published numbers exactly.
+
+### Still open
+* E01 seq-AE — INCOMPLETE, killed 3× (2 restarts, 1 silent CPU death). The only unanswered *modelling* question.
+* Fusion rule — single seed; needs the 4-seed band E21 showed is mandatory.
+* Sub-threshold ×10 — genuinely unfixed, Pillar 3's problem.
+* Cross-testbed root cause — E27 showed pooling learns neither; E42 shows replay-tuning is a workaround with a recipe, not a solution.
+* **Back-fill checkpoint provenance** — 6 of 9 checkpoints carry no `train` field, so the dataset guard is silent on the legacy models. `provenance_report()` reports the current state.
+
+---
+
 ## 2026-09-28 — Exp-branch session E10–E27: clean data, bands, fusion wins, risks fixed in code
 **Author:** Deep (Person B — Detection Modeling) · branch `exp/host-seqae-p37`
 
