@@ -6,7 +6,7 @@ columns on clean data (fixed extractor renamed them) — it cannot score
 there. Same recipe as train_m5a_revived.py (87-dim, 60ep, seed 0),
 new canonical pinned from improved Monday, separate output.
 
-Output: detection/m5a_revived_improved_ctx.pt (prod file untouched).
+Output: detection/m5a_revived_improved.pt (prod file untouched).
 
     python detection/exp_e18_retrain_m5a_improved.py --epochs 60 --seed 0
 Branch-only (exp/host-seqae-p37).
@@ -32,7 +32,7 @@ from experiments.exp_m5a_revival import (pin_canonical, flow_matrix, build_ctx,
                                          MinMax, CtxScaler, RevivedAE, CTX_DIMS)
 
 MONDAY = ROOT / "data" / "CICIDS2017_improved" / "monday.csv"
-OUT = Path(__file__).resolve().parent / "m5a_revived_improved_ctx.pt"
+OUT = Path(__file__).resolve().parent / "m5a_revived_improved.pt"
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")

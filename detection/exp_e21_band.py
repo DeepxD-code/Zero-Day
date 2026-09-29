@@ -1,8 +1,8 @@
 """
 E21: 4-seed band on clean data + fusion-rule shootout.
 
-M5b seeds: gnn_autoencoder_improved_monday_v2.pt (s0), gnn_improved_s{1,2,3}.pt
-M5a seeds: m5a_revived_improved_ctx.pt (s0), m5a_revived_improved_s{1,2,3}.pt
+M5b seeds: gnn_improved_s0.pt (s0), gnn_improved_s{1,2,3}.pt
+M5a seeds: m5a_revived_improved.pt (s0), m5a_revived_improved_s{1,2,3}.pt
 Per seed: full 7-family clean card (M5b-only, per-day files, 60s edge AUC).
 Friday only: fusion arms for Botnet/PortScan/DDoS —
   m5b-only, m5a-only, noisyor, rank_max, reputation-fuse (causal running
@@ -36,11 +36,11 @@ DATA = ROOT / "data" / "CICIDS2017_improved"
 OUT = Path(__file__).resolve().parent / "exp_e21_band.json"
 DET = Path(__file__).resolve().parent
 
-M5B = {0: DET / "gnn_autoencoder_improved_monday_v2.pt",
+M5B = {0: DET / "gnn_improved_s0.pt",
        1: DET / "gnn_improved_s1.pt",
        2: DET / "gnn_improved_s2.pt",
        3: DET / "gnn_improved_s3.pt"}
-M5A = {0: DET / "m5a_revived_improved_ctx.pt",
+M5A = {0: DET / "m5a_revived_improved.pt",
        1: DET / "m5a_revived_improved_s1.pt",
        2: DET / "m5a_revived_improved_s2.pt",
        3: DET / "m5a_revived_improved_s3.pt"}

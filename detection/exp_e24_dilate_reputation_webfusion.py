@@ -39,10 +39,10 @@ SHIPPED = Path(__file__).resolve().parent / "gnn_autoencoder_v1_logscale_v2.pt"
 CLEAN_THU = ROOT / "data/CICIDS2017_improved/thursday.csv"
 WEB_LABELS = {"Web Attack - Brute Force", "Web Attack - XSS",
               "Web Attack - SQL Injection"}
-M5B_I = {0: "gnn_autoencoder_improved_monday_v2.pt",
+M5B_I = {0: "gnn_improved_s0.pt",
          1: "gnn_improved_s1.pt", 2: "gnn_improved_s2.pt",
          3: "gnn_improved_s3.pt"}
-M5A_I = {0: "m5a_revived_improved_ctx.pt",
+M5A_I = {0: "m5a_revived_improved.pt",
          1: "m5a_revived_improved_s1.pt", 2: "m5a_revived_improved_s2.pt",
          3: "m5a_revived_improved_s3.pt"}
 

@@ -29,7 +29,7 @@ from gnn_model import GraphAutoencoder, NodeScaler
 DATA = ROOT / "data" / "CICIDS2017_improved" / "thursday.csv"
 OUT = Path(__file__).resolve().parent / "exp_e25_ensemble.json"
 DET = Path(__file__).resolve().parent
-CKS = [DET / "gnn_autoencoder_improved_monday_v2.pt",
+CKS = [DET / "gnn_improved_s0.pt",
        DET / "gnn_improved_s1.pt", DET / "gnn_improved_s2.pt",
        DET / "gnn_improved_s3.pt"]
 FAMS = {"Web": {"Web Attack - Brute Force", "Web Attack - XSS",

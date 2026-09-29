@@ -14,7 +14,7 @@ with no val check (Web 0.93->0.68) — this is the host pipeline's
 discipline ported to M5b.
 
 Does NOT overwrite production checkpoints. Output:
-detection/gnn_autoencoder_improved_monday_v2.pt
+detection/gnn_improved_s0.pt
 
     python detection/exp_e17_retrain_improved.py --epochs 200 --seed 0
 Branch-only (exp/host-seqae-p37).
@@ -39,7 +39,7 @@ from graph_builder import build_graphs, normalize_columns, read_flows
 from gnn_model import GraphAutoencoder, NodeScaler, set_seed
 
 MONDAY = ROOT / "data" / "CICIDS2017_improved" / "monday.csv"
-OUT = Path(__file__).resolve().parent / "gnn_autoencoder_improved_monday_v2.pt"
+OUT = Path(__file__).resolve().parent / "gnn_improved_s0.pt"
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -51,9 +51,11 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--lr", type=float, default=0.01)
     ap.add_argument("--out", default=str(OUT))
-    ap.add_argument("--val-frac", type=float, default=0.0,
+    ap.add_argument("--val-frac", type=float, default=0.2,
                     help="E26: fraction of LAST Monday windows held out as "
-                         "validation; best-val epoch saved (0 = off, legacy).")
+                         "validation; best-val epoch saved. Default 0.2 "
+                         "(on) because val-picking fixed Web's seed-3 tail; "
+                         "0 = legacy fixed-epoch training.")
     ap.add_argument("--extra-monday", default=None,
                     help="E27: second Monday CSV (combined-testbed training). "
                          "Host graph features are derived aggregates "
