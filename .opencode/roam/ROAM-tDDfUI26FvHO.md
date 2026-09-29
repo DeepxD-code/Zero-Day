@@ -2,7 +2,7 @@
 
 - project_id: DeepxD-code-Zero-Day
 - session_id: ses_f11bce8a9ffewhtDDfUI26FvHO
-- captured: 2026-09-29T19-18-18Z (reason: auto-10min)
+- captured: 2026-09-29T19-48-17Z (reason: auto-10min)
 - device: LAPTOP
 - title: Independent review of Autter reply
 - origin_model: opencode/space-bunny-free (if your model differs, roam_resume adapts — see roam.json modelMap)
@@ -787,6 +787,11 @@ _Auto-seeded — correct me in chat and it will be re-captured on next idle:_
 - M .opencode/roam/session-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json
 - M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
 - M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
+- ?? .opencode/roam/ROAM-YXgjBnUQUvEe.md
+- ?? .opencode/roam/ROAM-dK04ABJC1lgD.md
+- ?? .opencode/roam/session-ses_f1157cee4ffe4xdK04ABJC1lgD.export.json
+- ?? .opencode/roam/session-ses_f1162f5b4ffetBYXgjBnUQUvEe.export.json
+- ?? experiments/E54_unsupervised_headtohead/
 
 <details><summary>git status --porcelain</summary>
 
@@ -806,28 +811,33 @@ M .opencode/roam/ROAM-1O2A2W8CXLrh.md
  M .opencode/roam/session-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json
  M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
  M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
+?? .opencode/roam/ROAM-YXgjBnUQUvEe.md
+?? .opencode/roam/ROAM-dK04ABJC1lgD.md
+?? .opencode/roam/session-ses_f1157cee4ffe4xdK04ABJC1lgD.export.json
+?? .opencode/roam/session-ses_f1162f5b4ffetBYXgjBnUQUvEe.export.json
+?? experiments/E54_unsupervised_headtohead/
 ```
 </details>
 
 <details><summary>git diff --stat HEAD (big data excluded)</summary>
 
 ```
-.opencode/roam/ROAM-1O2A2W8CXLrh.md                |   33 +-
- .opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1349 ++++++++++++--------
- .opencode/roam/ROAM-PNChTBafzMAZ.md                |  541 +++++++-
- .opencode/roam/ROAM-j96VuMOxiLDK.md                |   35 +-
- .opencode/roam/ROAM-sdUI624LEEU7.md                |   27 +-
- .opencode/roam/ROAM-tDDfUI26FvHO.md                |   37 +-
- .opencode/roam/ROAM-x08NqvzVIRMv.md                |   25 +-
+.opencode/roam/ROAM-1O2A2W8CXLrh.md                |   28 +-
+ .opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1528 ++++++++++++--------
+ .opencode/roam/ROAM-PNChTBafzMAZ.md                |   28 +-
+ .opencode/roam/ROAM-j96VuMOxiLDK.md                |   32 +-
+ .opencode/roam/ROAM-sdUI624LEEU7.md                |   28 +-
+ .opencode/roam/ROAM-tDDfUI26FvHO.md                |   28 +-
+ .opencode/roam/ROAM-x08NqvzVIRMv.md                |   28 +-
  .opencode/roam/latest.json                         |   10 +-
- ...sion-ses_f1178f0e2ffexUPNChTBafzMAZ.export.json |  789 +++++++++++-
+ ...sion-ses_f1178f0e2ffexUPNChTBafzMAZ.export.json |    6 +-
  ...sion-ses_f118593e8ffeKEx08NqvzVIRMv.export.json |    6 +-
  ...sion-ses_f11963d66ffefDsdUI624LEEU7.export.json |    6 +-
  ...sion-ses_f11a9c5daffenq1O2A2W8CXLrh.export.json |    6 +-
  ...sion-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json |    6 +-
- ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  351 ++++-
+ ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 1048 +++++++++++++-
  ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-
- 15 files changed, 2495 insertions(+), 732 deletions(-)
+ 15 files changed, 2121 insertions(+), 673 deletions(-)
 ```
 </details>
 
