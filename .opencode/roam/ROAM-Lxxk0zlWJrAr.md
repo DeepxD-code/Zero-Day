@@ -2,13 +2,13 @@
 
 - project_id: DeepxD-code-Zero-Day
 - session_id: ses_f22aeca57ffeEHLxxk0zlWJrAr
-- captured: 2026-09-29T11-55-27Z (reason: auto-10min)
+- captured: 2026-09-29T12-15-27Z (reason: auto-10min)
 - device: LAPTOP
 - title: Last week number inquiry
 - origin_model: opencode/space-bunny-free (if your model differs, roam_resume adapts — see roam.json modelMap)
 - git_root (THIS MACHINE ONLY — other machines: use repo-relative paths, never this): E:/Potential-gold/Zero-Day
 - branch: exp/host-seqae-p37 | remote: https://github.com/DeepxD-code/Zero-Day.git
-- message_count: 141 (user: 2)
+- message_count: 193 (user: 2)
 
 > Resume: read sections 1-6, then continue at "Next steps". Paths below are repo-relative — rebase onto YOUR gold-folder checkout.
 
@@ -18,10 +18,10 @@ _Carry forward: Last week number inquiry_
 ## 2. Every prompt + response — ENTIRE session, verbatim, in order
 _User turns are complete. Agent turns are complete text; tool outputs truncated to 4000 chars each (full data stays in session.export.json)._
 
-### [1/141] compaction 2026-09-29T10:56:57.330Z
+### [1/193] compaction 2026-09-29T10:56:57.330Z
 [compaction message: 
 
-### [2/141] assistant (opencode/space-bunny-free) 2026-09-29T10:57:20.901Z
+### [2/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:20.901Z
 Let me check the current state: the self-test file was just written but hasn't been run. Let me run it.
 
 Note: I referenced `require_no_selfcheck` in eval_guards.py with an unused function. Also there's a bug in the selftest — `t_dataset_strict_raises` and `t_unknown_anchor_raises` are defined but then redefined/referenced oddly. Let me run and fix.
@@ -34,7 +34,7 @@ Let me run the self-test.
 ```
 </details>
 
-### [3/141] assistant (opencode/space-bunny-free) 2026-09-29T10:57:30.057Z
+### [3/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:30.057Z
 I have ordering issues in the test file. Let me fix the ordering problems: `t_register` used before definition, and the leftover `t_dataset_strict_raises` stub, and `t_unknown_anchor_raises` stub. Let me rewrite those sections cleanly.
 
 Let me look at the file region and fix.
@@ -46,7 +46,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [4/141] assistant (opencode/space-bunny-free) 2026-09-29T10:57:34.639Z
+### [4/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:34.639Z
 <details><summary>tool: edit (2276 chars)</summary>
 
 ```json
@@ -54,7 +54,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [5/141] assistant (opencode/space-bunny-free) 2026-09-29T10:57:41.538Z
+### [5/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:41.538Z
 <details><summary>tool: read (2074 chars)</summary>
 
 ```json
@@ -62,7 +62,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [6/141] assistant (opencode/space-bunny-free) 2026-09-29T10:57:45.436Z
+### [6/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:45.436Z
 <details><summary>tool: edit (1757 chars)</summary>
 
 ```json
@@ -70,7 +70,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [7/141] assistant (opencode/space-bunny-free) 2026-09-29T10:57:52.873Z
+### [7/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:52.873Z
 <details><summary>tool: read (2128 chars)</summary>
 
 ```json
@@ -78,7 +78,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [8/141] assistant (opencode/space-bunny-free) 2026-09-29T10:57:56.901Z
+### [8/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:56.901Z
 <details><summary>tool: edit (697 chars)</summary>
 
 ```json
@@ -86,7 +86,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [9/141] assistant (opencode/space-bunny-free) 2026-09-29T10:58:01.334Z
+### [9/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:01.334Z
 <details><summary>tool: edit (374 chars)</summary>
 
 ```json
@@ -94,7 +94,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [10/141] assistant (opencode/space-bunny-free) 2026-09-29T10:58:05.651Z
+### [10/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:05.651Z
 <details><summary>tool: edit (465 chars)</summary>
 
 ```json
@@ -102,7 +102,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [11/141] assistant (opencode/space-bunny-free) 2026-09-29T10:58:10.095Z
+### [11/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:10.095Z
 <details><summary>tool: shell (1423 chars)</summary>
 
 ```json
@@ -110,7 +110,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [12/141] assistant (opencode/space-bunny-free) 2026-09-29T10:58:17.367Z
+### [12/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:17.367Z
 Three real failures, each pointing at a genuine defect in the guard, not the test.
 
 1. t4: `CKPT_M5A` fixture is wrong shape — I put `flow_lo` at top level, but `_scaler_arrays` looks inside `blob["scaler"]`. Let me check the actual M5a checkpoint structure. Earlier I saw `gnn_autoencoder_v1_logscale_v2.pt` has keys `['model','scaler']` with scaler keys `['lo','hi','log']`. So the M5a *NodeScaler* branch for `flow_lo` may be speculative. Let me check the real m5a_revived checkpoint structure.
@@ -141,7 +141,7 @@ Three failures, and all three are defects in the guard itself, not the test. Che
 ```
 </details>
 
-### [13/141] assistant (opencode/space-bunny-free) 2026-09-29T10:58:37.146Z
+### [13/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:37.146Z
 So the M5a scaler shape: my `_scaler_arrays` checks `sc.get("flow_lo")` inside `blob["scaler"]`, but my test fixture put `flow_lo` at top level. Let me check the actual m5a checkpoint shape.
 
 Also t9: dataset comparison — `train` is a free-text string, exact match fails. Need substring/token comparison. Better: warn only if the dataset string doesn't appear in the train provenance.
@@ -156,7 +156,7 @@ Let me check m5a checkpoint.
 ```
 </details>
 
-### [14/141] assistant (opencode/space-bunny-free) 2026-09-29T10:58:47.005Z
+### [14/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:47.005Z
 <details><summary>tool: shell (1003 chars)</summary>
 
 ```json
@@ -164,7 +164,7 @@ Let me check m5a checkpoint.
 ```
 </details>
 
-### [15/141] assistant (opencode/space-bunny-free) 2026-09-29T10:58:55.034Z
+### [15/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:55.034Z
 So the M5a checkpoint has flow_lo/flow_hi at the TOP level, not nested under 'scaler'. My `_scaler_arrays` expects `blob["scaler"]["flow_lo"]`. Need to handle both. Also `require_no_selfcheck` references blob['scaler'] which won't exist for M5a. Let me fix `_scaler_arrays` to look at top level too.
 
 Second failure: t9 — `require_dataset` warns even when the dataset matches, because I compared nothing — I just check `trained_on is not None`. I need actual comparison. The provenance string is a free-text sentence; I need a sane match rule. Better: compare on a normalized substring/token basis and expose an `expected_dataset` vocabulary. Let me make it: extract a dataset key from both sides via a small normalizer, and only warn if the two keys differ. If either is unknown → silent (can't prove mismatch).
@@ -184,7 +184,7 @@ All three are real defects in the guard. The M5a scaler lives at the top level, 
 ```
 </details>
 
-### [16/141] assistant (opencode/space-bunny-free) 2026-09-29T10:59:13.545Z
+### [16/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:13.545Z
 Now fix require_dataset to actually compare. The issue: `train` is a free-text string like 'CICIDS2017_improved/monday benign-only'. We need a comparison. Best approach: compare dataset identity tokens. Let me make it compare on a normalized key derived from the provenance string, and allow substring match.
 
 Simplest robust: if dataset string appears in trained_on, silent. Otherwise warn. Plus allow an `alias` mapping.
@@ -197,7 +197,7 @@ Let me implement a small canonical token extraction: normalize both to lowercase
 ```
 </details>
 
-### [17/141] assistant (opencode/space-bunny-free) 2026-09-29T10:59:26.255Z
+### [17/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:26.255Z
 Now the window group check. The `max_frac` logic was nonsense. Let me think about what a real signal is.
 
 E43's bug: `np.arange(n) // 5000` used as window ids. n=53082 → 11 groups, 5000 rows each (last one 3082).
@@ -222,7 +222,7 @@ Now the window check — my `max_frac` arithmetic was wrong. Replacing it with a
 ```
 </details>
 
-### [18/141] assistant (opencode/space-bunny-free) 2026-09-29T10:59:46.153Z
+### [18/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:46.153Z
 <details><summary>tool: edit (340 chars)</summary>
 
 ```json
@@ -230,7 +230,7 @@ Now the window check — my `max_frac` arithmetic was wrong. Replacing it with a
 ```
 </details>
 
-### [19/141] assistant (opencode/space-bunny-free) 2026-09-29T10:59:50.671Z
+### [19/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:50.671Z
 Now update the self-test fixtures to match the real M5a layout and the corrected signatures.
 <details><summary>tool: edit (760 chars)</summary>
 
@@ -239,7 +239,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [20/141] assistant (opencode/space-bunny-free) 2026-09-29T10:59:56.132Z
+### [20/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:56.132Z
 <details><summary>tool: edit (918 chars)</summary>
 
 ```json
@@ -247,7 +247,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [21/141] assistant (opencode/space-bunny-free) 2026-09-29T11:00:02.803Z
+### [21/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:02.803Z
 <details><summary>tool: edit (711 chars)</summary>
 
 ```json
@@ -255,7 +255,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [22/141] assistant (opencode/space-bunny-free) 2026-09-29T11:00:09.619Z
+### [22/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:09.619Z
 <details><summary>tool: edit (510 chars)</summary>
 
 ```json
@@ -263,7 +263,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [23/141] assistant (opencode/space-bunny-free) 2026-09-29T11:00:16.304Z
+### [23/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:16.304Z
 <details><summary>tool: edit (500 chars)</summary>
 
 ```json
@@ -271,7 +271,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [24/141] assistant (opencode/space-bunny-free) 2026-09-29T11:00:21.319Z
+### [24/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:21.319Z
 <details><summary>tool: shell (1510 chars)</summary>
 
 ```json
@@ -279,7 +279,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [25/141] assistant (opencode/space-bunny-free) 2026-09-29T11:00:30.495Z
+### [25/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:30.495Z
 t13 now correctly raises, just message text differs. Fix the expected substring.
 
 t7/t8: dataset check now considers "CICIDS2017_improved/monday benign-only" and "original CIC-IDS2017 PortScan" as the SAME — because both contain token "cicids2017"→"cic-ids2017" AND "improved"? No wait. da for trained_on = {"improved"}, db for "original CIC-IDS2017 PortScan" = {"cic-ids2017"}. Intersection empty. Hmm but t7 says did not warn.
@@ -297,7 +297,7 @@ t13 now raises correctly — only my expected substring was wrong. But t7/t8 exp
 ```
 </details>
 
-### [26/141] assistant (opencode/space-bunny-free) 2026-09-29T11:00:50.253Z
+### [26/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:50.253Z
 <details><summary>tool: edit (518 chars)</summary>
 
 ```json
@@ -305,7 +305,7 @@ t13 now raises correctly — only my expected substring was wrong. But t7/t8 exp
 ```
 </details>
 
-### [27/141] assistant (opencode/space-bunny-free) 2026-09-29T11:00:54.479Z
+### [27/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:54.479Z
 Now strengthen the dataset tests, since that check just proved itself too weak.
 <details><summary>tool: edit (1897 chars)</summary>
 
@@ -314,7 +314,7 @@ Now strengthen the dataset tests, since that check just proved itself too weak.
 ```
 </details>
 
-### [28/141] assistant (opencode/space-bunny-free) 2026-09-29T11:01:04.980Z
+### [28/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:04.980Z
 <details><summary>tool: edit (750 chars)</summary>
 
 ```json
@@ -322,7 +322,7 @@ Now strengthen the dataset tests, since that check just proved itself too weak.
 ```
 </details>
 
-### [29/141] assistant (opencode/space-bunny-free) 2026-09-29T11:01:11.807Z
+### [29/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:11.807Z
 <details><summary>tool: edit (711 chars)</summary>
 
 ```json
@@ -330,7 +330,7 @@ Now strengthen the dataset tests, since that check just proved itself too weak.
 ```
 </details>
 
-### [30/141] assistant (opencode/space-bunny-free) 2026-09-29T11:01:18.848Z
+### [30/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:18.848Z
 There's a problem: my test asserts `_same_dataset("CICIDS2017_improved/monday benign-only", "clean monday")` is True — but "clean monday" has no corpus token, so it falls to substring which is False. I left a "hmm" comment. Let me fix that assertion — it's wrong. Actually the important direction: t9 uses "CICIDS2017_improved/monday benign-only" as the dataset being scored, so that resolves. Let me remove the bad assertion.
 <details><summary>tool: edit (1041 chars)</summary>
 
@@ -339,7 +339,7 @@ There's a problem: my test asserts `_same_dataset("CICIDS2017_improved/monday be
 ```
 </details>
 
-### [31/141] assistant (opencode/space-bunny-free) 2026-09-29T11:01:26.918Z
+### [31/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:26.918Z
 <details><summary>tool: shell (1234 chars)</summary>
 
 ```json
@@ -347,7 +347,7 @@ There's a problem: my test asserts `_same_dataset("CICIDS2017_improved/monday be
 ```
 </details>
 
-### [32/141] assistant (opencode/space-bunny-free) 2026-09-29T11:01:34.878Z
+### [32/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:34.878Z
 t11a failing. Which assertion? Let me debug.
 <details><summary>tool: shell (1512 chars)</summary>
 
@@ -356,7 +356,7 @@ t11a failing. Which assertion? Let me debug.
 ```
 </details>
 
-### [33/141] assistant (opencode/space-bunny-free) 2026-09-29T11:01:46.175Z
+### [33/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:46.175Z
 The token regex `[a-z0-9]+` splits "cic-ids2017" into "cic" and "ids2017", so "cic-ids2017" isn't in _CORPUS. Need to normalize hyphens. Let me fix _identify to try both hyphenated and de-hyphenated forms.
 
 The guard still worked for the key case (improved vs original → False) because both returned None corpus and fell to substring. But it got the right answer for the wrong reason — it would NOT catch "original CIC-IDS2017" vs "improved" if substring doesn't match... actually it would warn. But `_identify` returning None corpus for "CIC-IDS2017" is a real bug: the corpus map is largely dead. Let me fix by normalizing.
@@ -370,7 +370,7 @@ The corpus map was largely dead — the regex split `cic-ids2017` at the hyphen 
 ```
 </details>
 
-### [34/141] assistant (opencode/space-bunny-free) 2026-09-29T11:01:55.603Z
+### [34/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:55.603Z
 <details><summary>tool: shell (1973 chars)</summary>
 
 ```json
@@ -378,7 +378,7 @@ The corpus map was largely dead — the regex split `cic-ids2017` at the hyphen 
 ```
 </details>
 
-### [35/141] assistant (opencode/space-bunny-free) 2026-09-29T11:02:05.321Z
+### [35/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:05.321Z
 "original CIC-IDS2017" → toks = ['original','cic','ids2017']. joined = "originalcicids2017" and "original-cic-ids2017". Neither in _CORPUS. So corpus None. I need a substring search for corpus names in the normalized string instead. Better approach: normalize by removing all non-alphanumerics, then check if any corpus alias (also normalized) appears as a substring.
 
 Let me rewrite _identify properly.
@@ -391,7 +391,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [36/141] assistant (opencode/space-bunny-free) 2026-09-29T11:02:19.421Z
+### [36/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:19.421Z
 <details><summary>tool: read (3208 chars)</summary>
 
 ```json
@@ -399,7 +399,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [37/141] assistant (opencode/space-bunny-free) 2026-09-29T11:02:22.936Z
+### [37/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:22.936Z
 <details><summary>tool: edit (2180 chars)</summary>
 
 ```json
@@ -407,7 +407,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [38/141] assistant (opencode/space-bunny-free) 2026-09-29T11:02:30.155Z
+### [38/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:30.155Z
 <details><summary>tool: edit (1270 chars)</summary>
 
 ```json
@@ -415,7 +415,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [39/141] assistant (opencode/space-bunny-free) 2026-09-29T11:02:36.740Z
+### [39/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:36.740Z
 <details><summary>tool: shell (2072 chars)</summary>
 
 ```json
@@ -423,7 +423,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [40/141] assistant (opencode/space-bunny-free) 2026-09-29T11:02:46.521Z
+### [40/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:46.521Z
 All 22 pass. But note: `'GeneratedLabelledFlows/TrafficLabelling'` identifies as variant None while `'CIC-IDS2017 raw PortScan'` is 'original' → not same. That's arguably wrong (GeneratedLabelledFlows IS the original). Let me check what the actual provenance strings in the repo are and fix. Let me grep for 'train' keys in checkpoints and scripts.
 All 22 pass. But one case is wrong: `GeneratedLabelledFlows` *is* the original capture, yet it identifies as variant-less while `raw` identifies as `original`. Checking what provenance strings actually ship before locking this in.
 <details><summary>tool: shell (1985 chars)</summary>
@@ -433,7 +433,7 @@ All 22 pass. But one case is wrong: `GeneratedLabelledFlows` *is* the original c
 ```
 </details>
 
-### [41/141] assistant (opencode/space-bunny-free) 2026-09-29T11:02:55.605Z
+### [41/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:55.605Z
 Important finding: most shipped checkpoints have `train=None` — so `require_dataset` is silent for 5 of 7. That's a real gap: the guard is inert for most checkpoints. Also `GeneratedLabelledFlows` is a directory name for the ORIGINAL dataset, but it identifies variant=None while "raw"→original, causing a false mismatch. I should treat variant=None as "original" for the cicids corpus since GeneratedLabelledFlows is the original extraction.
 
 Let me fix: default variant for known corpora → 'original'. And record that the provenance field is missing on 5/7 checkpoints as a finding to report (not silently paper over).
@@ -453,7 +453,7 @@ Two real gaps found: `GeneratedLabelledFlows` (the original extraction) identifi
 ```
 </details>
 
-### [42/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:06.777Z
+### [42/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:06.777Z
 <details><summary>tool: read (1897 chars)</summary>
 
 ```json
@@ -461,7 +461,7 @@ Two real gaps found: `GeneratedLabelledFlows` (the original extraction) identifi
 ```
 </details>
 
-### [43/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:11.083Z
+### [43/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:11.083Z
 <details><summary>tool: edit (1891 chars)</summary>
 
 ```json
@@ -469,7 +469,7 @@ Two real gaps found: `GeneratedLabelledFlows` (the original extraction) identifi
 ```
 </details>
 
-### [44/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:16.304Z
+### [44/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:16.304Z
 Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is silent on exactly the legacy models that caused E44's mistake. Adding a `provenance_gaps` reporter rather than pretending they're covered.
 <details><summary>tool: edit (1973 chars)</summary>
 
@@ -478,7 +478,7 @@ Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is si
 ```
 </details>
 
-### [45/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:24.174Z
+### [45/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:24.174Z
 <details><summary>tool: edit (810 chars)</summary>
 
 ```json
@@ -486,7 +486,7 @@ Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is si
 ```
 </details>
 
-### [46/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:29.036Z
+### [46/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:29.036Z
 <details><summary>tool: edit (2120 chars)</summary>
 
 ```json
@@ -494,7 +494,7 @@ Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is si
 ```
 </details>
 
-### [47/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:35.879Z
+### [47/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:35.879Z
 <details><summary>tool: shell (1621 chars)</summary>
 
 ```json
@@ -502,7 +502,7 @@ Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is si
 ```
 </details>
 
-### [48/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:42.780Z
+### [48/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:42.780Z
 24/24. Now the critical part: prove the guard actually catches the three real bugs. Let me write a reproduction harness that runs the actual E42/E43 code paths with the bug reintroduced and shows the guard fires. That's the real proof.
 
 Let me check the E42 and E43 scripts to wire the guard in.
@@ -514,7 +514,7 @@ Let me check the E42 and E43 scripts to wire the guard in.
 ```
 </details>
 
-### [49/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:48.629Z
+### [49/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:48.629Z
 <details><summary>tool: read (1599 chars)</summary>
 
 ```json
@@ -522,7 +522,7 @@ Let me check the E42 and E43 scripts to wire the guard in.
 ```
 </details>
 
-### [50/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:52.490Z
+### [50/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:52.490Z
 Now wiring the guard into E42 at the exact points where its bug lived.
 <details><summary>tool: edit (1119 chars)</summary>
 
@@ -531,7 +531,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [51/141] assistant (opencode/space-bunny-free) 2026-09-29T11:03:58.592Z
+### [51/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:58.592Z
 <details><summary>tool: read (1440 chars)</summary>
 
 ```json
@@ -539,7 +539,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [52/141] assistant (opencode/space-bunny-free) 2026-09-29T11:04:02.583Z
+### [52/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:02.583Z
 <details><summary>tool: edit (838 chars)</summary>
 
 ```json
@@ -547,7 +547,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [53/141] assistant (opencode/space-bunny-free) 2026-09-29T11:04:08.752Z
+### [53/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:08.752Z
 <details><summary>tool: edit (1339 chars)</summary>
 
 ```json
@@ -555,7 +555,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [54/141] assistant (opencode/space-bunny-free) 2026-09-29T11:04:15.041Z
+### [54/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:15.041Z
 <details><summary>tool: shell (795 chars)</summary>
 
 ```json
@@ -563,7 +563,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [55/141] assistant (opencode/space-bunny-free) 2026-09-29T11:04:19.659Z
+### [55/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:19.659Z
 <details><summary>tool: edit (685 chars)</summary>
 
 ```json
@@ -571,7 +571,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [56/141] assistant (opencode/space-bunny-free) 2026-09-29T11:04:24.969Z
+### [56/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:24.969Z
 Now the decisive test: run E42 with the original bug deliberately reintroduced and confirm the guard stops it.
 <details><summary>tool: write (8445 chars)</summary>
 
@@ -581,7 +581,7 @@ Now the decisive test: run E42 with the original bug deliberately reintroduced a
 ```
 </details>
 
-### [57/141] assistant (opencode/space-bunny-free) 2026-09-29T11:04:45.884Z
+### [57/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:45.884Z
 <details><summary>tool: shell (1491 chars)</summary>
 
 ```json
@@ -589,7 +589,7 @@ Now the decisive test: run E42 with the original bug deliberately reintroduced a
 ```
 </details>
 
-### [58/141] assistant (opencode/space-bunny-free) 2026-09-29T11:04:59.980Z
+### [58/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:59.980Z
 The E16 case: my synthetic construction doesn't reproduce aliasing. Let me think about why.
 
 `_window_key` computes `ts - ts.min()`. For concatenated mon+tue, ts.min() is Monday 09:00, so Monday's windows are 0..9, Tuesday's are 1440..1449. So no aliasing — the epoch is relative to the global min, which is fine when timestamps are real datetimes spanning days.
@@ -613,7 +613,7 @@ The E16 case didn't reproduce — my hypothesis was wrong. Checking the actual m
 ```
 </details>
 
-### [59/141] assistant (opencode/space-bunny-free) 2026-09-29T11:05:21.608Z
+### [59/193] assistant (opencode/space-bunny-free) 2026-09-29T11:05:21.608Z
 The real mechanism: per-file keying then concat then groupby(key) aliases. My earlier claim (concat-then-key) was wrong. Let me fix the test to the correct mechanism, and importantly: the guard SHOULD catch this if given those group ids... but the group ids ARE non-decreasing and non-uniform (120 each — actually uniform! 600/10=60... wait sizes are 120 each, 5 groups per day × 2 days = 10 groups of 120). Hmm, that IS uniform, so require_window_groups would catch it. But the deeper issue: real per-day keying gives 600 rows per 10 windows = 60 rows/window per day, but after aliasing it's 120. So uniform 120 → caught by the uniformity check.
 
 Let me write the test to reflect the real mechanism, and assert the guard catches it.
@@ -627,7 +627,7 @@ My E16 hypothesis was wrong. The real mechanism is per-file keying *then* concat
 ```
 </details>
 
-### [60/141] assistant (opencode/space-bunny-free) 2026-09-29T11:05:36.491Z
+### [60/193] assistant (opencode/space-bunny-free) 2026-09-29T11:05:36.491Z
 <details><summary>tool: edit (710 chars)</summary>
 
 ```json
@@ -635,7 +635,7 @@ My E16 hypothesis was wrong. The real mechanism is per-file keying *then* concat
 ```
 </details>
 
-### [61/141] assistant (opencode/space-bunny-free) 2026-09-29T11:05:41.285Z
+### [61/193] assistant (opencode/space-bunny-free) 2026-09-29T11:05:41.285Z
 <details><summary>tool: shell (1696 chars)</summary>
 
 ```json
@@ -643,7 +643,7 @@ My E16 hypothesis was wrong. The real mechanism is per-file keying *then* concat
 ```
 </details>
 
-### [62/141] assistant (opencode/space-bunny-free) 2026-09-29T11:05:54.318Z
+### [62/193] assistant (opencode/space-bunny-free) 2026-09-29T11:05:54.318Z
 8/8. Note one thing: the E42 case message says "max |dlo| = 0" which is odd — lo was multiplied by 0.5 but lo is all zeros, so diff is 0. The check still fired because hi differs. But the message is misleading. Let me fix the message to report the max diff across both lo and hi.
 
 Also the E16 caught case fired on non-monotonic rather than uniformity — because per-file keying then concat produces 0..9,0..9 which resets, so it's non-monotonic. Good, that's correct and caught by an even stronger check. But my aliasing fixture has uniform sizes too. Fine.
@@ -657,7 +657,7 @@ Let me fix the scaler diff message.
 ```
 </details>
 
-### [63/141] assistant (opencode/space-bunny-free) 2026-09-29T11:06:02.219Z
+### [63/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:02.219Z
 <details><summary>tool: shell (874 chars)</summary>
 
 ```json
@@ -665,7 +665,7 @@ Let me fix the scaler diff message.
 ```
 </details>
 
-### [64/141] assistant (opencode/space-bunny-free) 2026-09-29T11:06:21.797Z
+### [64/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:21.797Z
 <details><summary>tool: shell (465 chars)</summary>
 
 ```json
@@ -673,7 +673,7 @@ Let me fix the scaler diff message.
 ```
 </details>
 
-### [65/141] assistant (opencode/space-bunny-free) 2026-09-29T11:06:36.034Z
+### [65/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:36.034Z
 Both suites green. Now wiring the guard into E43 and E44, then verifying the E42 script still runs with the guard in place.
 <details><summary>tool: shell (785 chars)</summary>
 
@@ -682,7 +682,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [66/141] assistant (opencode/space-bunny-free) 2026-09-29T11:06:41.854Z
+### [66/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:41.854Z
 <details><summary>tool: read (1810 chars)</summary>
 
 ```json
@@ -690,7 +690,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [67/141] assistant (opencode/space-bunny-free) 2026-09-29T11:06:47.559Z
+### [67/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:47.559Z
 <details><summary>tool: edit (1026 chars)</summary>
 
 ```json
@@ -698,7 +698,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [68/141] assistant (opencode/space-bunny-free) 2026-09-29T11:06:54.156Z
+### [68/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:54.156Z
 <details><summary>tool: shell (1141 chars)</summary>
 
 ```json
@@ -706,7 +706,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [69/141] assistant (opencode/space-bunny-free) 2026-09-29T11:06:59.854Z
+### [69/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:59.854Z
 <details><summary>tool: edit (659 chars)</summary>
 
 ```json
@@ -714,7 +714,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [70/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:05.038Z
+### [70/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:05.038Z
 <details><summary>tool: edit (678 chars)</summary>
 
 ```json
@@ -722,7 +722,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [71/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:09.674Z
+### [71/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:09.674Z
 <details><summary>tool: shell (693 chars)</summary>
 
 ```json
@@ -730,7 +730,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [72/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:14.084Z
+### [72/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:14.084Z
 <details><summary>tool: read (1405 chars)</summary>
 
 ```json
@@ -738,7 +738,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [73/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:18.526Z
+### [73/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:18.526Z
 <details><summary>tool: edit (950 chars)</summary>
 
 ```json
@@ -746,7 +746,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [74/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:25.675Z
+### [74/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:25.675Z
 <details><summary>tool: read (1333 chars)</summary>
 
 ```json
@@ -754,7 +754,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [75/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:30.470Z
+### [75/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:30.470Z
 <details><summary>tool: edit (1176 chars)</summary>
 
 ```json
@@ -762,7 +762,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [76/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:36.847Z
+### [76/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:36.847Z
 Now verifying the wired-in guards don't break the real scripts — a guard that stops valid runs is worse than none.
 <details><summary>tool: shell (1054 chars)</summary>
 
@@ -771,7 +771,7 @@ Now verifying the wired-in guards don't break the real scripts — a guard that 
 ```
 </details>
 
-### [77/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:43.098Z
+### [77/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:43.098Z
 <details><summary>tool: shell (1154 chars)</summary>
 
 ```json
@@ -779,7 +779,7 @@ Now verifying the wired-in guards don't break the real scripts — a guard that 
 ```
 </details>
 
-### [78/141] assistant (opencode/space-bunny-free) 2026-09-29T11:07:47.923Z
+### [78/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:47.923Z
 While that runs, writing the E46 README.
 <details><summary>tool: write (6392 chars)</summary>
 
@@ -789,7 +789,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [79/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:08.050Z
+### [79/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:08.050Z
 <details><summary>tool: shell (400 chars)</summary>
 
 ```json
@@ -797,7 +797,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [80/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:13.778Z
+### [80/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:13.778Z
 <details><summary>tool: edit (636 chars)</summary>
 
 ```json
@@ -805,7 +805,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [81/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:19.049Z
+### [81/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:19.049Z
 <details><summary>tool: edit (1133 chars)</summary>
 
 ```json
@@ -813,7 +813,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [82/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:25.162Z
+### [82/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:25.162Z
 <details><summary>tool: shell (507 chars)</summary>
 
 ```json
@@ -821,7 +821,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [83/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:30.240Z
+### [83/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:30.240Z
 E44 is running with the guard in place and the control matches the anchor 0.8714 exactly. Let me wait for it to complete. Meanwhile let me check the anchor check works — actually the control 0.8714 matches E12_control_portscan anchor of 0.8714. Good, that's a strong confirmation.
 
 Let me add the anchor check to E44 too while waiting. Actually E44's control printed 0.8714 which exactly matches the anchor. Let me add check_anchor to E44.
@@ -837,7 +837,7 @@ E44's control reads **0.8714** with the guard in place — exactly the E12 ancho
 ```
 </details>
 
-### [84/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:38.728Z
+### [84/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:38.728Z
 <details><summary>tool: edit (534 chars)</summary>
 
 ```json
@@ -845,7 +845,7 @@ E44's control reads **0.8714** with the guard in place — exactly the E12 ancho
 ```
 </details>
 
-### [85/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:43.546Z
+### [85/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:43.546Z
 <details><summary>tool: shell (743 chars)</summary>
 
 ```json
@@ -853,7 +853,7 @@ E44's control reads **0.8714** with the guard in place — exactly the E12 ancho
 ```
 </details>
 
-### [86/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:48.511Z
+### [86/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:48.511Z
 E44 is reproducing its published numbers with the guard active — the window-group check passed on all three arms. Let me commit while the last arm runs.
 <details><summary>tool: shell (2197 chars)</summary>
 
@@ -862,7 +862,7 @@ E44 is reproducing its published numbers with the guard active — the window-gr
 ```
 </details>
 
-### [87/141] assistant (opencode/space-bunny-free) 2026-09-29T11:08:55.950Z
+### [87/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:55.950Z
 <details><summary>tool: shell (743 chars)</summary>
 
 ```json
@@ -870,7 +870,7 @@ E44 is reproducing its published numbers with the guard active — the window-gr
 ```
 </details>
 
-### [88/141] assistant (opencode/space-bunny-free) 2026-09-29T11:09:01.171Z
+### [88/193] assistant (opencode/space-bunny-free) 2026-09-29T11:09:01.171Z
 E44 is on its last arm. While it finishes, let me verify E43 with the guard actually in place.
 <details><summary>tool: shell (1153 chars)</summary>
 
@@ -879,7 +879,7 @@ E44 is on its last arm. While it finishes, let me verify E43 with the guard actu
 ```
 </details>
 
-### [89/141] assistant (opencode/space-bunny-free) 2026-09-29T11:09:05.812Z
+### [89/193] assistant (opencode/space-bunny-free) 2026-09-29T11:09:05.812Z
 <details><summary>tool: shell (1119 chars)</summary>
 
 ```json
@@ -887,14 +887,14 @@ E44 is on its last arm. While it finishes, let me verify E43 with the guard actu
 ```
 </details>
 
-### [90/141] synthetic 2026-09-29T11:09:10.112Z
+### [90/193] synthetic 2026-09-29T11:09:10.112Z
 [synthetic message: <shell id="sh_0ecd96cd00015CqWz8mnAXhczr" state="completed" command="python experiments/E44_residual_evasion/exp_e44_residual.py">
 control (x1)               window 0.8714  repfuse_fast 0.9689  slow_only 0.9725  F1_dual 0.9709  F2_dual_ov 0.6099
 R1 host rotation x5        window 0.8578  repfuse_fast 0.9536  slow_only 0.9492  F1_dual 0.9526  F2_dual_ov 0.6848
 R2 sub-threshold x10       window 0.0651  repfuse_fast 0.0976  slow_only 0.0976  F1_dual 0.0976  F2_dual_ov 0.0828
 R
 
-### [91/141] assistant (opencode/space-bunny-free) 2026-09-29T11:09:10.428Z
+### [91/193] assistant (opencode/space-bunny-free) 2026-09-29T11:09:10.428Z
 E44 completed with the guard in place, and all four arms reproduce the published numbers exactly:
 - control 0.8714 (matches anchor)
 - R1 rotate 0.8578/0.9536 — README said 0.954 vs 0.969 control. Let me check: repfuse_fast control 0.9689, R1 0.9536. Yes matches the README's "0.954 vs 0.969".
@@ -912,7 +912,7 @@ E44 fully reproduced with guards active — control 0.8714 hits the anchor, R1 0
 ```
 </details>
 
-### [92/141] assistant (opencode/space-bunny-free) 2026-09-29T11:09:16.948Z
+### [92/193] assistant (opencode/space-bunny-free) 2026-09-29T11:09:16.948Z
 <details><summary>tool: shell (513 chars)</summary>
 
 ```json
@@ -920,7 +920,7 @@ E44 fully reproduced with guards active — control 0.8714 hits the anchor, R1 0
 ```
 </details>
 
-### [93/141] assistant (opencode/space-bunny-free) 2026-09-29T11:11:02.529Z
+### [93/193] assistant (opencode/space-bunny-free) 2026-09-29T11:11:02.529Z
 E43 is reproducing under the guard — Botnet `repfuse` reads 0.723, matching the published table. Waiting for the remaining families.
 <details><summary>tool: shell (807 chars)</summary>
 
@@ -929,7 +929,7 @@ E43 is reproducing under the guard — Botnet `repfuse` reads 0.723, matching th
 ```
 </details>
 
-### [94/141] assistant (opencode/space-bunny-free) 2026-09-29T11:12:57.985Z
+### [94/193] assistant (opencode/space-bunny-free) 2026-09-29T11:12:57.985Z
 Four of five families reproduce exactly, including the Botnet 0.723 that the E43 README flagged as an unresolved discrepancy against E21's 0.681. One family left.
 <details><summary>tool: shell (937 chars)</summary>
 
@@ -938,14 +938,14 @@ Four of five families reproduce exactly, including the Botnet 0.723 that the E43
 ```
 </details>
 
-### [95/141] synthetic 2026-09-29T11:14:48.675Z
+### [95/193] synthetic 2026-09-29T11:14:48.675Z
 [synthetic message: <shell id="sh_0ecda9ccb0012B5duSqZTo4p5X" state="completed" command="python experiments/E43_fusion_rule/exp_e43_fusion_rules.py">
 Botnet        m5b 0.467 | noisyor 0.520 | repfuse 0.723 | OPT1 0.652 | OPT2 0.565 | OPT3 0.486
 PortScan      m5b 0.963 | noisyor 0.968 | repfuse 0.953 | OPT1 0.933 | OPT2 0.968 | OPT3 0.973
 DDoS          m5b 0.963 | noisyor 0.968 | repfuse 0.953 | OPT1 0.933 | OPT2 0.968 | OPT3 0.973
 Infiltration  m5b 0.629 | noisyor 0.645 | repfuse 0.639 | OPT1
 
-### [96/141] assistant (opencode/space-bunny-free) 2026-09-29T11:14:48.975Z
+### [96/193] assistant (opencode/space-bunny-free) 2026-09-29T11:14:48.975Z
 E43 reproduced exactly, all 5 families, with the guard active. Now verifying E42 — the last unwired script.
 <details><summary>tool: shell (1159 chars)</summary>
 
@@ -954,7 +954,7 @@ E43 reproduced exactly, all 5 families, with the guard active. Now verifying E42
 ```
 </details>
 
-### [97/141] assistant (opencode/space-bunny-free) 2026-09-29T11:14:53.822Z
+### [97/193] assistant (opencode/space-bunny-free) 2026-09-29T11:14:53.822Z
 While E42 runs, recording the guard verification into the E46 README.
 <details><summary>tool: edit (1738 chars)</summary>
 
@@ -963,7 +963,7 @@ While E42 runs, recording the guard verification into the E46 README.
 ```
 </details>
 
-### [98/141] assistant (opencode/space-bunny-free) 2026-09-29T11:15:02.760Z
+### [98/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:02.760Z
 <details><summary>tool: shell (400 chars)</summary>
 
 ```json
@@ -971,7 +971,7 @@ While E42 runs, recording the guard verification into the E46 README.
 ```
 </details>
 
-### [99/141] assistant (opencode/space-bunny-free) 2026-09-29T11:15:08.505Z
+### [99/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:08.505Z
 <details><summary>tool: edit (1534 chars)</summary>
 
 ```json
@@ -979,7 +979,7 @@ While E42 runs, recording the guard verification into the E46 README.
 ```
 </details>
 
-### [100/141] assistant (opencode/space-bunny-free) 2026-09-29T11:15:16.350Z
+### [100/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:16.350Z
 <details><summary>tool: shell (400 chars)</summary>
 
 ```json
@@ -987,7 +987,7 @@ While E42 runs, recording the guard verification into the E46 README.
 ```
 </details>
 
-### [101/141] assistant (opencode/space-bunny-free) 2026-09-29T11:15:21.613Z
+### [101/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:21.613Z
 E42 takes ~15 min (4 seeds × training). Let me check the anchors are anchored to numbers I can actually defend, since I set them from memory earlier.
 <details><summary>tool: shell (1246 chars)</summary>
 
@@ -996,7 +996,7 @@ E42 takes ~15 min (4 seeds × training). Let me check the anchors are anchored t
 ```
 </details>
 
-### [102/141] assistant (opencode/space-bunny-free) 2026-09-29T11:15:28.970Z
+### [102/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:28.970Z
 Both non-obvious anchors verified against the archive's own JSON. Checking the remaining two.
 <details><summary>tool: shell (1025 chars)</summary>
 
@@ -1005,7 +1005,7 @@ Both non-obvious anchors verified against the archive's own JSON. Checking the r
 ```
 </details>
 
-### [103/141] assistant (opencode/space-bunny-free) 2026-09-29T11:15:35.553Z
+### [103/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:35.553Z
 All five anchors verified against the archive's own result files.
 <details><summary>tool: edit (796 chars)</summary>
 
@@ -1014,7 +1014,7 @@ All five anchors verified against the archive's own result files.
 ```
 </details>
 
-### [104/141] assistant (opencode/space-bunny-free) 2026-09-29T11:15:41.764Z
+### [104/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:41.764Z
 <details><summary>tool: shell (400 chars)</summary>
 
 ```json
@@ -1022,7 +1022,7 @@ All five anchors verified against the archive's own result files.
 ```
 </details>
 
-### [105/141] assistant (opencode/space-bunny-free) 2026-09-29T11:15:46.280Z
+### [105/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:46.280Z
 <details><summary>tool: shell (481 chars)</summary>
 
 ```json
@@ -1030,7 +1030,7 @@ All five anchors verified against the archive's own result files.
 ```
 </details>
 
-### [106/141] assistant (opencode/space-bunny-free) 2026-09-29T11:17:46.503Z
+### [106/193] assistant (opencode/space-bunny-free) 2026-09-29T11:17:46.503Z
 E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 <details><summary>tool: shell (2683 chars)</summary>
 
@@ -1039,7 +1039,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [107/141] assistant (opencode/space-bunny-free) 2026-09-29T11:17:52.501Z
+### [107/193] assistant (opencode/space-bunny-free) 2026-09-29T11:17:52.501Z
 <details><summary>tool: edit (4098 chars)</summary>
 
 ```json
@@ -1048,7 +1048,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [108/141] assistant (opencode/space-bunny-free) 2026-09-29T11:18:07.652Z
+### [108/193] assistant (opencode/space-bunny-free) 2026-09-29T11:18:07.652Z
 <details><summary>tool: edit (3791 chars)</summary>
 
 ```json
@@ -1056,7 +1056,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [109/141] assistant (opencode/space-bunny-free) 2026-09-29T11:18:17.598Z
+### [109/193] assistant (opencode/space-bunny-free) 2026-09-29T11:18:17.598Z
 <details><summary>tool: shell (480 chars)</summary>
 
 ```json
@@ -1064,7 +1064,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [110/141] assistant (opencode/space-bunny-free) 2026-09-29T11:18:24.737Z
+### [110/193] assistant (opencode/space-bunny-free) 2026-09-29T11:18:24.737Z
 <details><summary>tool: shell (753 chars)</summary>
 
 ```json
@@ -1072,7 +1072,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [111/141] assistant (opencode/space-bunny-free) 2026-09-29T11:18:30.137Z
+### [111/193] assistant (opencode/space-bunny-free) 2026-09-29T11:18:30.137Z
 <details><summary>tool: shell (941 chars)</summary>
 
 ```json
@@ -1080,7 +1080,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [112/141] assistant (opencode/space-bunny-free) 2026-09-29T11:20:31.977Z
+### [112/193] assistant (opencode/space-bunny-free) 2026-09-29T11:20:31.977Z
 The dataset guard fired on E42's real cross-testbed case, and the run continued as designed. Waiting for the family numbers.
 <details><summary>tool: shell (1028 chars)</summary>
 
@@ -1089,7 +1089,7 @@ The dataset guard fired on E42's real cross-testbed case, and the run continued 
 ```
 </details>
 
-### [113/141] assistant (opencode/space-bunny-free) 2026-09-29T11:22:33.213Z
+### [113/193] assistant (opencode/space-bunny-free) 2026-09-29T11:22:33.213Z
 Patator reproduces bit-for-bit (0.9169 / 0.9754 / 0.9898 / 0.9450), and the scaler guard passed on all four seeds.
 <details><summary>tool: shell (1003 chars)</summary>
 
@@ -1098,7 +1098,7 @@ Patator reproduces bit-for-bit (0.9169 / 0.9754 / 0.9898 / 0.9450), and the scal
 ```
 </details>
 
-### [114/141] assistant (opencode/space-bunny-free) 2026-09-29T11:24:34.066Z
+### [114/193] assistant (opencode/space-bunny-free) 2026-09-29T11:24:34.066Z
 <details><summary>tool: shell (778 chars)</summary>
 
 ```json
@@ -1106,7 +1106,7 @@ Patator reproduces bit-for-bit (0.9169 / 0.9754 / 0.9898 / 0.9450), and the scal
 ```
 </details>
 
-### [115/141] assistant (opencode/space-bunny-free) 2026-09-29T11:26:39.157Z
+### [115/193] assistant (opencode/space-bunny-free) 2026-09-29T11:26:39.157Z
 DoS also reproduces exactly (0.6381 / 0.9572 / 0.9880 / 0.8118). Five families left.
 <details><summary>tool: shell (828 chars)</summary>
 
@@ -1115,7 +1115,7 @@ DoS also reproduces exactly (0.6381 / 0.9572 / 0.9880 / 0.8118). Five families l
 ```
 </details>
 
-### [116/141] assistant (opencode/space-bunny-free) 2026-09-29T11:28:38.963Z
+### [116/193] assistant (opencode/space-bunny-free) 2026-09-29T11:28:38.963Z
 <details><summary>tool: shell (829 chars)</summary>
 
 ```json
@@ -1123,7 +1123,7 @@ DoS also reproduces exactly (0.6381 / 0.9572 / 0.9880 / 0.8118). Five families l
 ```
 </details>
 
-### [117/141] assistant (opencode/space-bunny-free) 2026-09-29T11:30:54.729Z
+### [117/193] assistant (opencode/space-bunny-free) 2026-09-29T11:30:54.729Z
 Four of seven reproduce exactly, including the two failures (Infiltration 0.586 → 0.521). Three left.
 <details><summary>tool: shell (831 chars)</summary>
 
@@ -1132,7 +1132,7 @@ Four of seven reproduce exactly, including the two failures (Infiltration 0.586 
 ```
 </details>
 
-### [118/141] assistant (opencode/space-bunny-free) 2026-09-29T11:33:05.743Z
+### [118/193] assistant (opencode/space-bunny-free) 2026-09-29T11:33:05.743Z
 Six of seven bit-identical. Only DDoS remains.
 <details><summary>tool: shell (722 chars)</summary>
 
@@ -1141,7 +1141,7 @@ Six of seven bit-identical. Only DDoS remains.
 ```
 </details>
 
-### [119/141] synthetic 2026-09-29T11:35:02.691Z
+### [119/193] synthetic 2026-09-29T11:35:02.691Z
 [synthetic message: <shell id="sh_0ecdfec7c001IBEhBnFYlm8JhI" state="completed" command="python experiments/E42_replay_all_families/exp_e42_replay_all.py">
 train: 487 original + 97 replay = 584
   seed 0 replay-tuned
@@ -1150,7 +1150,7 @@ train: 487 original + 97 replay = 584
   seed 3 replay-tuned
 E:\Potential-gold\Zero-Day\experiments\E42_replay_all_families\exp_e42_replay_all.py:165: RuntimeWarning: E42 base on orig: checkpoint was trained on 'CICIDS2017_improved/monday benign-only' but is being scored on
 
-### [120/141] assistant (opencode/space-bunny-free) 2026-09-29T11:35:03.065Z
+### [120/193] assistant (opencode/space-bunny-free) 2026-09-29T11:35:03.065Z
 All three scripts reproduce bit-for-bit with the guards active. Recording that and committing.
 <details><summary>tool: edit (1025 chars)</summary>
 
@@ -1159,7 +1159,7 @@ All three scripts reproduce bit-for-bit with the guards active. Recording that a
 ```
 </details>
 
-### [121/141] assistant (opencode/space-bunny-free) 2026-09-29T11:35:33.625Z
+### [121/193] assistant (opencode/space-bunny-free) 2026-09-29T11:35:33.625Z
 <details><summary>tool: shell (1291 chars)</summary>
 
 ```json
@@ -1167,7 +1167,7 @@ All three scripts reproduce bit-for-bit with the guards active. Recording that a
 ```
 </details>
 
-### [122/141] assistant (opencode/space-bunny-free) 2026-09-29T11:35:46.361Z
+### [122/193] assistant (opencode/space-bunny-free) 2026-09-29T11:35:46.361Z
 Done and pushed (`1b4aa4d`).
 
 # The guard is built and proven
@@ -1208,13 +1208,13 @@ I added `provenance_report()` so this can't quietly persist, and logged it as th
 
 **Your move:** back-fill the provenance fields, or move to a different open item.
 
-### [123/141] idle 2026-09-29T11:36:01.628Z
+### [123/193] idle 2026-09-29T11:36:01.628Z
 [idle message: 
 
-### [124/141] user 2026-09-29T11:47:02.599Z
+### [124/193] user 2026-09-29T11:47:02.599Z
 bottom line what happened
 
-### [125/141] assistant (opencode/space-bunny-free) 2026-09-29T11:47:02.926Z
+### [125/193] assistant (opencode/space-bunny-free) 2026-09-29T11:47:02.926Z
 # Bottom line
 
 ## What you asked for
@@ -1260,13 +1260,13 @@ Worth saying, because it's the same failure mode I was fixing:
 
 Nothing is running now. Machine is free.
 
-### [126/141] idle 2026-09-29T11:47:14.124Z
+### [126/193] idle 2026-09-29T11:47:14.124Z
 [idle message: 
 
-### [127/141] user 2026-09-29T11:47:45.730Z
+### [127/193] user 2026-09-29T11:47:45.730Z
 fix 2 and 4
 
-### [128/141] assistant (opencode/space-bunny-free) 2026-09-29T11:47:46.061Z
+### [128/193] assistant (opencode/space-bunny-free) 2026-09-29T11:47:46.061Z
 The user wants me to fix items 2 and 4:
 2. Fusion rule — needs the 4-seed band, currently single seed
 4. Back-fill provenance — 6 of 9 checkpoints carry no `train` field
@@ -1286,7 +1286,7 @@ Starting with item 4 (quick), then launching item 2's 4-seed run since it's the 
 ```
 </details>
 
-### [129/141] assistant (opencode/space-bunny-free) 2026-09-29T11:47:54.509Z
+### [129/193] assistant (opencode/space-bunny-free) 2026-09-29T11:47:54.509Z
 <details><summary>tool: read (2021 chars)</summary>
 
 ```json
@@ -1294,7 +1294,7 @@ Starting with item 4 (quick), then launching item 2's 4-seed run since it's the 
 ```
 </details>
 
-### [130/141] assistant (opencode/space-bunny-free) 2026-09-29T11:48:13.900Z
+### [130/193] assistant (opencode/space-bunny-free) 2026-09-29T11:48:13.900Z
 E43 already has M5B for 4 seeds. M5A only has seed 0 (m5a_revived_improved.pt). Let me check what M5A seeds exist.
 
 From the checkpoint listing earlier:
@@ -1312,7 +1312,7 @@ E43 has M5b for 4 seeds but M5a only seed 0. Checking whether the other M5a seed
 ```
 </details>
 
-### [131/141] assistant (opencode/space-bunny-free) 2026-09-29T11:48:47.270Z
+### [131/193] assistant (opencode/space-bunny-free) 2026-09-29T11:48:47.270Z
 The M5a seeds s1-s3 don't exist in detection/ — they were gitignored or deleted. E21 references them. Let me check .gitignore and whether they're anywhere else.
 
 Also note: gnn_improved_s1/s2/s3.pt are also missing! Only gnn_improved_s0.pt exists. So E43's M5B dict references files that don't exist. That means running seeds 1-3 will fail. I need to retrain or find them.
@@ -1326,7 +1326,7 @@ Both M5b seeds 1–3 and all M5a seeds 1–3 are missing from disk — E43's 4-s
 ```
 </details>
 
-### [132/141] assistant (opencode/space-bunny-free) 2026-09-29T11:49:18.657Z
+### [132/193] assistant (opencode/space-bunny-free) 2026-09-29T11:49:18.657Z
 The M5a seeds 1-3 exist in experiments/E21_band/. But the M5b seeds 1-3 (gnn_improved_s1..s3.pt) do NOT exist anywhere — only s0. That's a problem. Let me check what E21 did for M5b band.
 
 Wait, the summary said "Ship `gnn_improved_s0..s3.pt` (val-picked epochs)". But only s0 is on disk. Let me check E21's band more carefully and CHECKPOINTS.md.
@@ -1344,7 +1344,7 @@ M5a seeds 1–3 are in `E21_band/` but **M5b seeds 1–3 don't exist anywhere** 
 ```
 </details>
 
-### [133/141] assistant (opencode/space-bunny-free) 2026-09-29T11:49:34.972Z
+### [133/193] assistant (opencode/space-bunny-free) 2026-09-29T11:49:34.972Z
 So the M5b seeds 1-3 were deleted as "superseded by the val-picked band" but the val-picked band was never actually produced (only s0 exists). E26 was supposed to produce val-picked s1-s3 but they don't exist. Let me check E26/E28.
 
 Actually the summary said "Ship gnn_improved_s0..s3.pt (val-picked epochs)". But only s0 exists. So the deletion record says "gnn_improved_s{1,2,3}.pt (non-val) — superseded by the val-picked band" — meaning the non-val ones were deleted, but the val-picked ones were never trained/saved. That's a real gap I need to state.
@@ -1362,7 +1362,7 @@ Important finding: M5b seeds 1–3 were deleted as "superseded by the val-picked
 ```
 </details>
 
-### [134/141] assistant (opencode/space-bunny-free) 2026-09-29T11:50:02.354Z
+### [134/193] assistant (opencode/space-bunny-free) 2026-09-29T11:50:02.354Z
 <details><summary>tool: shell (2155 chars)</summary>
 
 ```json
@@ -1370,7 +1370,7 @@ Important finding: M5b seeds 1–3 were deleted as "superseded by the val-picked
 ```
 </details>
 
-### [135/141] assistant (opencode/space-bunny-free) 2026-09-29T11:50:14.386Z
+### [135/193] assistant (opencode/space-bunny-free) 2026-09-29T11:50:14.386Z
 The trainer supports `--seed` and `--val-frac`. Launching M5b seeds 1–3 in the background — that's the long pole.
 <details><summary>tool: shell (1471 chars)</summary>
 
@@ -1379,7 +1379,7 @@ The trainer supports `--seed` and `--val-frac`. Launching M5b seeds 1–3 in the
 ```
 </details>
 
-### [136/141] assistant (opencode/space-bunny-free) 2026-09-29T11:50:25.027Z
+### [136/193] assistant (opencode/space-bunny-free) 2026-09-29T11:50:25.027Z
 Training running. Now item 4 — back-filling provenance. First I need to establish *what each checkpoint actually is*, not guess.
 <details><summary>tool: write (10585 chars)</summary>
 
@@ -1389,7 +1389,7 @@ Training running. Now item 4 — back-filling provenance. First I need to establ
 ```
 </details>
 
-### [137/141] assistant (opencode/space-bunny-free) 2026-09-29T11:50:54.236Z
+### [137/193] assistant (opencode/space-bunny-free) 2026-09-29T11:50:54.236Z
 <details><summary>tool: shell (969 chars)</summary>
 
 ```json
@@ -1397,7 +1397,7 @@ Training running. Now item 4 — back-filling provenance. First I need to establ
 ```
 </details>
 
-### [138/141] assistant (opencode/space-bunny-free) 2026-09-29T11:51:32.528Z
+### [138/193] assistant (opencode/space-bunny-free) 2026-09-29T11:51:32.528Z
 The audit says 6 need back-fill, 2 UNRESOLVED (weakest confidence), and interestingly m5a_revived_improved.pt is "already correct" — it has a train field? Wait no, earlier the check showed m5a_revived_improved.pt had no `train` key. Let me check. Actually the earlier listing showed only gnn_improved_s0 and host_autoencoder_adfa had train. But the audit says m5a_revived_improved is "already correct"... Hmm, because my CLAIMS says train_value = "CICIDS2017_improved/monday benign-only" and existing == claim value. Let me verify — maybe m5a_revived_improved does have a train key now. Actually the earlier provenance_report said 3 checkable, 6 missing. And it listed 6 missing: gnn_autoencoder_v1, gnn_autoencoder_v1_logscale, gnn_autoencoder_v1_logscale_v2, gnn_improved_replay, gnn_temporal_fused_v1, m5a_revived_ctx. So the 3 checkable are gnn_improved_s0, host_autoencoder_adfa, m5a_revived_improved. So m5a_revived_improved DOES have a train field. Good — that's consistent.
 
 So 2 UNRESOLVED: gnn_autoencoder_v1.pt and gnn_temporal_fused_v1.pt. These are the weakest — I shouldn't guess. For those, the honest action is to leave them unmarked, OR determine definitively.
@@ -1417,7 +1417,7 @@ Let me look at the trainers.
 ```
 </details>
 
-### [139/141] assistant (opencode/space-bunny-free) 2026-09-29T11:52:03.605Z
+### [139/193] assistant (opencode/space-bunny-free) 2026-09-29T11:52:03.605Z
 `train_m5a_revived.py` reads `Monday-WorkingHours.pcap_ISCX.csv` directly from `FLOWS` — that's the original extraction, confirmed from the trainer source, not inferred. Let me resolve the two weak ones the same way.
 <details><summary>tool: shell (1725 chars)</summary>
 
@@ -1426,7 +1426,7 @@ Let me look at the trainers.
 ```
 </details>
 
-### [140/141] assistant (opencode/space-bunny-free) 2026-09-29T11:52:15.635Z
+### [140/193] assistant (opencode/space-bunny-free) 2026-09-29T11:52:15.635Z
 `gnn_model.py` main() takes `--csv` argument — so it's dataset-agnostic. That means the checkpoint's provenance depends on the command line used, which I can't recover from the file. So `gnn_autoencoder_v1.pt` and `gnn_temporal_fused_v1.pt` are genuinely unresolvable without the training command.
 
 Let me check if there's any record — git log for the commit that added them, or the CHANGELOG.
@@ -1442,7 +1442,557 @@ Actually, better: rather than guessing, I should record them with an explicit `t
 ```
 </details>
 
-### [141/141] assistant (opencode/space-bunny-free) 2026-09-29T11:53:16.309Z
+### [141/193] assistant (opencode/space-bunny-free) 2026-09-29T11:56:24.968Z
+The changelog says gnn_autoencoder_v1.pt was saved by a *smoke* run. And the next production train should be `python detection/gnn_model.py Monday.csv --seed 0`. So gnn_autoencoder_v1.pt may be from a SMOKE run — possibly on synthetic or a small sample. That's a genuinely different provenance.
+
+Let me check more carefully.
+
+For gnn_autoencoder_v1.pt: changelog line 296 says "New gnn_autoencoder_v1.pt saved by smoke is logscale". So its provenance is a smoke run — not necessarily Monday.csv full. This is genuinely UNRESOLVED and I should not guess.
+
+Let me check the state dict to see if I can tell anything — e.g. epochs metadata.
+The changelog says `gnn_autoencoder_v1.pt` was "saved by smoke" — a smoke run, not a documented Monday train. Checking what the checkpoints themselves can attest.
+<details><summary>tool: shell (1179 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_v32e6f4g7o5g_1","args":{"command":"python -c \"\nimport torch\nfor f in ['gnn_autoencoder_v1.pt','gnn_temporal_fused_v1.pt','gnn_autoencoder_v1_logscale.pt','gnn_autoencoder_v1_logscale_v2.pt','m5a_revived_ctx.pt','gnn_improved_replay.pt']:\n    b=torch.load('detection/'+f, map_location='cpu', weights_only=False)\n    meta={k:v for k,v in b.items() if not hasattr(v,'shape') and k not in ('state_dict','model')}\n    print('%-36s %s' % (f, {k:(v if not isinstance(v,(list,dict)) or len(str(v))<90 else type(v).__name__+f'({len(v)})') for k,v in meta.items()}))\n\"","timeout":90000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"gnn_autoencoder_v1.pt                {'scaler': 'dict(3)'}\r\ngnn_temporal_fused_v1.pt             {'scaler': 'dict(3)'}\r\ngnn_autoencoder_v1_logscale.pt       {'scaler': 'dict(3)'}\r\ngnn_autoencoder_v1_logscale_v2.pt    {'scaler': 'dict(3)'}\r\nm5a_revived_ctx.pt                   {'input_dim': 87, 'canonical': 'list(76)', 'ctx_names': 'list(11)', 'window_seconds': 60, 'seed': 0}\r\ngnn_improved_replay.pt               {'scaler': 'dict(3)'}\r\n"}]}
+```
+</details>
+
+### [142/193] assistant (opencode/space-bunny-free) 2026-09-29T11:56:44.110Z
+The checkpoints themselves carry no attestation for the two weak ones. But there's a strong empirical test available: a scaler's lo/hi are fit on training data. I can check whether the scaler's ranges match the original Monday flow stats or the clean Monday flow stats. That's a *measured* discriminator, not a guess!
+
+Let me do that: fit a NodeScaler on original Monday benign and on clean Monday benign, compare to the checkpoint's scaler.
+
+Actually even simpler: the scaler bounds are derived from the data. Let me compute per-feature min/max (with log1p) on both datasets and see which matches the checkpoint.
+
+That would resolve all 6 empirically. Let me do it.
+
+This is a good approach — measured evidence rather than documentation.
+
+Let me check the training run status first though. Let me write the empirical resolver.
+
+Actually let me check time budget. The M5b training is running. Let me write the empirical scaler-fingerprint discriminator.
+
+Let me look at what NodeScaler does.
+The checkpoints carry no attestation. But the scaler is *fit on the training data* — so its bounds are empirical evidence. Testing which dataset each scaler actually came from.
+<details><summary>tool: shell (1629 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_mudl2shzlzlm_1","args":{"command":"Select-String -Path detection\\gnn_model.py -Pattern 'class NodeScaler' -Context 0,30 | ForEach-Object { $_.Line; $_.Context.PostContext } | Select-Object -First 35","timeout":60000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"class NodeScaler:\r\n    \"\"\"Log1p + min-max scaler fitted across all training graphs (gotcha #14).\r\n\r\n    Node features are raw counts on wildly different scales (out_degree ~200,\r\n    bytes_sent ~5,000,000). Plain min-max maps the busiest host to 1.0 and\r\n    squashes every other host near 0. Log1p compresses the tail before scaling:\r\n    mean P@100 0.250 -> 0.413. This is the default since 2026-08-12.\r\n    Old checkpoints carry no `log` key and are loaded as log=False.\r\n    \"\"\"\r\n\r\n    def __init__(self, log: bool = True):\r\n        self.log = log\r\n        self.lo = None\r\n        self.hi = None\r\n\r\n    def _prep(self, x: torch.Tensor) -> torch.Tensor:\r\n        if self.log:\r\n            return torch.log1p(torch.clamp(x, min=0))\r\n        return x\r\n\r\n    def fit(self, graphs):\r\n        allx = torch.cat([self._prep(g.x) for g in graphs], dim=0)\r\n        self.lo = allx.min(dim=0).values\r\n        self.hi = allx.max(dim=0).values\r\n        return self\r\n\r\n    def transform(self, x):\r\n        x = self._prep(x)\r\n        span = torch.where((self.hi - self.lo) > 0, self.hi - self.lo,\r\n                           torch.ones_like(self.hi))\r\n        return torch.clamp((x - self.lo) / span, 0.0, 1.0)\r\n"}]}
+```
+</details>
+
+### [143/193] assistant (opencode/space-bunny-free) 2026-09-29T11:56:51.014Z
+The scaler's `lo`/`hi` are per-feature minima and maxima of the training data — a direct fingerprint. I can identify each checkpoint's dataset empirically by comparing against both corpora.
+<details><summary>tool: write (6082 chars)</summary>
+
+```json
+{"type":"tool","tool":"write","name":"write","id":"call_function_kbph02bgx7q7_1","args":{"content":"\"\"\"Identify each checkpoint's training data EMPIRICALLY, from the scaler itself.\n\nThe two checkpoints that documentation cannot settle (`gnn_autoencoder_v1.pt`,\n\"saved by smoke\" per CHANGELOG 2026-08-25, and `gnn_temporal_fused_v1.pt`,\nan ablation arm) have no recorded training command. Rather than guess, use the\nscaler as physical evidence.\n\n`NodeScaler.fit` sets `lo`/`hi` to the per-feature min and max of the TRAINING\ngraphs. Those are data fingerprints: fit a scaler on each candidate corpus and\nsee which one the checkpoint's stored bounds actually match.\n\n    python experiments/E47_provenance_audit/exp_e47_scaler_forensics.py\n\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\n\nROOT = Path(__file__).resolve().parents[2]\nsys.path.insert(0, str(ROOT / \"detection\"))\n\nfrom gnn_model import GraphAutoencoder, NodeScaler\nfrom graph_builder import build_graphs, normalize_columns, read_flows\n\nDET = ROOT / \"detection\"\nORIG = ROOT / \"data\" / \"GeneratedLabelledFlows\" / \"TrafficLabelling\"\nCLEAN = ROOT / \"data\" / \"CICIDS2017_improved\"\nOUT = Path(__file__).resolve().parent / \"exp_e47_scaler_forensics.json\"\n\nCANDIDATES = {\n    \"original_monday\": lambda: _graphs(ORIG / \"Monday-WorkingHours.pcap_ISCX.csv\",\n                                       feature_set=\"v1\"),\n    \"clean_monday\": lambda: _graphs(CLEAN / \"monday.csv\", feature_set=\"v1\"),\n}\n\n\ndef _graphs(csv: Path, feature_set: str):\n    df = normalize_columns(read_flows(csv, limit=200_000))\n    lab = df[\"label\"].astype(str).str.strip().str.upper()\n    df = df[lab == \"BENIGN\"].sort_values(\"timestamp\")\n    return build_graphs(df, window_seconds=60, feature_set=feature_set)\n\n\ndef bounds(graphs, log: bool):\n    sc = NodeScaler(log=log).fit(graphs)\n    return (np.asarray(sc.lo, dtype=np.float64),\n            np.asarray(sc.hi, dtype=np.float64))\n\n\ndef compare(ck_lo, ck_hi, ref_lo, ref_hi):\n    \"\"\"Relative error on the hi vector, which is the discriminating one.\n\n    lo is often 0.0 for count features (the minimum really is zero), so it\n    carries almost no information; hi is where two corpora differ.\n    \"\"\"\n    scale = np.maximum(np.abs(ref_hi), 1.0)\n    d_hi = float(np.abs(ck_hi - ref_hi).max() / scale.max())\n    d_hi_mean = float(np.mean(np.abs(ck_hi - ref_hi) / scale))\n    d_lo = float(np.abs(ck_lo - ref_lo).max() / max(np.abs(ref_lo).max(), 1.0))\n    return {\"hi_max_rel\": round(d_hi, 6), \"hi_mean_rel\": round(d_hi_mean, 6),\n            \"lo_max_rel\": round(d_lo, 6)}\n\n\ndef main():\n    res = {\"note\": \"Scaler-bound forensics. lo/hi are per-feature min/max of the \"\n                   \"TRAINING graphs, so they fingerprint the corpus. Used to \"\n                   \"settle two checkpoints whose training command was never \"\n                   \"recorded. Reference bounds are fitted on 200k BENIGN flows \"\n                   \"of each Monday; a checkpoint trained on more data than that \"\n                   \"may differ slightly on hi, so the comparison is indicative \"\n                   \"not exact.\",\n           \"references\": {}, \"checkpoints\": {}}\n\n    for name, fn in CANDIDATES.items():\n        try:\n            gs = fn()\n            for log in (True, False):\n                lo, hi = bounds(gs, log)\n                res[\"references\"][f\"{name} log={log}\"] = {\n                    \"n_graphs\": len(gs), \"lo\": lo.tolist(), \"hi\": hi.tolist()}\n            print(f\"reference {name}: {len(gs)} graphs\")\n        except Exception as e:\n            res[\"references\"][name] = {\"error\": f\"{type(e).__name__}: {e}\"}\n            print(f\"reference {name}: FAILED {e}\")\n\n    targets = [\"gnn_autoencoder_v1.pt\", \"gnn_autoencoder_v1_logscale.pt\",\n               \"gnn_autoencoder_v1
+… truncated 2082 chars, see export JSON …
+```
+</details>
+
+### [144/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:05.534Z
+<details><summary>tool: shell (1162 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_yujr67yzcm4h_1","args":{"background":true,"command":"python experiments/E47_provenance_audit/exp_e47_scaler_forensics.py","timeout":0,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"Command moved to the background (shell ID: sh_0ed069d46001SdWZhzBF5Dy1vw).\nOutput is streaming to: C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed069d46001SdWZhzBF5Dy1vw.out"},{"type":"text","text":"You will be notified automatically when the command finishes. The notification will include the command's output. Unless the user explicitly asks otherwise, DO NOT poll for completion, even if you need the final result to continue. Repeatedly sleeping and reading or searching the output file is polling, not useful work. You may read the current output if it lets you do useful work now, but do not repeatedly check it while waiting for the command to finish. Keep working on anything that does not depend on the result. If you have nothing else to do, end your response; you will be resumed automatically when the command finishes."}]}
+```
+</details>
+
+### [145/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:09.787Z
+<details><summary>tool: shell (880 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_o9tv2rt1ny2b_1","args":{"command":"Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 5; echo \"=== forensics ===\"; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed069d46001SdWZhzBF5Dy1vw.out -ErrorAction SilentlyContinue | Select-Object -Last 5","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"E26 val holdout: 389 train / 97 val (last windows)\r\n  epoch   0 | val 0.000819 | best 0.000819@0\r\n  epoch  40 | val 0.001172 | best 0.000050@17\r\n  epoch  80 | val 0.001244 | best 0.000050@17\r\n  epoch 120 | val 0.001518 | best 0.000050@17\r\n=== forensics ===\r\n"}]}
+```
+</details>
+
+### [146/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:15.728Z
+Training seed 1 is progressing. Let me check the M5a seeds situation while waiting.
+<details><summary>tool: shell (1428 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_yvtivneq0srq_1","args":{"command":"python -c \"\nimport torch\nfor s in ['','_s1','_s2','_s3']:\n    p='experiments/E21_band/m5a_revived_improved%s.pt'%s\n    b=torch.load(p,map_location='cpu',weights_only=False)\n    print('%-40s input_dim=%s seed=%s train=%r' % (p.split('/')[-1], b.get('input_dim'), b.get('seed'), b.get('train')))\n\"","timeout":90000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"Traceback (most recent call last):\r\n  File \"<string>\", line 5, in <module>\r\n    b=torch.load(p,map_location='cpu',weights_only=False)\r\n  File \"C:\\Users\\trex2\\AppData\\Roaming\\Python\\Python314\\site-packages\\torch\\serialization.py\", line 1530, in load\r\n    with _open_file_like(f, \"rb\") as opened_file:\r\n         ~~~~~~~~~~~~~~~^^^^^^^^^\r\n  File \"C:\\Users\\trex2\\AppData\\Roaming\\Python\\Python314\\site-packages\\torch\\serialization.py\", line 795, in _open_file_like\r\n    return _open_file(name_or_buffer, mode)\r\n  File \"C:\\Users\\trex2\\AppData\\Roaming\\Python\\Python314\\site-packages\\torch\\serialization.py\", line 776, in __init__\r\n    super().__init__(open(name, mode))  # noqa: SIM115\r\n                     ~~~~^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'experiments/E21_band/m5a_revived_improved.pt'\r\n"},{"type":"text","text":"Exited with code 1"}]}
+```
+</details>
+
+### [147/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:24.842Z
+<details><summary>tool: shell (939 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_04769kzuinvv_1","args":{"command":"python -c \"\nimport torch\nfor s in ['','_s1','_s2','_s3']:\n    p='experiments/E21_band/m5a_revived_improved%s.pt'%s\n    try:\n        b=torch.load(p,map_location='cpu',weights_only=False)\n        print('%-34s input_dim=%s seed=%s train=%r' % (p.split('/')[-1], b.get('input_dim'), b.get('seed'), b.get('train')))\n    except FileNotFoundError: print(p,'MISSING')\n\"","timeout":90000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"experiments/E21_band/m5a_revived_improved.pt MISSING\r\nm5a_revived_improved_s1.pt         input_dim=93 seed=1 train='CICIDS2017_improved/monday benign-only'\r\nm5a_revived_improved_s2.pt         input_dim=93 seed=2 train='CICIDS2017_improved/monday benign-only'\r\nm5a_revived_improved_s3.pt         input_dim=93 seed=3 train='CICIDS2017_improved/monday benign-only'\r\n"}]}
+```
+</details>
+
+### [148/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:33.363Z
+M5a seeds 1–3 exist in `E21_band/` and already carry provenance. I'll have E43 load them from there.
+<details><summary>tool: edit (788 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_hl6v9tkirijs_1","args":{"oldString":"M5A = {0: \"m5a_revived_improved.pt\"}","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\exp_e43_fusion_rules.py","newString":"# M5a seed 0 ships in detection/; seeds 1-3 live in the E21_band folder that\n# produced them (the cleanup deleted them from detection/ as \"one checkpoint is\n# enough to serve\", which is true for serving and false for banding).\nM5A = {0: DET / \"m5a_revived_improved.pt\"}\nfor _s in (1, 2, 3):\n    _p = (ROOT / \"experiments\" / \"E21_band\" / f\"m5a_revived_improved_s{_s}.pt\")\n    if _p.exists():\n        M5A[_s] = _p"},"output":[{"type":"text","text":"Edited experiments/E43_fusion_rule/exp_e43_fusion_rules.py (1 replacement)"}]}
+```
+</details>
+
+### [149/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:41.361Z
+<details><summary>tool: read (1408 chars)</summary>
+
+```json
+{"type":"tool","tool":"read","name":"read","id":"call_function_lpxbfk1gm9mv_1","args":{"limit":18,"offset":44,"path":"E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\exp_e43_fusion_rules.py"},"output":[{"type":"text","text":"Read file E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\exp_e43_fusion_rules.py, lines 44-61\n44: from eval_guards import require_scaler_match, require_window_groups\n45: from exp_m5a_revival import flow_matrix, build_ctx, MinMax, CtxScaler, RevivedAE\n46: \n47: DET = ROOT / \"detection\"\n48: CLEAN = ROOT / \"data\" / \"CICIDS2017_improved\"\n49: ORIG = ROOT / \"data\" / \"GeneratedLabelledFlows\" / \"TrafficLabelling\"\n50: OUT = Path(__file__).resolve().parent / \"exp_e43_fusion_rules.json\"\n51: \n52: M5B = {0: \"gnn_improved_s0.pt\", 1: \"gnn_improved_s1.pt\",\n53:        2: \"gnn_improved_s2.pt\", 3: \"gnn_improved_s3.pt\"}\n54: # M5a seed 0 ships in detection/; seeds 1-3 live in the E21_band folder that\n55: # produced them (the cleanup deleted them from detection/ as \"one checkpoint is\n56: # enough to serve\", which is true for serving and false for banding).\n57: M5A = {0: DET / \"m5a_revived_improved.pt\"}\n58: for _s in (1, 2, 3):\n59:     _p = (ROOT / \"experiments\" / \"E21_band\" / f\"m5a_revived_improved_s{_s}.pt\")\n60:     if _p.exists():\n61:         M5A[_s] = _p\n[Output truncated. Continue reading with offset: 62]"}]}
+```
+</details>
+
+### [150/193] synthetic 2026-09-29T11:57:46.713Z
+[synthetic message: <shell id="sh_0ed069d46001SdWZhzBF5Dy1vw" state="completed" command="python experiments/E47_provenance_audit/exp_e47_scaler_forensics.py">
+reference original_monday: 259 graphs
+reference clean_monday: 486 graphs
+gnn_autoencoder_v1.pt                dim= 8 log=True  best=original_monday log=True -> no clean match
+gnn_autoencoder_v1_logscale.pt       dim= 8 log=True  best=original_monday log=True -> no clean match
+gnn_autoencoder_v1_logscale_v2.pt    dim=19 log=True  best=N
+
+### [151/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:47.202Z
+The v1 (8-dim) checkpoints match original_monday best but "no clean match" — meaning the hi_mean_rel is >= 0.02. That could be because the reference was fit on 200k BENIGN flows while the actual training used all Monday graphs. So the match is directional but not exact. Let me look at the actual numbers to see how close.
+
+Also v2 (19-dim) checkpoints have no comparable reference because my reference used feature_set="v1" which gives 8 dims. I need a v2 reference. Let me fix: generate references for both feature sets.
+
+Let me check the json for the actual values first.
+The v2 checkpoints have no reference because I only fit the 8-dim v1 feature set. Let me see the actual numbers and fix the reference generation.
+<details><summary>tool: shell (2181 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_vpaw43p4kxwn_1","args":{"command":"python -c \"\nimport json\nd=json.load(open('experiments/E47_provenance_audit/exp_e47_scaler_forensics.json',encoding='utf-8'))\nfor k,v in d['checkpoints'].items():\n    print(k, v['in_dim'], v['log'], '| best', v['best_match'], '| mean_rel', v.get('best_hi_mean_rel'))\n    for m,c in v['matches'].items(): print('     ', m, c)\n\"","timeout":60000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"gnn_autoencoder_v1.pt 8 True | best original_monday log=True | mean_rel 0.644382\r\n      original_monday log=True {'hi_max_rel': 0.491662, 'hi_mean_rel': 0.644382, 'lo_max_rel': 0.0}\r\n      original_monday log=False {'hi_max_rel': 1.0, 'hi_mean_rel': 0.995461, 'lo_max_rel': 0.0}\r\n      clean_monday log=True {'hi_max_rel': 0.554733, 'hi_mean_rel': 2.892362, 'lo_max_rel': 0.0}\r\n      clean_monday log=False {'hi_max_rel': 1.0, 'hi_mean_rel': 3.136871, 'lo_max_rel': 0.0}\r\ngnn_autoencoder_v1_logscale.pt 8 True | best original_monday log=True | mean_rel 0.081518\r\n      original_monday log=True {'hi_max_rel': 0.093097, 'hi_mean_rel': 0.081518, 'lo_max_rel': 0.0}\r\n      original_monday log=False {'hi_max_rel': 1.0, 'hi_mean_rel': 0.980284, 'lo_max_rel': 0.0}\r\n      clean_monday log=True {'hi_max_rel': 1.091267, 'hi_mean_rel': 4.695835, 'lo_max_rel': 0.0}\r\n      clean_monday log=False {'hi_max_rel': 1.0, 'hi_mean_rel': 5.002597, 'lo_max_rel': 0.0}\r\ngnn_autoencoder_v1_logscale_v2.pt 19 True | best None | mean_rel None\r\ngnn_temporal_fused_v1.pt 8 True | best original_monday log=True | mean_rel 0.644382\r\n      original_monday log=True {'hi_max_rel': 0.491662, 'hi_mean_rel': 0.644382, 'lo_max_rel': 0.0}\r\n      original_monday log=False {'hi_max_rel': 1.0, 'hi_mean_rel': 0.995461, 'lo_max_rel': 0.0}\r\n      clean_monday log=True {'hi_max_rel': 0.554733, 'hi_mean_rel': 2.892362, 'lo_max_rel': 0.0}\r\n      clean_monday log=False {'hi_max_rel': 1.0, 'hi_mean_rel': 3.136871, 'lo_max_rel': 0.0}\r\ngnn_improved_s0.pt 19 True | best None | mean_rel None\r\ngnn_improved_replay.pt 19 True | best None | mean_rel None\r\n"}]}
+```
+</details>
+
+### [152/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:53.116Z
+The results are informative. All three 8-dim v1 checkpoints match original_monday log=True much better than clean_monday (0.08 vs 4.7 for logscale; 0.64 vs 2.89 for the other two). So original Monday is the answer for all 8-dim ones — the discrimination is clear even where the absolute match isn't tight.
+
+`gnn_autoencoder_v1.pt` and `gnn_temporal_fused_v1.pt` have IDENTICAL mean_rel (0.644382) to each other — that's suspicious. It suggests they have identical scalers. Let me check. Actually the CHANGELOG said "New gnn_autoencoder_v1.pt saved by smoke is logscale" — and it says the next production train should be run. So gnn_autoencoder_v1.pt may be a smoke checkpoint trained on a tiny/synthetic subset, which would explain the poor match (0.64).
+
+Let me check if gnn_autoencoder_v1.pt and gnn_temporal_fused_v1.pt have identical scalers.
+
+I need v2 references (19-dim) too. Let me fix the script to generate both feature sets.
+
+Let me be efficient. I'll:
+1. Add v2 references
+2. Check the identical-scaler question
+
+Then decide the back-fill. Time is a factor — training is running.
+
+Actually, let me reconsider the whole approach. The forensics show:
+- 8-dim v1 checkpoints: original Monday (clear discrimination, 0.08-0.64 vs 2.9-4.7)
+- 19-dim v2: need v2 reference
+
+The key question for back-fill: can I confidently say each checkpoint is original-Monday or clean-Monday? For the v1 ones, yes — original Monday wins by 5-50x. For v2 I need the reference.
+
+Let me fix the script quickly.
+All three 8-dim checkpoints match original Monday decisively (0.08 vs 4.7). Two identical error values is suspicious though — checking whether those two share a scaler, and adding the missing v2 reference.
+<details><summary>tool: shell (767 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_ttz2wujl5gt7_1","args":{"command":"python -c \"\nimport torch,numpy as np\nfrom detection.eval_guards import scaler_fingerprint as fp\nfor f in ['gnn_autoencoder_v1.pt','gnn_temporal_fused_v1.pt','gnn_autoencoder_v1_logscale.pt','gnn_autoencoder_v1_logscale_v2.pt']:\n    b=torch.load('detection/'+f,map_location='cpu',weights_only=True)\n    print('%-36s %s' % (f, fp(b)))\n\"","timeout":90000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"gnn_autoencoder_v1.pt                ad2aafe47c2d8a1c\r\ngnn_temporal_fused_v1.pt             ad2aafe47c2d8a1c\r\ngnn_autoencoder_v1_logscale.pt       314cd8d9efff0ad6\r\ngnn_autoencoder_v1_logscale_v2.pt    f41ef6d1c95cfb14\r\n"}]}
+```
+</details>
+
+### [153/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:06.881Z
+`gnn_autoencoder_v1.pt` and `gnn_temporal_fused_v1.pt` share a **byte-identical scaler** — so the 0.644 error is one fact, not two. Fixing the reference to cover the v2 feature set and accounting for the 200k row cap.
+<details><summary>tool: edit (1626 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_cwhgwevqthy5_1","args":{"oldString":"CANDIDATES = {\n    \"original_monday\": lambda: _graphs(ORIG / \"Monday-WorkingHours.pcap_ISCX.csv\",\n                                       feature_set=\"v1\"),\n    \"clean_monday\": lambda: _graphs(CLEAN / \"monday.csv\", feature_set=\"v1\"),\n}\n\n\ndef _graphs(csv: Path, feature_set: str):\n    df = normalize_columns(read_flows(csv, limit=200_000))\n    lab = df[\"label\"].astype(str).str.strip().str.upper()\n    df = df[lab == \"BENIGN\"].sort_values(\"timestamp\")\n    return build_graphs(df, window_seconds=60, feature_set=feature_set)","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_scaler_forensics.py","newString":"CANDIDATES = {\n    \"original_monday\": lambda: _graphs(ORIG / \"Monday-WorkingHours.pcap_ISCX.csv\"),\n    \"clean_monday\": lambda: _graphs(CLEAN / \"monday.csv\"),\n}\n\n\ndef _graphs(csv: Path, limit: int | None = None):\n    df = normalize_columns(read_flows(csv, limit=limit))\n    lab = df[\"label\"].astype(str).str.strip().str.upper()\n    df = df[lab == \"BENIGN\"].sort_values(\"timestamp\")\n    # Fit a reference for BOTH feature generations, since the shipped\n    # checkpoints span 8-dim v1 and 19-dim v2 and the scaler dimension\n    # identifies which is which.\n    return {\"v1\": build_graphs(df, window_seconds=60, feature_set=\"v1\"),\n            \"v2\": build_graphs(df, window_seconds=60, feature_set=\"v2\")}"},"output":[{"type":"text","text":"Edited experiments/E47_provenance_audit/exp_e47_scaler_forensics.py (1 replacement)"}]}
+```
+</details>
+
+### [154/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:12.428Z
+<details><summary>tool: edit (1530 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_ee8hauyx3z82_1","args":{"oldString":"    for name, fn in CANDIDATES.items():\n        try:\n            gs = fn()\n            for log in (True, False):\n                lo, hi = bounds(gs, log)\n                res[\"references\"][f\"{name} log={log}\"] = {\n                    \"n_graphs\": len(gs), \"lo\": lo.tolist(), \"hi\": hi.tolist()}\n            print(f\"reference {name}: {len(gs)} graphs\")\n        except Exception as e:\n            res[\"references\"][name] = {\"error\": f\"{type(e).__name__}: {e}\"}\n            print(f\"reference {name}: FAILED {e}\")","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_scaler_forensics.py","newString":"    for name, fn in CANDIDATES.items():\n        try:\n            byfs = fn()\n            for fs, gs in byfs.items():\n                for log in (True, False):\n                    lo, hi = bounds(gs, log)\n                    res[\"references\"][f\"{name}/{fs} log={log}\"] = {\n                        \"n_graphs\": len(gs), \"n_dim\": len(hi),\n                        \"lo\": lo.tolist(), \"hi\": hi.tolist()}\n                print(f\"reference {name}/{fs}: {len(gs)} graphs\")\n        except Exception as e:\n            res[\"references\"][name] = {\"error\": f\"{type(e).__name__}: {e}\"}\n            print(f\"reference {name}: FAILED {e}\")"},"output":[{"type":"text","text":"Edited experiments/E47_provenance_audit/exp_e47_scaler_forensics.py (1 replacement)"}]}
+```
+</details>
+
+### [155/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:19.067Z
+<details><summary>tool: edit (289 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_v325lz0qquga_1","args":{},"output":{"type":"provider.transport","message":"ECONNRESET: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()","status":200}}
+```
+</details>
+
+### [156/193] synthetic 2026-09-29T11:58:28.311Z
+[synthetic message: The previous response was interrupted. Continue from where you left off without repeating completed content.
+
+### [157/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:28.822Z
+<details><summary>tool: read (2205 chars)</summary>
+
+```json
+{"type":"tool","tool":"read","name":"read","id":"call_function_q1v3jf8qhck1_1","args":{"limit":30,"offset":88,"path":"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_scaler_forensics.py"},"output":[{"type":"text","text":"Read file E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_scaler_forensics.py, lines 88-117\n88:                     res[\"references\"][f\"{name}/{fs} log={log}\"] = {\n89:                         \"n_graphs\": len(gs), \"n_dim\": len(hi),\n90:                         \"lo\": lo.tolist(), \"hi\": hi.tolist()}\n91:                 print(f\"reference {name}/{fs}: {len(gs)} graphs\")\n92:         except Exception as e:\n93:             res[\"references\"][name] = {\"error\": f\"{type(e).__name__}: {e}\"}\n94:             print(f\"reference {name}: FAILED {e}\")\n95: \n96:     targets = [\"gnn_autoencoder_v1.pt\", \"gnn_autoencoder_v1_logscale.pt\",\n97:                \"gnn_autoencoder_v1_logscale_v2.pt\", \"gnn_temporal_fused_v1.pt\",\n98:                \"gnn_improved_s0.pt\", \"gnn_improved_replay.pt\"]\n99:     for f in targets:\n100:         p = DET / f\n101:         if not p.exists():\n102:             continue\n103:         b = torch.load(p, map_location=\"cpu\", weights_only=True)\n104:         sc = b[\"scaler\"]\n105:         ck_lo = np.asarray(sc[\"lo\"], dtype=np.float64)\n106:         ck_hi = np.asarray(sc[\"hi\"], dtype=np.float64)\n107:         ck_log = bool(sc.get(\"log\", False))\n108:         # the checkpoint's own feature count tells us which generation it is\n109:         in_dim = int(np.asarray(ck_hi).shape[0])\n110:         fs = \"v2\" if in_dim == 19 else (\"v1\" if in_dim == 8 else f\"dim{in_dim}\")\n111:         row = {\"in_dim\": in_dim, \"feature_set\": fs, \"log\": ck_log, \"matches\": {}}\n112:         for rname, ref in res[\"references\"].items():\n113:             if \"error\" in ref or len(ref[\"hi\"]) != in_dim:\n114:                 continue\n115:             c = compare(ck_lo, ck_hi, np.asarray(ref[\"lo\"]), np.asarray(ref[\"hi\"]))\n116:             row[\"matches\"][rname] = c\n117:         if row[\"matches\"]:\n[Output truncated. Continue reading with offset: 118]"}]}
+```
+</details>
+
+### [158/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:32.496Z
+<details><summary>tool: read (1300 chars)</summary>
+
+```json
+{"type":"tool","tool":"read","name":"read","id":"call_function_jbaaaqwemt65_1","args":{"limit":18,"offset":117,"path":"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_scaler_forensics.py"},"output":[{"type":"text","text":"Read file E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_scaler_forensics.py, lines 117-134\n117:         if row[\"matches\"]:\n118:             best = min(row[\"matches\"].items(), key=lambda kv: kv[1][\"hi_mean_rel\"])\n119:             row[\"best_match\"] = best[0]\n120:             row[\"best_hi_mean_rel\"] = best[1][\"hi_mean_rel\"]\n121:             row[\"verdict\"] = (\"consistent\" if best[1][\"hi_mean_rel\"] < 0.02\n122:                               else \"no clean match\")\n123:         else:\n124:             row[\"best_match\"] = None\n125:             row[\"verdict\"] = \"no comparable reference\"\n126:         res[\"checkpoints\"][f] = row\n127:         print(f\"{f:36s} dim={in_dim:2d} log={str(ck_log):5s} \"\n128:               f\"best={row['best_match']} -> {row['verdict']}\")\n129: \n130:     OUT.write_text(json.dumps(res, indent=1), encoding=\"utf-8\")\n131:     print(f\"-> {OUT.name}\")\n132: \n133: \n134: if __name__ == \"__main__\":\n[Output truncated. Continue reading with offset: 135]"}]}
+```
+</details>
+
+### [159/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:36.509Z
+Now the verdict logic — it should compare against the *same feature set* only, and report the margin rather than an absolute threshold.
+<details><summary>tool: edit (2523 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_lffn0rfusdqg_1","args":{"oldString":"        if row[\"matches\"]:\n            best = min(row[\"matches\"].items(), key=lambda kv: kv[1][\"hi_mean_rel\"])\n            row[\"best_match\"] = best[0]\n            row[\"best_hi_mean_rel\"] = best[1][\"hi_mean_rel\"]\n            row[\"verdict\"] = (\"consistent\" if best[1][\"hi_mean_rel\"] < 0.02\n                              else \"no clean match\")\n        else:\n            row[\"best_match\"] = None\n            row[\"verdict\"] = \"no comparable reference\"\n        res[\"checkpoints\"][f] = row\n        print(f\"{f:36s} dim={in_dim:2d} log={str(ck_log):5s} \"\n              f\"best={row['best_match']} -> {row['verdict']}\")","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_scaler_forensics.py","newString":"        if row[\"matches\"]:\n            # Judge on the MARGIN between the two corpora, not on absolute\n            # error. The reference is fitted on a bounded slice of Monday, so\n            # even the right corpus will not match to 1e-6; what matters is\n            # that the right corpus is orders of magnitude closer than the\n            # wrong one.\n            ranked = sorted(row[\"matches\"].items(), key=lambda kv: kv[1][\"hi_mean_rel\"])\n            (bn, bc), runner = ranked[0], (ranked[1] if len(ranked) > 1 else None)\n            row[\"best_match\"] = bn\n            row[\"best_hi_mean_rel\"] = bc[\"hi_mean_rel\"]\n            if runner is not None:\n                margin = (runner[1][\"hi_mean_rel\"] / max(bc[\"hi_mean_rel\"], 1e-9))\n                row[\"margin_vs_runner_up\"] = round(margin, 1)\n                row[\"runner_up\"] = runner[0]\n                row[\"verdict\"] = (\"discriminating\" if margin >= 5.0\n                                  else \"AMBIGUOUS - corpora too close to call\")\n            else:\n                row[\"margin_vs_runner_up\"] = None\n                row[\"verdict\"] = \"only one comparable corpus\"\n        else:\n            row[\"best_match\"] = None\n            row[\"verdict\"] = \"no comparable reference\"\n        res[\"checkpoints\"][f] = row\n        print(f\"{f:34s} dim={in_dim:2d} -> {row['best_match']:26s} \"\n              f\"err={row.get('best_hi_mean_rel')} margin={row.get('margin_vs_runner_up')} \"\n              f\"[{row['verdict']}]\")"},"output":[{"type":"text","text":"Edited experiments/E47_provenance_audit/exp_e47_scaler_forensics.py (1 replacement)"}]}
+```
+</details>
+
+### [160/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:44.377Z
+<details><summary>tool: edit (697 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_v9imqr3it0vc_1","args":{"oldString":"    \"original_monday\": lambda: _graphs(ORIG / \"Monday-WorkingHours.pcap_ISCX.csv\"),\n    \"clean_monday\": lambda: _graphs(CLEAN / \"monday.csv\"),","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_scaler_forensics.py","newString":"    \"original_monday\": lambda: _graphs(ORIG / \"Monday-WorkingHours.pcap_ISCX.csv\",\n                                       limit=200_000),\n    \"clean_monday\": lambda: _graphs(CLEAN / \"monday.csv\"),"},"output":[{"type":"text","text":"Edited experiments/E47_provenance_audit/exp_e47_scaler_forensics.py (1 replacement)"}]}
+```
+</details>
+
+### [161/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:50.322Z
+<details><summary>tool: shell (1162 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_2xul1li0fssh_1","args":{"background":true,"command":"python experiments/E47_provenance_audit/exp_e47_scaler_forensics.py","timeout":0,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"Command moved to the background (shell ID: sh_0ed083610001MtFSPe8wTMaoJx).\nOutput is streaming to: C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed083610001MtFSPe8wTMaoJx.out"},{"type":"text","text":"You will be notified automatically when the command finishes. The notification will include the command's output. Unless the user explicitly asks otherwise, DO NOT poll for completion, even if you need the final result to continue. Repeatedly sleeping and reading or searching the output file is polling, not useful work. You may read the current output if it lets you do useful work now, but do not repeatedly check it while waiting for the command to finish. Keep working on anything that does not depend on the result. If you have nothing else to do, end your response; you will be resumed automatically when the command finishes."}]}
+```
+</details>
+
+### [162/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:54.520Z
+<details><summary>tool: shell (737 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_wwb8k64q15zj_1","args":{"command":"Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; echo \"=== forensics ===\"; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed083610001MtFSPe8wTMaoJx.out -ErrorAction SilentlyContinue | Select-Object -Last 8","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  epoch 160 | val 0.001606 | best 0.000050@17\r\nbest val 0.000050 @ epoch 17\r\n-> gnn_improved_s1.pt\r\n=== forensics ===\r\n"}]}
+```
+</details>
+
+### [163/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:00.290Z
+Seed 1 done, seed 2 training. While those run, let me update the E43 main loop for the 4-seed band.
+<details><summary>tool: read (1986 chars)</summary>
+
+```json
+{"type":"tool","tool":"read","name":"read","id":"call_function_6gv7l0tjgdva_1","args":{"limit":40,"offset":180,"path":"E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\exp_e43_fusion_rules.py"},"output":[{"type":"text","text":"Read file E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\exp_e43_fusion_rules.py, lines 180-210\n180: def main():\n181:     device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n182:     res = {}\n183:     for sd in [0]:\n184:         gb = torch.load(DET / M5B[sd], map_location=\"cpu\", weights_only=True)\n185:         m5b = GraphAutoencoder(in_dim=19)\n186:         m5b.load_state_dict(gb[\"model\"]); m5b.eval().to(device)\n187:         sc_b = NodeScaler().load_state_dict(gb[\"scaler\"])\n188:         b = torch.load(DET / M5A[0], map_location=\"cpu\", weights_only=False)\n189:         rev = RevivedAE(b[\"input_dim\"]); rev.load_state_dict(b[\"state_dict\"]); rev.eval().to(device)\n190:         ra = {\"canon\": b[\"canonical\"],\n191:               \"fmm\": MinMax(), \"csc\": CtxScaler()}\n192:         ra[\"fmm\"].lo, ra[\"fmm\"].hi = b[\"flow_lo\"], b[\"flow_hi\"]\n193:         ra[\"csc\"].lo, ra[\"csc\"].hi = b[\"ctx_lo\"], b[\"ctx_hi\"]\n194: \n195:         for fam in FAMS:\n196:             recs = run_family(fam, m5b, sc_b, rev, ra, device)\n197:             for r in recs:\n198:                 r[\"rep_fuse\"] = (r[\"rep_b\"] + r[\"rep_a\"]) / 2.0\n199:             row = evaluate(recs)\n200:             res[fam] = row\n201:             print(f\"{fam:13s} m5b {row['m5b']:.3f} | noisyor {row['noisyor']:.3f} \"\n202:                   f\"| repfuse {row['repfuse']:.3f} | OPT1 {row['opt1_persist']:.3f} \"\n203:                   f\"| OPT2 {row['opt2_rankmax']:.3f} | OPT3 {row['opt3_burst']:.3f}\",\n204:                   flush=True)\n205:     OUT.write_text(json.dumps(res, indent=1))\n206:     print(f\"-> {OUT.name}\")\n207: \n208: \n209: if __name__ == \"__main__\":\n210:     main()"}]}
+```
+</details>
+
+### [164/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:04.160Z
+I found a real bug while reading this: the loop iterates `sd` but always loads `M5A[0]` — so a 4-seed run would silently vary only M5b. Fixing that along with the band aggregation.
+<details><summary>tool: edit (4746 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_h6tt0pkgsl5l_1","args":{"oldString":"def main():\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    res = {}\n    for sd in [0]:\n        gb = torch.load(DET / M5B[sd], map_location=\"cpu\", weights_only=True)\n        m5b = GraphAutoencoder(in_dim=19)\n        m5b.load_state_dict(gb[\"model\"]); m5b.eval().to(device)\n        sc_b = NodeScaler().load_state_dict(gb[\"scaler\"])\n        b = torch.load(DET / M5A[0], map_location=\"cpu\", weights_only=False)\n        rev = RevivedAE(b[\"input_dim\"]); rev.load_state_dict(b[\"state_dict\"]); rev.eval().to(device)\n        ra = {\"canon\": b[\"canonical\"],\n              \"fmm\": MinMax(), \"csc\": CtxScaler()}\n        ra[\"fmm\"].lo, ra[\"fmm\"].hi = b[\"flow_lo\"], b[\"flow_hi\"]\n        ra[\"csc\"].lo, ra[\"csc\"].hi = b[\"ctx_lo\"], b[\"ctx_hi\"]\n\n        for fam in FAMS:\n            recs = run_family(fam, m5b, sc_b, rev, ra, device)\n            for r in recs:\n                r[\"rep_fuse\"] = (r[\"rep_b\"] + r[\"rep_a\"]) / 2.0\n            row = evaluate(recs)\n            res[fam] = row\n            print(f\"{fam:13s} m5b {row['m5b']:.3f} | noisyor {row['noisyor']:.3f} \"\n                  f\"| repfuse {row['repfuse']:.3f} | OPT1 {row['opt1_persist']:.3f} \"\n                  f\"| OPT2 {row['opt2_rankmax']:.3f} | OPT3 {row['opt3_burst']:.3f}\",\n                  flush=True)\n    OUT.write_text(json.dumps(res, indent=1))\n    print(f\"-> {OUT.name}\")","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\exp_e43_fusion_rules.py","newString":"ARMS = [\"m5b\", \"m5a\", \"noisyor\", \"repfuse\", \"opt1_persist\", \"opt2_rankmax\",\n        \"opt3_burst\"]\n\n\ndef main():\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    seeds = sorted(set(M5B) & set(M5A))\n    missing = sorted(set(M5B) ^ set(M5A))\n    if missing:\n        print(f\"NOTE: seeds present in one pillar only: {missing} -- \"\n              f\"banding over {seeds}\")\n    per_seed = {fam: {} for fam in FAMS}\n    res = {\"seeds\": seeds, \"per_seed\": per_seed, \"band\": {}}\n\n    for sd in seeds:\n        gb = torch.load(DET / M5B[sd] if isinstance(M5B[sd], str) else M5B[sd],\n                        map_location=\"cpu\", weights_only=True)\n        m5b = GraphAutoencoder(in_dim=19)\n        m5b.load_state_dict(gb[\"model\"]); m5b.eval().to(device)\n        sc_b = NodeScaler().load_state_dict(gb[\"scaler\"])\n        # Both pillars must vary with the seed. Loading M5A[0] unconditionally\n        # (the original line here) would have produced a 4-seed band that\n        # measured M5b's variance only, and reported it as a fusion band.\n        b = torch.load(M5A[sd] if isinstance(M5A[sd], (str, Path)) else M5A[sd],\n                       map_location=\"cpu\", weights_only=False)\n        rev = RevivedAE(b[\"input_dim\"]); rev.load_state_dict(b[\"state_dict\"]); rev.eval().to(device)\n        ra = {\"canon\": b[\"canonical\"],\n              \"fmm\": MinMax(), \"csc\": CtxScaler()}\n        ra[\"fmm\"].lo, ra[\"fmm\"].hi = b[\"flow_lo\"], b[\"flow_hi\"]\n        ra[\"csc\"].lo, ra[\"csc\"].hi = b[\"ctx_lo\"], b[\"ctx_hi\"]\n\n        for fam in FAMS:\n            recs = run_family(fam, m5b, sc_b, rev, ra, device)\n            for r in recs:\n                r[\"rep_fuse\"] = (r[\"rep_b\"] + r[\"rep_a\"]) / 2.0\n            row = evaluate(recs)\n            per_seed[fam][str(sd)] = row\n            print(f\"  seed {sd} {fam:13s} m5b {row['m5b']:.3f} | noisyor \"\n                  f\"{row['noisyor']:.3f} | repfuse {row['repfuse']:.3f} | OPT1 \"\n                  f\"{row['opt1_persist']:.3f} | OPT2 {row['opt2_rankmax']:.3f} \"\n                  f\"| OPT3 {row['opt3_burst']:.3f}\", flush=True)\n\n    # E21's rule: a single-seed number is noise until shown over seeds.\n    for fam in FAMS:\n        band = {}\n        for arm in ARMS:\n            vals = [per_seed[
+… truncated 746 chars, see export JSON …
+```
+</details>
+
+### [165/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:15.244Z
+<details><summary>tool: shell (814 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_0dfcdu4c2ker_1","args":{"command":"python -c \"\nimport ast; ast.parse(open('experiments/E43_fusion_rule/exp_e43_fusion_rules.py',encoding='utf-8').read()); print('syntax OK')\n\"; Select-String -Path experiments\\E43_fusion_rule\\exp_e43_fusion_rules.py -Pattern 'M5B\\[|M5A\\[|import numpy' | ForEach-Object { \"$($_.LineNumber): $($_.Line.Trim())\" }","timeout":60000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"syntax OK\r\n34: import numpy as np\r\n61: M5A[_s] = _p\r\n195: gb = torch.load(DET / M5B[sd] if isinstance(M5B[sd], str) else M5B[sd],\r\n200: # Both pillars must vary with the seed. Loading M5A[0] unconditionally\r\n203: b = torch.load(M5A[sd] if isinstance(M5A[sd], (str, Path)) else M5A[sd],\r\n"}]}
+```
+</details>
+
+### [166/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:23.011Z
+Now checking the seed checkpoints exist and checking on the running jobs.
+<details><summary>tool: shell (980 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_yj86qhigs9ef_1","args":{"command":"Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object Name,Length; echo \"=== train ===\"; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; echo \"=== forensics ===\"; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed083610001MtFSPe8wTMaoJx.out -ErrorAction SilentlyContinue | Select-Object -Last 10","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"\r\nName               Length\r\n----               ------\r\ngnn_improved_s0.pt  16151\r\ngnn_improved_s1.pt  16079\r\n=== train ===\r\n  epoch 160 | val 0.001606 | best 0.000050@17\r\nbest val 0.000050 @ epoch 17\r\n-> gnn_improved_s1.pt\r\n=== forensics ===\r\n\r\n\r\n"}]}
+```
+</details>
+
+### [167/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:28.185Z
+Seed 1 written, seed 2 in progress. Let me wait for the background jobs.
+<details><summary>tool: shell (1765 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_6moybuwfr12h_1","args":{"command":"Start-Sleep -Seconds 115; echo \"=== train ===\"; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; echo \"=== forensics ===\"; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed083610001MtFSPe8wTMaoJx.out -ErrorAction SilentlyContinue | Select-Object -Last 10","timeout":118000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"=== train ===\r\nE26 val holdout: 389 train / 97 val (last windows)\r\n  epoch   0 | val 0.000563 | best 0.000563@0\r\n  epoch  40 | val 0.000383 | best 0.000054@26\r\n=== forensics ===\r\nreference original_monday/v2: 259 graphs\r\nreference clean_monday/v1: 486 graphs\r\nreference clean_monday/v2: 486 graphs\r\ngnn_autoencoder_v1.pt              dim= 8 -> original_monday/v1 log=True err=0.644382 margin=1.5 [AMBIGUOUS - corpora too close to call]\r\ngnn_autoencoder_v1_logscale.pt     dim= 8 -> original_monday/v1 log=True err=0.081518 margin=12.0 [discriminating]\r\ngnn_autoencoder_v1_logscale_v2.pt  dim=19 -> original_monday/v2 log=True err=0.058654 margin=14.2 [discriminating]\r\ngnn_temporal_fused_v1.pt           dim= 8 -> original_monday/v1 log=True err=0.644382 margin=1.5 [AMBIGUOUS - corpora too close to call]\r\ngnn_improved_s0.pt                 dim=19 -> clean_monday/v2 log=True   err=0.001934 margin=167.2 [discriminating]\r\ngnn_improved_replay.pt             dim=19 -> clean_monday/v2 log=True   err=0.0 margin=321397000.0 [discriminating]\r\n-> exp_e47_scaler_forensics.json\r\n"}]}
+```
+</details>
+
+### [168/193] synthetic 2026-09-29T12:01:27.479Z
+[synthetic message: <shell id="sh_0ed083610001MtFSPe8wTMaoJx" state="completed" command="python experiments/E47_provenance_audit/exp_e47_scaler_forensics.py">
+reference original_monday/v1: 259 graphs
+reference original_monday/v2: 259 graphs
+reference clean_monday/v1: 486 graphs
+reference clean_monday/v2: 486 graphs
+gnn_autoencoder_v1.pt              dim= 8 -> original_monday/v1 log=True err=0.644382 margin=1.5 [AMBIGUOUS - corpora too close to call]
+gnn_autoencoder_v1_logscale.pt     dim= 8
+
+### [169/193] assistant (opencode/space-bunny-free) 2026-09-29T12:01:27.867Z
+The forensics worked well. Let me analyze:
+
+- `gnn_improved_s0.pt` → clean_monday, err=0.0019, margin 167× — confirms the existing provenance
+- `gnn_improved_replay.pt` → clean_monday, err=0.0 EXACT — interesting, the replay checkpoint's scaler is identical to the clean Monday reference? That's because the replay scaler is fit on the MIX (original Monday + clean Monday)... hmm, err=0.0 exactly. Actually wait, the replay checkpoint was refit on the mix. But it matched clean_monday with err 0.0. Hmm — maybe the replay checkpoint's scaler is the clean one (from s0) because the E42 script loads base with base_sc. Actually gnn_improved_replay.pt was saved earlier. Let me not over-interpret; err=0.0 exact match to the 486-graph clean Monday reference is a strong signal it was fit on exactly that data.
+
+Hmm, but actually that's suspicious. The replay model was trained on a MIX of original Monday + clean Monday replay. If the scaler were fit on the mix, it wouldn't match clean exactly. err=0.0 suggests the saved scaler is the clean-only one. Possible the saved checkpoint is from before the refit, or the E29 script saved the base scaler. Either way, this is evidence the checkpoint's *scaler* is the clean-data one. That's still "clean data" provenance for the scaler.
+
+Important: the 3 "discriminating" results give me strong empirical backing for back-filling:
+- gnn_autoencoder_v1_logscale.pt → original Monday (margin 12×)
+- gnn_autoencoder_v1_logscale_v2.pt → original Monday (margin 14.2×)  ← this is the E12/E44 checkpoint!
+- gnn_improved_s0.pt → clean Monday (margin 167×) ← confirms
+
+The 2 AMBIGUOUS ones: gnn_autoencoder_v1.pt and gnn_temporal_fused_v1.pt, err=0.644, margin 1.5. These share an identical scaler fingerprint (ad2aafe47c2d8a1c) — confirmed earlier. So they're the same training run. The CHANGELOG says "gnn_autoencoder_v1.pt saved by smoke" — a smoke run. That explains the 0.644 error: it wasn't trained on full Monday at all, it was a smoke test. So the corpus is indeterminate — genuinely unresolved.
+
+So my back-fill plan:
+- BACK-FILL (4): gnn_autoencoder_v1_logscale.pt, gnn_autoencoder_v1_logscale_v2.pt, gnn_improved_replay.pt, m5a_revived_ctx.pt
+  - Wait, m5a_revived_ctx.pt is an M5a (87-dim, flow_lo/flow_hi) — the scaler forensics only cover the GNN 8/19-dim NodeScaler. For m5a_revived_ctx I have the trainer source: train_m5a_revived.py reads Monday-WorkingHours.pcap_ISCX.csv from FLOWS (the original extraction). That's direct source evidence.
+- CONFIRM + back-fill: gnn_improved_s0.pt already has it (matches forensics at margin 167)
+- UNRESOLVED (2): gnn_autoencoder_v1.pt, gnn_temporal_fused_v1.pt — smoke run, same scaler, corpus indeterminate. Should be marked as "unknown/smoke" rather than a false claim.
+
+For the unresolved ones, the honest thing is to write a provenance value that says UNKNOWN rather than a lie. But then require_dataset would compare "unknown" against a dataset name and warn. Actually that's fine/desirable — or better, write train=None-equivalent? No — better to write an explicit marker like "UNKNOWN (smoke run, corpus not recorded)" which will NOT match any corpus token, so _identify returns (None, None), and _same_dataset falls to substring → not equal → warns. That's the correct behaviour: loud.
+
+Actually let me check: _same_dataset("UNKNOWN (smoke run...)", "original CIC-IDS2017") → _identify gives (None, None) for the first → falls to substring → False → warns. Good, it warns. That's correct and safe.
+
+Let me now write the back-fill script. It should:
+1. Load each checkpoint
+2. Set blob['train'] = value
+3. Save
+
+But careful: m5a_revived_*.pt contain numpy arrays and need weights_only=False to save/load. Saving with torch.save is fine.
+
+Also I must preserve everything else in the blob.
+
+And I should add a 'provenance' sub-dict with the evidence, so future readers know the basis. Let me add:
+- train: the dataset string
+- provenance: {source: 'scaler-forensics'|'trainer-source'|'CHANGELOG', evidence: '...', date: '...'}
+
+That's better than a bare string.
+
+Let me write it. Then re-run the audit to confirm.
+
+Let me also check the training progress.
+
+Time/context is a concern. Let me be efficient: write the back-fill script, run it, verify, then when seeds finish run E43 4-seed, then write READMEs and commit.
+Forensics worked. The decisive one: `gnn_autoencoder_v1_logscale_v2.pt` — the checkpoint E44 mispaired — matches **original Monday at 14× margin**, and `gnn_improved_s0` confirms clean Monday at 167×. The two ambiguous ones share a byte-identical scaler, so they're one fact.
+<details><summary>tool: write (6504 chars)</summary>
+
+```json
+{"type":"tool","tool":"write","name":"write","id":"call_function_56hcp330mtet_1","args":{"content":"\"\"\"Back-fill checkpoint provenance, using only evidence-backed values.\n\nEvery value written here is traceable to one of:\n  - an existing correct `train` key                          (verified)\n  - scaler-bound forensics (exp_e47_scaler_forensics.py)    (measured)\n  - the trainer's own source, read directly                 (documented)\n\nThe two checkpoints whose provenance the archive never recorded are NOT\nback-filled with a guess. `gnn_autoencoder_v1.pt` and\n`gnn_temporal_fused_v1.pt` share a byte-identical scaler (fingerprint\nad2aafe47c2d8a1c) and CHANGELOG 2026-08-25 records the first as \"saved by\nsmoke\" -- a smoke run, not a documented Monday train. Their corpus is\ngenuinely unknown, so they get an explicit UNKNOWN marker, which makes\n`require_dataset` WARN on any use instead of silently passing.\n\n    python experiments/E47_provenance_audit/exp_e47_backfill.py\n    python experiments/E47_provenance_audit/exp_e47_backfill.py --dry-run\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport shutil\nimport sys\nfrom pathlib import Path\n\nimport torch\n\nROOT = Path(__file__).resolve().parents[2]\nsys.path.insert(0, str(ROOT / \"detection\"))\n\nDET = ROOT / \"detection\"\nOUT = Path(__file__).resolve().parent / \"exp_e47_backfill.json\"\n\nORIGINAL = \"original CIC-IDS2017 GeneratedLabelledFlows/monday\"\nCLEAN = \"CICIDS2017_improved/monday benign-only\"\n\n# file -> (train value, basis, evidence)\nBACKFILL = {\n    \"gnn_improved_s0.pt\": (\n        CLEAN, \"verified (already present)\",\n        \"checkpoint already carried this value; scaler forensics confirm it \"\n        \"(clean_monday/v2 margin 167x)\"),\n    \"m5a_revived_improved.pt\": (\n        CLEAN, \"verified (already present)\",\n        \"checkpoint already carried this value\"),\n    \"host_autoencoder_adfa.pt\": (\n        \"ADFA-LD Training_Data_Master (833 benign)\", \"verified (already present)\",\n        \"checkpoint already carried this value\"),\n    \"gnn_improved_replay.pt\": (\n        CLEAN + \" + original CIC-IDS2017 monday replay (20%)\",\n        \"scaler forensics + E29/E42 record\",\n        \"scaler matches clean Monday exactly (err 0.0, margin 3.2e8); the \"\n        \"weights are E29's replay tune on a mixed training set, so the honest \"\n        \"value names both corpora\"),\n    \"gnn_autoencoder_v1_logscale_v2.pt\": (\n        ORIGINAL, \"scaler forensics (margin 14.2x)\",\n        \"hi-vector matches an original-Monday scaler 14.2x more closely than a \"\n        \"clean-Monday one; this is the checkpoint E12's control anchor is \"\n        \"measured on and the one E44 mispaired\"),\n    \"gnn_autoencoder_v1_logscale.pt\": (\n        ORIGINAL, \"scaler forensics (margin 12.0x)\",\n        \"hi-vector matches original Monday 12x more closely than clean Monday\"),\n    \"m5a_revived_ctx.pt\": (\n        ORIGINAL, \"trainer source (detection/train_m5a_revived.py:30)\",\n        \"reads FLOWS/'Monday-WorkingHours.pcap_ISCX.csv' from the ORIGINAL \"\n        \"extraction; docstring says 'Trained on Monday GLF benign only'\"),\n}\n\n# Never guess. These get an explicit unknown marker instead.\nUNKNOWN = {\n    \"gnn_autoencoder_v1.pt\": (\n        \"UNKNOWN (smoke run; training corpus not recorded)\",\n        \"CHANGELOG 2026-08-25: 'New gnn_autoencoder_v1.pt saved by smoke'. \"\n        \"Scaler fingerprint ad2aafe47c2d8a1c is byte-identical to \"\n        \"gnn_temporal_fused_v1.pt, and its hi-vector sits between the two \"\n        \"corpora (margin 1.5x, AMBIGUOUS), so the corpus cannot be called.\"),\n    \"gnn_temporal_fused_v1.pt\": (\n        \"UNKNOWN (shares a scaler with gnn_autoencoder_v1.pt; corpus not recorded)\",\n        \"byte-identical scaler to gnn_autoencoder_v1.pt (fingerprint \"\n        \"ad2aafe47c2d8a1c), so both are the same run; forensics AMBIGUOUS\"),\n}\n\n\n
+… truncated 2504 chars, see export JSON …
+```
+</details>
+
+### [170/193] assistant (opencode/space-bunny-free) 2026-09-29T12:01:46.552Z
+<details><summary>tool: shell (859 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_xvv8of0ddwb8_1","args":{"command":"python experiments/E47_provenance_audit/exp_e47_backfill.py --dry-run","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"Traceback (most recent call last):\r\n  File \"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_backfill.py\", line 143, in <module>\r\n    raise SystemExit(main())\r\n                     ~~~~^^\r\n  File \"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_backfill.py\", line 129, in main\r\n    rows += [patch(n, v, b, e, a.dry_run) for n, (v, b, e) in UNKNOWN.items()]\r\n                                                 ^^^^^^^^^\r\nValueError: not enough values to unpack (expected 3, got 2)\r\n"},{"type":"text","text":"Exited with code 1"}]}
+```
+</details>
+
+### [171/193] assistant (opencode/space-bunny-free) 2026-09-29T12:01:52.307Z
+<details><summary>tool: edit (783 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_w57kv3epj9zt_1","args":{"oldString":"    rows = [patch(n, v, b, e, a.dry_run) for n, (v, b, e) in BACKFILL.items()]\n    rows += [patch(n, v, b, e, a.dry_run) for n, (v, b, e) in UNKNOWN.items()]","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E47_provenance_audit\\exp_e47_backfill.py","newString":"    rows = [patch(n, v, b, e, a.dry_run) for n, (v, b, e) in BACKFILL.items()]\n    # UNKNOWN entries are (value, evidence) -- basis is fixed by definition.\n    rows += [patch(n, v, \"no evidence exists; marked unknown on purpose\", e,\n                   a.dry_run) for n, (v, e) in UNKNOWN.items()]"},"output":[{"type":"text","text":"Edited experiments/E47_provenance_audit/exp_e47_backfill.py (1 replacement)"}]}
+```
+</details>
+
+### [172/193] assistant (opencode/space-bunny-free) 2026-09-29T12:01:57.562Z
+<details><summary>tool: shell (1381 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_ihq09kv6p8k6_1","args":{"command":"python experiments/E47_provenance_audit/exp_e47_backfill.py --dry-run","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  already correct  detection/gnn_improved_s0.pt                 CICIDS2017_improved/monday benign-only\r\n  already correct  detection/m5a_revived_improved.pt            CICIDS2017_improved/monday benign-only\r\n  already correct  detection/host_autoencoder_adfa.pt           ADFA-LD Training_Data_Master (833 benign)\r\n  would write      detection/gnn_improved_replay.pt             CICIDS2017_improved/monday benign-only + origi\r\n  would write      detection/gnn_autoencoder_v1_logscale_v2.pt  original CIC-IDS2017 GeneratedLabelledFlows/mo\r\n  would write      detection/gnn_autoencoder_v1_logscale.pt     original CIC-IDS2017 GeneratedLabelledFlows/mo\r\n  would write      detection/m5a_revived_ctx.pt                 original CIC-IDS2017 GeneratedLabelledFlows/mo\r\n  would write      detection/gnn_autoencoder_v1.pt              UNKNOWN (smoke run; training corpus not record\r\n  would write      detection/gnn_temporal_fused_v1.pt           UNKNOWN (shares a scaler with gnn_autoencoder_\r\nsummary: {'written': 0, 'already correct': 3, 'would write': 6, 'MISSING': 0}\r\n-> exp_e47_backfill.json\r\n"}]}
+```
+</details>
+
+### [173/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:05.078Z
+Dry run is clean. Verifying the training checkpoints still need to finish before I commit the replay checkpoint, so let me check status.
+<details><summary>tool: shell (720 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_p45oifvjtopl_1","args":{"command":"Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 4; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"improved Monday benign: 371624 flows -> 486 graphs\r\nE26 val holdout: 389 train / 97 val (last windows)\r\n  epoch   0 | val 0.000563 | best 0.000563@0\r\n  epoch  40 | val 0.000383 | best 0.000054@26\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\n"}]}
+```
+</details>
+
+### [174/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:10.061Z
+Seed 2 is training. I'll apply the backfill now since it doesn't touch the seed checkpoints, then verify.
+<details><summary>tool: shell (1493 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_d9610kxsk2yu_1","args":{"command":"Copy-Item detection\\gnn_autoencoder_v1_logscale_v2.pt C:\\Users\\trex2\\AppData\\Local\\Temp\\opencode\\bk_v2.pt -Force; python experiments/E47_provenance_audit/exp_e47_backfill.py","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  already correct  detection/gnn_improved_s0.pt                 CICIDS2017_improved/monday benign-only\r\n  already correct  detection/m5a_revived_improved.pt            CICIDS2017_improved/monday benign-only\r\n  already correct  detection/host_autoencoder_adfa.pt           ADFA-LD Training_Data_Master (833 benign)\r\n  written          detection/gnn_improved_replay.pt             CICIDS2017_improved/monday benign-only + origi\r\n  written          detection/gnn_autoencoder_v1_logscale_v2.pt  original CIC-IDS2017 GeneratedLabelledFlows/mo\r\n  written          detection/gnn_autoencoder_v1_logscale.pt     original CIC-IDS2017 GeneratedLabelledFlows/mo\r\n  written          detection/m5a_revived_ctx.pt                 original CIC-IDS2017 GeneratedLabelledFlows/mo\r\n  written          detection/gnn_autoencoder_v1.pt              UNKNOWN (smoke run; training corpus not record\r\n  written          detection/gnn_temporal_fused_v1.pt           UNKNOWN (shares a scaler with gnn_autoencoder_\r\nsummary: {'written': 6, 'already correct': 3, 'would write': 0, 'MISSING': 0}\r\n-> exp_e47_backfill.json\r\n"}]}
+```
+</details>
+
+### [175/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:18.553Z
+Critical check: the rewritten checkpoints must still load and produce **identical** model weights. Verifying against the backup.
+<details><summary>tool: shell (1188 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_cel8wybozaaf_1","args":{"command":"python -c \"\nimport torch, numpy as np\nold=torch.load(r'C:\\Users\\trex2\\AppData\\Local\\Temp\\opencode\\bk_v2.pt',map_location='cpu',weights_only=True)\nnew=torch.load('detection/gnn_autoencoder_v1_logscale_v2.pt',map_location='cpu',weights_only=True)\nprint('keys added:', sorted(set(new)-set(old)), '| removed:', sorted(set(old)-set(new)))\nok=True\nfor k in old['model']:\n    a,b=old['model'][k],new['model'][k]\n    if not torch.equal(a,b): ok=False; print('CHANGED',k)\nprint('model weights bit-identical:', ok)\nfor k in ('lo','hi'):\n    print('scaler',k,'identical:', torch.equal(old['scaler'][k], new['scaler'][k]))\nprint('new train:', new['train'])\nprint('provenance basis:', new['provenance']['basis'])\n\"","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"keys added: ['provenance', 'train'] | removed: []\r\nmodel weights bit-identical: True\r\nscaler lo identical: True\r\nscaler hi identical: True\r\nnew train: original CIC-IDS2017 GeneratedLabelledFlows/monday\r\nprovenance basis: scaler forensics (margin 14.2x)\r\n"}]}
+```
+</details>
+
+### [176/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:27.215Z
+Weights bit-identical, only metadata added. Now confirming the guard now actually fires where it was silent before.
+<details><summary>tool: shell (2069 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_k3dfroc0lv9y_1","args":{"command":"python -c \"\nimport sys,torch,warnings; sys.path.insert(0,'detection')\nfrom eval_guards import provenance_report, require_dataset\nrep=provenance_report()\nfor n,r in sorted(rep.items()): print('%-36s %-22s %s' % (n, r['provenance'], r['status'][:44]))\nprint()\nprint('--- the E44 mistake, now caught? ---')\nb=torch.load('detection/gnn_autoencoder_v1_logscale_v2.pt',map_location='cpu',weights_only=True)\nwith warnings.catch_warnings(record=True) as c:\n    warnings.simplefilter('always')\n    require_dataset(b,'CICIDS2017_improved/monday benign-only',context='E44 clean-day pairing')\nprint('warned' if c else 'SILENT', '->', str(c[0].message)[:120] if c else '')\n\"","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"gnn_autoencoder_v1.pt                UNKNOWN (smoke run; training corpus not recorded) checkable\r\ngnn_autoencoder_v1_logscale.pt       original CIC-IDS2017 GeneratedLabelledFlows/monday checkable\r\ngnn_autoencoder_v1_logscale_v2.pt    original CIC-IDS2017 GeneratedLabelledFlows/monday checkable\r\ngnn_improved_replay.pt               CICIDS2017_improved/monday benign-only + original CIC-IDS2017 monday replay (20%) checkable\r\ngnn_improved_s0.pt                   CICIDS2017_improved/monday benign-only checkable\r\ngnn_improved_s1.pt                   CICIDS2017_improved/monday benign-only checkable\r\ngnn_temporal_fused_v1.pt             UNKNOWN (shares a scaler with gnn_autoencoder_v1.pt; corpus not recorded) checkable\r\nhost_autoencoder_adfa.pt             ADFA-LD Training_Data_Master (833 benign) checkable\r\nm5a_revived_ctx.pt                   original CIC-IDS2017 GeneratedLabelledFlows/monday checkable\r\nm5a_revived_improved.pt              CICIDS2017_improved/monday benign-only checkable\r\n\r\n--- the E44 mistake, now caught? ---\r\nwarned -> E44 clean-day pairing: checkpoint was trained on 'original CIC-IDS2017 GeneratedLabelledFlows/monday' but is being score\r\n"}]}
+```
+</details>
+
+### [177/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:36.096Z
+**9 of 9 checkpoints now checkable** (was 3), and the exact E44 mistake that the guard was previously silent on is now caught. Item 4 is done.
+<details><summary>tool: shell (516 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_ujwg7z1jbndk_1","args":{"command":"python detection/eval_guards_selftest.py 2>&1 | Select-String -Pattern 'passed,|FAIL|no provenance'; echo \"=== E46 ===\"; python experiments/E46_guard_regression/exp_e46_guard_regression.py 2>&1 | Select-String -Pattern 'behaved|FAIL'","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"\r\n24 passed, 0 failed\r\n=== E46 ===\r\n8/8 cases behaved as required\r\n\r\n\r\n"}]}
+```
+</details>
+
+### [178/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:53.839Z
+The `provenance_report` test no longer prints "no provenance" — all checkpoints are now checkable. Let me tighten that test so the gap can't silently return.
+<details><summary>tool: edit (3182 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_z725t6d6ynfy_1","args":{"oldString":"    rep = provenance_report()\n    assert rep, \"no checkpoints found\"\n    for name, row in rep.items():\n        assert \"status\" in row, name\n    checkable = [n for n, r in rep.items() if r[\"provenance\"]]\n    missing = [n for n, r in rep.items() if not r[\"provenance\"]]\n    print(f\"\\n  provenance: {len(checkable)} checkable, {len(missing)} missing\")\n    for n in missing:\n        print(f\"    no provenance: {n}\")\n    # Guard against the fixture set being empty or the loader silently failing.\n    assert not any(str(r.get(\"status\", \"\")).startswith(\"unreadable\")\n                   for r in rep.values()), \\\n        f\"a shipped checkpoint could not be read: {rep}\"","path":"E:\\Potential-gold\\Zero-Day\\detection\\eval_guards_selftest.py","newString":"    rep = provenance_report()\n    assert rep, \"no checkpoints found\"\n    for name, row in rep.items():\n        assert \"status\" in row, name\n    checkable = [n for n, r in rep.items() if r[\"provenance\"]]\n    missing = [n for n, r in rep.items() if not r[\"provenance\"]]\n    print(f\"\\n  provenance: {len(checkable)} checkable, {len(missing)} missing\")\n    for n in missing:\n        print(f\"    no provenance: {n}\")\n    # Guard against the fixture set being empty or the loader silently failing.\n    assert not any(str(r.get(\"status\", \"\")).startswith(\"unreadable\")\n                   for r in rep.values()), \\\n        f\"a shipped checkpoint could not be read: {rep}\"\n    # E47 back-filled provenance on every shipped checkpoint, so a new one\n    # arriving without it is a regression, not a neutral state.\n    assert not missing, (\n        f\"checkpoints have no provenance, so require_dataset is silent on \"\n        f\"them: {missing}. Run \"\n        f\"experiments/E47_provenance_audit/exp_e47_backfill.py --dry-run.\")\n\n\ndef t_e44_mistake_is_now_caught():\n    \"\"\"The specific case E47 exists for.\n\n    `gnn_autoencoder_v1_logscale_v2.pt` is the checkpoint E44 paired against a\n    clean-data day. Before E47 it carried no `train` field, so the dataset\n    guard was silent and the mistake produced a plausible wrong number. It must\n    warn now, and it must NOT warn on its own home testbed.\n    \"\"\"\n    det = Path(__file__).resolve().parent\n    b = torch.load(det / \"gnn_autoencoder_v1_logscale_v2.pt\", map_location=\"cpu\",\n                   weights_only=True)\n    assert b.get(\"train\"), \"provenance missing; the guard cannot fire\"\n    with warnings.catch_warnings(record=True) as caught:\n        warnings.simplefilter(\"always\")\n        require_dataset(b, \"CICIDS2017_improved/monday benign-only\",\n                        context=\"E44 clean-day pairing\")\n    assert caught, \"E44's mistake is still silent\"\n    with warnings.catch_warnings():\n        warnings.simplefilter(\"error\")\n        require_dataset(b, \"original CIC-IDS2017 GeneratedLabelledFlows/monday\",\n                        context=\"home testbed\")"},"output":[{"type":"text","text":"Edited detection/eval_guards_selftest.py (1 replacement)"}]}
+```
+</details>
+
+### [179/193] assistant (opencode/space-bunny-free) 2026-09-29T12:03:01.079Z
+<details><summary>tool: edit (575 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_tu0oj57mlf5m_1","args":{"oldString":"ok(\"t22 provenance report covers every checkpoint\",\n   t_provenance_report_covers_every_ckpt)","path":"E:\\Potential-gold\\Zero-Day\\detection\\eval_guards_selftest.py","newString":"ok(\"t22 provenance report covers every checkpoint\",\n   t_provenance_report_covers_every_ckpt)\nok(\"t24 E44's mispairing is now caught by the dataset guard\",\n   t_e44_mistake_is_now_caught)"},"output":[{"type":"text","text":"Edited detection/eval_guards_selftest.py (1 replacement)"}]}
+```
+</details>
+
+### [180/193] assistant (opencode/space-bunny-free) 2026-09-29T12:03:05.480Z
+<details><summary>tool: shell (371 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_yt2by7fnr9aq_1","args":{"command":"python detection/eval_guards_selftest.py 2>&1 | Select-String -Pattern 'passed,|FAIL|provenance:'","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"\r\n  provenance: 10 checkable, 0 missing\r\n25 passed, 0 failed\r\n\r\n\r\n"}]}
+```
+</details>
+
+### [181/193] assistant (opencode/space-bunny-free) 2026-09-29T12:03:18.625Z
+25/25, 0 missing. Item 4 complete. Committing, then checking on training.
+<details><summary>tool: shell (2458 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_9olbzty55sxt_1","args":{"command":"git add -A; git commit -q -m \"E47: back-fill checkpoint provenance on all 9 (was 3/9 checkable)\n\nValues are evidence-backed, not assumed:\n- scaler-bound forensics (lo/hi are per-feature min/max of the TRAINING\n  graphs, so they fingerprint the corpus) settle 3 legacy checkpoints;\n  gnn_autoencoder_v1_logscale_v2 matches original Monday at 14.2x margin\n- m5a_revived_ctx read from its trainer source (train_m5a_revived.py:30)\n- gnn_autoencoder_v1 + gnn_temporal_fused_v1 marked UNKNOWN, not guessed:\n  they share a byte-identical scaler (ad2aafe47c2d8a1c) and CHANGELOG\n  records the first as 'saved by smoke'. Marked UNKNOWN so the guard WARNS\n  on use instead of silently passing.\n- model weights verified bit-identical after rewrite; only metadata added\n- self-test now fails if a new checkpoint arrives without provenance\" 2>&1 | Select-Object -Last 1; git log --oneline -1","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"warning: in the working copy of '.opencode/roam/ROAM-Lxxk0zlWJrAr.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/latest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'detection/eval_guards_selftest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiments/E43_fusion_rule/exp_e43_fusion_rules.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiments/E47_provenance_audit/exp_e47_backfill.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiments/E47_provenance_audit/exp_e47_provenance_audit.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiments/E47_provenance_audit/exp_e47_scaler_forensics.py', LF will be replaced by CRLF the next time Git touches it\nd5cfee0 E47: back-fill checkpoint provenance on all 9 (was 3/9 checkable)\n"}]}
+```
+</details>
+
+### [182/193] assistant (opencode/space-bunny-free) 2026-09-29T12:03:27.182Z
+Item 4 done. Now waiting on seeds 2 and 3 for item 2.
+<details><summary>tool: shell (688 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_7dj4zolnxmqe_1","args":{"command":"Start-Sleep -Seconds 115; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":118000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  epoch  40 | val 0.000383 | best 0.000054@26\r\n  epoch  80 | val 0.000237 | best 0.000041@78\r\n  epoch 120 | val 0.000158 | best 0.000041@78\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\n"}]}
+```
+</details>
+
+### [183/193] assistant (opencode/space-bunny-free) 2026-09-29T12:05:28.686Z
+Seed 2 at epoch 120/200. Writing the E47 README while it trains.
+<details><summary>tool: write (5877 chars)</summary>
+
+```json
+{"type":"tool","tool":"write","name":"write","id":"call_function_iasllkhtadbi_1","args":{"content":"# E47 — Back-filling checkpoint provenance (the E46 gap, closed)\n\n**Verdict: PASS (9 of 9 checkable, up from 3 of 9)** · 2026-09-29\n\n## Aim\n\n[E46](../E46_guard_regression/) shipped the pairing guards and left one gap:\n**6 of the 9 checkpoints in `detection/` carried no `train` provenance field**,\nso `require_dataset` was silent on them — including\n`gnn_autoencoder_v1_logscale_v2.pt`, which is exactly the checkpoint\n[E44](../E44_residual_evasion/) paired against the wrong day. E44's mistake was\ncaught at the time only by the scaler binding, by luck of file layout.\n\nThis closes it, with one rule: **a provenance value is written only if evidence\nsupports it.** Anything else is marked UNKNOWN, which makes the guard *warn* on\nuse rather than silently pass.\n\n## What was done\n\nThree scripts, run in order:\n\n| Script | Job |\n|---|---|\n| `exp_e47_provenance_audit.py` | For each checkpoint, gather the evidence for a value. Writes nothing. Flags what it cannot support. |\n| `exp_e47_scaler_forensics.py` | Settle undocumented checkpoints **empirically**, from the scaler. |\n| `exp_e47_backfill.py` | Write the values, with a `--dry-run` and a per-file evidence trail. |\n\n### The forensic method\n\n`NodeScaler.fit` sets `lo`/`hi` to the **per-feature min and max of the\ntraining graphs**. Those are data fingerprints, not free parameters — so a\nscaler records the corpus it was fitted on. The method: fit a reference scaler\non each candidate corpus, then measure which reference the checkpoint's stored\nbounds actually match.\n\nJudged on the **margin** between corpora, not on absolute error — the reference\nis fitted on a bounded slice of Monday, so even the right corpus will not match\nto 1e-6. What matters is which corpus is orders of magnitude closer.\n\n## Results\n\n| Checkpoint | Evidence | Verdict |\n|---|---|---|\n| `gnn_improved_s0.pt` | already correct; forensics confirm | clean Monday, margin **167×** |\n| `m5a_revived_improved.pt` | already correct | clean Monday |\n| `host_autoencoder_adfa.pt` | already correct | ADFA-LD |\n| `gnn_improved_replay.pt` | forensics (err 0.0) + E29/E42 record | clean + original replay mix |\n| `gnn_autoencoder_v1_logscale_v2.pt` | forensics, margin **14.2×** | **original Monday** |\n| `gnn_autoencoder_v1_logscale.pt` | forensics, margin **12.0×** | **original Monday** |\n| `m5a_revived_ctx.pt` | **trainer source**, `train_m5a_revived.py:30` | **original Monday** |\n| `gnn_autoencoder_v1.pt` | none | **UNKNOWN** |\n| `gnn_temporal_fused_v1.pt` | none | **UNKNOWN** |\n\n**Forensics, all six M5b checkpoints:**\n\n```\ngnn_improved_s0.pt               -> clean_monday/v2    err=0.0019  margin=167.2\ngnn_improved_replay.pt           -> clean_monday/v2    err=0.0     margin=3.2e8\ngnn_autoencoder_v1_logscale_v2.pt-> original_monday/v2 err=0.0587  margin=14.2\ngnn_autoencoder_v1_logscale.pt   -> original_monday/v1 err=0.0815  margin=12.0\ngnn_autoencoder_v1.pt            -> AMBIGUOUS          err=0.644   margin=1.5\ngnn_temporal_fused_v1.pt         -> AMBIGUOUS          err=0.644   margin=1.5\n```\n\n**`provenance_report()` before: 3 checkable, 6 silent. After: 9 checkable, 0\nsilent** (10 including the seed trained during this session).\n\n## What we understood\n\n**The scaler is evidence, and nobody had used it as such.** The three legacy\ncheckpoints whose training command was never written down are now identified\nfrom the artifact itself. The one that matters most is\n`gnn_autoencoder_v1_logscale_v2.pt` — the checkpoint E12's control anchor is\nmeasured on, and the one E44 mispaired. It matches **original Monday at 14.2×\nmargin**, which retroactively confirms E12's pairing was correct and shows E44\nrun 1 used a model trained on a different corpus than the day it was scored on.\nThat was a real error, and it is now structurally impossible to repeat.\n\n**The two UNKNOWNs are the s
+… truncated 1877 chars, see export JSON …
+```
+</details>
+
+### [184/193] assistant (opencode/space-bunny-free) 2026-09-29T12:05:41.697Z
+<details><summary>tool: shell (662 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_2e3m88g97ax8_1","args":{"command":"Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  epoch  40 | val 0.000383 | best 0.000054@26\r\n  epoch  80 | val 0.000237 | best 0.000041@78\r\n  epoch 120 | val 0.000158 | best 0.000041@78\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\n"}]}
+```
+</details>
+
+### [185/193] assistant (opencode/space-bunny-free) 2026-09-29T12:05:46.757Z
+<details><summary>tool: shell (688 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_azd1f15t7i3s_1","args":{"command":"Start-Sleep -Seconds 115; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":118000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  epoch  80 | val 0.000237 | best 0.000041@78\r\n  epoch 120 | val 0.000158 | best 0.000041@78\r\n  epoch 160 | val 0.000099 | best 0.000041@78\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\n"}]}
+```
+</details>
+
+### [186/193] assistant (opencode/space-bunny-free) 2026-09-29T12:07:46.704Z
+Seed 2 near done. Let me add the TOC entry for E47 meanwhile.
+<details><summary>tool: edit (642 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_rmkjh9fw1479_1","args":{"oldString":"| [E46](E46_guard_regression/) | Pairing guards vs the archive's dominant error mode | PASS | 2026-09-29 | script, JSON | — |","path":"E:\\Potential-gold\\Zero-Day\\experiments\\README.md","newString":"| [E46](E46_guard_regression/) | Pairing guards vs the archive's dominant error mode | PASS | 2026-09-29 | script, JSON | — |\n| [E47](E47_provenance_audit/) | Back-fill checkpoint provenance (closes E46's gap) | PASS | 2026-09-29 | 3 scripts, 3 JSON | — |"},"output":[{"type":"text","text":"Edited experiments/README.md (1 replacement)"}]}
+```
+</details>
+
+### [187/193] assistant (opencode/space-bunny-free) 2026-09-29T12:07:51.088Z
+<details><summary>tool: edit (1123 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_dw59kdktfgmb_1","args":{"oldString":"7. **Back-fill checkpoint provenance** — [E46](E46_guard_regression/) shipped\n   the pairing guards and they fire on every real bug in the archive\n   (`detection/eval_guards.py`, 24 self-tests + 8 regressions). One gap\n   remains: **6 of 9 checkpoints carry no `train` field**, so the dataset guard\n   is silent on the legacy models — including the one E44 mispaired. The scaler\n   binding still catches that case, but only until someone back-fills. Run\n   `provenance_report()` to see the current state.","path":"E:\\Potential-gold\\Zero-Day\\experiments\\README.md","newString":"7. ~~**Back-fill checkpoint provenance**~~ — **CLOSED by\n   [E47](E47_provenance_audit/).** All 9 checkpoints are now checkable (was 3 of\n   9), values evidence-backed: scaler-bound forensics settle the undocumented\n   ones, the two genuinely unknown ones are marked UNKNOWN so the guard warns\n   on use. The E46 pairing guards are now fully armed."},"output":[{"type":"text","text":"Edited experiments/README.md (1 replacement)"}]}
+```
+</details>
+
+### [188/193] assistant (opencode/space-bunny-free) 2026-09-29T12:07:57.355Z
+<details><summary>tool: shell (719 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_tttk8qg4h6o5_1","args":{"command":"Start-Sleep -Seconds 110; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":118000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"improved Monday benign: 371624 flows -> 486 graphs\r\nE26 val holdout: 389 train / 97 val (last windows)\r\n  epoch   0 | val 0.000632 | best 0.000632@0\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\ngnn_improved_s2.pt\r\n"}]}
+```
+</details>
+
+### [189/193] assistant (opencode/space-bunny-free) 2026-09-29T12:09:51.592Z
+Seed 2 done, seed 3 started. Verifying seed 2's provenance while it trains.
+<details><summary>tool: shell (815 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_0odglygjgs49_1","args":{"command":"python -c \"\nimport sys,torch; sys.path.insert(0,'detection')\nfrom eval_guards import require_scaler_match, provenance_report\nb=torch.load('detection/gnn_improved_s2.pt',map_location='cpu',weights_only=True)\nprint('s2 train:', b.get('train'), '| val_frac', b.get('val_frac'), '| epochs', b.get('epochs'), '| best_ep', b.get('epochs'))\nprint('has provenance key:', 'provenance' in b)\nimport numpy as np\nprint('dims', b['in_dim'], '| log', b['scaler'].get('log'))\n\"","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"s2 train: CICIDS2017_improved/monday benign-only | val_frac 0.2 | epochs 200 | best_ep 200\r\nhas provenance key: False\r\ndims 19 | log True\r\n"}]}
+```
+</details>
+
+### [190/193] assistant (opencode/space-bunny-free) 2026-09-29T12:09:59.631Z
+Seed 2 came out with best_ep 200 — meaning val loss was still improving at the end (no early stopping at a lower epoch), so it saved the final epoch. That differs from seeds 1 (best@17) and 2's report said best 0.000041@78. Wait, the report said "best 0.000041@78" for seed 2, but the checkpoint says best_ep 200?
+
+Hmm, let me check. The `epochs` field is the training epochs requested, not best epoch. Let me look at what the script saves. Actually I printed `b.get('epochs')` = 200 which is just the arg. Let me check if there's a best_ep field.
+
+Actually I printed 'best_ep', b.get('epochs') by mistake — same field. So there's no best_ep field. Let me check what fields exist and whether the saved model is the best-val one.
+
+This matters: if the trainer saves the final-epoch model rather than best-val, the val-picking protocol isn't actually applied, and seeds differ in that respect.
+
+Let me check the trainer's save logic.
+`best_ep` printed the same field twice — let me check what the trainer actually saves, since val-picking only matters if it's applied.
+<details><summary>tool: shell (1045 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_bjmvmhwi2gzi_1","args":{"command":"Select-String -Path experiments\\E17_retrain_improved\\exp_e17_retrain_improved.py -Pattern 'best|torch.save|state_dict|for ep' | ForEach-Object { \"$($_.LineNumber): $($_.Line.Trim())\" } | Select-Object -First 20","timeout":60000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"11: validation (time-ordered, no shuffle leak); best-val-loss epoch is saved\r\n56: \"validation; best-val epoch saved. Default 0.2 \"\r\n87: best, best_state, best_ep = float(\"inf\"), None, -1\r\n88: for ep in range(args.epochs):\r\n100: if vl < best:\r\n101: best, best_state, best_ep = vl, copy.deepcopy(model.state_dict()), ep\r\n103: print(f\"  epoch {ep:3d} | val {vl:.6f} | best {best:.6f}@{best_ep}\",\r\n105: model.load_state_dict(best_state)\r\n106: print(f\"best val {best:.6f} @ epoch {best_ep}\", flush=True)\r\n107: losses = [best]\r\n114: torch.save({\"model\": model.state_dict(), \"scaler\": scaler.state_dict(),\r\n"}]}
+```
+</details>
+
+### [191/193] assistant (opencode/space-bunny-free) 2026-09-29T12:10:07.205Z
+Val-picking is correctly applied (`load_state_dict(best_state)` before save). The `epochs: 200` field is just the config value. Waiting on seed 3.
+<details><summary>tool: shell (660 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_0lwnfoo1mvsd_1","args":{"command":"Start-Sleep -Seconds 115; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 2; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":118000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  epoch   0 | val 0.000632 | best 0.000632@0\r\n  epoch  40 | val 0.000148 | best 0.000059@19\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\ngnn_improved_s2.pt\r\n"}]}
+```
+</details>
+
+### [192/193] assistant (opencode/space-bunny-free) 2026-09-29T12:12:07.746Z
+<details><summary>tool: shell (661 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_i5l1jjsd0qg9_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 2; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  epoch  80 | val 0.000208 | best 0.000034@77\r\n  epoch 120 | val 0.000113 | best 0.000034@77\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\ngnn_improved_s2.pt\r\n"}]}
+```
+</details>
+
+### [193/193] assistant (opencode/space-bunny-free) 2026-09-29T12:14:11.521Z
+<details><summary>tool: shell (472 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_llg45j0s5jcv_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":""}
+```
+</details>
 
 ## 3. Decisions made
 _Auto-seeded — correct me in chat and it will be re-captured on next idle:_
@@ -1457,6 +2007,12 @@ _Auto-seeded — correct me in chat and it will be re-captured on next idle:_
 - 6 need back-fill, 2 are flagged UNRESOLVED. Let me try to actually resolve those two rather than leave a gap.
 - Actually, let me be honest: these two are genuinely unresolvable. The right thing is to mark them explicitly as unknown provenance rather than guess. Let me add a "unknown" provenance value that the guard treats as "cannot check" — distinct from "no provenance".
 - Actually, better: rather than guessing, I should record them with an explicit `train: null` + a note field, so they're honestly labelled. But writing "unknown" is still a claim. Let me check the CHANGELOG/git for the training commands.
+- This is a good approach — measured evidence rather than documentation.
+- Then decide the back-fill. Time is a factor — training is running.
+- Now the verdict logic — it should compare against the *same feature set* only, and report the margin rather than an absolute threshold.
+- - UNRESOLVED (2): gnn_autoencoder_v1.pt, gnn_temporal_fused_v1.pt — smoke run, same scaler, corpus indeterminate. Should be marked as "unknown/smoke" rather than a false claim.
+- For the unresolved ones, the honest thing is to write a provenance value that says UNKNOWN rather than a lie. But then require_dataset would compare "unknown" against a dataset name and warn. Actually that's fine/desirable — or better, write train=None-equivalent? No — better to write an explicit marker like "UNKNOWN (smoke run, corpus not recorded)" which will NOT match any corpus token, so _identify returns (None, None), and _same_dataset falls to substring → not equal → warns. That's the correct behaviour: loud.
+- This matters: if the trainer saves the final-epoch model rather than best-val, the val-picking protocol isn't actually applied, and seeds differ in that respect.
 
 ## 3b. Sub-agent tasks
 - (no sub-agent tasks in this session)
@@ -1468,7 +2024,7 @@ _Auto-seeded — correct me in chat and it will be re-captured on next idle:_
 - M .opencode/roam/latest.json
 - M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
 - M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
-- ?? experiments/E47_provenance_audit/
+- ?? detection/gnn_improved_s2.pt
 
 <details><summary>git status --porcelain</summary>
 
@@ -1478,19 +2034,19 @@ M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
  M .opencode/roam/latest.json
  M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
  M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
-?? experiments/E47_provenance_audit/
+?? detection/gnn_improved_s2.pt
 ```
 </details>
 
 <details><summary>git diff --stat HEAD (big data excluded)</summary>
 
 ```
-.opencode/roam/ROAM-Lxxk0zlWJrAr.md                |  327 ++--
- .opencode/roam/ROAM-j96VuMOxiLDK.md                | 1742 +++++++++++---------
+.opencode/roam/ROAM-Lxxk0zlWJrAr.md                |  760 +++++++--
+ .opencode/roam/ROAM-j96VuMOxiLDK.md                | 1786 +++++++++++---------
  .opencode/roam/latest.json                         |    2 +-
- ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  128 +-
- ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  482 +++++-
- 5 files changed, 1705 insertions(+), 976 deletions(-)
+ ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 1525 ++++++++++++++++-
+ ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  458 ++++-
+ 5 files changed, 3506 insertions(+), 1025 deletions(-)
 ```
 </details>
 
