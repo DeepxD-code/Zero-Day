@@ -22,7 +22,7 @@ Append-only log of what changed and why. **Pull, then read the top of this file.
 * **E46 guards fire on all real bugs** (8/8 regressions) and all three wired scripts reproduced their published numbers exactly.
 
 ### Still open
-* **E01 seq-AE** — INCOMPLETE, killed 3× by the machine (2 restarts, 1 silent process death), never by the code. Only unanswered *modelling* question. Fix the runner first: split the HMM arm out, since `hmmlearn` has no Python 3.14 wheel and forces the whole job onto CPU-only `venv312`.
+* **E01 seq-AE — RUNS NOW (4 seeds).** After 3 machine kills, split the HMM arm off the torch arm (`hmmlearn` has no 3.14 wheel and was forcing the whole job onto CPU-only `venv312`). Result: **seq-AE 0.7799±0.0066 vs count-AE 0.7768±0.0050 — Δ 0.47 SD, inside the noise.** But mimicry splits hard: seq-AE **0.922 vs 0.032** on M1 interleave and **0.778 vs 0.048** on M2 substitute, while M3 chunk-shuffle is **identical (0.545 both)**. So sequence modelling buys robustness to *dilution*, not immunity to *reordering*. Open: the epoch grid is truncated (all 4 seeds picked ep 40, the max offered); extended 40–160 grid running.
 * **Botnet host fusion** — blocked on Person A's LID-DS loader; network ceiling 0.709±0.025 (E43 band).
 * **Cross-testbed root cause** — method finished (E17 exonerates the architecture, E27 rules out pooling, E29/E42 find and scale the replay fix), **mechanism still unexplained**. Replay-tuning is a workaround with a recipe: deploy one base + one tune per site.
 * **Sub-threshold ×10** — **removed from the to-do list by decision, not fixed.** Disclosed limitation; belongs to Pillar 3. E44's positive result stands: IP rotation alone is not an evasion.
