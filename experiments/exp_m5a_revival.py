@@ -36,12 +36,18 @@ try:
 except ModuleNotFoundError:
     from legacy.stub_detector import Autoencoder as ShippedAE, EXPECTED_FEATURES, MODEL_PATH
 from detection.gnn_model import GraphAutoencoder
+# exp_v2b_temporal_aug moved into the numbered evidence archive
+# (experiments/E38_feature_set_v2/); this module is imported by PRODUCTION
+# (alert_pipeline, shap_revived_ctx), so the path has to be resolved here.
+_E38 = Path(__file__).resolve().parent / "E38_feature_set_v2"
+if _E38.is_dir():
+    sys.path.insert(0, str(_E38))
 try:
     from detection.exp_v2b_temporal_aug import (augment_graphs_temporal, K,
                                                 LogScaler as V2BScaler)
 except ModuleNotFoundError:
-    from experiments.exp_v2b_temporal_aug import (augment_graphs_temporal, K,
-                                                  LogScaler as V2BScaler)
+    from exp_v2b_temporal_aug import (augment_graphs_temporal, K,
+                                      LogScaler as V2BScaler)
 
 META = ["src_ip", "dst_ip", "src_port", "protocol", "timestamp",
         "label", "flow_id"]
