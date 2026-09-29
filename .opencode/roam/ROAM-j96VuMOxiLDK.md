@@ -2,7 +2,7 @@
 
 - project_id: DeepxD-code-Zero-Day
 - session_id: ses_f3dc7edc0ffey2j96VuMOxiLDK
-- captured: 2026-09-29T18-58-28Z (reason: auto-10min)
+- captured: 2026-09-29T19-18-12Z (reason: auto-10min)
 - device: LAPTOP
 - title: Pull and explore
 - origin_model: opencode/muse-spark-1.3-contributor-free (if your model differs, roam_resume adapts — see roam.json modelMap)
@@ -8071,55 +8071,60 @@ result: [structured value — see export JSON] [{"type":"text","text":"<task id=
 - (session diff empty; changed files via git status — repo-relative:)
 - M .opencode/roam/ROAM-1O2A2W8CXLrh.md
 - M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
+- M .opencode/roam/ROAM-PNChTBafzMAZ.md
 - M .opencode/roam/ROAM-j96VuMOxiLDK.md
 - M .opencode/roam/ROAM-sdUI624LEEU7.md
 - M .opencode/roam/ROAM-tDDfUI26FvHO.md
+- M .opencode/roam/ROAM-x08NqvzVIRMv.md
 - M .opencode/roam/latest.json
+- M .opencode/roam/session-ses_f1178f0e2ffexUPNChTBafzMAZ.export.json
+- M .opencode/roam/session-ses_f118593e8ffeKEx08NqvzVIRMv.export.json
 - M .opencode/roam/session-ses_f11963d66ffefDsdUI624LEEU7.export.json
 - M .opencode/roam/session-ses_f11a9c5daffenq1O2A2W8CXLrh.export.json
 - M .opencode/roam/session-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json
 - M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
 - M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
-- M experiments/E52_edge_head/exp_e52_edge_head.py
-- ?? .opencode/roam/ROAM-x08NqvzVIRMv.md
-- ?? .opencode/roam/session-ses_f118593e8ffeKEx08NqvzVIRMv.export.json
 
 <details><summary>git status --porcelain</summary>
 
 ```
 M .opencode/roam/ROAM-1O2A2W8CXLrh.md
  M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
+ M .opencode/roam/ROAM-PNChTBafzMAZ.md
  M .opencode/roam/ROAM-j96VuMOxiLDK.md
  M .opencode/roam/ROAM-sdUI624LEEU7.md
  M .opencode/roam/ROAM-tDDfUI26FvHO.md
+ M .opencode/roam/ROAM-x08NqvzVIRMv.md
  M .opencode/roam/latest.json
+ M .opencode/roam/session-ses_f1178f0e2ffexUPNChTBafzMAZ.export.json
+ M .opencode/roam/session-ses_f118593e8ffeKEx08NqvzVIRMv.export.json
  M .opencode/roam/session-ses_f11963d66ffefDsdUI624LEEU7.export.json
  M .opencode/roam/session-ses_f11a9c5daffenq1O2A2W8CXLrh.export.json
  M .opencode/roam/session-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json
  M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
  M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
- M experiments/E52_edge_head/exp_e52_edge_head.py
-?? .opencode/roam/ROAM-x08NqvzVIRMv.md
-?? .opencode/roam/session-ses_f118593e8ffeKEx08NqvzVIRMv.export.json
 ```
 </details>
 
 <details><summary>git diff --stat HEAD (big data excluded)</summary>
 
 ```
-.opencode/roam/ROAM-1O2A2W8CXLrh.md                |   24 +-
- .opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1414 ++++++++++++--------
- .opencode/roam/ROAM-j96VuMOxiLDK.md                |   30 +-
- .opencode/roam/ROAM-sdUI624LEEU7.md                |   30 +-
- .opencode/roam/ROAM-tDDfUI26FvHO.md                |   26 +-
+.opencode/roam/ROAM-1O2A2W8CXLrh.md                |   33 +-
+ .opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1349 ++++++++++++--------
+ .opencode/roam/ROAM-PNChTBafzMAZ.md                |  541 +++++++-
+ .opencode/roam/ROAM-j96VuMOxiLDK.md                |   41 +-
+ .opencode/roam/ROAM-sdUI624LEEU7.md                |   27 +-
+ .opencode/roam/ROAM-tDDfUI26FvHO.md                |   37 +-
+ .opencode/roam/ROAM-x08NqvzVIRMv.md                |   25 +-
  .opencode/roam/latest.json                         |    8 +-
+ ...sion-ses_f1178f0e2ffexUPNChTBafzMAZ.export.json |  789 +++++++++++-
+ ...sion-ses_f118593e8ffeKEx08NqvzVIRMv.export.json |    6 +-
  ...sion-ses_f11963d66ffefDsdUI624LEEU7.export.json |    6 +-
  ...sion-ses_f11a9c5daffenq1O2A2W8CXLrh.export.json |    6 +-
  ...sion-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json |    6 +-
- ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  817 ++++++++++-
+ ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  351 ++++-
  ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-
- experiments/E52_edge_head/exp_e52_edge_head.py     |  117 +-
- 12 files changed, 1804 insertions(+), 686 deletions(-)
+ 15 files changed, 2479 insertions(+), 752 deletions(-)
 ```
 </details>
 
