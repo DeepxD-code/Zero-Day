@@ -41,6 +41,7 @@ sys.path.insert(0, str(ROOT / "experiments"))
 
 from graph_builder import build_graphs, normalize_columns, read_flows, _window_key
 from gnn_model import GraphAutoencoder, NodeScaler
+from eval_guards import require_scaler_match, require_window_groups
 from exp_m5a_revival import flow_matrix, build_ctx, MinMax, CtxScaler, RevivedAE
 
 DET = ROOT / "detection"
@@ -140,6 +141,11 @@ def evaluate(recs):
     Ranking over row-count chunks is NOT equivalent and was a bug once."""
     from sklearn.metrics import roc_auc_score
     R = pd.DataFrame(recs).reset_index(drop=True)
+
+    # Guard: E43's first run ranked within 5000-row chunks instead of real
+    # windows, inflating Botnet repfuse to 0.789 against E21's verified 0.667.
+    # Fixed-size groups are the signature; real windows are bursty.
+    require_window_groups(R["win"].to_numpy(), len(R), context="E43 rank groups")
 
     def rk(col):
         return R.groupby("win")[col].transform(lambda s: r01(s.to_numpy()))

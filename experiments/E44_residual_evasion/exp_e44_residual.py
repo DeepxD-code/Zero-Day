@@ -46,6 +46,8 @@ sys.path.insert(0, str(ROOT / "harness"))
 
 from graph_builder import build_graphs, normalize_columns, read_flows, _window_key
 from gnn_model import GraphAutoencoder, NodeScaler
+from eval_guards import (check_anchor, require_dataset, require_scaler_match,
+                         require_window_groups)
 from graph_techniques import spread_dilate
 
 DET = ROOT / "detection"
@@ -129,6 +131,11 @@ def evaluate(day, model, scaler, device, bad, label):
     if len(y) == 0 or y.sum() == 0 or y.sum() == len(y):
         return None
 
+    # Guard: ranks must be within real 60s windows. `win` increments per
+    # window in run_family, so it is already a window key -- this asserts it
+    # rather than trusting it (the E43 chunk-grouping bug had the same shape).
+    require_window_groups(R["win"].to_numpy(), len(R), context=f"E44 {label}")
+
     def rk(col):
         return R.groupby("win")[col].transform(
             lambda s: (np.argsort(np.argsort(s.to_numpy()))
@@ -157,6 +164,13 @@ def main():
     model = GraphAutoencoder(in_dim=19)
     model.load_state_dict(blob["model"]); model.eval().to(device)
     scaler = NodeScaler().load_state_dict(blob["scaler"])
+    # Guard: E44 run 1 paired the CLEAN-data checkpoint with the ORIGINAL day,
+    # so the "control" it reported was the cross-testbed gap rather than a
+    # control. This checkpoint has no `train` provenance, so the dataset guard
+    # cannot fire -- the scaler binding is the check that still holds, and the
+    # absence of provenance is recorded in detection/eval_guards.py's
+    # provenance_report() rather than assumed away.
+    require_scaler_match(blob, scaler, "E44 shipped ckpt")
     day = normalize_columns(read_flows(DAY))
     base = {ATTACKER}
     rot = set(ROT_IPS)
@@ -164,6 +178,12 @@ def main():
     res = {"model": "gnn_autoencoder_v1_logscale_v2.pt (original-data)",
            "day": "original PortScan"}
     res["control"] = evaluate(day, model, scaler, device, base, "control (x1)")
+    # The control arm is the one number in this archive that has reproduced
+    # exactly across runs (0.8714, E12). If it moves, every evasion result
+    # below it is unreadable until the pairing is explained.
+    if res["control"]:
+        check_anchor("E44_control_portscan", res["control"]["window"],
+                     "E44 control window arm")
     res["R1_rotate_5"] = evaluate(rotate(day, 5), model, scaler, device, rot,
                                  "R1 host rotation x5")
     res["R2_dilate_x10"] = evaluate(spread_dilate(day, ATTACKER, 10), model, scaler,

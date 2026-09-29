@@ -33,6 +33,7 @@ sys.path.insert(0, str(ROOT / "detection"))
 
 from graph_builder import build_graphs, normalize_columns, read_flows, _window_key
 from gnn_model import GraphAutoencoder, NodeScaler, set_seed
+from eval_guards import require_dataset, require_scaler_match
 
 OUT = Path(__file__).resolve().parent / "exp_e42_replay_all.json"
 DET = ROOT / "detection"
@@ -66,11 +67,15 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 
-def load(path: Path):
+def load(path: Path, context: str = ""):
     b = torch.load(path, map_location="cpu", weights_only=True)
     m = GraphAutoencoder(in_dim=19)
     m.load_state_dict(b["model"])
     sc = NodeScaler().load_state_dict(b["scaler"])
+    # Guard (E42's own bug class): a checkpoint must be scored with the scaler
+    # saved inside it. The first run of this script loaded the base model but
+    # scored it with the replay-mix scaler, which handicapped every base column.
+    require_scaler_match(b, sc, context or path.name)
     return m, sc
 
 
@@ -151,8 +156,15 @@ def main():
         models[sd] = (m, sc)
         print(f"  seed {sd} replay-tuned", flush=True)
 
-    base, base_sc = load(DET / "gnn_improved_s0.pt")
+    base, base_sc = load(DET / "gnn_improved_s0.pt", "E42 base")
     base = base.to(device).eval()
+    base_blob = torch.load(DET / "gnn_improved_s0.pt", map_location="cpu",
+                           weights_only=True)
+    # The base model is deliberately scored on BOTH testbeds, so the dataset
+    # guard is allowed to fire -- it labels the result, it does not stop it.
+    require_dataset(base_blob, "original CIC-IDS2017", context="E42 base on orig")
+    require_dataset(base_blob, "CICIDS2017_improved monday",
+                    context="E42 base on clean")
 
     res = {"note": "base is scored with ITS OWN clean-only scaler; replay models use the mixed scaler they were trained with."}
     for fam, (files, labels) in CLEAN_FAMS.items():

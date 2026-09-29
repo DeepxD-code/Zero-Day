@@ -1,0 +1,64 @@
+{
+ "summary": {
+  "cases": 8,
+  "as_required": 8
+ },
+ "cases": [
+  {
+   "case": "E42 base scored with replay-mix scaler",
+   "expected": "raises",
+   "got": "raises",
+   "pass": true,
+   "detail": "E42 replay-mix scaler: scaler does not match the checkpoint (max |dlo| = 0, max |dhi| = 18.603). The scaler was refit on different data. Score the checkpoint with the scaler saved inside it, or re-derive the scaler from the same training set the checkpoint was fit on."
+  },
+  {
+   "case": "E42 base scored with its own scaler",
+   "expected": "passes",
+   "got": "passes",
+   "pass": true,
+   "detail": "base paired with its own scaler, as shipped"
+  },
+  {
+   "case": "E43 ranks within row-count chunks",
+   "expected": "raises",
+   "got": "raises",
+   "pass": true,
+   "detail": "E43 chunk groups: all 10 groups hold exactly 5000 rows. Fixed-size groups are a row-count chunk, not a time window -- pass real window keys from _window_key(). profile={'n_groups': 11, 'n_rows': 53082, 'rows_per_group_mean': 4825.6, 'rows_per_group_min': 3082, 'rows_per_group_max': 5000}"
+  },
+  {
+   "case": "E43 ranks within real time windows",
+   "expected": "passes",
+   "got": "passes",
+   "pass": true,
+   "detail": "real windows accepted: 180 groups, 64-1194 rows each"
+  },
+  {
+   "case": "E44 clean ckpt on original-testbed day",
+   "expected": "passes",
+   "got": "passes",
+   "pass": true,
+   "detail": "warned (1 warning(s)): E44 clean ckpt on orig day: checkpoint was trained on 'CICIDS2017_improved/monday benign-only' but is being sc"
+  },
+  {
+   "case": "E44 clean ckpt on improved-testbed day",
+   "expected": "passes",
+   "got": "passes",
+   "pass": true,
+   "detail": "same-testbed pairing is silent"
+  },
+  {
+   "case": "E16 per-day keying then concat aliases windows",
+   "expected": "passes",
+   "got": "passes",
+   "pass": true,
+   "detail": "2 days aliased 600/600 window ids into 10 groups (should be 20); concat-then-key is safe"
+  },
+  {
+   "case": "E16 aliased window groups are refused",
+   "expected": "raises",
+   "got": "raises",
+   "pass": true,
+   "detail": "E16 aliased windows: group ids are not non-decreasing -- they are not in time order, so 'within-group rank' is meaningless"
+  }
+ ]
+}
