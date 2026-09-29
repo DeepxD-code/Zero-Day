@@ -171,7 +171,7 @@ def main():
     for fam, v in res["loso"].items():
         print(f"  {fam:13s} tuned {v['holdout_mean']:.4f}+-{v['holdout_sd']:.4f}"
               f"   k=3 fixed {v['k3_fixed_mean']:.4f}+-{v['k3_fixed_sd']:.4f}"
-              f"   [{v['verdict']}]")
+              f"   delta {v['delta']:+.4f}  [{v['verdict']}]")
 
     OUT.write_text(json.dumps(res, indent=1), encoding="utf-8")
     print(f"\n-> {OUT.name}")
@@ -195,14 +195,25 @@ def loso_check(raw, res, seeds):
                 [evaluate(raw[fam][s], k, 5)["opt3"] for s in train_seeds]))
             per_seed_holdout.append(evaluate(raw[fam][held], best_k, 5)["opt3"])
             per_seed_oracle.append(evaluate(raw[fam][held], 3, 5)["opt3"])
+        t, k3 = float(np.mean(per_seed_holdout)), float(np.mean(per_seed_oracle))
+        # Correct orientation: tuning is only a problem if the held-out score
+        # is WORSE than the untuned default. The first version of this check
+        # had the comparison reversed and labelled three families "OVERFITS"
+        # when tuning had in fact beaten k=3 by 0.010-0.027.
+        delta = t - k3
+        if delta > 0.005:
+            verdict = f"tuning HELPS (+{delta:.4f})"
+        elif delta > -0.005:
+            verdict = f"tuning is a wash ({delta:+.4f}, inside noise)"
+        else:
+            verdict = f"TUNING OVERFITS ({delta:+.4f}) - k=3 is safer"
         out[fam] = {
-            "holdout_mean": float(np.mean(per_seed_holdout)),
+            "holdout_mean": t,
             "holdout_sd": float(np.std(per_seed_holdout, ddof=1)),
-            "k3_fixed_mean": float(np.mean(per_seed_oracle)),
+            "k3_fixed_mean": k3,
             "k3_fixed_sd": float(np.std(per_seed_oracle, ddof=1)),
-            "verdict": ("tuning generalises" if np.mean(per_seed_oracle)
-                        >= np.mean(per_seed_holdout) - 0.005 else
-                        "TUNING OVERFITS - k=3 is safer"),
+            "delta": round(delta, 6),
+            "verdict": verdict,
         }
     return out
 
