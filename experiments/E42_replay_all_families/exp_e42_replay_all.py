@@ -151,10 +151,10 @@ def main():
         models[sd] = (m, sc)
         print(f"  seed {sd} replay-tuned", flush=True)
 
-    base, _ = load(DET / "gnn_improved_s0.pt")
+    base, base_sc = load(DET / "gnn_improved_s0.pt")
     base = base.to(device).eval()
 
-    res = {}
+    res = {"note": "base is scored with ITS OWN clean-only scaler; replay models use the mixed scaler they were trained with."}
     for fam, (files, labels) in CLEAN_FAMS.items():
         row = {}
         # clean side
@@ -167,7 +167,7 @@ def main():
             bad_src = set(d["src_ip"][lab.isin(labels)])
             d = d.sort_values("timestamp")
             for _, w in d.groupby(_window_key(d, 60)):
-                g, r = _score(base, models[0][1], w, device) or (None, None)
+                g, r = _score(base, base_sc, w, device) or (None, None)
                 if g is None:
                     continue
                 ei = g.edge_index.cpu().numpy()
@@ -182,7 +182,7 @@ def main():
         d = d[d["src_ip"].map(lambda v: isinstance(v, str))
               & d["dst_ip"].map(lambda v: isinstance(v, str))]
         bad = set(malicious_hosts(d))
-        a_base, n = _auc(base, models[0][1], d, bad, device)
+        a_base, n = _auc(base, base_sc, d, bad, device)
         row["orig_base"] = a_base
         row["orig_n"] = n
         a_rep, _ = _auc(models[0][0], models[0][1], d, bad, device)

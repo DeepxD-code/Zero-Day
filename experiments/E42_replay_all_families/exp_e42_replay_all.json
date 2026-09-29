@@ -1,0 +1,58 @@
+{
+ "Patator": {
+  "clean_base": 0.9836106369364467,
+  "clean_n": 127,
+  "orig_base": 0.8537674850698576,
+  "orig_n": 144,
+  "orig_replay": 0.9753946364427697,
+  "clean_replay": 0.9450111658390163
+ },
+ "DoS": {
+  "clean_base": 0.9485916511044286,
+  "clean_n": 89,
+  "orig_base": 0.8194559350114905,
+  "orig_n": 231,
+  "orig_replay": 0.9572245417134306,
+  "clean_replay": 0.8117693966619335
+ },
+ "WebAttacks": {
+  "clean_base": 0.7280531757148275,
+  "clean_n": 99,
+  "orig_base": 0.8157955188439721,
+  "orig_n": 76,
+  "orig_replay": 0.9588713021757739,
+  "clean_replay": 0.6880562700118804
+ },
+ "Infiltration": {
+  "clean_base": 0.5078937850117575,
+  "clean_n": 7236,
+  "orig_base": 0.510076011967046,
+  "orig_n": 3330,
+  "orig_replay": 0.5214375240294309,
+  "clean_replay": 0.5188375512187358
+ },
+ "Botnet": {
+  "clean_base": 0.4912161495310757,
+  "clean_n": 26382,
+  "orig_base": 0.47002918120953696,
+  "orig_n": 21060,
+  "orig_replay": 0.4174488987674412,
+  "clean_replay": 0.5215391651384144
+ },
+ "PortScan": {
+  "clean_base": 0.9522037700777317,
+  "clean_n": 170,
+  "orig_base": 0.42650935354974884,
+  "orig_n": 29,
+  "orig_replay": 0.9187889543326688,
+  "clean_replay": 0.9261772599121293
+ },
+ "DDoS": {
+  "clean_base": 0.9522037700777317,
+  "clean_n": 170,
+  "orig_base": 0.6304855540957692,
+  "orig_n": 554,
+  "orig_replay": 0.8169545058156918,
+  "clean_replay": 0.9261772599121293
+ }
+}

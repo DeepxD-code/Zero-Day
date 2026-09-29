@@ -1,0 +1,230 @@
+{
+ "orig/Monday-WorkingHours": {
+  "flows": 529918,
+  "encrypted_pct": 26.737,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 0,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "53": 214674,
+   "443": 140952,
+   "80": 50834,
+   "123": 5180,
+   "22": 2132,
+   "137": 1522,
+   "389": 1215,
+   "88": 1207
+  }
+ },
+ "orig/Tuesday-WorkingHours": {
+  "flows": 445909,
+  "encrypted_pct": 21.977,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 13835,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "53": 190939,
+   "443": 97276,
+   "80": 45676,
+   "21": 8996,
+   "22": 8033,
+   "123": 5145,
+   "137": 1911,
+   "389": 1333
+  }
+ },
+ "orig/Wednesday-workingHours": {
+  "flows": 692703,
+  "encrypted_pct": 14.569,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 252672,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "80": 301422,
+   "53": 195531,
+   "443": 100229,
+   "123": 4293,
+   "22": 2169,
+   "137": 1480,
+   "389": 1136,
+   "21": 1112
+  }
+ },
+ "orig/Thursday-WorkingHours-Morning-WebAttacks": {
+  "flows": 458968,
+  "encrypted_pct": 7.893,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 290782,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "53": 76545,
+   "443": 35833,
+   "80": 20862,
+   "123": 3746,
+   "22": 1035,
+   "137": 689,
+   "88": 514,
+   "389": 468
+  }
+ },
+ "orig/Thursday-WorkingHours-Afternoon-Infilteration": {
+  "flows": 288602,
+  "encrypted_pct": 18.22,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 36,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "53": 99311,
+   "443": 51772,
+   "80": 25833,
+   "22": 1311,
+   "123": 954,
+   "137": 842,
+   "21": 781,
+   "389": 714
+  }
+ },
+ "orig/Friday-WorkingHours-Morning": {
+  "flows": 191033,
+  "encrypted_pct": 20.719,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 1966,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "53": 90277,
+   "443": 39228,
+   "80": 20615,
+   "123": 3578,
+   "8080": 1261,
+   "22": 1004,
+   "137": 756,
+   "389": 736
+  }
+ },
+ "orig/Friday-WorkingHours-Afternoon-PortScan": {
+  "flows": 286467,
+  "encrypted_pct": 9.864,
+  "encrypted_attack_flows": 1353,
+  "attack_flows": 158930,
+  "encrypted_attack_pct": 0.851,
+  "top_dst_ports": {
+   "53": 58744,
+   "443": 26935,
+   "80": 16741,
+   "22": 915,
+   "8080": 778,
+   "21": 668,
+   "123": 622,
+   "389": 543
+  }
+ },
+ "orig/Friday-WorkingHours-Afternoon-DDos": {
+  "flows": 225745,
+  "encrypted_pct": 6.04,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 128027,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "80": 136951,
+   "53": 31950,
+   "443": 13485,
+   "8080": 510,
+   "123": 362,
+   "22": 342,
+   "137": 274,
+   "389": 261
+  }
+ },
+ "clean/monday": {
+  "flows": 371624,
+  "encrypted_pct": 28.941,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 0,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "53": 214667,
+   "443": 107186,
+   "80": 36111,
+   "123": 5180,
+   "137": 1522,
+   "22": 1054,
+   "389": 969,
+   "88": 907
+  }
+ },
+ "clean/tuesday": {
+  "flows": 322078,
+  "encrypted_pct": 24.04,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 6933,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "53": 190934,
+   "443": 77064,
+   "80": 32617,
+   "123": 5145,
+   "21": 4484,
+   "22": 4031,
+   "137": 1911,
+   "389": 1089
+  }
+ },
+ "clean/wednesday": {
+  "flows": 496641,
+  "encrypted_pct": 15.513,
+  "encrypted_attack_flows": 0,
+  "attack_flows": 171645,
+  "encrypted_attack_pct": 0.0,
+  "top_dst_ports": {
+   "80": 211894,
+   "53": 195545,
+   "443": 76691,
+   "123": 4293,
+   "137": 1480,
+   "22": 1060,
+   "389": 937,
+   "88": 725
+  }
+ },
+ "clean/thursday": {
+  "flows": 362076,
+  "encrypted_pct": 18.811,
+  "encrypted_attack_flows": 550,
+  "attack_flows": 71907,
+  "encrypted_attack_pct": 0.765,
+  "top_dst_ports": {
+   "53": 175862,
+   "443": 67240,
+   "80": 33289,
+   "123": 4699,
+   "137": 1530,
+   "22": 1179,
+   "389": 1024,
+   "88": 715
+  }
+ },
+ "clean/friday": {
+  "flows": 547557,
+  "encrypted_pct": 11.608,
+  "encrypted_attack_flows": 1353,
+  "attack_flows": 254946,
+  "encrypted_attack_pct": 0.531,
+  "top_dst_ports": {
+   "53": 180974,
+   "80": 127222,
+   "443": 62086,
+   "8080": 4968,
+   "123": 4562,
+   "137": 1473,
+   "389": 1335,
+   "22": 1224
+  }
+ },
+ "TOTAL": {
+  "flows": 5219321,
+  "encrypted_pct": 17.331,
+  "attack_flows": 1351679,
+  "encrypted_attack_flows": 3256,
+  "encrypted_attack_pct": 0.2409
+ }
+}
