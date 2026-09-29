@@ -1,0 +1,458 @@
+{
+ "k_grid": [
+  0,
+  1,
+  2,
+  4,
+  8,
+  16
+ ],
+ "seeds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "families": {
+  "Botnet": {
+   "0": {
+    "repfuse_mean": 0.7262,
+    "repfuse_sd": 0.029,
+    "repfuse_per_seed": [
+     0.7425,
+     0.6858,
+     0.7251,
+     0.7513
+    ],
+    "noisyor_mean": 0.5039,
+    "noisyor_sd": 0.0117,
+    "wins_vs_noisyor": 4,
+    "seed_agreement": "unanimous"
+   },
+   "1": {
+    "repfuse_mean": 0.7271,
+    "repfuse_sd": 0.0291,
+    "repfuse_per_seed": [
+     0.7442,
+     0.6866,
+     0.726,
+     0.7516
+    ],
+    "noisyor_mean": 0.5039,
+    "noisyor_sd": 0.0117,
+    "wins_vs_noisyor": 4,
+    "seed_agreement": "unanimous"
+   },
+   "2": {
+    "repfuse_mean": 0.7274,
+    "repfuse_sd": 0.0292,
+    "repfuse_per_seed": [
+     0.7446,
+     0.6866,
+     0.7264,
+     0.7519
+    ],
+    "noisyor_mean": 0.5039,
+    "noisyor_sd": 0.0117,
+    "wins_vs_noisyor": 4,
+    "seed_agreement": "unanimous"
+   },
+   "4": {
+    "repfuse_mean": 0.7279,
+    "repfuse_sd": 0.0291,
+    "repfuse_per_seed": [
+     0.7451,
+     0.6873,
+     0.7268,
+     0.7523
+    ],
+    "noisyor_mean": 0.5039,
+    "noisyor_sd": 0.0117,
+    "wins_vs_noisyor": 4,
+    "seed_agreement": "unanimous"
+   },
+   "8": {
+    "repfuse_mean": 0.7284,
+    "repfuse_sd": 0.0292,
+    "repfuse_per_seed": [
+     0.7457,
+     0.6876,
+     0.7273,
+     0.7529
+    ],
+    "noisyor_mean": 0.5039,
+    "noisyor_sd": 0.0117,
+    "wins_vs_noisyor": 4,
+    "seed_agreement": "unanimous"
+   },
+   "16": {
+    "repfuse_mean": 0.7288,
+    "repfuse_sd": 0.0292,
+    "repfuse_per_seed": [
+     0.7461,
+     0.6881,
+     0.7273,
+     0.7535
+    ],
+    "noisyor_mean": 0.5039,
+    "noisyor_sd": 0.0117,
+    "wins_vs_noisyor": 4,
+    "seed_agreement": "unanimous"
+   }
+  },
+  "PortScan": {
+   "0": {
+    "repfuse_mean": 0.9338,
+    "repfuse_sd": 0.0067,
+    "repfuse_per_seed": [
+     0.9302,
+     0.9411,
+     0.9374,
+     0.9265
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "1": {
+    "repfuse_mean": 0.9387,
+    "repfuse_sd": 0.0058,
+    "repfuse_per_seed": [
+     0.9394,
+     0.9445,
+     0.9403,
+     0.9306
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "2": {
+    "repfuse_mean": 0.9399,
+    "repfuse_sd": 0.0046,
+    "repfuse_per_seed": [
+     0.94,
+     0.9444,
+     0.9415,
+     0.9336
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "4": {
+    "repfuse_mean": 0.9413,
+    "repfuse_sd": 0.002,
+    "repfuse_per_seed": [
+     0.9397,
+     0.944,
+     0.9417,
+     0.9399
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "8": {
+    "repfuse_mean": 0.9402,
+    "repfuse_sd": 0.0016,
+    "repfuse_per_seed": [
+     0.9387,
+     0.9422,
+     0.9408,
+     0.9391
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "16": {
+    "repfuse_mean": 0.9393,
+    "repfuse_sd": 0.0022,
+    "repfuse_per_seed": [
+     0.9369,
+     0.9421,
+     0.9396,
+     0.9387
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   }
+  },
+  "DDoS": {
+   "0": {
+    "repfuse_mean": 0.9338,
+    "repfuse_sd": 0.0067,
+    "repfuse_per_seed": [
+     0.9302,
+     0.9411,
+     0.9374,
+     0.9265
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "1": {
+    "repfuse_mean": 0.9387,
+    "repfuse_sd": 0.0058,
+    "repfuse_per_seed": [
+     0.9394,
+     0.9445,
+     0.9403,
+     0.9306
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "2": {
+    "repfuse_mean": 0.9399,
+    "repfuse_sd": 0.0046,
+    "repfuse_per_seed": [
+     0.94,
+     0.9444,
+     0.9415,
+     0.9336
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "4": {
+    "repfuse_mean": 0.9413,
+    "repfuse_sd": 0.002,
+    "repfuse_per_seed": [
+     0.9397,
+     0.944,
+     0.9417,
+     0.9399
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "8": {
+    "repfuse_mean": 0.9402,
+    "repfuse_sd": 0.0016,
+    "repfuse_per_seed": [
+     0.9387,
+     0.9422,
+     0.9408,
+     0.9391
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "16": {
+    "repfuse_mean": 0.9393,
+    "repfuse_sd": 0.0022,
+    "repfuse_per_seed": [
+     0.9369,
+     0.9421,
+     0.9396,
+     0.9387
+    ],
+    "noisyor_mean": 0.9656,
+    "noisyor_sd": 0.0025,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   }
+  },
+  "Infiltration": {
+   "0": {
+    "repfuse_mean": 0.6743,
+    "repfuse_sd": 0.0324,
+    "repfuse_per_seed": [
+     0.6421,
+     0.6954,
+     0.7081,
+     0.6515
+    ],
+    "noisyor_mean": 0.6496,
+    "noisyor_sd": 0.0031,
+    "wins_vs_noisyor": 2,
+    "seed_agreement": "FLIPS"
+   },
+   "1": {
+    "repfuse_mean": 0.6745,
+    "repfuse_sd": 0.0325,
+    "repfuse_per_seed": [
+     0.6421,
+     0.6953,
+     0.7088,
+     0.6519
+    ],
+    "noisyor_mean": 0.6496,
+    "noisyor_sd": 0.0031,
+    "wins_vs_noisyor": 2,
+    "seed_agreement": "FLIPS"
+   },
+   "2": {
+    "repfuse_mean": 0.6748,
+    "repfuse_sd": 0.0327,
+    "repfuse_per_seed": [
+     0.6422,
+     0.6955,
+     0.7094,
+     0.6522
+    ],
+    "noisyor_mean": 0.6496,
+    "noisyor_sd": 0.0031,
+    "wins_vs_noisyor": 3,
+    "seed_agreement": "FLIPS"
+   },
+   "4": {
+    "repfuse_mean": 0.6751,
+    "repfuse_sd": 0.0327,
+    "repfuse_per_seed": [
+     0.6423,
+     0.6957,
+     0.7097,
+     0.6526
+    ],
+    "noisyor_mean": 0.6496,
+    "noisyor_sd": 0.0031,
+    "wins_vs_noisyor": 3,
+    "seed_agreement": "FLIPS"
+   },
+   "8": {
+    "repfuse_mean": 0.6751,
+    "repfuse_sd": 0.0326,
+    "repfuse_per_seed": [
+     0.6424,
+     0.6953,
+     0.7099,
+     0.6529
+    ],
+    "noisyor_mean": 0.6496,
+    "noisyor_sd": 0.0031,
+    "wins_vs_noisyor": 3,
+    "seed_agreement": "FLIPS"
+   },
+   "16": {
+    "repfuse_mean": 0.6754,
+    "repfuse_sd": 0.0327,
+    "repfuse_per_seed": [
+     0.6422,
+     0.6954,
+     0.7105,
+     0.6537
+    ],
+    "noisyor_mean": 0.6496,
+    "noisyor_sd": 0.0031,
+    "wins_vs_noisyor": 3,
+    "seed_agreement": "FLIPS"
+   }
+  },
+  "WebAttacks": {
+   "0": {
+    "repfuse_mean": 0.699,
+    "repfuse_sd": 0.1115,
+    "repfuse_per_seed": [
+     0.689,
+     0.7737,
+     0.7882,
+     0.5452
+    ],
+    "noisyor_mean": 0.908,
+    "noisyor_sd": 0.0126,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "1": {
+    "repfuse_mean": 0.6977,
+    "repfuse_sd": 0.1143,
+    "repfuse_per_seed": [
+     0.6898,
+     0.7762,
+     0.7857,
+     0.539
+    ],
+    "noisyor_mean": 0.908,
+    "noisyor_sd": 0.0126,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "2": {
+    "repfuse_mean": 0.6971,
+    "repfuse_sd": 0.1151,
+    "repfuse_per_seed": [
+     0.6913,
+     0.7773,
+     0.7834,
+     0.5364
+    ],
+    "noisyor_mean": 0.908,
+    "noisyor_sd": 0.0126,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "4": {
+    "repfuse_mean": 0.7,
+    "repfuse_sd": 0.1151,
+    "repfuse_per_seed": [
+     0.6954,
+     0.7821,
+     0.7837,
+     0.5388
+    ],
+    "noisyor_mean": 0.908,
+    "noisyor_sd": 0.0126,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "8": {
+    "repfuse_mean": 0.7021,
+    "repfuse_sd": 0.1096,
+    "repfuse_per_seed": [
+     0.6954,
+     0.7813,
+     0.7821,
+     0.5495
+    ],
+    "noisyor_mean": 0.908,
+    "noisyor_sd": 0.0126,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   },
+   "16": {
+    "repfuse_mean": 0.7025,
+    "repfuse_sd": 0.1041,
+    "repfuse_per_seed": [
+     0.6911,
+     0.7796,
+     0.7799,
+     0.5594
+    ],
+    "noisyor_mean": 0.908,
+    "noisyor_sd": 0.0126,
+    "wins_vs_noisyor": 0,
+    "seed_agreement": "unanimous"
+   }
+  }
+ },
+ "infiltration_finding": {
+  "sd_at_k0": 0.0324,
+  "sd_at_best_k": 0.0325,
+  "best_k": 1,
+  "sd_reduction_pct": -0.3,
+  "k0_agreement": "FLIPS",
+  "best_agreement": "FLIPS",
+  "k0_wins": 2,
+  "best_wins": 2
+ }
+}

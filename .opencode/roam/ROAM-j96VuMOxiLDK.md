@@ -2,7 +2,7 @@
 
 - project_id: DeepxD-code-Zero-Day
 - session_id: ses_f3dc7edc0ffey2j96VuMOxiLDK
-- captured: 2026-09-29T17-28-13Z (reason: auto-10min)
+- captured: 2026-09-29T17-48-16Z (reason: auto-10min)
 - device: LAPTOP
 - title: Pull and explore
 - origin_model: opencode/muse-spark-1.3-contributor-free (if your model differs, roam_resume adapts — see roam.json modelMap)
@@ -8089,12 +8089,12 @@ M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
 <details><summary>git diff --stat HEAD (big data excluded)</summary>
 
 ```
-.opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1096 ++++++-----
- .opencode/roam/ROAM-j96VuMOxiLDK.md                | 1941 +++++++++++---------
- .opencode/roam/latest.json                         |    2 +-
- ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  545 +++++-
- ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  470 ++++-
- 5 files changed, 2681 insertions(+), 1373 deletions(-)
+.opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1384 +++++++++++++-------
+ .opencode/roam/ROAM-j96VuMOxiLDK.md                |   16 +-
+ .opencode/roam/latest.json                         |   10 +-
+ ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 1212 ++++++++++++++++-
+ ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-
+ 5 files changed, 2147 insertions(+), 481 deletions(-)
 ```
 </details>
 
