@@ -274,6 +274,35 @@ def t_provenance_report_covers_every_ckpt():
     assert not any(str(r.get("status", "")).startswith("unreadable")
                    for r in rep.values()), \
         f"a shipped checkpoint could not be read: {rep}"
+    # E47 back-filled provenance on every shipped checkpoint, so a new one
+    # arriving without it is a regression, not a neutral state.
+    assert not missing, (
+        f"checkpoints have no provenance, so require_dataset is silent on "
+        f"them: {missing}. Run "
+        f"experiments/E47_provenance_audit/exp_e47_backfill.py --dry-run.")
+
+
+def t_e44_mistake_is_now_caught():
+    """The specific case E47 exists for.
+
+    `gnn_autoencoder_v1_logscale_v2.pt` is the checkpoint E44 paired against a
+    clean-data day. Before E47 it carried no `train` field, so the dataset
+    guard was silent and the mistake produced a plausible wrong number. It must
+    warn now, and it must NOT warn on its own home testbed.
+    """
+    det = Path(__file__).resolve().parent
+    b = torch.load(det / "gnn_autoencoder_v1_logscale_v2.pt", map_location="cpu",
+                   weights_only=True)
+    assert b.get("train"), "provenance missing; the guard cannot fire"
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        require_dataset(b, "CICIDS2017_improved/monday benign-only",
+                        context="E44 clean-day pairing")
+    assert caught, "E44's mistake is still silent"
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        require_dataset(b, "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+                        context="home testbed")
 
 
 def t_raw_extraction_is_not_a_transfer():
@@ -285,6 +314,8 @@ def t_raw_extraction_is_not_a_transfer():
 
 ok("t22 provenance report covers every checkpoint",
    t_provenance_report_covers_every_ckpt)
+ok("t24 E44's mispairing is now caught by the dataset guard",
+   t_e44_mistake_is_now_caught)
 ok("t23 raw extraction is the home testbed, not a transfer",
    t_raw_extraction_is_not_a_transfer)
 

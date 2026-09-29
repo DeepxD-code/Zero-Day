@@ -51,7 +51,14 @@ OUT = Path(__file__).resolve().parent / "exp_e43_fusion_rules.json"
 
 M5B = {0: "gnn_improved_s0.pt", 1: "gnn_improved_s1.pt",
        2: "gnn_improved_s2.pt", 3: "gnn_improved_s3.pt"}
-M5A = {0: "m5a_revived_improved.pt"}
+# M5a seed 0 ships in detection/; seeds 1-3 live in the E21_band folder that
+# produced them (the cleanup deleted them from detection/ as "one checkpoint is
+# enough to serve", which is true for serving and false for banding).
+M5A = {0: DET / "m5a_revived_improved.pt"}
+for _s in (1, 2, 3):
+    _p = (ROOT / "experiments" / "E21_band" / f"m5a_revived_improved_s{_s}.pt")
+    if _p.exists():
+        M5A[_s] = _p
 
 FAMS = {
     "Botnet":       (["friday.csv"],    {"Botnet"}),
@@ -170,15 +177,31 @@ def evaluate(recs):
     return out
 
 
+ARMS = ["m5b", "m5a", "noisyor", "repfuse", "opt1_persist", "opt2_rankmax",
+        "opt3_burst"]
+
+
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    res = {}
-    for sd in [0]:
-        gb = torch.load(DET / M5B[sd], map_location="cpu", weights_only=True)
+    seeds = sorted(set(M5B) & set(M5A))
+    missing = sorted(set(M5B) ^ set(M5A))
+    if missing:
+        print(f"NOTE: seeds present in one pillar only: {missing} -- "
+              f"banding over {seeds}")
+    per_seed = {fam: {} for fam in FAMS}
+    res = {"seeds": seeds, "per_seed": per_seed, "band": {}}
+
+    for sd in seeds:
+        gb = torch.load(DET / M5B[sd] if isinstance(M5B[sd], str) else M5B[sd],
+                        map_location="cpu", weights_only=True)
         m5b = GraphAutoencoder(in_dim=19)
         m5b.load_state_dict(gb["model"]); m5b.eval().to(device)
         sc_b = NodeScaler().load_state_dict(gb["scaler"])
-        b = torch.load(DET / M5A[0], map_location="cpu", weights_only=False)
+        # Both pillars must vary with the seed. Loading M5A[0] unconditionally
+        # (the original line here) would have produced a 4-seed band that
+        # measured M5b's variance only, and reported it as a fusion band.
+        b = torch.load(M5A[sd] if isinstance(M5A[sd], (str, Path)) else M5A[sd],
+                       map_location="cpu", weights_only=False)
         rev = RevivedAE(b["input_dim"]); rev.load_state_dict(b["state_dict"]); rev.eval().to(device)
         ra = {"canon": b["canonical"],
               "fmm": MinMax(), "csc": CtxScaler()}
@@ -190,13 +213,29 @@ def main():
             for r in recs:
                 r["rep_fuse"] = (r["rep_b"] + r["rep_a"]) / 2.0
             row = evaluate(recs)
-            res[fam] = row
-            print(f"{fam:13s} m5b {row['m5b']:.3f} | noisyor {row['noisyor']:.3f} "
-                  f"| repfuse {row['repfuse']:.3f} | OPT1 {row['opt1_persist']:.3f} "
-                  f"| OPT2 {row['opt2_rankmax']:.3f} | OPT3 {row['opt3_burst']:.3f}",
-                  flush=True)
+            per_seed[fam][str(sd)] = row
+            print(f"  seed {sd} {fam:13s} m5b {row['m5b']:.3f} | noisyor "
+                  f"{row['noisyor']:.3f} | repfuse {row['repfuse']:.3f} | OPT1 "
+                  f"{row['opt1_persist']:.3f} | OPT2 {row['opt2_rankmax']:.3f} "
+                  f"| OPT3 {row['opt3_burst']:.3f}", flush=True)
+
+    # E21's rule: a single-seed number is noise until shown over seeds.
+    for fam in FAMS:
+        band = {}
+        for arm in ARMS:
+            vals = [per_seed[fam][s][arm] for s in per_seed[fam]]
+            a = np.asarray(vals, dtype=float)
+            band[arm] = {"mean": float(a.mean()), "sd": float(a.std(ddof=1)),
+                         "n": int(a.size), "min": float(a.min()),
+                         "max": float(a.max())}
+        res["band"][fam] = band
+        best = max(ARMS, key=lambda k: band[k]["mean"])
+        print(f"\n{fam:13s} best={best}  " + "  ".join(
+            f"{k} {band[k]['mean']:.3f}±{band[k]['sd']:.3f}" for k in ARMS),
+            flush=True)
+
     OUT.write_text(json.dumps(res, indent=1))
-    print(f"-> {OUT.name}")
+    print(f"\n-> {OUT.name}")
 
 
 if __name__ == "__main__":

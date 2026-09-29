@@ -1,0 +1,151 @@
+{
+ "note": "Provenance audit. Nothing is written to any checkpoint here. 'needs back-fill' means the value is derivable from a named trainer or result file; 'UNRESOLVED' entries must be settled by re-running the trainer, not by guessing.",
+ "summary": {
+  "checkpoints": 9,
+  "already_correct": 3,
+  "needs_backfill": 6,
+  "conflicts": 0,
+  "unresolved": 2
+ },
+ "unresolved": [
+  "gnn_autoencoder_v1.pt",
+  "gnn_temporal_fused_v1.pt"
+ ],
+ "rows": [
+  {
+   "file": "detection/gnn_autoencoder_v1.pt",
+   "load_mode": "safe",
+   "current_train": null,
+   "proposed_train": "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+   "identifies_as": [
+    "cicids2017",
+    "original"
+   ],
+   "scaler_fingerprint": "ad2aafe47c2d8a1c",
+   "status": "needs back-fill",
+   "trainer": "gnn_model.py (v1, unlogged scale)",
+   "evidence": "CHECKPOINTS.md groups it with the original-data lineage",
+   "confidence": "inferred from CHECKPOINTS.md -- WEAKEST of the group"
+  },
+  {
+   "file": "detection/gnn_autoencoder_v1_logscale.pt",
+   "load_mode": "safe",
+   "current_train": null,
+   "proposed_train": "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+   "identifies_as": [
+    "cicids2017",
+    "original"
+   ],
+   "scaler_fingerprint": "314cd8d9efff0ad6",
+   "status": "needs back-fill",
+   "trainer": "gnn_model.py (v1, 8 dims)",
+   "evidence": "CHECKPOINTS.md: 'M5b v1 (8 dims), kept for old 60s eval' -- same trainer and era as the v2 model",
+   "confidence": "inferred from CHECKPOINTS.md"
+  },
+  {
+   "file": "detection/gnn_autoencoder_v1_logscale_v2.pt",
+   "load_mode": "safe",
+   "current_train": null,
+   "proposed_train": "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+   "identifies_as": [
+    "cicids2017",
+    "original"
+   ],
+   "scaler_fingerprint": "f41ef6d1c95cfb14",
+   "status": "needs back-fill",
+   "trainer": "gnn_model.py on original Monday (per CHECKPOINTS.md)",
+   "evidence": "E12 measures this ckpt on the ORIGINAL day and calls it the shipped original-data model; E44 run 1's bug was pairing it against a clean-data day, which implies it is original-data",
+   "confidence": "inferred from E12 + E44"
+  },
+  {
+   "file": "detection/gnn_improved_replay.pt",
+   "load_mode": "safe",
+   "current_train": null,
+   "proposed_train": "CICIDS2017_improved/monday benign-only + original CIC-IDS2017 monday replay (20%)",
+   "identifies_as": [
+    "cicids2017",
+    "improved"
+   ],
+   "scaler_fingerprint": "d589c7871507bf31",
+   "status": "needs back-fill",
+   "trainer": "E17 trainer + 20% original-Monday replay mix (E29/E42)",
+   "evidence": "E29/E42 README: replay-tuned from the clean model on a mixed training set",
+   "confidence": "inferred from the transfer experiment's own record"
+  },
+  {
+   "file": "detection/gnn_improved_s0.pt",
+   "load_mode": "safe",
+   "current_train": "CICIDS2017_improved/monday benign-only",
+   "proposed_train": "CICIDS2017_improved/monday benign-only",
+   "identifies_as": [
+    "cicids2017",
+    "improved"
+   ],
+   "scaler_fingerprint": "45b7db8153dd3a52",
+   "status": "already correct",
+   "trainer": "experiments/E17_retrain_improved/exp_e17_retrain_improved.py",
+   "evidence": "checkpoint already carries `train`; value matches",
+   "confidence": "already present"
+  },
+  {
+   "file": "detection/gnn_temporal_fused_v1.pt",
+   "load_mode": "safe",
+   "current_train": null,
+   "proposed_train": "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+   "identifies_as": [
+    "cicids2017",
+    "original"
+   ],
+   "scaler_fingerprint": "ad2aafe47c2d8a1c",
+   "status": "needs back-fill",
+   "trainer": "gnn_temporal_fused.py (GNN+LSTM ablation arm)",
+   "evidence": "CHECKPOINTS.md: 'RC-20 ablation evidence'; no result JSON names it",
+   "confidence": "inferred from CHECKPOINTS.md -- WEAKEST of the group"
+  },
+  {
+   "file": "detection/host_autoencoder_adfa.pt",
+   "load_mode": "safe",
+   "current_train": "ADFA-LD Training_Data_Master (833 benign)",
+   "proposed_train": "ADFA-LD Training_Data_Master (833 benign)",
+   "identifies_as": [
+    "adfa",
+    "original"
+   ],
+   "scaler_fingerprint": "f722923804986728",
+   "status": "already correct",
+   "trainer": "exp_host_ablation.py (Pillar 3 host AE)",
+   "evidence": "checkpoint already carries `train`; value matches",
+   "confidence": "already present"
+  },
+  {
+   "file": "detection/m5a_revived_ctx.pt",
+   "load_mode": "unsafe",
+   "current_train": null,
+   "proposed_train": "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+   "identifies_as": [
+    "cicids2017",
+    "original"
+   ],
+   "scaler_fingerprint": "0518b0b3b19f80dd",
+   "status": "needs back-fill",
+   "trainer": "train_m5a_revived.py",
+   "evidence": "CHECKPOINTS.md lists it under PRODUCTION, trained by train_m5a_revived.py, and the m5a lineage predates the clean-data retrain (E18 created m5a_revived_improved.pt)",
+   "confidence": "inferred from CHECKPOINTS.md lineage"
+  },
+  {
+   "file": "detection/m5a_revived_improved.pt",
+   "load_mode": "unsafe",
+   "current_train": "CICIDS2017_improved/monday benign-only",
+   "proposed_train": "CICIDS2017_improved/monday benign-only",
+   "identifies_as": [
+    "cicids2017",
+    "improved"
+   ],
+   "scaler_fingerprint": "88ba28819526c31d",
+   "status": "already correct",
+   "trainer": "experiments/E18_retrain_m5a (per CHECKPOINTS.md)",
+   "evidence": "name and CHECKPOINTS.md both say clean-data; E21 bands it against gnn_improved_s{0..3} which are clean-trained",
+   "confidence": "inferred from naming + CHECKPOINTS.md"
+  }
+ ]
+}

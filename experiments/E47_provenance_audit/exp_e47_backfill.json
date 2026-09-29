@@ -1,0 +1,92 @@
+{
+ "dry_run": false,
+ "rows": [
+  {
+   "file": "detection/gnn_improved_s0.pt",
+   "new_train": "CICIDS2017_improved/monday benign-only",
+   "basis": "verified (already present)",
+   "evidence": "checkpoint already carried this value; scaler forensics confirm it (clean_monday/v2 margin 167x)",
+   "load_mode": "safe",
+   "old_train": "CICIDS2017_improved/monday benign-only",
+   "status": "already correct"
+  },
+  {
+   "file": "detection/m5a_revived_improved.pt",
+   "new_train": "CICIDS2017_improved/monday benign-only",
+   "basis": "verified (already present)",
+   "evidence": "checkpoint already carried this value",
+   "load_mode": "unsafe",
+   "old_train": "CICIDS2017_improved/monday benign-only",
+   "status": "already correct"
+  },
+  {
+   "file": "detection/host_autoencoder_adfa.pt",
+   "new_train": "ADFA-LD Training_Data_Master (833 benign)",
+   "basis": "verified (already present)",
+   "evidence": "checkpoint already carried this value",
+   "load_mode": "safe",
+   "old_train": "ADFA-LD Training_Data_Master (833 benign)",
+   "status": "already correct"
+  },
+  {
+   "file": "detection/gnn_improved_replay.pt",
+   "new_train": "CICIDS2017_improved/monday benign-only + original CIC-IDS2017 monday replay (20%)",
+   "basis": "scaler forensics + E29/E42 record",
+   "evidence": "scaler matches clean Monday exactly (err 0.0, margin 3.2e8); the weights are E29's replay tune on a mixed training set, so the honest value names both corpora",
+   "load_mode": "safe",
+   "old_train": null,
+   "status": "written"
+  },
+  {
+   "file": "detection/gnn_autoencoder_v1_logscale_v2.pt",
+   "new_train": "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+   "basis": "scaler forensics (margin 14.2x)",
+   "evidence": "hi-vector matches an original-Monday scaler 14.2x more closely than a clean-Monday one; this is the checkpoint E12's control anchor is measured on and the one E44 mispaired",
+   "load_mode": "safe",
+   "old_train": null,
+   "status": "written"
+  },
+  {
+   "file": "detection/gnn_autoencoder_v1_logscale.pt",
+   "new_train": "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+   "basis": "scaler forensics (margin 12.0x)",
+   "evidence": "hi-vector matches original Monday 12x more closely than clean Monday",
+   "load_mode": "safe",
+   "old_train": null,
+   "status": "written"
+  },
+  {
+   "file": "detection/m5a_revived_ctx.pt",
+   "new_train": "original CIC-IDS2017 GeneratedLabelledFlows/monday",
+   "basis": "trainer source (detection/train_m5a_revived.py:30)",
+   "evidence": "reads FLOWS/'Monday-WorkingHours.pcap_ISCX.csv' from the ORIGINAL extraction; docstring says 'Trained on Monday GLF benign only'",
+   "load_mode": "unsafe",
+   "old_train": null,
+   "status": "written"
+  },
+  {
+   "file": "detection/gnn_autoencoder_v1.pt",
+   "new_train": "UNKNOWN (smoke run; training corpus not recorded)",
+   "basis": "no evidence exists; marked unknown on purpose",
+   "evidence": "CHANGELOG 2026-08-25: 'New gnn_autoencoder_v1.pt saved by smoke'. Scaler fingerprint ad2aafe47c2d8a1c is byte-identical to gnn_temporal_fused_v1.pt, and its hi-vector sits between the two corpora (margin 1.5x, AMBIGUOUS), so the corpus cannot be called.",
+   "load_mode": "safe",
+   "old_train": null,
+   "status": "written"
+  },
+  {
+   "file": "detection/gnn_temporal_fused_v1.pt",
+   "new_train": "UNKNOWN (shares a scaler with gnn_autoencoder_v1.pt; corpus not recorded)",
+   "basis": "no evidence exists; marked unknown on purpose",
+   "evidence": "byte-identical scaler to gnn_autoencoder_v1.pt (fingerprint ad2aafe47c2d8a1c), so both are the same run; forensics AMBIGUOUS",
+   "load_mode": "safe",
+   "old_train": null,
+   "status": "written"
+  }
+ ],
+ "summary": {
+  "written": 6,
+  "already correct": 3,
+  "would write": 0,
+  "MISSING": 0
+ }
+}

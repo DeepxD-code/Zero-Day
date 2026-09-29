@@ -1,0 +1,479 @@
+{
+ "note": "Scaler-bound forensics. lo/hi are per-feature min/max of the TRAINING graphs, so they fingerprint the corpus. Used to settle two checkpoints whose training command was never recorded. Reference bounds are fitted on 200k BENIGN flows of each Monday; a checkpoint trained on more data than that may differ slightly on hi, so the comparison is indicative not exact.",
+ "references": {
+  "original_monday/v1 log=True": {
+   "n_graphs": 259,
+   "n_dim": 8,
+   "lo": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hi": [
+    5.231108665466309,
+    4.6151204109191895,
+    6.788971900939941,
+    6.575075626373291,
+    14.58108139038086,
+    20.30083656311035,
+    4.653960227966309,
+    18.602989196777344
+   ]
+  },
+  "original_monday/v1 log=False": {
+   "n_graphs": 259,
+   "n_dim": 8,
+   "lo": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hi": [
+    186.0,
+    100.0,
+    887.0,
+    716.0,
+    2150221.0,
+    655453056.0,
+    104.0,
+    119998512.0
+   ]
+  },
+  "original_monday/v2 log=True": {
+   "n_graphs": 259,
+   "n_dim": 19,
+   "lo": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hi": [
+    5.231108665466309,
+    4.6151204109191895,
+    6.788971900939941,
+    6.575075626373291,
+    14.58108139038086,
+    20.30083656311035,
+    4.653960227966309,
+    18.602989196777344,
+    0.6931467652320862,
+    6.2557501792907715,
+    6.575075626373291,
+    12.277420043945312,
+    20.30083656311035,
+    6.559615135192871,
+    2.0387768745422363,
+    0.9162907600402832,
+    0.6931471824645996,
+    0.6931471824645996,
+    18.219194412231445
+   ]
+  },
+  "original_monday/v2 log=False": {
+   "n_graphs": 259,
+   "n_dim": 19,
+   "lo": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hi": [
+    186.0,
+    100.0,
+    887.0,
+    716.0,
+    2150221.0,
+    655453056.0,
+    104.0,
+    119998512.0,
+    0.9999992251396179,
+    520.0,
+    716.0,
+    214789.828125,
+    655453056.0,
+    705.0,
+    6.681209087371826,
+    1.5,
+    1.0,
+    1.0,
+    81751528.0
+   ]
+  },
+  "clean_monday/v1 log=True": {
+   "n_graphs": 486,
+   "n_dim": 8,
+   "lo": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hi": [
+    5.20948600769043,
+    2.890371799468994,
+    7.0983757972717285,
+    7.427738666534424,
+    0.0,
+    0.0,
+    2.7725887298583984,
+    18.602998733520508
+   ]
+  },
+  "clean_monday/v1 log=False": {
+   "n_graphs": 486,
+   "n_dim": 8,
+   "lo": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hi": [
+    182.0,
+    17.0,
+    1209.0,
+    1681.0,
+    0.0,
+    0.0,
+    15.0,
+    119999576.0
+   ]
+  },
+  "clean_monday/v2 log=True": {
+   "n_graphs": 486,
+   "n_dim": 19,
+   "lo": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hi": [
+    5.20948600769043,
+    2.890371799468994,
+    7.0983757972717285,
+    7.427738666534424,
+    0.0,
+    0.0,
+    2.7725887298583984,
+    18.602998733520508,
+    0.0,
+    6.253829002380371,
+    6.5087690353393555,
+    0.0,
+    0.0,
+    7.4042792320251465,
+    1.4278980493545532,
+    0.8998149037361145,
+    0.6931471824645996,
+    0.6931471824645996,
+    18.205171585083008
+   ]
+  },
+  "clean_monday/v2 log=False": {
+   "n_graphs": 486,
+   "n_dim": 19,
+   "lo": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hi": [
+    182.0,
+    17.0,
+    1209.0,
+    1681.0,
+    0.0,
+    0.0,
+    15.0,
+    119999576.0,
+    0.0,
+    519.0,
+    670.0,
+    0.0,
+    0.0,
+    1642.0,
+    3.1699249744415283,
+    1.4591479301452637,
+    1.0,
+    1.0,
+    80613032.0
+   ]
+  }
+ },
+ "checkpoints": {
+  "gnn_autoencoder_v1.pt": {
+   "in_dim": 8,
+   "feature_set": "v1",
+   "log": true,
+   "matches": {
+    "original_monday/v1 log=True": {
+     "hi_max_rel": 0.491662,
+     "hi_mean_rel": 0.644382,
+     "lo_max_rel": 0.0
+    },
+    "original_monday/v1 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.995461,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v1 log=True": {
+     "hi_max_rel": 0.554733,
+     "hi_mean_rel": 2.910294,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v1 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 3.144473,
+     "lo_max_rel": 0.0
+    }
+   },
+   "best_match": "original_monday/v1 log=True",
+   "best_hi_mean_rel": 0.644382,
+   "margin_vs_runner_up": 1.5,
+   "runner_up": "original_monday/v1 log=False",
+   "verdict": "AMBIGUOUS - corpora too close to call"
+  },
+  "gnn_autoencoder_v1_logscale.pt": {
+   "in_dim": 8,
+   "feature_set": "v1",
+   "log": true,
+   "matches": {
+    "original_monday/v1 log=True": {
+     "hi_max_rel": 0.093097,
+     "hi_mean_rel": 0.081518,
+     "lo_max_rel": 0.0
+    },
+    "original_monday/v1 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.980284,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v1 log=True": {
+     "hi_max_rel": 1.091267,
+     "hi_mean_rel": 4.628954,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v1 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 5.028135,
+     "lo_max_rel": 0.0
+    }
+   },
+   "best_match": "original_monday/v1 log=True",
+   "best_hi_mean_rel": 0.081518,
+   "margin_vs_runner_up": 12.0,
+   "runner_up": "original_monday/v1 log=False",
+   "verdict": "discriminating"
+  },
+  "gnn_autoencoder_v1_logscale_v2.pt": {
+   "in_dim": 19,
+   "feature_set": "v2",
+   "log": true,
+   "matches": {
+    "original_monday/v2 log=True": {
+     "hi_max_rel": 0.093097,
+     "hi_mean_rel": 0.058654,
+     "lo_max_rel": 0.0
+    },
+    "original_monday/v2 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.832869,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v2 log=True": {
+     "hi_max_rel": 1.091267,
+     "hi_mean_rel": 3.707947,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v2 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 4.113211,
+     "lo_max_rel": 0.0
+    }
+   },
+   "best_match": "original_monday/v2 log=True",
+   "best_hi_mean_rel": 0.058654,
+   "margin_vs_runner_up": 14.2,
+   "runner_up": "original_monday/v2 log=False",
+   "verdict": "discriminating"
+  },
+  "gnn_temporal_fused_v1.pt": {
+   "in_dim": 8,
+   "feature_set": "v1",
+   "log": true,
+   "matches": {
+    "original_monday/v1 log=True": {
+     "hi_max_rel": 0.491662,
+     "hi_mean_rel": 0.644382,
+     "lo_max_rel": 0.0
+    },
+    "original_monday/v1 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.995461,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v1 log=True": {
+     "hi_max_rel": 0.554733,
+     "hi_mean_rel": 2.910294,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v1 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 3.144473,
+     "lo_max_rel": 0.0
+    }
+   },
+   "best_match": "original_monday/v1 log=True",
+   "best_hi_mean_rel": 0.644382,
+   "margin_vs_runner_up": 1.5,
+   "runner_up": "original_monday/v1 log=False",
+   "verdict": "AMBIGUOUS - corpora too close to call"
+  },
+  "gnn_improved_s0.pt": {
+   "in_dim": 19,
+   "feature_set": "v2",
+   "log": true,
+   "matches": {
+    "original_monday/v2 log=True": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.323331,
+     "lo_max_rel": 0.0
+    },
+    "original_monday/v2 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.878468,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v2 log=True": {
+     "hi_max_rel": 0.001963,
+     "hi_mean_rel": 0.001934,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v2 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.586924,
+     "lo_max_rel": 0.0
+    }
+   },
+   "best_match": "clean_monday/v2 log=True",
+   "best_hi_mean_rel": 0.001934,
+   "margin_vs_runner_up": 167.2,
+   "runner_up": "original_monday/v2 log=True",
+   "verdict": "discriminating"
+  },
+  "gnn_improved_replay.pt": {
+   "in_dim": 19,
+   "feature_set": "v2",
+   "log": true,
+   "matches": {
+    "original_monday/v2 log=True": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.321397,
+     "lo_max_rel": 0.0
+    },
+    "original_monday/v2 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.877186,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v2 log=True": {
+     "hi_max_rel": 0.0,
+     "hi_mean_rel": 0.0,
+     "lo_max_rel": 0.0
+    },
+    "clean_monday/v2 log=False": {
+     "hi_max_rel": 1.0,
+     "hi_mean_rel": 0.585607,
+     "lo_max_rel": 0.0
+    }
+   },
+   "best_match": "clean_monday/v2 log=True",
+   "best_hi_mean_rel": 0.0,
+   "margin_vs_runner_up": 321397000.0,
+   "runner_up": "original_monday/v2 log=True",
+   "verdict": "discriminating"
+  }
+ }
+}
