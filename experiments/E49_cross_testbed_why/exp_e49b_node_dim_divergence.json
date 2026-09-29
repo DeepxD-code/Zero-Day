@@ -1,0 +1,234 @@
+{
+ "question": "do the 19 graph node dims differ systematically between extractors for the same hosts/day?",
+ "windows": {
+  "orig": 487,
+  "clean": 486
+ },
+ "node_rows": {
+  "orig": 83185,
+  "clean": 66450
+ },
+ "per_window": {
+  "orig": {
+   "nodes_mean": 170.81108829568788,
+   "edges_mean": 252.84804928131416,
+   "edges_per_node": 1.4802788964356555
+  },
+  "clean": {
+   "nodes_mean": 136.7283950617284,
+   "edges_mean": 148.80864197530863,
+   "edges_per_node": 1.0883521444695259
+  }
+ },
+ "dims": [
+  {
+   "dim": 16,
+   "name": "tcp_frac",
+   "ks": 0.485,
+   "mean_orig": 0.5156,
+   "mean_clean": 0.0359,
+   "sd_orig": 0.4909,
+   "sd_clean": 0.1545,
+   "std_shift": 1.318,
+   "median_ratio": 0.0
+  },
+  {
+   "dim": 8,
+   "name": "bytes_ratio",
+   "ks": 0.4037,
+   "mean_orig": 0.1654,
+   "mean_clean": 0.0,
+   "sd_orig": 0.3478,
+   "sd_clean": 0.0,
+   "std_shift": 0.673,
+   "median_ratio": null
+  },
+  {
+   "dim": 14,
+   "name": "dst_port_entropy",
+   "ks": 0.1664,
+   "mean_orig": 0.3713,
+   "mean_clean": 0.0787,
+   "sd_orig": 0.7954,
+   "sd_clean": 0.3264,
+   "std_shift": 0.481,
+   "median_ratio": null
+  },
+  {
+   "dim": 6,
+   "name": "unique_dst_ports",
+   "ks": 0.4636,
+   "mean_orig": 1.3264,
+   "mean_clean": 0.2524,
+   "sd_orig": 4.355,
+   "sd_clean": 0.9803,
+   "std_shift": 0.34,
+   "median_ratio": 0.0
+  },
+  {
+   "dim": 4,
+   "name": "bytes_sent",
+   "ks": 0.4037,
+   "mean_orig": 3391.7014,
+   "mean_clean": 0.0,
+   "sd_orig": 36228.9219,
+   "sd_clean": 0.0,
+   "std_shift": 0.132,
+   "median_ratio": null
+  },
+  {
+   "dim": 1,
+   "name": "in_degree",
+   "ks": 0.0803,
+   "mean_orig": 1.4803,
+   "mean_clean": 1.0884,
+   "sd_orig": 4.1566,
+   "sd_clean": 0.7614,
+   "std_shift": 0.131,
+   "median_ratio": 1.0
+  },
+  {
+   "dim": 11,
+   "name": "bytes_sent_per_flow",
+   "ks": 0.4037,
+   "mean_orig": 76.0618,
+   "mean_clean": 0.0,
+   "sd_orig": 899.0546,
+   "sd_clean": 0.0,
+   "std_shift": 0.12,
+   "median_ratio": null
+  },
+  {
+   "dim": 17,
+   "name": "udp_frac",
+   "ks": 0.0199,
+   "mean_orig": 0.0305,
+   "mean_clean": 0.0449,
+   "sd_orig": 0.1443,
+   "sd_clean": 0.1792,
+   "std_shift": 0.088,
+   "median_ratio": null
+  },
+  {
+   "dim": 9,
+   "name": "flows_per_out_peer",
+   "ks": 0.4636,
+   "mean_orig": 1.9196,
+   "mean_clean": 1.0111,
+   "sd_orig": 10.8856,
+   "sd_clean": 11.8563,
+   "std_shift": 0.08,
+   "median_ratio": 0.0
+  },
+  {
+   "dim": 7,
+   "name": "mean_duration",
+   "ks": 0.4631,
+   "mean_orig": 1129084.125,
+   "mean_clean": 1644433.375,
+   "sd_orig": 7886615.0,
+   "sd_clean": 9676688.0,
+   "std_shift": 0.058,
+   "median_ratio": 0.0
+  },
+  {
+   "dim": 0,
+   "name": "out_degree",
+   "ks": 0.4636,
+   "mean_orig": 1.4803,
+   "mean_clean": 1.0884,
+   "sd_orig": 7.0035,
+   "sd_clean": 7.5423,
+   "std_shift": 0.054,
+   "median_ratio": 0.0
+  },
+  {
+   "dim": 18,
+   "name": "duration_std",
+   "ks": 0.1789,
+   "mean_orig": 1300094.125,
+   "mean_clean": 1693076.0,
+   "sd_orig": 6653475.5,
+   "sd_clean": 7842013.0,
+   "std_shift": 0.054,
+   "median_ratio": null
+  },
+  {
+   "dim": 15,
+   "name": "protocol_entropy",
+   "ks": 0.0099,
+   "mean_orig": 0.0375,
+   "mean_clean": 0.0454,
+   "sd_orig": 0.1754,
+   "sd_clean": 0.1957,
+   "std_shift": 0.042,
+   "median_ratio": null
+  },
+  {
+   "dim": 13,
+   "name": "unique_src_ports",
+   "ks": 0.0803,
+   "mean_orig": 4.6641,
+   "mean_clean": 5.5582,
+   "sd_orig": 33.1064,
+   "sd_clean": 37.0042,
+   "std_shift": 0.025,
+   "median_ratio": 1.0
+  },
+  {
+   "dim": 5,
+   "name": "bytes_recv",
+   "ks": 0.7278,
+   "mean_orig": 114019.2031,
+   "mean_clean": 0.0,
+   "sd_orig": 6758748.5,
+   "sd_clean": 0.0,
+   "std_shift": 0.024,
+   "median_ratio": 0.0
+  },
+  {
+   "dim": 3,
+   "name": "in_flows",
+   "ks": 0.0803,
+   "mean_orig": 6.3704,
+   "mean_clean": 5.5925,
+   "sd_orig": 36.192,
+   "sd_clean": 37.233,
+   "std_shift": 0.021,
+   "median_ratio": 1.0
+  },
+  {
+   "dim": 2,
+   "name": "out_flows",
+   "ks": 0.4636,
+   "mean_orig": 6.3704,
+   "mean_clean": 5.5925,
+   "sd_orig": 42.0297,
+   "sd_clean": 41.8866,
+   "std_shift": 0.019,
+   "median_ratio": 0.0
+  },
+  {
+   "dim": 12,
+   "name": "bytes_recv_per_flow",
+   "ks": 0.7278,
+   "mean_orig": 73111.1328,
+   "mean_clean": 0.0,
+   "sd_orig": 5641939.0,
+   "sd_clean": 0.0,
+   "std_shift": 0.018,
+   "median_ratio": 0.0
+  },
+  {
+   "dim": 10,
+   "name": "flows_per_in_peer",
+   "ks": 0.0803,
+   "mean_orig": 3.3278,
+   "mean_clean": 3.3821,
+   "sd_orig": 14.5958,
+   "sd_clean": 15.8731,
+   "std_shift": 0.004,
+   "median_ratio": 1.0
+  }
+ ]
+}
