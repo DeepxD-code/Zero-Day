@@ -1,7 +1,7 @@
 {
  "format": "roam-export-v1",
  "sessionID": "ses_f22aeca57ffeEHLxxk0zlWJrAr",
- "captured": "2026-09-29T16-08-08Z",
+ "captured": "2026-09-29T17-08-08Z",
  "device": "Rex",
  "projectID": "DeepxD-code-Zero-Day",
  "originModel": "opencode/space-bunny-free",
@@ -16,19 +16,19 @@
   },
   "cost": 0,
   "tokens": {
-   "input": 6456894,
-   "output": 337029,
-   "reasoning": 85401,
+   "input": 6731794,
+   "output": 339477,
+   "reasoning": 86239,
    "cache": {
-    "read": 204117269,
+    "read": 205496168,
     "write": 0
    }
   },
   "outcome": "succeeded",
   "time": {
    "created": 1790419482134,
-   "updated": 1790697887863,
-   "idle": 1790697638532
+   "updated": 1790701553542,
+   "idle": 1790698250637
   },
   "title": "Last week number inquiry",
   "location": {
@@ -41,8 +41,8 @@
   "root": "E:/Potential-gold/Zero-Day",
   "branch": "exp/host-seqae-p37",
   "remote": "https://github.com/DeepxD-code/Zero-Day.git",
-  "status": "?? experiments/E49_cross_testbed_why/exp_e49c_causal_confirm.json\n?? experiments/E49_cross_testbed_why/exp_e49c_causal_confirm.py",
-  "diffStat": ""
+  "status": "M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M experiments/E01_host_seqae/ablation_host_seqae_torch.json",
+  "diffStat": ".opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 941 +++++++++++----------\n .opencode/roam/latest.json                         |   2 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 155 +++-\n .../E01_host_seqae/ablation_host_seqae_torch.json  |  67 +-\n 4 files changed, 695 insertions(+), 470 deletions(-)"
  },
  "messages": [
   {
@@ -14977,6 +14977,282 @@
        "text": "Edited experiments/E49_cross_testbed_why/README.md (1 replacement)"
       }
      ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790698063179,
+     "streamed": 1790698146152,
+     "completed": 1790698146983
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_function_g8zlixyh5of4_1",
+     "args": {
+      "command": "python -c \"\nimport pathlib\np=pathlib.Path('experiments/README.md'); t=p.read_text(encoding='utf-8')\nold='''   **Remaining:** (a) the causal confirmation — rebuild both graphs TCP-only and\n   re-measure the node dims; if the densities match, the mechanism is proven and\n   the fix follows (normalise flow density per protocol, or reweight training\n   graphs to equalise per-node edge counts). That would be a real solution to\n   the gap rather than replay-tuning's workaround.'''\nnew='''   **E49c confirms it causally.** UDP-only graphs are a dead heat — KS median\n   **0.003**, edges-per-node **1.027 vs 1.028** — while TCP-only graphs diverge\n   at KS 0.427. If the pipelines differed in general, UDP would diverge too; it\n   does not diverge at all. **But there is a residual:** downsampling the\n   original's TCP to the clean count moves the divergence only part of the way\n   (KS 0.427 → 0.373, edges/node 1.470 → 1.292 against a target of 1.032), so\n   at matched count the two TCP streams still build different graphs. The\n   improved extractor segments TCP flows differently, not just more coarsely.\n\n   **Remaining:** normalising per-protocol flow density is now justified by\n   measurement and would close the dominant term, but the residual means a real\n   fix also has to align TCP flow *segmentation* — extractor-level work a\n   detector cannot correct downstream. Replay-tune remains the pragmatic answer\n   today.'''\nassert old in t\np.write_text(t.replace(old,new),encoding='utf-8'); print('root README updated')\n\"; python -c \"\nimport re,pathlib\nbad=[(md.as_posix(),m) for md in pathlib.Path('experiments').rglob('README.md') for m in re.findall(r'\\]\\(([A-Za-z0-9_\\.\\-]+/)', md.read_text(encoding='utf-8')) if not (md.parent/m).exists()]\nprint('broken links:', bad or 'none')\n\"",
+      "timeout": 90000,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "root README updated\r\nbroken links: none\r\n"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790698147329,
+     "streamed": 1790698184042,
+     "completed": 1790698184549
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "edit",
+     "name": "edit",
+     "id": "call_function_gm0bf5t014ri_1",
+     "args": {
+      "path": "E:\\Potential-gold\\Zero-Day\\CHANGELOG.md",
+      "newString": "* **E49+E50+E49c — cross-testbed mechanism found and causally confirmed.**\n  Same network (host Jaccard 0.9999); extractors agree on UDP to 0.07% but\n  disagree on TCP by 52%. UDP-only graphs are a dead heat (KS 0.003, edges/node\n  1.027 vs 1.028); TCP-only graphs diverge (KS 0.427). Residual: downsampling\n  TCP to the matched count only partly closes it (KS 0.373, edges/node 1.292 vs\n  1.032), so segmentation differs too, not just density. Explains E27 pooling's\n  failure (val loss bottomed at epoch 17/400) and why 20% replay works. **E50:\n  routing the fusion rule is a measured NO** (corr(persistence, best k) = −0.25,\n  corr(clustering, best k) = 0.001 over 53 blocks) — tune `k` locally instead.\n* **E01 seq-AE — RUNS NOW (4 seeds).** After 3 machine kills, split the HMM arm off the torch arm (`hmmlearn` has no 3.14 wheel and was forcing the whole job onto CPU-only `venv312`). Result: **seq-AE 0.7799±0.0066 vs count-AE 0.7768±0.0050 — Δ 0.47 SD, inside the noise.** But mimicry splits hard: seq-AE **0.922 vs 0.032** on M1 interleave and **0.778 vs 0.048** on M2 substitute, while M3 chunk-shuffle is **identical (0.545 both)**. So sequence modelling buys robustness to *dilution*, not immunity to *reordering*. Open: the epoch grid is truncated (all 4 seeds picked ep 40, the max offered); extended 40–160 grid running.",
+      "oldString": "* **E01 seq-AE — RUNS NOW (4 seeds).** After 3 machine kills, split the HMM arm off the torch arm (`hmmlearn` has no 3.14 wheel and was forcing the whole job onto CPU-only `venv312`). Result: **seq-AE 0.7799±0.0066 vs count-AE 0.7768±0.0050 — Δ 0.47 SD, inside the noise.** But mimicry splits hard: seq-AE **0.922 vs 0.032** on M1 interleave and **0.778 vs 0.048** on M2 substitute, while M3 chunk-shuffle is **identical (0.545 both)**. So sequence modelling buys robustness to *dilution*, not immunity to *reordering*. Open: the epoch grid is truncated (all 4 seeds picked ep 40, the max offered); extended 40–160 grid running."
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Edited CHANGELOG.md (1 replacement)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790698184928,
+     "streamed": 1790698197738,
+     "completed": 1790698215838
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_function_sw8ng2ypgx6f_1",
+     "args": {
+      "command": "git add -A; git commit -q -m \"E49c: cross-testbed mechanism confirmed causally, with a measured residual\n\nThe falsifiable prediction: if the TCP flow deficit is the cause, UDP-only graphs\nmust AGREE and TCP-only graphs must DIVERGE. Result:\n\n  arm                          KS med   edges/node (orig -> clean)\n  UDP only                     0.003    1.027 -> 1.028\n  TCP only                     0.427    1.470 -> 1.032\n  TCP downsampled to clean n   0.373    1.292 -> 1.032\n\nUDP is a dead heat - edges-per-node matches to 0.001. If the pipelines differed\nin general, UDP would diverge too. So the mechanism is TCP-specific, confirmed\ncausally rather than by correlation.\n\nRESIDUAL, stated rather than glossed: downsampling the original's TCP to the\nclean count moves divergence only part way (0.427 -> 0.373; 1.470 -> 1.292\nagainst a target of 1.032). At matched count the two TCP streams still build\ndifferent graphs, so the improved extractor segments TCP flows differently, not\nmerely more coarsely.\n\nConsequence for the fix: normalising per-protocol flow density is now justified\nand would close the dominant term, but a real solution must also align TCP flow\nSEGMENTATION - extractor-level work a detector cannot correct downstream.\" 2>&1 | Select-Object -Last 1; git push origin exp/host-seqae-p37 2>&1 | Select-Object -Last 1; git log --oneline -1",
+      "timeout": 120000,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "warning: in the working copy of '.opencode/roam/ROAM-Lxxk0zlWJrAr.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/latest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiments/E49_cross_testbed_why/exp_e49c_causal_confirm.py', LF will be replaced by CRLF the next time Git touches it\n   22b3e83..85a1ebd  exp/host-seqae-p37 -> exp/host-seqae-p37\r\n85a1ebd E49c: cross-testbed mechanism confirmed causally, with a measured residual\n"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790698216253,
+     "streamed": 1790698250313,
+     "completed": 1790698250631
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "Confirmed and pushed (`85a1ebd`).\n\n# The test\n\nThe prediction is falsifiable and needed no data manipulation: if the TCP deficit is the cause, **UDP-only graphs must agree and TCP-only graphs must diverge.**\n\n| Arm | KS median | edges/node (orig → clean) |\n|---|---|---|\n| **UDP only** | **0.003** | **1.027 → 1.028** |\n| TCP only | 0.427 | 1.470 → 1.032 |\n| TCP downsampled to clean count | 0.373 | 1.292 → 1.032 |\n\n## UDP is a dead heat\n\n**KS 0.003, edges-per-node matching to 0.001.** That's the decisive part. If the two pipelines differed *in general*, UDP would diverge too — it doesn't diverge at all. So the pipelines are identical for UDP and different for TCP. Causally confirmed, not inferred from a correlation.\n\n## But there's a residual, and it changes the fix\n\nDownsampling the original's TCP to the clean count moves the divergence **only partway**: KS 0.427 → 0.373, edges/node 1.470 → 1.292 against a target of 1.032.\n\nSo at matched flow count, the two TCP streams *still* build different graphs. **The improved extractor segments TCP flows differently, not merely more coarsely.**\n\nThat matters for anyone planning the remedy:\n\n| Step | Effect |\n|---|---|\n| Normalise per-protocol flow density | closes the dominant term — now justified by measurement |\n| **Align TCP flow segmentation** | **closes the residual — extractor-level work** |\n| Replay-tune 20% | works today, 5/7 families |\n\nI would not have known the second row mattered without running the downsample arm. Had I stopped at \"UDP agrees, TCP diverges, mechanism confirmed\" the fix would have looked like a one-line density normalisation and would have underperformed.\n\n## What this closes\n\nThe cross-testbed story is now complete end to end:\n\n- **E17** architecture exonerated → **E27** pooling ruled out (and now explained: it averaged two incompatible densities, val loss bottomed at epoch 17/400) → **E29/E42** replay works → **E49** *why*: TCP flow records → **E49c** confirmed causally, residual quantified\n\nThe root cause is no longer an open research question. What remains is extractor-level work on TCP segmentation, which is outside the detector.\n\n## Still open\n\n| | |\n|---|---|\n| **E01 extended grid** | running, ~30 min |\n| **Botnet host fusion** | blocked on Person A's LID-DS |\n| ×10 pacing, TLS wording | disclosed limitations, closed by decision |\n\nNothing else queued. Machine is free once E01's grid lands."
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "idle",
+    "time": {
+     "created": 1790698250637
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "[idle message: "
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "synthetic",
+    "time": {
+     "created": 1790701553593
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "[synthetic message: <shell id=\"sh_0edc0d6f4001JJ5g2Tap3tfC4J\" state=\"completed\" command=\"python -u experiments/E01_host_seqae/exp_host_seqae.py --arm torch --seeds 0 1 2 3 --epochs 40 80 120 160\">\ndevice=cuda torch=2.11.0+cu128\r\nseqAE seed 0: picked ep 160 -> test AUC 0.8323 F1 0.5044\r\nseqAE seed 1: picked ep 120 -> test AUC 0.8388 F1 0.5294\r\nseqAE seed 2: picked ep 160 -> test AUC 0.8360 F1 0.5000\r\nseqAE seed 3: picked ep 160 -> test AUC 0.8289 F1 0.4840\r\n\r\nmimicry recall (seed-0 models @ own t"
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790701554097,
+     "streamed": 1790701572858,
+     "completed": 1790701573232
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "MAJOR. The extended grid completely overturns the E01 conclusion.\n\nExtended grid (40/80/120/160):\n- seqAE 0.8340±0.0037\n- countAE 0.7756±0.0059\n\nvs the truncated grid (10/20/40):\n- seqAE 0.7799±0.0066\n- countAE 0.7768±0.0050\n\nSo seq-AE went from 0.7799 (inside noise vs count-AE) to **0.8340** — a delta of **+0.0584** against count-AE. That's ~7 pooled SD. MASSIVELY separated.\n\nAnd the mimicry:\n- M1: seqAE 1.000 vs countAE 0.032\n- M2: seqAE 1.000 vs countAE 0.048\n- M3: seqAE **0.832** vs countAE 0.545 ← THE KEY ONE. seq-AE NOW DETECTS M3!\n\nThe truncated grid said M3 was \"identical (0.545 both)\" — a negative. The extended grid says seq-AE catches 0.832 vs count-AE's 0.545. That's the hypothesis CONFIRMED, not refuted!\n\nSo the E01 conclusion flips from \"PARTIAL — doesn't fix the reordering blind spot\" to \"PASS — sequence modelling does fix it, once trained long enough.\"\n\nThis is exactly the truncated-grid trap I predicted from E48. And I was right to check.\n\nThis is a huge finding:\n- seq-AE 0.8340±0.0037 vs count-AE 0.7756±0.0059 → +0.058, ~7 SD\n- M3 (the structural blind spot of count vectors): seq-AE 0.832 vs count-AE 0.545\n- M1/M2: 1.000 vs 0.032/0.048\n\nSo sequence modelling:\n1. Beats the count-AE on clean detection by 0.058\n2. Fixes the M3 reordering blind spot (0.832 vs 0.545)\n3. Is immune to dilution (1.000)\n\nThis changes the host pillar. It means E01's stated prediction (\"if seq-AE fails to beat 0.7768, the count vector is confirmed sufficient\") is answered the OTHER way.\n\nBut wait — I must be careful. All seeds picked 120 or 160 — the grid edges again! Seed 1 picked 120, others 160. So the grid is STILL truncated. I should extend further.\n\nThat's the honest thing: 3 of 4 seeds picked 160 (the max). So this is provisional again, and I must say so. But the direction is now strongly positive.\n\nLet me:\n1. Run the HMM arm to merge (quick, 4.5 min)\n2. Launch an even deeper grid (160, 240, 320) since 3/4 seeds hit the ceiling\n3. Update the README with the corrected conclusion\n\nThe README currently says \"PARTIAL — sequence modelling does NOT improve clean detection\". That's now WRONG and must be corrected. This is important — I must not leave a false negative in the archive.\n\nLet me be efficient. Launch deeper grid + HMM merge, then rewrite the README.\n\nLet me do the HMM merge first (fast), then launch the deeper grid.\n\nActually let me launch the deeper grid in background FIRST (it's the long pole), then do the HMM merge... but both would compete. The HMM merge is CPU (venv312), the grid is GPU (system python). They can run concurrently.\n\nLet me launch both.\n\nNote: the countAE number changed slightly (0.7756 vs 0.7768) because the grid changed (the count-AE also grid-searches epochs from the same list). So count-AE at 0.7756 with the deeper grid.\n\nLet me launch."
+    },
+    {
+     "type": "text",
+     "text": "**The extended grid overturns E01's conclusion — and my caveat was exactly right to check.**"
+    },
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_function_iqa5672xc7b5_1",
+     "args": {
+      "background": true,
+      "command": "python -u experiments/E01_host_seqae/exp_host_seqae.py --arm torch --seeds 0 1 2 3 --epochs 160 240 320 400",
+      "timeout": 0,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Command moved to the background (shell ID: sh_0ee219319001MEfQknzrzMsrw7).\nOutput is streaming to: C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ee219319001MEfQknzrzMsrw7.out"
+      },
+      {
+       "type": "text",
+       "text": "You will be notified automatically when the command finishes. The notification will include the command's output. Unless the user explicitly asks otherwise, DO NOT poll for completion, even if you need the final result to continue. Repeatedly sleeping and reading or searching the output file is polling, not useful work. You may read the current output if it lets you do useful work now, but do not repeatedly check it while waiting for the command to finish. Keep working on anything that does not depend on the result. If you have nothing else to do, end your response; you will be resumed automatically when the command finishes."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790701573641,
+     "streamed": 1790701579481,
+     "completed": 1790701579860
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "Deeper grid launched (3 of 4 seeds still hit the ceiling). Meanwhile, merging the HMM arm — CPU, so it runs alongside."
+    },
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_function_w8w1n9txe8ab_1",
+     "args": {
+      "background": true,
+      "command": "venv312\\Scripts\\python.exe -u experiments/E01_host_seqae/exp_host_seqae.py --arm hmm --seeds 0 1 2 3 --epochs 160 240 320 400",
+      "timeout": 0,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Command moved to the background (shell ID: sh_0ee21acdf001g24Boj522SIiVY).\nOutput is streaming to: C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ee21acdf001g24Boj522SIiVY.out"
+      },
+      {
+       "type": "text",
+       "text": "You will be notified automatically when the command finishes. The notification will include the command's output. Unless the user explicitly asks otherwise, DO NOT poll for completion, even if you need the final result to continue. Repeatedly sleeping and reading or searching the output file is polling, not useful work. You may read the current output if it lets you do useful work now, but do not repeatedly check it while waiting for the command to finish. Keep working on anything that does not depend on the result. If you have nothing else to do, end your response; you will be resumed automatically when the command finishes."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790701580277,
+     "streamed": 1790701588662
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_function_e9ejaxw8z31p_1",
+     "args": {
+      "command": "Start-Sleep -Seconds 115; echo \"=== HMM merge ===\"; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ee21acdf001g24Boj522SIiVY.out -ErrorAction SilentlyContinue | Select-Object -Last 8; echo \"=== deep grid ===\"; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ee219319001MEfQknzrzMsrw7.out -ErrorAction SilentlyContinue | Select-Object -Last 3",
+      "timeout": 118000,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": ""
     }
    ]
   }
