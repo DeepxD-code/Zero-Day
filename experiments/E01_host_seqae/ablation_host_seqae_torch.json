@@ -1,0 +1,44 @@
+{
+ "seeds": [
+  0
+ ],
+ "grid": [
+  5
+ ],
+ "device": "cuda",
+ "arm": "torch",
+ "seqae": {
+  "mean_auc": 0.6737747748188521,
+  "std_auc": 0.0,
+  "rows": [
+   {
+    "auc": 0.6737747748188521,
+    "f1": 0.33825079030558486,
+    "prec": 0.2106299212598425,
+    "rec": 0.8582887700534759,
+    "thr": 2.1351747463460957,
+    "seed": 0,
+    "epochs": 5
+   }
+  ]
+ },
+ "countae": {
+  "mean_auc": 0.7743112465813073,
+  "std_auc": 0.0
+ },
+ "hmm": null,
+ "mimicry": {
+  "M1_interleave": {
+   "seqae_recall": 0.9919786096256684,
+   "countae_recall": 0.1657754010695187
+  },
+  "M2_substitute": {
+   "seqae_recall": 0.9893048128342246,
+   "countae_recall": 0.21657754010695188
+  },
+  "M3_reshuffle": {
+   "seqae_recall": 0.8663101604278075,
+   "countae_recall": 0.6577540106951871
+  }
+ }
+}

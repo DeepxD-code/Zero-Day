@@ -51,12 +51,18 @@ for _s in (1, 2, 3):
     if _p.exists():
         M5A[_s] = _p
 
+# Label strings copied VERBATIM from E43. Guessing these produced three
+# families with an empty positive set and silent `nan` AUCs: the clean-data
+# labels are "Botnet" (not "Bot"), "Portscan" (lowercase s), and
+# "Web Attack - SQL Injection" (uppercase SQL).
 FAMS = {
-    "Botnet": ["friday"],
-    "PortScan": ["friday"],
-    "DDoS": ["friday"],
-    "Infiltration": ["thursday"],
-    "WebAttacks": ["thursday"],
+    "Botnet":       (["friday.csv"],    {"Botnet"}),
+    "PortScan":     (["friday.csv"],    {"Portscan"}),
+    "DDoS":         (["friday.csv"],    {"DDoS"}),
+    "Infiltration": (["thursday.csv"],  {"Infiltration", "Infiltration - Portscan"}),
+    "WebAttacks":   (["thursday.csv"],  {"Web Attack - Brute Force",
+                                         "Web Attack - XSS",
+                                         "Web Attack - SQL Injection"}),
 }
 K_GRID = [1, 2, 3, 4, 6, 8]
 NWIN_GRID = [3, 5, 8, 12, 10**6]      # 1e6 = never persists, i.e. always noisyor
@@ -116,8 +122,8 @@ def main():
         ra = {"canon": b["canonical"], "fmm": MinMax(), "csc": CtxScaler()}
         ra["fmm"].lo, ra["fmm"].hi = b["flow_lo"], b["flow_hi"]
         ra["csc"].lo, ra["csc"].hi = b["ctx_lo"], b["ctx_hi"]
-        for fam, days in FAMS.items():
-            recs = run_family(fam, days, m5b, sc_b, rev, ra, device)
+        for fam in FAMS:
+            recs = run_family(fam, m5b, sc_b, rev, ra, device)
             raw.setdefault(fam, {})[sd] = recs
             print(f"  seed {sd} {fam:13s} {len(recs)} edges", flush=True)
 
@@ -160,7 +166,7 @@ def main():
         for n, v in res["surface"][fam]["opt1_by_nwin"].items():
             print(f"   opt1 nwin={n:>7s}  {v['mean']:.4f} +- {v['sd']:.4f}", flush=True)
 
-    res["loso"] = loso_check(raw, res)
+    res["loso"] = loso_check(raw, res, seeds)
     print("\nleave-one-seed-out: pick k on 3 seeds, score on the 4th")
     for fam, v in res["loso"].items():
         print(f"  {fam:13s} tuned {v['holdout_mean']:.4f}+-{v['holdout_sd']:.4f}"
@@ -171,7 +177,7 @@ def main():
     print(f"\n-> {OUT.name}")
 
 
-def loso_check(raw, res):
+def loso_check(raw, res, seeds):
     """Pick k on 3 seeds, score it on the 4th. The honest version.
 
     The band above is measured at whichever k looks best on all four seeds,
@@ -201,7 +207,7 @@ def loso_check(raw, res):
     return out
 
 
-def run_family(fam, days, m5b, sc_b, rev, ra, device):
+def run_family(fam, m5b, sc_b, rev, ra, device):
     """One pass over a family, recording per-edge endpoint tails.
 
     Each edge stores the last K_MAX scores of both endpoints, so short-k
@@ -210,27 +216,27 @@ def run_family(fam, days, m5b, sc_b, rev, ra, device):
     history so `nwin` is not corrupted by the trimming.
     """
     recs = []
-    run_b, run_a, full = {}, {}, {}
-    for day in days:
-        d = normalize_columns(pd.read_csv(CLEAN / f"{day}.csv", low_memory=True))
+    for fn, labels in [(FAMS[fam][0][0], FAMS[fam][1])]:
+        d = normalize_columns(pd.read_csv(CLEAN / fn, low_memory=True))
         lab = d["label"].astype(str).str.strip()
         d = d[~lab.str.endswith("- Attempted")].copy()
         lab = d["label"].astype(str).str.strip()
-        bad_src = set()
-        if fam == "Botnet":
-            bad_src = set(d["src_ip"][lab == "Bot"])
-        elif fam == "PortScan":
-            bad_src = set(d["src_ip"][lab == "PortScan"])
-        elif fam == "DDoS":
-            bad_src = set(d["src_ip"][lab == "DDoS"])
-        elif fam == "Infiltration":
-            bad_src = set(d["dst_ip"][lab == "Infiltration"])
-        elif fam == "WebAttacks":
-            bad_src = set(d["src_ip"][lab.isin(
-                ["Web Attack - Brute Force", "Web Attack - XSS",
-                 "Web Attack - Sql Injection"])])
+        n_rows_attack = int(lab.isin(labels).sum())
+        if n_rows_attack == 0:
+            raise ValueError(
+                f"{fam}: 0 rows match labels {sorted(labels)} in {fn}. A wrong "
+                "label string yields an empty positive set and silent nan AUCs "
+                "-- this check exists because that happened once.")
+        bad_src = set(d["src_ip"][lab.isin(labels)])
+        if not bad_src:
+            raise ValueError(f"{fam}: {n_rows_attack} attack rows but no src_ip "
+                             "resolved to a host -- population unusable.")
+        print(f"    {fam}/{fn}: {n_rows_attack} attack rows, "
+              f"{len(bad_src)} attacker hosts", flush=True)
+        run_b, run_a, full = {}, {}, {}
+        d = d.sort_values("timestamp")
         win = 0
-        for _, w in d.sort_values("timestamp").groupby(_window_key(d, 60)):
+        for _, w in d.groupby(_window_key(d, 60)):
             gs = build_graphs(w, window_seconds=60, feature_set="v2")
             if not gs:
                 continue

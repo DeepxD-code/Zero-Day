@@ -2,7 +2,7 @@
 
 - project_id: DeepxD-code-Zero-Day
 - session_id: ses_f3dc7edc0ffey2j96VuMOxiLDK
-- captured: 2026-09-29T12-45-31Z (reason: auto-10min)
+- captured: 2026-09-29T13-05-30Z (reason: auto-10min)
 - device: LAPTOP
 - title: Pull and explore
 - origin_model: opencode/muse-spark-1.3-contributor-free (if your model differs, roam_resume adapts — see roam.json modelMap)
@@ -7921,25 +7921,39 @@ result: [structured value — see export JSON] [{"type":"text","text":"<task id=
 ## 4. Files edited
 - (session diff empty; changed files via git status — repo-relative:)
 - M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
+- M .opencode/roam/ROAM-j96VuMOxiLDK.md
 - M .opencode/roam/latest.json
 - M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
+- M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
+- M experiments/E01_host_seqae/exp_host_seqae.py
+- M experiments/E48_opt_sweep/exp_e48_opt_sweep.py
+- ?? experiments/E01_host_seqae/ablation_host_seqae_torch.json
 
 <details><summary>git status --porcelain</summary>
 
 ```
 M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
+ M .opencode/roam/ROAM-j96VuMOxiLDK.md
  M .opencode/roam/latest.json
  M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
+ M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
+ M experiments/E01_host_seqae/exp_host_seqae.py
+ M experiments/E48_opt_sweep/exp_e48_opt_sweep.py
+?? experiments/E01_host_seqae/ablation_host_seqae_torch.json
 ```
 </details>
 
 <details><summary>git diff --stat HEAD (big data excluded)</summary>
 
 ```
-.opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 616 +++++++++++++--------
- .opencode/roam/latest.json                         |  10 +-
- ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 385 ++++++++++++-
- 3 files changed, 757 insertions(+), 254 deletions(-)
+.opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1244 +++++++++--
+ .opencode/roam/ROAM-j96VuMOxiLDK.md                |   10 +-
+ .opencode/roam/latest.json                         |   10 +-
+ ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 2257 +++++++++++++++++++-
+ ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    4 +-
+ experiments/E01_host_seqae/exp_host_seqae.py       |   78 +-
+ experiments/E48_opt_sweep/exp_e48_opt_sweep.py     |   50 +-
+ 7 files changed, 3371 insertions(+), 282 deletions(-)
 ```
 </details>
 

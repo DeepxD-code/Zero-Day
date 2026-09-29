@@ -17,12 +17,20 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 import torch
 import torch.nn as nn
 from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence, pad_packed_sequence
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "detection"))
+sys.path.insert(0, str(ROOT / "experiments"))
+# exp_host_ablation lives in E23's folder, not detection/ -- this import was
+# only ever satisfied by the old venv312 working directory.
+sys.path.insert(0, str(ROOT / "experiments" / "E23_host_ae_hmm"))
 
 from host_features import index_sequence, load_adfa, pin_vocab, count_vector
 from host_ae import set_seed
@@ -130,7 +138,23 @@ def main():
     ap.add_argument("--epochs", nargs="+", type=int, default=[10, 20, 40])
     ap.add_argument("--split-seed", type=int, default=0)
     ap.add_argument("--quick", action="store_true")
+    ap.add_argument("--arm", choices=["torch", "hmm", "all"], default="all",
+                    help="Split the run so the GPU work does not depend on "
+                         "hmmlearn. E01 was killed three times because "
+                         "hmmlearn has no Python 3.14 wheel, forcing the WHOLE "
+                         "job onto CPU-only venv312 for hours. Run the torch arm "
+                         "in system Python on CUDA (minutes), then the hmm arm "
+                         "in venv312 (CPU, hmmlearn), which merges into the "
+                         "same JSON.")
     args = ap.parse_args()
+
+    out_path = (ROOT / "experiments" / "E01_host_seqae"
+                / f"ablation_host_seqae_{args.arm}.json")
+    if args.arm == "hmm":
+        # CPU-only continuation: no torch/CUDA work, no hmmlearn needed here.
+        from hmmlearn.hmm import CategoricalHMM
+    else:
+        CategoricalHMM = None
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"device={device} torch={torch.__version__}")
@@ -180,40 +204,74 @@ def main():
         r, _, _, _ = run_ae_seed(Xtr, (vecs(val_b), vecs(val_a)),
                                  (vecs(test_b), vecs(test_a)), sd, grid, device)
         ae_rows.append(r)
-    hmm_row, _, _ = run_hmm(train_idx, (bi[:len(val_b)], va_i),
-                            (bi[len(val_b):], ta_i), [16])
+    # ---- HMM arm -------------------------------------------------------
+    # hmmlearn is the only CPU-bound dependency in this script and the only
+    # reason E01 ever needed venv312. Skipped here so the torch arms can run
+    # on CUDA in system Python; the HMM arm is computed by --arm hmm.
+    hmm_row = None
+    if args.arm in ("hmm", "all"):
+        hmm_row, _, _ = run_hmm(train_idx, (bi[:len(val_b)], va_i),
+                                (bi[len(val_b):], ta_i), [16])
     # mimicry recall for baselines at their own tuned thrs (seed-0 models)
     r0, _, _, _ = run_ae_seed(Xtr, (vecs(val_b), vecs(val_a)),
                               (vecs(test_b), vecs(test_a)), seeds[0], grid, device)
     from host_ae import train as train_ae
+    h0 = None
+    if hmm_row is not None:
+        Xc = np.concatenate(train_idx).reshape(-1, 1)
+        h0 = CategoricalHMM(n_components=16, n_iter=60,
+                            random_state=0).fit(Xc, [len(s) for s in train_idx])
     mdl0, scl0, _ = train_ae(Xtr, epochs=r0["epochs"], seed=seeds[0], device=device, quiet=True)
     with torch.no_grad():
         def ae_s(X):
             return mdl0.anomaly_score(scl0.transform(X).to(device)).cpu().numpy()
-    from hmmlearn.hmm import CategoricalHMM
-    Xc = np.concatenate(train_idx).reshape(-1, 1)
-    h0 = CategoricalHMM(n_components=16, n_iter=60, random_state=0).fit(Xc, [len(s) for s in train_idx])
     for name, seqs in mimicry(ta_i, train_idx, 7).items():
         # count vectors need raw syscall numbers: invert indices (unk impossible here —
         # mimicry draws only from train/attack indices, all covered by the pinned vocab)
         inv = {i: n for n, i in pin["vocab"].items()}
         raw = [[inv[int(x)] for x in s] for s in seqs]
         a = ae_s(torch.tensor(np.stack([count_vector(r, pin) for r in raw]), dtype=torch.float32))
-        h = np.array([-h0.score(s.reshape(-1, 1)) / len(s) for s in seqs])
-        probes[name].update({"countae_recall": float((a >= r0["thr"]).mean()),
-                             "hmm_recall": float((h >= hmm_row["thr"]).mean())})
+        probes[name]["countae_recall"] = float((a >= r0["thr"]).mean())
+        if hmm_row is not None:
+            h = np.array([-h0.score(s.reshape(-1, 1)) / len(s) for s in seqs])
+            probes[name]["hmm_recall"] = float((h >= hmm_row["thr"]).mean())
     print("\nmimicry recall (seed-0 models @ own tuned thr):")
     for name, d in probes.items():
-        print(f"  {name:14s} seqAE {d['seqae_recall']:.3f}  countAE {d['countae_recall']:.3f}  HMM {d['hmm_recall']:.3f}")
+        hh = f"  HMM {d['hmm_recall']:.3f}" if "hmm_recall" in d else "  HMM n/a"
+        print(f"  {name:14s} seqAE {d['seqae_recall']:.3f}  "
+              f"countAE {d['countae_recall']:.3f}{hh}")
 
     sa = np.array([r["auc"] for r in rows])
     aa = np.array([r["auc"] for r in ae_rows])
     res = {"seeds": seeds, "grid": grid, "device": str(device),
+           "arm": args.arm,
            "seqae": {"mean_auc": float(sa.mean()), "std_auc": float(sa.std()), "rows": rows},
            "countae": {"mean_auc": float(aa.mean()), "std_auc": float(aa.std())},
            "hmm": hmm_row, "mimicry": probes}
+
+    # --arm torch writes the GPU half and stops; --arm hmm reads it back and
+    # merges, so the CPU-only venv312 run does not repeat the CUDA work.
+    if args.arm == "torch":
+        out_path.write_text(json.dumps(res, indent=1))
+        print(f"\nseqAE {sa.mean():.4f}±{sa.std():.4f} | countAE "
+              f"{aa.mean():.4f}±{aa.std():.4f} | HMM deferred -> {out_path.name}")
+        print(f"next: venv312\\Scripts\\python.exe -u "
+              f"experiments/E01_host_seqae/exp_host_seqae.py --arm hmm")
+        return
+    if args.arm == "hmm":
+        torch_side = out_path.parent / "ablation_host_seqae_torch.json"
+        if torch_side.exists():
+            prev = json.loads(torch_side.read_text())
+            res["seqae"] = prev.get("seqae", res["seqae"])
+            res["countae"] = prev.get("countae", res["countae"])
+            for k, v in (prev.get("mimicry") or {}).items():
+                res["mimicry"].setdefault(k, {}).update(
+                    {kk: vv for kk, vv in v.items() if kk != "hmm_recall"})
+            print(f"merged torch arm from {torch_side.name}")
+
     OUT.write_text(json.dumps(res, indent=1))
-    print(f"\nseqAE {sa.mean():.4f}±{sa.std():.4f} | countAE {aa.mean():.4f}±{aa.std():.4f} | HMM {hmm_row['auc']:.4f} -> {OUT.name}")
+    hh = f"{hmm_row['auc']:.4f}" if hmm_row else "n/a"
+    print(f"\nseqAE {sa.mean():.4f}±{sa.std():.4f} | countAE {aa.mean():.4f}±{aa.std():.4f} | HMM {hh} -> {OUT.name}")
 
 
 if __name__ == "__main__":
