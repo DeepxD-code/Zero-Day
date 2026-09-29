@@ -174,6 +174,11 @@ def main():
     seeds = [0] if args.quick else args.seeds
     grid = [5] if args.quick else args.epochs
     rows, probes = [], {}
+    # --arm hmm must NOT train the torch arms. venv312 is CPU-only, so
+    # re-running seq-AE there is the multi-hour job that killed E01 three
+    # times; the torch results come from the --arm torch JSON instead.
+    if args.arm == "hmm":
+        seeds = []
     for sd in seeds:
         cands = []
         for ep in grid:
@@ -204,6 +209,9 @@ def main():
         r, _, _, _ = run_ae_seed(Xtr, (vecs(val_b), vecs(val_a)),
                                  (vecs(test_b), vecs(test_a)), sd, grid, device)
         ae_rows.append(r)
+    if not ae_rows:
+        print("(--arm hmm: torch arms skipped, taking them from the "
+              "--arm torch JSON)")
     # ---- HMM arm -------------------------------------------------------
     # hmmlearn is the only CPU-bound dependency in this script and the only
     # reason E01 ever needed venv312. Skipped here so the torch arms can run
@@ -213,36 +221,50 @@ def main():
         hmm_row, _, _ = run_hmm(train_idx, (bi[:len(val_b)], va_i),
                                 (bi[len(val_b):], ta_i), [16])
     # mimicry recall for baselines at their own tuned thrs (seed-0 models)
-    r0, _, _, _ = run_ae_seed(Xtr, (vecs(val_b), vecs(val_a)),
-                              (vecs(test_b), vecs(test_a)), seeds[0], grid, device)
+    r0 = None
+    if seeds:
+        r0, _, _, _ = run_ae_seed(Xtr, (vecs(val_b), vecs(val_a)),
+                                  (vecs(test_b), vecs(test_a)), seeds[0], grid, device)
     from host_ae import train as train_ae
     h0 = None
     if hmm_row is not None:
         Xc = np.concatenate(train_idx).reshape(-1, 1)
         h0 = CategoricalHMM(n_components=16, n_iter=60,
                             random_state=0).fit(Xc, [len(s) for s in train_idx])
-    mdl0, scl0, _ = train_ae(Xtr, epochs=r0["epochs"], seed=seeds[0], device=device, quiet=True)
+    mdl0 = scl0 = None
+    if r0 is not None:
+        mdl0, scl0, _ = train_ae(Xtr, epochs=r0["epochs"], seed=seeds[0],
+                                  device=device, quiet=True)
     with torch.no_grad():
         def ae_s(X):
             return mdl0.anomaly_score(scl0.transform(X).to(device)).cpu().numpy()
     for name, seqs in mimicry(ta_i, train_idx, 7).items():
+        probes.setdefault(name, {})      # --arm hmm skips the seqAE loop that
+                                         # would otherwise create these keys
         # count vectors need raw syscall numbers: invert indices (unk impossible here —
         # mimicry draws only from train/attack indices, all covered by the pinned vocab)
         inv = {i: n for n, i in pin["vocab"].items()}
         raw = [[inv[int(x)] for x in s] for s in seqs]
-        a = ae_s(torch.tensor(np.stack([count_vector(r, pin) for r in raw]), dtype=torch.float32))
-        probes[name]["countae_recall"] = float((a >= r0["thr"]).mean())
+        if r0 is not None:
+            a = ae_s(torch.tensor(np.stack([count_vector(r, pin) for r in raw]),
+                                  dtype=torch.float32))
+            probes[name]["countae_recall"] = float((a >= r0["thr"]).mean())
         if hmm_row is not None:
             h = np.array([-h0.score(s.reshape(-1, 1)) / len(s) for s in seqs])
             probes[name]["hmm_recall"] = float((h >= hmm_row["thr"]).mean())
     print("\nmimicry recall (seed-0 models @ own tuned thr):")
     for name, d in probes.items():
-        hh = f"  HMM {d['hmm_recall']:.3f}" if "hmm_recall" in d else "  HMM n/a"
-        print(f"  {name:14s} seqAE {d['seqae_recall']:.3f}  "
-              f"countAE {d['countae_recall']:.3f}{hh}")
+        parts = []
+        if "seqae_recall" in d:
+            parts.append(f"seqAE {d['seqae_recall']:.3f}")
+        if "countae_recall" in d:
+            parts.append(f"countAE {d['countae_recall']:.3f}")
+        if "hmm_recall" in d:
+            parts.append(f"HMM {d['hmm_recall']:.3f}")
+        print(f"  {name:14s} " + "  ".join(parts))
 
-    sa = np.array([r["auc"] for r in rows])
-    aa = np.array([r["auc"] for r in ae_rows])
+    sa = np.array([r["auc"] for r in rows]) if rows else np.array([np.nan])
+    aa = np.array([r["auc"] for r in ae_rows]) if ae_rows else np.array([np.nan])
     res = {"seeds": seeds, "grid": grid, "device": str(device),
            "arm": args.arm,
            "seqae": {"mean_auc": float(sa.mean()), "std_auc": float(sa.std()), "rows": rows},

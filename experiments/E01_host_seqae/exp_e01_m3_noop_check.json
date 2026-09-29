@@ -1,0 +1,43 @@
+{
+ "rows": [
+  {
+   "k": 10,
+   "n": 374,
+   "median_len": 296,
+   "min_len": 75,
+   "frac_noop": 0.00267379679144385,
+   "frac_hist_preserved": 1.0
+  },
+  {
+   "k": 5,
+   "n": 374,
+   "median_len": 296,
+   "min_len": 75,
+   "frac_noop": 0.00267379679144385,
+   "frac_hist_preserved": 1.0
+  },
+  {
+   "k": 3,
+   "n": 374,
+   "median_len": 296,
+   "min_len": 75,
+   "frac_noop": 0.00267379679144385,
+   "frac_hist_preserved": 1.0
+  },
+  {
+   "k": 2,
+   "n": 374,
+   "median_len": 296,
+   "min_len": 75,
+   "frac_noop": 0.00267379679144385,
+   "frac_hist_preserved": 1.0
+  }
+ ],
+ "verdict": "M3 does shuffle this data; the identical recall is a real result.",
+ "test_attack_len": {
+  "n": 374,
+  "min": 75,
+  "median": 296,
+  "max": 2712
+ }
+}
