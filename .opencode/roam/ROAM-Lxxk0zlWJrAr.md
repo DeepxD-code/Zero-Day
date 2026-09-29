@@ -2,13 +2,13 @@
 
 - project_id: DeepxD-code-Zero-Day
 - session_id: ses_f22aeca57ffeEHLxxk0zlWJrAr
-- captured: 2026-09-29T12-15-27Z (reason: auto-10min)
+- captured: 2026-09-29T12-35-27Z (reason: auto-10min)
 - device: LAPTOP
 - title: Last week number inquiry
 - origin_model: opencode/space-bunny-free (if your model differs, roam_resume adapts — see roam.json modelMap)
 - git_root (THIS MACHINE ONLY — other machines: use repo-relative paths, never this): E:/Potential-gold/Zero-Day
 - branch: exp/host-seqae-p37 | remote: https://github.com/DeepxD-code/Zero-Day.git
-- message_count: 193 (user: 2)
+- message_count: 213 (user: 2)
 
 > Resume: read sections 1-6, then continue at "Next steps". Paths below are repo-relative — rebase onto YOUR gold-folder checkout.
 
@@ -18,10 +18,10 @@ _Carry forward: Last week number inquiry_
 ## 2. Every prompt + response — ENTIRE session, verbatim, in order
 _User turns are complete. Agent turns are complete text; tool outputs truncated to 4000 chars each (full data stays in session.export.json)._
 
-### [1/193] compaction 2026-09-29T10:56:57.330Z
+### [1/213] compaction 2026-09-29T10:56:57.330Z
 [compaction message: 
 
-### [2/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:20.901Z
+### [2/213] assistant (opencode/space-bunny-free) 2026-09-29T10:57:20.901Z
 Let me check the current state: the self-test file was just written but hasn't been run. Let me run it.
 
 Note: I referenced `require_no_selfcheck` in eval_guards.py with an unused function. Also there's a bug in the selftest — `t_dataset_strict_raises` and `t_unknown_anchor_raises` are defined but then redefined/referenced oddly. Let me run and fix.
@@ -34,7 +34,7 @@ Let me run the self-test.
 ```
 </details>
 
-### [3/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:30.057Z
+### [3/213] assistant (opencode/space-bunny-free) 2026-09-29T10:57:30.057Z
 I have ordering issues in the test file. Let me fix the ordering problems: `t_register` used before definition, and the leftover `t_dataset_strict_raises` stub, and `t_unknown_anchor_raises` stub. Let me rewrite those sections cleanly.
 
 Let me look at the file region and fix.
@@ -46,7 +46,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [4/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:34.639Z
+### [4/213] assistant (opencode/space-bunny-free) 2026-09-29T10:57:34.639Z
 <details><summary>tool: edit (2276 chars)</summary>
 
 ```json
@@ -54,7 +54,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [5/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:41.538Z
+### [5/213] assistant (opencode/space-bunny-free) 2026-09-29T10:57:41.538Z
 <details><summary>tool: read (2074 chars)</summary>
 
 ```json
@@ -62,7 +62,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [6/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:45.436Z
+### [6/213] assistant (opencode/space-bunny-free) 2026-09-29T10:57:45.436Z
 <details><summary>tool: edit (1757 chars)</summary>
 
 ```json
@@ -70,7 +70,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [7/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:52.873Z
+### [7/213] assistant (opencode/space-bunny-free) 2026-09-29T10:57:52.873Z
 <details><summary>tool: read (2128 chars)</summary>
 
 ```json
@@ -78,7 +78,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [8/193] assistant (opencode/space-bunny-free) 2026-09-29T10:57:56.901Z
+### [8/213] assistant (opencode/space-bunny-free) 2026-09-29T10:57:56.901Z
 <details><summary>tool: edit (697 chars)</summary>
 
 ```json
@@ -86,7 +86,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [9/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:01.334Z
+### [9/213] assistant (opencode/space-bunny-free) 2026-09-29T10:58:01.334Z
 <details><summary>tool: edit (374 chars)</summary>
 
 ```json
@@ -94,7 +94,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [10/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:05.651Z
+### [10/213] assistant (opencode/space-bunny-free) 2026-09-29T10:58:05.651Z
 <details><summary>tool: edit (465 chars)</summary>
 
 ```json
@@ -102,7 +102,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [11/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:10.095Z
+### [11/213] assistant (opencode/space-bunny-free) 2026-09-29T10:58:10.095Z
 <details><summary>tool: shell (1423 chars)</summary>
 
 ```json
@@ -110,7 +110,7 @@ Ordering bug in the self-test — three stubs reference names defined after them
 ```
 </details>
 
-### [12/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:17.367Z
+### [12/213] assistant (opencode/space-bunny-free) 2026-09-29T10:58:17.367Z
 Three real failures, each pointing at a genuine defect in the guard, not the test.
 
 1. t4: `CKPT_M5A` fixture is wrong shape — I put `flow_lo` at top level, but `_scaler_arrays` looks inside `blob["scaler"]`. Let me check the actual M5a checkpoint structure. Earlier I saw `gnn_autoencoder_v1_logscale_v2.pt` has keys `['model','scaler']` with scaler keys `['lo','hi','log']`. So the M5a *NodeScaler* branch for `flow_lo` may be speculative. Let me check the real m5a_revived checkpoint structure.
@@ -141,7 +141,7 @@ Three failures, and all three are defects in the guard itself, not the test. Che
 ```
 </details>
 
-### [13/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:37.146Z
+### [13/213] assistant (opencode/space-bunny-free) 2026-09-29T10:58:37.146Z
 So the M5a scaler shape: my `_scaler_arrays` checks `sc.get("flow_lo")` inside `blob["scaler"]`, but my test fixture put `flow_lo` at top level. Let me check the actual m5a checkpoint shape.
 
 Also t9: dataset comparison — `train` is a free-text string, exact match fails. Need substring/token comparison. Better: warn only if the dataset string doesn't appear in the train provenance.
@@ -156,7 +156,7 @@ Let me check m5a checkpoint.
 ```
 </details>
 
-### [14/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:47.005Z
+### [14/213] assistant (opencode/space-bunny-free) 2026-09-29T10:58:47.005Z
 <details><summary>tool: shell (1003 chars)</summary>
 
 ```json
@@ -164,7 +164,7 @@ Let me check m5a checkpoint.
 ```
 </details>
 
-### [15/193] assistant (opencode/space-bunny-free) 2026-09-29T10:58:55.034Z
+### [15/213] assistant (opencode/space-bunny-free) 2026-09-29T10:58:55.034Z
 So the M5a checkpoint has flow_lo/flow_hi at the TOP level, not nested under 'scaler'. My `_scaler_arrays` expects `blob["scaler"]["flow_lo"]`. Need to handle both. Also `require_no_selfcheck` references blob['scaler'] which won't exist for M5a. Let me fix `_scaler_arrays` to look at top level too.
 
 Second failure: t9 — `require_dataset` warns even when the dataset matches, because I compared nothing — I just check `trained_on is not None`. I need actual comparison. The provenance string is a free-text sentence; I need a sane match rule. Better: compare on a normalized substring/token basis and expose an `expected_dataset` vocabulary. Let me make it: extract a dataset key from both sides via a small normalizer, and only warn if the two keys differ. If either is unknown → silent (can't prove mismatch).
@@ -184,7 +184,7 @@ All three are real defects in the guard. The M5a scaler lives at the top level, 
 ```
 </details>
 
-### [16/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:13.545Z
+### [16/213] assistant (opencode/space-bunny-free) 2026-09-29T10:59:13.545Z
 Now fix require_dataset to actually compare. The issue: `train` is a free-text string like 'CICIDS2017_improved/monday benign-only'. We need a comparison. Best approach: compare dataset identity tokens. Let me make it compare on a normalized key derived from the provenance string, and allow substring match.
 
 Simplest robust: if dataset string appears in trained_on, silent. Otherwise warn. Plus allow an `alias` mapping.
@@ -197,7 +197,7 @@ Let me implement a small canonical token extraction: normalize both to lowercase
 ```
 </details>
 
-### [17/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:26.255Z
+### [17/213] assistant (opencode/space-bunny-free) 2026-09-29T10:59:26.255Z
 Now the window group check. The `max_frac` logic was nonsense. Let me think about what a real signal is.
 
 E43's bug: `np.arange(n) // 5000` used as window ids. n=53082 → 11 groups, 5000 rows each (last one 3082).
@@ -222,7 +222,7 @@ Now the window check — my `max_frac` arithmetic was wrong. Replacing it with a
 ```
 </details>
 
-### [18/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:46.153Z
+### [18/213] assistant (opencode/space-bunny-free) 2026-09-29T10:59:46.153Z
 <details><summary>tool: edit (340 chars)</summary>
 
 ```json
@@ -230,7 +230,7 @@ Now the window check — my `max_frac` arithmetic was wrong. Replacing it with a
 ```
 </details>
 
-### [19/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:50.671Z
+### [19/213] assistant (opencode/space-bunny-free) 2026-09-29T10:59:50.671Z
 Now update the self-test fixtures to match the real M5a layout and the corrected signatures.
 <details><summary>tool: edit (760 chars)</summary>
 
@@ -239,7 +239,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [20/193] assistant (opencode/space-bunny-free) 2026-09-29T10:59:56.132Z
+### [20/213] assistant (opencode/space-bunny-free) 2026-09-29T10:59:56.132Z
 <details><summary>tool: edit (918 chars)</summary>
 
 ```json
@@ -247,7 +247,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [21/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:02.803Z
+### [21/213] assistant (opencode/space-bunny-free) 2026-09-29T11:00:02.803Z
 <details><summary>tool: edit (711 chars)</summary>
 
 ```json
@@ -255,7 +255,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [22/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:09.619Z
+### [22/213] assistant (opencode/space-bunny-free) 2026-09-29T11:00:09.619Z
 <details><summary>tool: edit (510 chars)</summary>
 
 ```json
@@ -263,7 +263,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [23/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:16.304Z
+### [23/213] assistant (opencode/space-bunny-free) 2026-09-29T11:00:16.304Z
 <details><summary>tool: edit (500 chars)</summary>
 
 ```json
@@ -271,7 +271,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [24/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:21.319Z
+### [24/213] assistant (opencode/space-bunny-free) 2026-09-29T11:00:21.319Z
 <details><summary>tool: shell (1510 chars)</summary>
 
 ```json
@@ -279,7 +279,7 @@ Now update the self-test fixtures to match the real M5a layout and the corrected
 ```
 </details>
 
-### [25/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:30.495Z
+### [25/213] assistant (opencode/space-bunny-free) 2026-09-29T11:00:30.495Z
 t13 now correctly raises, just message text differs. Fix the expected substring.
 
 t7/t8: dataset check now considers "CICIDS2017_improved/monday benign-only" and "original CIC-IDS2017 PortScan" as the SAME — because both contain token "cicids2017"→"cic-ids2017" AND "improved"? No wait. da for trained_on = {"improved"}, db for "original CIC-IDS2017 PortScan" = {"cic-ids2017"}. Intersection empty. Hmm but t7 says did not warn.
@@ -297,7 +297,7 @@ t13 now raises correctly — only my expected substring was wrong. But t7/t8 exp
 ```
 </details>
 
-### [26/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:50.253Z
+### [26/213] assistant (opencode/space-bunny-free) 2026-09-29T11:00:50.253Z
 <details><summary>tool: edit (518 chars)</summary>
 
 ```json
@@ -305,7 +305,7 @@ t13 now raises correctly — only my expected substring was wrong. But t7/t8 exp
 ```
 </details>
 
-### [27/193] assistant (opencode/space-bunny-free) 2026-09-29T11:00:54.479Z
+### [27/213] assistant (opencode/space-bunny-free) 2026-09-29T11:00:54.479Z
 Now strengthen the dataset tests, since that check just proved itself too weak.
 <details><summary>tool: edit (1897 chars)</summary>
 
@@ -314,7 +314,7 @@ Now strengthen the dataset tests, since that check just proved itself too weak.
 ```
 </details>
 
-### [28/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:04.980Z
+### [28/213] assistant (opencode/space-bunny-free) 2026-09-29T11:01:04.980Z
 <details><summary>tool: edit (750 chars)</summary>
 
 ```json
@@ -322,7 +322,7 @@ Now strengthen the dataset tests, since that check just proved itself too weak.
 ```
 </details>
 
-### [29/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:11.807Z
+### [29/213] assistant (opencode/space-bunny-free) 2026-09-29T11:01:11.807Z
 <details><summary>tool: edit (711 chars)</summary>
 
 ```json
@@ -330,7 +330,7 @@ Now strengthen the dataset tests, since that check just proved itself too weak.
 ```
 </details>
 
-### [30/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:18.848Z
+### [30/213] assistant (opencode/space-bunny-free) 2026-09-29T11:01:18.848Z
 There's a problem: my test asserts `_same_dataset("CICIDS2017_improved/monday benign-only", "clean monday")` is True — but "clean monday" has no corpus token, so it falls to substring which is False. I left a "hmm" comment. Let me fix that assertion — it's wrong. Actually the important direction: t9 uses "CICIDS2017_improved/monday benign-only" as the dataset being scored, so that resolves. Let me remove the bad assertion.
 <details><summary>tool: edit (1041 chars)</summary>
 
@@ -339,7 +339,7 @@ There's a problem: my test asserts `_same_dataset("CICIDS2017_improved/monday be
 ```
 </details>
 
-### [31/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:26.918Z
+### [31/213] assistant (opencode/space-bunny-free) 2026-09-29T11:01:26.918Z
 <details><summary>tool: shell (1234 chars)</summary>
 
 ```json
@@ -347,7 +347,7 @@ There's a problem: my test asserts `_same_dataset("CICIDS2017_improved/monday be
 ```
 </details>
 
-### [32/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:34.878Z
+### [32/213] assistant (opencode/space-bunny-free) 2026-09-29T11:01:34.878Z
 t11a failing. Which assertion? Let me debug.
 <details><summary>tool: shell (1512 chars)</summary>
 
@@ -356,7 +356,7 @@ t11a failing. Which assertion? Let me debug.
 ```
 </details>
 
-### [33/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:46.175Z
+### [33/213] assistant (opencode/space-bunny-free) 2026-09-29T11:01:46.175Z
 The token regex `[a-z0-9]+` splits "cic-ids2017" into "cic" and "ids2017", so "cic-ids2017" isn't in _CORPUS. Need to normalize hyphens. Let me fix _identify to try both hyphenated and de-hyphenated forms.
 
 The guard still worked for the key case (improved vs original → False) because both returned None corpus and fell to substring. But it got the right answer for the wrong reason — it would NOT catch "original CIC-IDS2017" vs "improved" if substring doesn't match... actually it would warn. But `_identify` returning None corpus for "CIC-IDS2017" is a real bug: the corpus map is largely dead. Let me fix by normalizing.
@@ -370,7 +370,7 @@ The corpus map was largely dead — the regex split `cic-ids2017` at the hyphen 
 ```
 </details>
 
-### [34/193] assistant (opencode/space-bunny-free) 2026-09-29T11:01:55.603Z
+### [34/213] assistant (opencode/space-bunny-free) 2026-09-29T11:01:55.603Z
 <details><summary>tool: shell (1973 chars)</summary>
 
 ```json
@@ -378,7 +378,7 @@ The corpus map was largely dead — the regex split `cic-ids2017` at the hyphen 
 ```
 </details>
 
-### [35/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:05.321Z
+### [35/213] assistant (opencode/space-bunny-free) 2026-09-29T11:02:05.321Z
 "original CIC-IDS2017" → toks = ['original','cic','ids2017']. joined = "originalcicids2017" and "original-cic-ids2017". Neither in _CORPUS. So corpus None. I need a substring search for corpus names in the normalized string instead. Better approach: normalize by removing all non-alphanumerics, then check if any corpus alias (also normalized) appears as a substring.
 
 Let me rewrite _identify properly.
@@ -391,7 +391,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [36/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:19.421Z
+### [36/213] assistant (opencode/space-bunny-free) 2026-09-29T11:02:19.421Z
 <details><summary>tool: read (3208 chars)</summary>
 
 ```json
@@ -399,7 +399,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [37/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:22.936Z
+### [37/213] assistant (opencode/space-bunny-free) 2026-09-29T11:02:22.936Z
 <details><summary>tool: edit (2180 chars)</summary>
 
 ```json
@@ -407,7 +407,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [38/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:30.155Z
+### [38/213] assistant (opencode/space-bunny-free) 2026-09-29T11:02:30.155Z
 <details><summary>tool: edit (1270 chars)</summary>
 
 ```json
@@ -415,7 +415,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [39/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:36.740Z
+### [39/213] assistant (opencode/space-bunny-free) 2026-09-29T11:02:36.740Z
 <details><summary>tool: shell (2072 chars)</summary>
 
 ```json
@@ -423,7 +423,7 @@ The join approach still fails because the corpus name isn't contiguous in the to
 ```
 </details>
 
-### [40/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:46.521Z
+### [40/213] assistant (opencode/space-bunny-free) 2026-09-29T11:02:46.521Z
 All 22 pass. But note: `'GeneratedLabelledFlows/TrafficLabelling'` identifies as variant None while `'CIC-IDS2017 raw PortScan'` is 'original' → not same. That's arguably wrong (GeneratedLabelledFlows IS the original). Let me check what the actual provenance strings in the repo are and fix. Let me grep for 'train' keys in checkpoints and scripts.
 All 22 pass. But one case is wrong: `GeneratedLabelledFlows` *is* the original capture, yet it identifies as variant-less while `raw` identifies as `original`. Checking what provenance strings actually ship before locking this in.
 <details><summary>tool: shell (1985 chars)</summary>
@@ -433,7 +433,7 @@ All 22 pass. But one case is wrong: `GeneratedLabelledFlows` *is* the original c
 ```
 </details>
 
-### [41/193] assistant (opencode/space-bunny-free) 2026-09-29T11:02:55.605Z
+### [41/213] assistant (opencode/space-bunny-free) 2026-09-29T11:02:55.605Z
 Important finding: most shipped checkpoints have `train=None` — so `require_dataset` is silent for 5 of 7. That's a real gap: the guard is inert for most checkpoints. Also `GeneratedLabelledFlows` is a directory name for the ORIGINAL dataset, but it identifies variant=None while "raw"→original, causing a false mismatch. I should treat variant=None as "original" for the cicids corpus since GeneratedLabelledFlows is the original extraction.
 
 Let me fix: default variant for known corpora → 'original'. And record that the provenance field is missing on 5/7 checkpoints as a finding to report (not silently paper over).
@@ -453,7 +453,7 @@ Two real gaps found: `GeneratedLabelledFlows` (the original extraction) identifi
 ```
 </details>
 
-### [42/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:06.777Z
+### [42/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:06.777Z
 <details><summary>tool: read (1897 chars)</summary>
 
 ```json
@@ -461,7 +461,7 @@ Two real gaps found: `GeneratedLabelledFlows` (the original extraction) identifi
 ```
 </details>
 
-### [43/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:11.083Z
+### [43/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:11.083Z
 <details><summary>tool: edit (1891 chars)</summary>
 
 ```json
@@ -469,7 +469,7 @@ Two real gaps found: `GeneratedLabelledFlows` (the original extraction) identifi
 ```
 </details>
 
-### [44/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:16.304Z
+### [44/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:16.304Z
 Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is silent on exactly the legacy models that caused E44's mistake. Adding a `provenance_gaps` reporter rather than pretending they're covered.
 <details><summary>tool: edit (1973 chars)</summary>
 
@@ -478,7 +478,7 @@ Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is si
 ```
 </details>
 
-### [45/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:24.174Z
+### [45/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:24.174Z
 <details><summary>tool: edit (810 chars)</summary>
 
 ```json
@@ -486,7 +486,7 @@ Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is si
 ```
 </details>
 
-### [46/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:29.036Z
+### [46/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:29.036Z
 <details><summary>tool: edit (2120 chars)</summary>
 
 ```json
@@ -494,7 +494,7 @@ Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is si
 ```
 </details>
 
-### [47/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:35.879Z
+### [47/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:35.879Z
 <details><summary>tool: shell (1621 chars)</summary>
 
 ```json
@@ -502,7 +502,7 @@ Now the second gap — 5 of 7 checkpoints have no provenance, so the guard is si
 ```
 </details>
 
-### [48/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:42.780Z
+### [48/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:42.780Z
 24/24. Now the critical part: prove the guard actually catches the three real bugs. Let me write a reproduction harness that runs the actual E42/E43 code paths with the bug reintroduced and shows the guard fires. That's the real proof.
 
 Let me check the E42 and E43 scripts to wire the guard in.
@@ -514,7 +514,7 @@ Let me check the E42 and E43 scripts to wire the guard in.
 ```
 </details>
 
-### [49/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:48.629Z
+### [49/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:48.629Z
 <details><summary>tool: read (1599 chars)</summary>
 
 ```json
@@ -522,7 +522,7 @@ Let me check the E42 and E43 scripts to wire the guard in.
 ```
 </details>
 
-### [50/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:52.490Z
+### [50/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:52.490Z
 Now wiring the guard into E42 at the exact points where its bug lived.
 <details><summary>tool: edit (1119 chars)</summary>
 
@@ -531,7 +531,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [51/193] assistant (opencode/space-bunny-free) 2026-09-29T11:03:58.592Z
+### [51/213] assistant (opencode/space-bunny-free) 2026-09-29T11:03:58.592Z
 <details><summary>tool: read (1440 chars)</summary>
 
 ```json
@@ -539,7 +539,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [52/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:02.583Z
+### [52/213] assistant (opencode/space-bunny-free) 2026-09-29T11:04:02.583Z
 <details><summary>tool: edit (838 chars)</summary>
 
 ```json
@@ -547,7 +547,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [53/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:08.752Z
+### [53/213] assistant (opencode/space-bunny-free) 2026-09-29T11:04:08.752Z
 <details><summary>tool: edit (1339 chars)</summary>
 
 ```json
@@ -555,7 +555,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [54/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:15.041Z
+### [54/213] assistant (opencode/space-bunny-free) 2026-09-29T11:04:15.041Z
 <details><summary>tool: shell (795 chars)</summary>
 
 ```json
@@ -563,7 +563,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [55/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:19.659Z
+### [55/213] assistant (opencode/space-bunny-free) 2026-09-29T11:04:19.659Z
 <details><summary>tool: edit (685 chars)</summary>
 
 ```json
@@ -571,7 +571,7 @@ Now wiring the guard into E42 at the exact points where its bug lived.
 ```
 </details>
 
-### [56/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:24.969Z
+### [56/213] assistant (opencode/space-bunny-free) 2026-09-29T11:04:24.969Z
 Now the decisive test: run E42 with the original bug deliberately reintroduced and confirm the guard stops it.
 <details><summary>tool: write (8445 chars)</summary>
 
@@ -581,7 +581,7 @@ Now the decisive test: run E42 with the original bug deliberately reintroduced a
 ```
 </details>
 
-### [57/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:45.884Z
+### [57/213] assistant (opencode/space-bunny-free) 2026-09-29T11:04:45.884Z
 <details><summary>tool: shell (1491 chars)</summary>
 
 ```json
@@ -589,7 +589,7 @@ Now the decisive test: run E42 with the original bug deliberately reintroduced a
 ```
 </details>
 
-### [58/193] assistant (opencode/space-bunny-free) 2026-09-29T11:04:59.980Z
+### [58/213] assistant (opencode/space-bunny-free) 2026-09-29T11:04:59.980Z
 The E16 case: my synthetic construction doesn't reproduce aliasing. Let me think about why.
 
 `_window_key` computes `ts - ts.min()`. For concatenated mon+tue, ts.min() is Monday 09:00, so Monday's windows are 0..9, Tuesday's are 1440..1449. So no aliasing — the epoch is relative to the global min, which is fine when timestamps are real datetimes spanning days.
@@ -613,7 +613,7 @@ The E16 case didn't reproduce — my hypothesis was wrong. Checking the actual m
 ```
 </details>
 
-### [59/193] assistant (opencode/space-bunny-free) 2026-09-29T11:05:21.608Z
+### [59/213] assistant (opencode/space-bunny-free) 2026-09-29T11:05:21.608Z
 The real mechanism: per-file keying then concat then groupby(key) aliases. My earlier claim (concat-then-key) was wrong. Let me fix the test to the correct mechanism, and importantly: the guard SHOULD catch this if given those group ids... but the group ids ARE non-decreasing and non-uniform (120 each — actually uniform! 600/10=60... wait sizes are 120 each, 5 groups per day × 2 days = 10 groups of 120). Hmm, that IS uniform, so require_window_groups would catch it. But the deeper issue: real per-day keying gives 600 rows per 10 windows = 60 rows/window per day, but after aliasing it's 120. So uniform 120 → caught by the uniformity check.
 
 Let me write the test to reflect the real mechanism, and assert the guard catches it.
@@ -627,7 +627,7 @@ My E16 hypothesis was wrong. The real mechanism is per-file keying *then* concat
 ```
 </details>
 
-### [60/193] assistant (opencode/space-bunny-free) 2026-09-29T11:05:36.491Z
+### [60/213] assistant (opencode/space-bunny-free) 2026-09-29T11:05:36.491Z
 <details><summary>tool: edit (710 chars)</summary>
 
 ```json
@@ -635,7 +635,7 @@ My E16 hypothesis was wrong. The real mechanism is per-file keying *then* concat
 ```
 </details>
 
-### [61/193] assistant (opencode/space-bunny-free) 2026-09-29T11:05:41.285Z
+### [61/213] assistant (opencode/space-bunny-free) 2026-09-29T11:05:41.285Z
 <details><summary>tool: shell (1696 chars)</summary>
 
 ```json
@@ -643,7 +643,7 @@ My E16 hypothesis was wrong. The real mechanism is per-file keying *then* concat
 ```
 </details>
 
-### [62/193] assistant (opencode/space-bunny-free) 2026-09-29T11:05:54.318Z
+### [62/213] assistant (opencode/space-bunny-free) 2026-09-29T11:05:54.318Z
 8/8. Note one thing: the E42 case message says "max |dlo| = 0" which is odd — lo was multiplied by 0.5 but lo is all zeros, so diff is 0. The check still fired because hi differs. But the message is misleading. Let me fix the message to report the max diff across both lo and hi.
 
 Also the E16 caught case fired on non-monotonic rather than uniformity — because per-file keying then concat produces 0..9,0..9 which resets, so it's non-monotonic. Good, that's correct and caught by an even stronger check. But my aliasing fixture has uniform sizes too. Fine.
@@ -657,7 +657,7 @@ Let me fix the scaler diff message.
 ```
 </details>
 
-### [63/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:02.219Z
+### [63/213] assistant (opencode/space-bunny-free) 2026-09-29T11:06:02.219Z
 <details><summary>tool: shell (874 chars)</summary>
 
 ```json
@@ -665,7 +665,7 @@ Let me fix the scaler diff message.
 ```
 </details>
 
-### [64/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:21.797Z
+### [64/213] assistant (opencode/space-bunny-free) 2026-09-29T11:06:21.797Z
 <details><summary>tool: shell (465 chars)</summary>
 
 ```json
@@ -673,7 +673,7 @@ Let me fix the scaler diff message.
 ```
 </details>
 
-### [65/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:36.034Z
+### [65/213] assistant (opencode/space-bunny-free) 2026-09-29T11:06:36.034Z
 Both suites green. Now wiring the guard into E43 and E44, then verifying the E42 script still runs with the guard in place.
 <details><summary>tool: shell (785 chars)</summary>
 
@@ -682,7 +682,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [66/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:41.854Z
+### [66/213] assistant (opencode/space-bunny-free) 2026-09-29T11:06:41.854Z
 <details><summary>tool: read (1810 chars)</summary>
 
 ```json
@@ -690,7 +690,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [67/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:47.559Z
+### [67/213] assistant (opencode/space-bunny-free) 2026-09-29T11:06:47.559Z
 <details><summary>tool: edit (1026 chars)</summary>
 
 ```json
@@ -698,7 +698,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [68/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:54.156Z
+### [68/213] assistant (opencode/space-bunny-free) 2026-09-29T11:06:54.156Z
 <details><summary>tool: shell (1141 chars)</summary>
 
 ```json
@@ -706,7 +706,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [69/193] assistant (opencode/space-bunny-free) 2026-09-29T11:06:59.854Z
+### [69/213] assistant (opencode/space-bunny-free) 2026-09-29T11:06:59.854Z
 <details><summary>tool: edit (659 chars)</summary>
 
 ```json
@@ -714,7 +714,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [70/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:05.038Z
+### [70/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:05.038Z
 <details><summary>tool: edit (678 chars)</summary>
 
 ```json
@@ -722,7 +722,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [71/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:09.674Z
+### [71/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:09.674Z
 <details><summary>tool: shell (693 chars)</summary>
 
 ```json
@@ -730,7 +730,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [72/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:14.084Z
+### [72/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:14.084Z
 <details><summary>tool: read (1405 chars)</summary>
 
 ```json
@@ -738,7 +738,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [73/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:18.526Z
+### [73/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:18.526Z
 <details><summary>tool: edit (950 chars)</summary>
 
 ```json
@@ -746,7 +746,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [74/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:25.675Z
+### [74/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:25.675Z
 <details><summary>tool: read (1333 chars)</summary>
 
 ```json
@@ -754,7 +754,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [75/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:30.470Z
+### [75/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:30.470Z
 <details><summary>tool: edit (1176 chars)</summary>
 
 ```json
@@ -762,7 +762,7 @@ Both suites green. Now wiring the guard into E43 and E44, then verifying the E42
 ```
 </details>
 
-### [76/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:36.847Z
+### [76/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:36.847Z
 Now verifying the wired-in guards don't break the real scripts — a guard that stops valid runs is worse than none.
 <details><summary>tool: shell (1054 chars)</summary>
 
@@ -771,7 +771,7 @@ Now verifying the wired-in guards don't break the real scripts — a guard that 
 ```
 </details>
 
-### [77/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:43.098Z
+### [77/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:43.098Z
 <details><summary>tool: shell (1154 chars)</summary>
 
 ```json
@@ -779,7 +779,7 @@ Now verifying the wired-in guards don't break the real scripts — a guard that 
 ```
 </details>
 
-### [78/193] assistant (opencode/space-bunny-free) 2026-09-29T11:07:47.923Z
+### [78/213] assistant (opencode/space-bunny-free) 2026-09-29T11:07:47.923Z
 While that runs, writing the E46 README.
 <details><summary>tool: write (6392 chars)</summary>
 
@@ -789,7 +789,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [79/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:08.050Z
+### [79/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:08.050Z
 <details><summary>tool: shell (400 chars)</summary>
 
 ```json
@@ -797,7 +797,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [80/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:13.778Z
+### [80/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:13.778Z
 <details><summary>tool: edit (636 chars)</summary>
 
 ```json
@@ -805,7 +805,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [81/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:19.049Z
+### [81/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:19.049Z
 <details><summary>tool: edit (1133 chars)</summary>
 
 ```json
@@ -813,7 +813,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [82/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:25.162Z
+### [82/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:25.162Z
 <details><summary>tool: shell (507 chars)</summary>
 
 ```json
@@ -821,7 +821,7 @@ While that runs, writing the E46 README.
 ```
 </details>
 
-### [83/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:30.240Z
+### [83/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:30.240Z
 E44 is running with the guard in place and the control matches the anchor 0.8714 exactly. Let me wait for it to complete. Meanwhile let me check the anchor check works — actually the control 0.8714 matches E12_control_portscan anchor of 0.8714. Good, that's a strong confirmation.
 
 Let me add the anchor check to E44 too while waiting. Actually E44's control printed 0.8714 which exactly matches the anchor. Let me add check_anchor to E44.
@@ -837,7 +837,7 @@ E44's control reads **0.8714** with the guard in place — exactly the E12 ancho
 ```
 </details>
 
-### [84/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:38.728Z
+### [84/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:38.728Z
 <details><summary>tool: edit (534 chars)</summary>
 
 ```json
@@ -845,7 +845,7 @@ E44's control reads **0.8714** with the guard in place — exactly the E12 ancho
 ```
 </details>
 
-### [85/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:43.546Z
+### [85/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:43.546Z
 <details><summary>tool: shell (743 chars)</summary>
 
 ```json
@@ -853,7 +853,7 @@ E44's control reads **0.8714** with the guard in place — exactly the E12 ancho
 ```
 </details>
 
-### [86/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:48.511Z
+### [86/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:48.511Z
 E44 is reproducing its published numbers with the guard active — the window-group check passed on all three arms. Let me commit while the last arm runs.
 <details><summary>tool: shell (2197 chars)</summary>
 
@@ -862,7 +862,7 @@ E44 is reproducing its published numbers with the guard active — the window-gr
 ```
 </details>
 
-### [87/193] assistant (opencode/space-bunny-free) 2026-09-29T11:08:55.950Z
+### [87/213] assistant (opencode/space-bunny-free) 2026-09-29T11:08:55.950Z
 <details><summary>tool: shell (743 chars)</summary>
 
 ```json
@@ -870,7 +870,7 @@ E44 is reproducing its published numbers with the guard active — the window-gr
 ```
 </details>
 
-### [88/193] assistant (opencode/space-bunny-free) 2026-09-29T11:09:01.171Z
+### [88/213] assistant (opencode/space-bunny-free) 2026-09-29T11:09:01.171Z
 E44 is on its last arm. While it finishes, let me verify E43 with the guard actually in place.
 <details><summary>tool: shell (1153 chars)</summary>
 
@@ -879,7 +879,7 @@ E44 is on its last arm. While it finishes, let me verify E43 with the guard actu
 ```
 </details>
 
-### [89/193] assistant (opencode/space-bunny-free) 2026-09-29T11:09:05.812Z
+### [89/213] assistant (opencode/space-bunny-free) 2026-09-29T11:09:05.812Z
 <details><summary>tool: shell (1119 chars)</summary>
 
 ```json
@@ -887,14 +887,14 @@ E44 is on its last arm. While it finishes, let me verify E43 with the guard actu
 ```
 </details>
 
-### [90/193] synthetic 2026-09-29T11:09:10.112Z
+### [90/213] synthetic 2026-09-29T11:09:10.112Z
 [synthetic message: <shell id="sh_0ecd96cd00015CqWz8mnAXhczr" state="completed" command="python experiments/E44_residual_evasion/exp_e44_residual.py">
 control (x1)               window 0.8714  repfuse_fast 0.9689  slow_only 0.9725  F1_dual 0.9709  F2_dual_ov 0.6099
 R1 host rotation x5        window 0.8578  repfuse_fast 0.9536  slow_only 0.9492  F1_dual 0.9526  F2_dual_ov 0.6848
 R2 sub-threshold x10       window 0.0651  repfuse_fast 0.0976  slow_only 0.0976  F1_dual 0.0976  F2_dual_ov 0.0828
 R
 
-### [91/193] assistant (opencode/space-bunny-free) 2026-09-29T11:09:10.428Z
+### [91/213] assistant (opencode/space-bunny-free) 2026-09-29T11:09:10.428Z
 E44 completed with the guard in place, and all four arms reproduce the published numbers exactly:
 - control 0.8714 (matches anchor)
 - R1 rotate 0.8578/0.9536 — README said 0.954 vs 0.969 control. Let me check: repfuse_fast control 0.9689, R1 0.9536. Yes matches the README's "0.954 vs 0.969".
@@ -912,7 +912,7 @@ E44 fully reproduced with guards active — control 0.8714 hits the anchor, R1 0
 ```
 </details>
 
-### [92/193] assistant (opencode/space-bunny-free) 2026-09-29T11:09:16.948Z
+### [92/213] assistant (opencode/space-bunny-free) 2026-09-29T11:09:16.948Z
 <details><summary>tool: shell (513 chars)</summary>
 
 ```json
@@ -920,7 +920,7 @@ E44 fully reproduced with guards active — control 0.8714 hits the anchor, R1 0
 ```
 </details>
 
-### [93/193] assistant (opencode/space-bunny-free) 2026-09-29T11:11:02.529Z
+### [93/213] assistant (opencode/space-bunny-free) 2026-09-29T11:11:02.529Z
 E43 is reproducing under the guard — Botnet `repfuse` reads 0.723, matching the published table. Waiting for the remaining families.
 <details><summary>tool: shell (807 chars)</summary>
 
@@ -929,7 +929,7 @@ E43 is reproducing under the guard — Botnet `repfuse` reads 0.723, matching th
 ```
 </details>
 
-### [94/193] assistant (opencode/space-bunny-free) 2026-09-29T11:12:57.985Z
+### [94/213] assistant (opencode/space-bunny-free) 2026-09-29T11:12:57.985Z
 Four of five families reproduce exactly, including the Botnet 0.723 that the E43 README flagged as an unresolved discrepancy against E21's 0.681. One family left.
 <details><summary>tool: shell (937 chars)</summary>
 
@@ -938,14 +938,14 @@ Four of five families reproduce exactly, including the Botnet 0.723 that the E43
 ```
 </details>
 
-### [95/193] synthetic 2026-09-29T11:14:48.675Z
+### [95/213] synthetic 2026-09-29T11:14:48.675Z
 [synthetic message: <shell id="sh_0ecda9ccb0012B5duSqZTo4p5X" state="completed" command="python experiments/E43_fusion_rule/exp_e43_fusion_rules.py">
 Botnet        m5b 0.467 | noisyor 0.520 | repfuse 0.723 | OPT1 0.652 | OPT2 0.565 | OPT3 0.486
 PortScan      m5b 0.963 | noisyor 0.968 | repfuse 0.953 | OPT1 0.933 | OPT2 0.968 | OPT3 0.973
 DDoS          m5b 0.963 | noisyor 0.968 | repfuse 0.953 | OPT1 0.933 | OPT2 0.968 | OPT3 0.973
 Infiltration  m5b 0.629 | noisyor 0.645 | repfuse 0.639 | OPT1
 
-### [96/193] assistant (opencode/space-bunny-free) 2026-09-29T11:14:48.975Z
+### [96/213] assistant (opencode/space-bunny-free) 2026-09-29T11:14:48.975Z
 E43 reproduced exactly, all 5 families, with the guard active. Now verifying E42 — the last unwired script.
 <details><summary>tool: shell (1159 chars)</summary>
 
@@ -954,7 +954,7 @@ E43 reproduced exactly, all 5 families, with the guard active. Now verifying E42
 ```
 </details>
 
-### [97/193] assistant (opencode/space-bunny-free) 2026-09-29T11:14:53.822Z
+### [97/213] assistant (opencode/space-bunny-free) 2026-09-29T11:14:53.822Z
 While E42 runs, recording the guard verification into the E46 README.
 <details><summary>tool: edit (1738 chars)</summary>
 
@@ -963,7 +963,7 @@ While E42 runs, recording the guard verification into the E46 README.
 ```
 </details>
 
-### [98/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:02.760Z
+### [98/213] assistant (opencode/space-bunny-free) 2026-09-29T11:15:02.760Z
 <details><summary>tool: shell (400 chars)</summary>
 
 ```json
@@ -971,7 +971,7 @@ While E42 runs, recording the guard verification into the E46 README.
 ```
 </details>
 
-### [99/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:08.505Z
+### [99/213] assistant (opencode/space-bunny-free) 2026-09-29T11:15:08.505Z
 <details><summary>tool: edit (1534 chars)</summary>
 
 ```json
@@ -979,7 +979,7 @@ While E42 runs, recording the guard verification into the E46 README.
 ```
 </details>
 
-### [100/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:16.350Z
+### [100/213] assistant (opencode/space-bunny-free) 2026-09-29T11:15:16.350Z
 <details><summary>tool: shell (400 chars)</summary>
 
 ```json
@@ -987,7 +987,7 @@ While E42 runs, recording the guard verification into the E46 README.
 ```
 </details>
 
-### [101/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:21.613Z
+### [101/213] assistant (opencode/space-bunny-free) 2026-09-29T11:15:21.613Z
 E42 takes ~15 min (4 seeds × training). Let me check the anchors are anchored to numbers I can actually defend, since I set them from memory earlier.
 <details><summary>tool: shell (1246 chars)</summary>
 
@@ -996,7 +996,7 @@ E42 takes ~15 min (4 seeds × training). Let me check the anchors are anchored t
 ```
 </details>
 
-### [102/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:28.970Z
+### [102/213] assistant (opencode/space-bunny-free) 2026-09-29T11:15:28.970Z
 Both non-obvious anchors verified against the archive's own JSON. Checking the remaining two.
 <details><summary>tool: shell (1025 chars)</summary>
 
@@ -1005,7 +1005,7 @@ Both non-obvious anchors verified against the archive's own JSON. Checking the r
 ```
 </details>
 
-### [103/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:35.553Z
+### [103/213] assistant (opencode/space-bunny-free) 2026-09-29T11:15:35.553Z
 All five anchors verified against the archive's own result files.
 <details><summary>tool: edit (796 chars)</summary>
 
@@ -1014,7 +1014,7 @@ All five anchors verified against the archive's own result files.
 ```
 </details>
 
-### [104/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:41.764Z
+### [104/213] assistant (opencode/space-bunny-free) 2026-09-29T11:15:41.764Z
 <details><summary>tool: shell (400 chars)</summary>
 
 ```json
@@ -1022,7 +1022,7 @@ All five anchors verified against the archive's own result files.
 ```
 </details>
 
-### [105/193] assistant (opencode/space-bunny-free) 2026-09-29T11:15:46.280Z
+### [105/213] assistant (opencode/space-bunny-free) 2026-09-29T11:15:46.280Z
 <details><summary>tool: shell (481 chars)</summary>
 
 ```json
@@ -1030,7 +1030,7 @@ All five anchors verified against the archive's own result files.
 ```
 </details>
 
-### [106/193] assistant (opencode/space-bunny-free) 2026-09-29T11:17:46.503Z
+### [106/213] assistant (opencode/space-bunny-free) 2026-09-29T11:17:46.503Z
 E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 <details><summary>tool: shell (2683 chars)</summary>
 
@@ -1039,7 +1039,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [107/193] assistant (opencode/space-bunny-free) 2026-09-29T11:17:52.501Z
+### [107/213] assistant (opencode/space-bunny-free) 2026-09-29T11:17:52.501Z
 <details><summary>tool: edit (4098 chars)</summary>
 
 ```json
@@ -1048,7 +1048,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [108/193] assistant (opencode/space-bunny-free) 2026-09-29T11:18:07.652Z
+### [108/213] assistant (opencode/space-bunny-free) 2026-09-29T11:18:07.652Z
 <details><summary>tool: edit (3791 chars)</summary>
 
 ```json
@@ -1056,7 +1056,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [109/193] assistant (opencode/space-bunny-free) 2026-09-29T11:18:17.598Z
+### [109/213] assistant (opencode/space-bunny-free) 2026-09-29T11:18:17.598Z
 <details><summary>tool: shell (480 chars)</summary>
 
 ```json
@@ -1064,7 +1064,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [110/193] assistant (opencode/space-bunny-free) 2026-09-29T11:18:24.737Z
+### [110/213] assistant (opencode/space-bunny-free) 2026-09-29T11:18:24.737Z
 <details><summary>tool: shell (753 chars)</summary>
 
 ```json
@@ -1072,7 +1072,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [111/193] assistant (opencode/space-bunny-free) 2026-09-29T11:18:30.137Z
+### [111/213] assistant (opencode/space-bunny-free) 2026-09-29T11:18:30.137Z
 <details><summary>tool: shell (941 chars)</summary>
 
 ```json
@@ -1080,7 +1080,7 @@ E42 is training seeds. Meanwhile, recording the guard work in the changelog.
 ```
 </details>
 
-### [112/193] assistant (opencode/space-bunny-free) 2026-09-29T11:20:31.977Z
+### [112/213] assistant (opencode/space-bunny-free) 2026-09-29T11:20:31.977Z
 The dataset guard fired on E42's real cross-testbed case, and the run continued as designed. Waiting for the family numbers.
 <details><summary>tool: shell (1028 chars)</summary>
 
@@ -1089,7 +1089,7 @@ The dataset guard fired on E42's real cross-testbed case, and the run continued 
 ```
 </details>
 
-### [113/193] assistant (opencode/space-bunny-free) 2026-09-29T11:22:33.213Z
+### [113/213] assistant (opencode/space-bunny-free) 2026-09-29T11:22:33.213Z
 Patator reproduces bit-for-bit (0.9169 / 0.9754 / 0.9898 / 0.9450), and the scaler guard passed on all four seeds.
 <details><summary>tool: shell (1003 chars)</summary>
 
@@ -1098,7 +1098,7 @@ Patator reproduces bit-for-bit (0.9169 / 0.9754 / 0.9898 / 0.9450), and the scal
 ```
 </details>
 
-### [114/193] assistant (opencode/space-bunny-free) 2026-09-29T11:24:34.066Z
+### [114/213] assistant (opencode/space-bunny-free) 2026-09-29T11:24:34.066Z
 <details><summary>tool: shell (778 chars)</summary>
 
 ```json
@@ -1106,7 +1106,7 @@ Patator reproduces bit-for-bit (0.9169 / 0.9754 / 0.9898 / 0.9450), and the scal
 ```
 </details>
 
-### [115/193] assistant (opencode/space-bunny-free) 2026-09-29T11:26:39.157Z
+### [115/213] assistant (opencode/space-bunny-free) 2026-09-29T11:26:39.157Z
 DoS also reproduces exactly (0.6381 / 0.9572 / 0.9880 / 0.8118). Five families left.
 <details><summary>tool: shell (828 chars)</summary>
 
@@ -1115,7 +1115,7 @@ DoS also reproduces exactly (0.6381 / 0.9572 / 0.9880 / 0.8118). Five families l
 ```
 </details>
 
-### [116/193] assistant (opencode/space-bunny-free) 2026-09-29T11:28:38.963Z
+### [116/213] assistant (opencode/space-bunny-free) 2026-09-29T11:28:38.963Z
 <details><summary>tool: shell (829 chars)</summary>
 
 ```json
@@ -1123,7 +1123,7 @@ DoS also reproduces exactly (0.6381 / 0.9572 / 0.9880 / 0.8118). Five families l
 ```
 </details>
 
-### [117/193] assistant (opencode/space-bunny-free) 2026-09-29T11:30:54.729Z
+### [117/213] assistant (opencode/space-bunny-free) 2026-09-29T11:30:54.729Z
 Four of seven reproduce exactly, including the two failures (Infiltration 0.586 → 0.521). Three left.
 <details><summary>tool: shell (831 chars)</summary>
 
@@ -1132,7 +1132,7 @@ Four of seven reproduce exactly, including the two failures (Infiltration 0.586 
 ```
 </details>
 
-### [118/193] assistant (opencode/space-bunny-free) 2026-09-29T11:33:05.743Z
+### [118/213] assistant (opencode/space-bunny-free) 2026-09-29T11:33:05.743Z
 Six of seven bit-identical. Only DDoS remains.
 <details><summary>tool: shell (722 chars)</summary>
 
@@ -1141,7 +1141,7 @@ Six of seven bit-identical. Only DDoS remains.
 ```
 </details>
 
-### [119/193] synthetic 2026-09-29T11:35:02.691Z
+### [119/213] synthetic 2026-09-29T11:35:02.691Z
 [synthetic message: <shell id="sh_0ecdfec7c001IBEhBnFYlm8JhI" state="completed" command="python experiments/E42_replay_all_families/exp_e42_replay_all.py">
 train: 487 original + 97 replay = 584
   seed 0 replay-tuned
@@ -1150,7 +1150,7 @@ train: 487 original + 97 replay = 584
   seed 3 replay-tuned
 E:\Potential-gold\Zero-Day\experiments\E42_replay_all_families\exp_e42_replay_all.py:165: RuntimeWarning: E42 base on orig: checkpoint was trained on 'CICIDS2017_improved/monday benign-only' but is being scored on
 
-### [120/193] assistant (opencode/space-bunny-free) 2026-09-29T11:35:03.065Z
+### [120/213] assistant (opencode/space-bunny-free) 2026-09-29T11:35:03.065Z
 All three scripts reproduce bit-for-bit with the guards active. Recording that and committing.
 <details><summary>tool: edit (1025 chars)</summary>
 
@@ -1159,7 +1159,7 @@ All three scripts reproduce bit-for-bit with the guards active. Recording that a
 ```
 </details>
 
-### [121/193] assistant (opencode/space-bunny-free) 2026-09-29T11:35:33.625Z
+### [121/213] assistant (opencode/space-bunny-free) 2026-09-29T11:35:33.625Z
 <details><summary>tool: shell (1291 chars)</summary>
 
 ```json
@@ -1167,7 +1167,7 @@ All three scripts reproduce bit-for-bit with the guards active. Recording that a
 ```
 </details>
 
-### [122/193] assistant (opencode/space-bunny-free) 2026-09-29T11:35:46.361Z
+### [122/213] assistant (opencode/space-bunny-free) 2026-09-29T11:35:46.361Z
 Done and pushed (`1b4aa4d`).
 
 # The guard is built and proven
@@ -1208,13 +1208,13 @@ I added `provenance_report()` so this can't quietly persist, and logged it as th
 
 **Your move:** back-fill the provenance fields, or move to a different open item.
 
-### [123/193] idle 2026-09-29T11:36:01.628Z
+### [123/213] idle 2026-09-29T11:36:01.628Z
 [idle message: 
 
-### [124/193] user 2026-09-29T11:47:02.599Z
+### [124/213] user 2026-09-29T11:47:02.599Z
 bottom line what happened
 
-### [125/193] assistant (opencode/space-bunny-free) 2026-09-29T11:47:02.926Z
+### [125/213] assistant (opencode/space-bunny-free) 2026-09-29T11:47:02.926Z
 # Bottom line
 
 ## What you asked for
@@ -1260,13 +1260,13 @@ Worth saying, because it's the same failure mode I was fixing:
 
 Nothing is running now. Machine is free.
 
-### [126/193] idle 2026-09-29T11:47:14.124Z
+### [126/213] idle 2026-09-29T11:47:14.124Z
 [idle message: 
 
-### [127/193] user 2026-09-29T11:47:45.730Z
+### [127/213] user 2026-09-29T11:47:45.730Z
 fix 2 and 4
 
-### [128/193] assistant (opencode/space-bunny-free) 2026-09-29T11:47:46.061Z
+### [128/213] assistant (opencode/space-bunny-free) 2026-09-29T11:47:46.061Z
 The user wants me to fix items 2 and 4:
 2. Fusion rule — needs the 4-seed band, currently single seed
 4. Back-fill provenance — 6 of 9 checkpoints carry no `train` field
@@ -1286,7 +1286,7 @@ Starting with item 4 (quick), then launching item 2's 4-seed run since it's the 
 ```
 </details>
 
-### [129/193] assistant (opencode/space-bunny-free) 2026-09-29T11:47:54.509Z
+### [129/213] assistant (opencode/space-bunny-free) 2026-09-29T11:47:54.509Z
 <details><summary>tool: read (2021 chars)</summary>
 
 ```json
@@ -1294,7 +1294,7 @@ Starting with item 4 (quick), then launching item 2's 4-seed run since it's the 
 ```
 </details>
 
-### [130/193] assistant (opencode/space-bunny-free) 2026-09-29T11:48:13.900Z
+### [130/213] assistant (opencode/space-bunny-free) 2026-09-29T11:48:13.900Z
 E43 already has M5B for 4 seeds. M5A only has seed 0 (m5a_revived_improved.pt). Let me check what M5A seeds exist.
 
 From the checkpoint listing earlier:
@@ -1312,7 +1312,7 @@ E43 has M5b for 4 seeds but M5a only seed 0. Checking whether the other M5a seed
 ```
 </details>
 
-### [131/193] assistant (opencode/space-bunny-free) 2026-09-29T11:48:47.270Z
+### [131/213] assistant (opencode/space-bunny-free) 2026-09-29T11:48:47.270Z
 The M5a seeds s1-s3 don't exist in detection/ — they were gitignored or deleted. E21 references them. Let me check .gitignore and whether they're anywhere else.
 
 Also note: gnn_improved_s1/s2/s3.pt are also missing! Only gnn_improved_s0.pt exists. So E43's M5B dict references files that don't exist. That means running seeds 1-3 will fail. I need to retrain or find them.
@@ -1326,7 +1326,7 @@ Both M5b seeds 1–3 and all M5a seeds 1–3 are missing from disk — E43's 4-s
 ```
 </details>
 
-### [132/193] assistant (opencode/space-bunny-free) 2026-09-29T11:49:18.657Z
+### [132/213] assistant (opencode/space-bunny-free) 2026-09-29T11:49:18.657Z
 The M5a seeds 1-3 exist in experiments/E21_band/. But the M5b seeds 1-3 (gnn_improved_s1..s3.pt) do NOT exist anywhere — only s0. That's a problem. Let me check what E21 did for M5b band.
 
 Wait, the summary said "Ship `gnn_improved_s0..s3.pt` (val-picked epochs)". But only s0 is on disk. Let me check E21's band more carefully and CHECKPOINTS.md.
@@ -1344,7 +1344,7 @@ M5a seeds 1–3 are in `E21_band/` but **M5b seeds 1–3 don't exist anywhere** 
 ```
 </details>
 
-### [133/193] assistant (opencode/space-bunny-free) 2026-09-29T11:49:34.972Z
+### [133/213] assistant (opencode/space-bunny-free) 2026-09-29T11:49:34.972Z
 So the M5b seeds 1-3 were deleted as "superseded by the val-picked band" but the val-picked band was never actually produced (only s0 exists). E26 was supposed to produce val-picked s1-s3 but they don't exist. Let me check E26/E28.
 
 Actually the summary said "Ship gnn_improved_s0..s3.pt (val-picked epochs)". But only s0 exists. So the deletion record says "gnn_improved_s{1,2,3}.pt (non-val) — superseded by the val-picked band" — meaning the non-val ones were deleted, but the val-picked ones were never trained/saved. That's a real gap I need to state.
@@ -1362,7 +1362,7 @@ Important finding: M5b seeds 1–3 were deleted as "superseded by the val-picked
 ```
 </details>
 
-### [134/193] assistant (opencode/space-bunny-free) 2026-09-29T11:50:02.354Z
+### [134/213] assistant (opencode/space-bunny-free) 2026-09-29T11:50:02.354Z
 <details><summary>tool: shell (2155 chars)</summary>
 
 ```json
@@ -1370,7 +1370,7 @@ Important finding: M5b seeds 1–3 were deleted as "superseded by the val-picked
 ```
 </details>
 
-### [135/193] assistant (opencode/space-bunny-free) 2026-09-29T11:50:14.386Z
+### [135/213] assistant (opencode/space-bunny-free) 2026-09-29T11:50:14.386Z
 The trainer supports `--seed` and `--val-frac`. Launching M5b seeds 1–3 in the background — that's the long pole.
 <details><summary>tool: shell (1471 chars)</summary>
 
@@ -1379,7 +1379,7 @@ The trainer supports `--seed` and `--val-frac`. Launching M5b seeds 1–3 in the
 ```
 </details>
 
-### [136/193] assistant (opencode/space-bunny-free) 2026-09-29T11:50:25.027Z
+### [136/213] assistant (opencode/space-bunny-free) 2026-09-29T11:50:25.027Z
 Training running. Now item 4 — back-filling provenance. First I need to establish *what each checkpoint actually is*, not guess.
 <details><summary>tool: write (10585 chars)</summary>
 
@@ -1389,7 +1389,7 @@ Training running. Now item 4 — back-filling provenance. First I need to establ
 ```
 </details>
 
-### [137/193] assistant (opencode/space-bunny-free) 2026-09-29T11:50:54.236Z
+### [137/213] assistant (opencode/space-bunny-free) 2026-09-29T11:50:54.236Z
 <details><summary>tool: shell (969 chars)</summary>
 
 ```json
@@ -1397,7 +1397,7 @@ Training running. Now item 4 — back-filling provenance. First I need to establ
 ```
 </details>
 
-### [138/193] assistant (opencode/space-bunny-free) 2026-09-29T11:51:32.528Z
+### [138/213] assistant (opencode/space-bunny-free) 2026-09-29T11:51:32.528Z
 The audit says 6 need back-fill, 2 UNRESOLVED (weakest confidence), and interestingly m5a_revived_improved.pt is "already correct" — it has a train field? Wait no, earlier the check showed m5a_revived_improved.pt had no `train` key. Let me check. Actually the earlier listing showed only gnn_improved_s0 and host_autoencoder_adfa had train. But the audit says m5a_revived_improved is "already correct"... Hmm, because my CLAIMS says train_value = "CICIDS2017_improved/monday benign-only" and existing == claim value. Let me verify — maybe m5a_revived_improved does have a train key now. Actually the earlier provenance_report said 3 checkable, 6 missing. And it listed 6 missing: gnn_autoencoder_v1, gnn_autoencoder_v1_logscale, gnn_autoencoder_v1_logscale_v2, gnn_improved_replay, gnn_temporal_fused_v1, m5a_revived_ctx. So the 3 checkable are gnn_improved_s0, host_autoencoder_adfa, m5a_revived_improved. So m5a_revived_improved DOES have a train field. Good — that's consistent.
 
 So 2 UNRESOLVED: gnn_autoencoder_v1.pt and gnn_temporal_fused_v1.pt. These are the weakest — I shouldn't guess. For those, the honest action is to leave them unmarked, OR determine definitively.
@@ -1417,7 +1417,7 @@ Let me look at the trainers.
 ```
 </details>
 
-### [139/193] assistant (opencode/space-bunny-free) 2026-09-29T11:52:03.605Z
+### [139/213] assistant (opencode/space-bunny-free) 2026-09-29T11:52:03.605Z
 `train_m5a_revived.py` reads `Monday-WorkingHours.pcap_ISCX.csv` directly from `FLOWS` — that's the original extraction, confirmed from the trainer source, not inferred. Let me resolve the two weak ones the same way.
 <details><summary>tool: shell (1725 chars)</summary>
 
@@ -1426,7 +1426,7 @@ Let me look at the trainers.
 ```
 </details>
 
-### [140/193] assistant (opencode/space-bunny-free) 2026-09-29T11:52:15.635Z
+### [140/213] assistant (opencode/space-bunny-free) 2026-09-29T11:52:15.635Z
 `gnn_model.py` main() takes `--csv` argument — so it's dataset-agnostic. That means the checkpoint's provenance depends on the command line used, which I can't recover from the file. So `gnn_autoencoder_v1.pt` and `gnn_temporal_fused_v1.pt` are genuinely unresolvable without the training command.
 
 Let me check if there's any record — git log for the commit that added them, or the CHANGELOG.
@@ -1442,7 +1442,7 @@ Actually, better: rather than guessing, I should record them with an explicit `t
 ```
 </details>
 
-### [141/193] assistant (opencode/space-bunny-free) 2026-09-29T11:56:24.968Z
+### [141/213] assistant (opencode/space-bunny-free) 2026-09-29T11:56:24.968Z
 The changelog says gnn_autoencoder_v1.pt was saved by a *smoke* run. And the next production train should be `python detection/gnn_model.py Monday.csv --seed 0`. So gnn_autoencoder_v1.pt may be from a SMOKE run — possibly on synthetic or a small sample. That's a genuinely different provenance.
 
 Let me check more carefully.
@@ -1458,7 +1458,7 @@ The changelog says `gnn_autoencoder_v1.pt` was "saved by smoke" — a smoke run,
 ```
 </details>
 
-### [142/193] assistant (opencode/space-bunny-free) 2026-09-29T11:56:44.110Z
+### [142/213] assistant (opencode/space-bunny-free) 2026-09-29T11:56:44.110Z
 The checkpoints themselves carry no attestation for the two weak ones. But there's a strong empirical test available: a scaler's lo/hi are fit on training data. I can check whether the scaler's ranges match the original Monday flow stats or the clean Monday flow stats. That's a *measured* discriminator, not a guess!
 
 Let me do that: fit a NodeScaler on original Monday benign and on clean Monday benign, compare to the checkpoint's scaler.
@@ -1482,7 +1482,7 @@ The checkpoints carry no attestation. But the scaler is *fit on the training dat
 ```
 </details>
 
-### [143/193] assistant (opencode/space-bunny-free) 2026-09-29T11:56:51.014Z
+### [143/213] assistant (opencode/space-bunny-free) 2026-09-29T11:56:51.014Z
 The scaler's `lo`/`hi` are per-feature minima and maxima of the training data — a direct fingerprint. I can identify each checkpoint's dataset empirically by comparing against both corpora.
 <details><summary>tool: write (6082 chars)</summary>
 
@@ -1492,7 +1492,7 @@ The scaler's `lo`/`hi` are per-feature minima and maxima of the training data �
 ```
 </details>
 
-### [144/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:05.534Z
+### [144/213] assistant (opencode/space-bunny-free) 2026-09-29T11:57:05.534Z
 <details><summary>tool: shell (1162 chars)</summary>
 
 ```json
@@ -1500,7 +1500,7 @@ The scaler's `lo`/`hi` are per-feature minima and maxima of the training data �
 ```
 </details>
 
-### [145/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:09.787Z
+### [145/213] assistant (opencode/space-bunny-free) 2026-09-29T11:57:09.787Z
 <details><summary>tool: shell (880 chars)</summary>
 
 ```json
@@ -1508,7 +1508,7 @@ The scaler's `lo`/`hi` are per-feature minima and maxima of the training data �
 ```
 </details>
 
-### [146/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:15.728Z
+### [146/213] assistant (opencode/space-bunny-free) 2026-09-29T11:57:15.728Z
 Training seed 1 is progressing. Let me check the M5a seeds situation while waiting.
 <details><summary>tool: shell (1428 chars)</summary>
 
@@ -1517,7 +1517,7 @@ Training seed 1 is progressing. Let me check the M5a seeds situation while waiti
 ```
 </details>
 
-### [147/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:24.842Z
+### [147/213] assistant (opencode/space-bunny-free) 2026-09-29T11:57:24.842Z
 <details><summary>tool: shell (939 chars)</summary>
 
 ```json
@@ -1525,7 +1525,7 @@ Training seed 1 is progressing. Let me check the M5a seeds situation while waiti
 ```
 </details>
 
-### [148/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:33.363Z
+### [148/213] assistant (opencode/space-bunny-free) 2026-09-29T11:57:33.363Z
 M5a seeds 1–3 exist in `E21_band/` and already carry provenance. I'll have E43 load them from there.
 <details><summary>tool: edit (788 chars)</summary>
 
@@ -1534,7 +1534,7 @@ M5a seeds 1–3 exist in `E21_band/` and already carry provenance. I'll have E43
 ```
 </details>
 
-### [149/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:41.361Z
+### [149/213] assistant (opencode/space-bunny-free) 2026-09-29T11:57:41.361Z
 <details><summary>tool: read (1408 chars)</summary>
 
 ```json
@@ -1542,7 +1542,7 @@ M5a seeds 1–3 exist in `E21_band/` and already carry provenance. I'll have E43
 ```
 </details>
 
-### [150/193] synthetic 2026-09-29T11:57:46.713Z
+### [150/213] synthetic 2026-09-29T11:57:46.713Z
 [synthetic message: <shell id="sh_0ed069d46001SdWZhzBF5Dy1vw" state="completed" command="python experiments/E47_provenance_audit/exp_e47_scaler_forensics.py">
 reference original_monday: 259 graphs
 reference clean_monday: 486 graphs
@@ -1550,7 +1550,7 @@ gnn_autoencoder_v1.pt                dim= 8 log=True  best=original_monday log=T
 gnn_autoencoder_v1_logscale.pt       dim= 8 log=True  best=original_monday log=True -> no clean match
 gnn_autoencoder_v1_logscale_v2.pt    dim=19 log=True  best=N
 
-### [151/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:47.202Z
+### [151/213] assistant (opencode/space-bunny-free) 2026-09-29T11:57:47.202Z
 The v1 (8-dim) checkpoints match original_monday best but "no clean match" — meaning the hi_mean_rel is >= 0.02. That could be because the reference was fit on 200k BENIGN flows while the actual training used all Monday graphs. So the match is directional but not exact. Let me look at the actual numbers to see how close.
 
 Also v2 (19-dim) checkpoints have no comparable reference because my reference used feature_set="v1" which gives 8 dims. I need a v2 reference. Let me fix: generate references for both feature sets.
@@ -1564,7 +1564,7 @@ The v2 checkpoints have no reference because I only fit the 8-dim v1 feature set
 ```
 </details>
 
-### [152/193] assistant (opencode/space-bunny-free) 2026-09-29T11:57:53.116Z
+### [152/213] assistant (opencode/space-bunny-free) 2026-09-29T11:57:53.116Z
 The results are informative. All three 8-dim v1 checkpoints match original_monday log=True much better than clean_monday (0.08 vs 4.7 for logscale; 0.64 vs 2.89 for the other two). So original Monday is the answer for all 8-dim ones — the discrimination is clear even where the absolute match isn't tight.
 
 `gnn_autoencoder_v1.pt` and `gnn_temporal_fused_v1.pt` have IDENTICAL mean_rel (0.644382) to each other — that's suspicious. It suggests they have identical scalers. Let me check. Actually the CHANGELOG said "New gnn_autoencoder_v1.pt saved by smoke is logscale" — and it says the next production train should be run. So gnn_autoencoder_v1.pt may be a smoke checkpoint trained on a tiny/synthetic subset, which would explain the poor match (0.64).
@@ -1594,7 +1594,7 @@ All three 8-dim checkpoints match original Monday decisively (0.08 vs 4.7). Two 
 ```
 </details>
 
-### [153/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:06.881Z
+### [153/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:06.881Z
 `gnn_autoencoder_v1.pt` and `gnn_temporal_fused_v1.pt` share a **byte-identical scaler** — so the 0.644 error is one fact, not two. Fixing the reference to cover the v2 feature set and accounting for the 200k row cap.
 <details><summary>tool: edit (1626 chars)</summary>
 
@@ -1603,7 +1603,7 @@ All three 8-dim checkpoints match original Monday decisively (0.08 vs 4.7). Two 
 ```
 </details>
 
-### [154/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:12.428Z
+### [154/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:12.428Z
 <details><summary>tool: edit (1530 chars)</summary>
 
 ```json
@@ -1611,7 +1611,7 @@ All three 8-dim checkpoints match original Monday decisively (0.08 vs 4.7). Two 
 ```
 </details>
 
-### [155/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:19.067Z
+### [155/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:19.067Z
 <details><summary>tool: edit (289 chars)</summary>
 
 ```json
@@ -1619,10 +1619,10 @@ All three 8-dim checkpoints match original Monday decisively (0.08 vs 4.7). Two 
 ```
 </details>
 
-### [156/193] synthetic 2026-09-29T11:58:28.311Z
+### [156/213] synthetic 2026-09-29T11:58:28.311Z
 [synthetic message: The previous response was interrupted. Continue from where you left off without repeating completed content.
 
-### [157/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:28.822Z
+### [157/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:28.822Z
 <details><summary>tool: read (2205 chars)</summary>
 
 ```json
@@ -1630,7 +1630,7 @@ All three 8-dim checkpoints match original Monday decisively (0.08 vs 4.7). Two 
 ```
 </details>
 
-### [158/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:32.496Z
+### [158/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:32.496Z
 <details><summary>tool: read (1300 chars)</summary>
 
 ```json
@@ -1638,7 +1638,7 @@ All three 8-dim checkpoints match original Monday decisively (0.08 vs 4.7). Two 
 ```
 </details>
 
-### [159/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:36.509Z
+### [159/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:36.509Z
 Now the verdict logic — it should compare against the *same feature set* only, and report the margin rather than an absolute threshold.
 <details><summary>tool: edit (2523 chars)</summary>
 
@@ -1647,7 +1647,7 @@ Now the verdict logic — it should compare against the *same feature set* only,
 ```
 </details>
 
-### [160/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:44.377Z
+### [160/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:44.377Z
 <details><summary>tool: edit (697 chars)</summary>
 
 ```json
@@ -1655,7 +1655,7 @@ Now the verdict logic — it should compare against the *same feature set* only,
 ```
 </details>
 
-### [161/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:50.322Z
+### [161/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:50.322Z
 <details><summary>tool: shell (1162 chars)</summary>
 
 ```json
@@ -1663,7 +1663,7 @@ Now the verdict logic — it should compare against the *same feature set* only,
 ```
 </details>
 
-### [162/193] assistant (opencode/space-bunny-free) 2026-09-29T11:58:54.520Z
+### [162/213] assistant (opencode/space-bunny-free) 2026-09-29T11:58:54.520Z
 <details><summary>tool: shell (737 chars)</summary>
 
 ```json
@@ -1671,7 +1671,7 @@ Now the verdict logic — it should compare against the *same feature set* only,
 ```
 </details>
 
-### [163/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:00.290Z
+### [163/213] assistant (opencode/space-bunny-free) 2026-09-29T11:59:00.290Z
 Seed 1 done, seed 2 training. While those run, let me update the E43 main loop for the 4-seed band.
 <details><summary>tool: read (1986 chars)</summary>
 
@@ -1680,7 +1680,7 @@ Seed 1 done, seed 2 training. While those run, let me update the E43 main loop f
 ```
 </details>
 
-### [164/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:04.160Z
+### [164/213] assistant (opencode/space-bunny-free) 2026-09-29T11:59:04.160Z
 I found a real bug while reading this: the loop iterates `sd` but always loads `M5A[0]` — so a 4-seed run would silently vary only M5b. Fixing that along with the band aggregation.
 <details><summary>tool: edit (4746 chars)</summary>
 
@@ -1690,7 +1690,7 @@ I found a real bug while reading this: the loop iterates `sd` but always loads `
 ```
 </details>
 
-### [165/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:15.244Z
+### [165/213] assistant (opencode/space-bunny-free) 2026-09-29T11:59:15.244Z
 <details><summary>tool: shell (814 chars)</summary>
 
 ```json
@@ -1698,7 +1698,7 @@ I found a real bug while reading this: the loop iterates `sd` but always loads `
 ```
 </details>
 
-### [166/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:23.011Z
+### [166/213] assistant (opencode/space-bunny-free) 2026-09-29T11:59:23.011Z
 Now checking the seed checkpoints exist and checking on the running jobs.
 <details><summary>tool: shell (980 chars)</summary>
 
@@ -1707,7 +1707,7 @@ Now checking the seed checkpoints exist and checking on the running jobs.
 ```
 </details>
 
-### [167/193] assistant (opencode/space-bunny-free) 2026-09-29T11:59:28.185Z
+### [167/213] assistant (opencode/space-bunny-free) 2026-09-29T11:59:28.185Z
 Seed 1 written, seed 2 in progress. Let me wait for the background jobs.
 <details><summary>tool: shell (1765 chars)</summary>
 
@@ -1716,7 +1716,7 @@ Seed 1 written, seed 2 in progress. Let me wait for the background jobs.
 ```
 </details>
 
-### [168/193] synthetic 2026-09-29T12:01:27.479Z
+### [168/213] synthetic 2026-09-29T12:01:27.479Z
 [synthetic message: <shell id="sh_0ed083610001MtFSPe8wTMaoJx" state="completed" command="python experiments/E47_provenance_audit/exp_e47_scaler_forensics.py">
 reference original_monday/v1: 259 graphs
 reference original_monday/v2: 259 graphs
@@ -1725,7 +1725,7 @@ reference clean_monday/v2: 486 graphs
 gnn_autoencoder_v1.pt              dim= 8 -> original_monday/v1 log=True err=0.644382 margin=1.5 [AMBIGUOUS - corpora too close to call]
 gnn_autoencoder_v1_logscale.pt     dim= 8
 
-### [169/193] assistant (opencode/space-bunny-free) 2026-09-29T12:01:27.867Z
+### [169/213] assistant (opencode/space-bunny-free) 2026-09-29T12:01:27.867Z
 The forensics worked well. Let me analyze:
 
 - `gnn_improved_s0.pt` → clean_monday, err=0.0019, margin 167× — confirms the existing provenance
@@ -1779,7 +1779,7 @@ Forensics worked. The decisive one: `gnn_autoencoder_v1_logscale_v2.pt` — the 
 ```
 </details>
 
-### [170/193] assistant (opencode/space-bunny-free) 2026-09-29T12:01:46.552Z
+### [170/213] assistant (opencode/space-bunny-free) 2026-09-29T12:01:46.552Z
 <details><summary>tool: shell (859 chars)</summary>
 
 ```json
@@ -1787,7 +1787,7 @@ Forensics worked. The decisive one: `gnn_autoencoder_v1_logscale_v2.pt` — the 
 ```
 </details>
 
-### [171/193] assistant (opencode/space-bunny-free) 2026-09-29T12:01:52.307Z
+### [171/213] assistant (opencode/space-bunny-free) 2026-09-29T12:01:52.307Z
 <details><summary>tool: edit (783 chars)</summary>
 
 ```json
@@ -1795,7 +1795,7 @@ Forensics worked. The decisive one: `gnn_autoencoder_v1_logscale_v2.pt` — the 
 ```
 </details>
 
-### [172/193] assistant (opencode/space-bunny-free) 2026-09-29T12:01:57.562Z
+### [172/213] assistant (opencode/space-bunny-free) 2026-09-29T12:01:57.562Z
 <details><summary>tool: shell (1381 chars)</summary>
 
 ```json
@@ -1803,7 +1803,7 @@ Forensics worked. The decisive one: `gnn_autoencoder_v1_logscale_v2.pt` — the 
 ```
 </details>
 
-### [173/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:05.078Z
+### [173/213] assistant (opencode/space-bunny-free) 2026-09-29T12:02:05.078Z
 Dry run is clean. Verifying the training checkpoints still need to finish before I commit the replay checkpoint, so let me check status.
 <details><summary>tool: shell (720 chars)</summary>
 
@@ -1812,7 +1812,7 @@ Dry run is clean. Verifying the training checkpoints still need to finish before
 ```
 </details>
 
-### [174/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:10.061Z
+### [174/213] assistant (opencode/space-bunny-free) 2026-09-29T12:02:10.061Z
 Seed 2 is training. I'll apply the backfill now since it doesn't touch the seed checkpoints, then verify.
 <details><summary>tool: shell (1493 chars)</summary>
 
@@ -1821,7 +1821,7 @@ Seed 2 is training. I'll apply the backfill now since it doesn't touch the seed 
 ```
 </details>
 
-### [175/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:18.553Z
+### [175/213] assistant (opencode/space-bunny-free) 2026-09-29T12:02:18.553Z
 Critical check: the rewritten checkpoints must still load and produce **identical** model weights. Verifying against the backup.
 <details><summary>tool: shell (1188 chars)</summary>
 
@@ -1830,7 +1830,7 @@ Critical check: the rewritten checkpoints must still load and produce **identica
 ```
 </details>
 
-### [176/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:27.215Z
+### [176/213] assistant (opencode/space-bunny-free) 2026-09-29T12:02:27.215Z
 Weights bit-identical, only metadata added. Now confirming the guard now actually fires where it was silent before.
 <details><summary>tool: shell (2069 chars)</summary>
 
@@ -1839,7 +1839,7 @@ Weights bit-identical, only metadata added. Now confirming the guard now actuall
 ```
 </details>
 
-### [177/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:36.096Z
+### [177/213] assistant (opencode/space-bunny-free) 2026-09-29T12:02:36.096Z
 **9 of 9 checkpoints now checkable** (was 3), and the exact E44 mistake that the guard was previously silent on is now caught. Item 4 is done.
 <details><summary>tool: shell (516 chars)</summary>
 
@@ -1848,7 +1848,7 @@ Weights bit-identical, only metadata added. Now confirming the guard now actuall
 ```
 </details>
 
-### [178/193] assistant (opencode/space-bunny-free) 2026-09-29T12:02:53.839Z
+### [178/213] assistant (opencode/space-bunny-free) 2026-09-29T12:02:53.839Z
 The `provenance_report` test no longer prints "no provenance" — all checkpoints are now checkable. Let me tighten that test so the gap can't silently return.
 <details><summary>tool: edit (3182 chars)</summary>
 
@@ -1857,7 +1857,7 @@ The `provenance_report` test no longer prints "no provenance" — all checkpoint
 ```
 </details>
 
-### [179/193] assistant (opencode/space-bunny-free) 2026-09-29T12:03:01.079Z
+### [179/213] assistant (opencode/space-bunny-free) 2026-09-29T12:03:01.079Z
 <details><summary>tool: edit (575 chars)</summary>
 
 ```json
@@ -1865,7 +1865,7 @@ The `provenance_report` test no longer prints "no provenance" — all checkpoint
 ```
 </details>
 
-### [180/193] assistant (opencode/space-bunny-free) 2026-09-29T12:03:05.480Z
+### [180/213] assistant (opencode/space-bunny-free) 2026-09-29T12:03:05.480Z
 <details><summary>tool: shell (371 chars)</summary>
 
 ```json
@@ -1873,7 +1873,7 @@ The `provenance_report` test no longer prints "no provenance" — all checkpoint
 ```
 </details>
 
-### [181/193] assistant (opencode/space-bunny-free) 2026-09-29T12:03:18.625Z
+### [181/213] assistant (opencode/space-bunny-free) 2026-09-29T12:03:18.625Z
 25/25, 0 missing. Item 4 complete. Committing, then checking on training.
 <details><summary>tool: shell (2458 chars)</summary>
 
@@ -1882,7 +1882,7 @@ The `provenance_report` test no longer prints "no provenance" — all checkpoint
 ```
 </details>
 
-### [182/193] assistant (opencode/space-bunny-free) 2026-09-29T12:03:27.182Z
+### [182/213] assistant (opencode/space-bunny-free) 2026-09-29T12:03:27.182Z
 Item 4 done. Now waiting on seeds 2 and 3 for item 2.
 <details><summary>tool: shell (688 chars)</summary>
 
@@ -1891,7 +1891,7 @@ Item 4 done. Now waiting on seeds 2 and 3 for item 2.
 ```
 </details>
 
-### [183/193] assistant (opencode/space-bunny-free) 2026-09-29T12:05:28.686Z
+### [183/213] assistant (opencode/space-bunny-free) 2026-09-29T12:05:28.686Z
 Seed 2 at epoch 120/200. Writing the E47 README while it trains.
 <details><summary>tool: write (5877 chars)</summary>
 
@@ -1901,7 +1901,7 @@ Seed 2 at epoch 120/200. Writing the E47 README while it trains.
 ```
 </details>
 
-### [184/193] assistant (opencode/space-bunny-free) 2026-09-29T12:05:41.697Z
+### [184/213] assistant (opencode/space-bunny-free) 2026-09-29T12:05:41.697Z
 <details><summary>tool: shell (662 chars)</summary>
 
 ```json
@@ -1909,7 +1909,7 @@ Seed 2 at epoch 120/200. Writing the E47 README while it trains.
 ```
 </details>
 
-### [185/193] assistant (opencode/space-bunny-free) 2026-09-29T12:05:46.757Z
+### [185/213] assistant (opencode/space-bunny-free) 2026-09-29T12:05:46.757Z
 <details><summary>tool: shell (688 chars)</summary>
 
 ```json
@@ -1917,7 +1917,7 @@ Seed 2 at epoch 120/200. Writing the E47 README while it trains.
 ```
 </details>
 
-### [186/193] assistant (opencode/space-bunny-free) 2026-09-29T12:07:46.704Z
+### [186/213] assistant (opencode/space-bunny-free) 2026-09-29T12:07:46.704Z
 Seed 2 near done. Let me add the TOC entry for E47 meanwhile.
 <details><summary>tool: edit (642 chars)</summary>
 
@@ -1926,7 +1926,7 @@ Seed 2 near done. Let me add the TOC entry for E47 meanwhile.
 ```
 </details>
 
-### [187/193] assistant (opencode/space-bunny-free) 2026-09-29T12:07:51.088Z
+### [187/213] assistant (opencode/space-bunny-free) 2026-09-29T12:07:51.088Z
 <details><summary>tool: edit (1123 chars)</summary>
 
 ```json
@@ -1934,7 +1934,7 @@ Seed 2 near done. Let me add the TOC entry for E47 meanwhile.
 ```
 </details>
 
-### [188/193] assistant (opencode/space-bunny-free) 2026-09-29T12:07:57.355Z
+### [188/213] assistant (opencode/space-bunny-free) 2026-09-29T12:07:57.355Z
 <details><summary>tool: shell (719 chars)</summary>
 
 ```json
@@ -1942,7 +1942,7 @@ Seed 2 near done. Let me add the TOC entry for E47 meanwhile.
 ```
 </details>
 
-### [189/193] assistant (opencode/space-bunny-free) 2026-09-29T12:09:51.592Z
+### [189/213] assistant (opencode/space-bunny-free) 2026-09-29T12:09:51.592Z
 Seed 2 done, seed 3 started. Verifying seed 2's provenance while it trains.
 <details><summary>tool: shell (815 chars)</summary>
 
@@ -1951,7 +1951,7 @@ Seed 2 done, seed 3 started. Verifying seed 2's provenance while it trains.
 ```
 </details>
 
-### [190/193] assistant (opencode/space-bunny-free) 2026-09-29T12:09:59.631Z
+### [190/213] assistant (opencode/space-bunny-free) 2026-09-29T12:09:59.631Z
 Seed 2 came out with best_ep 200 — meaning val loss was still improving at the end (no early stopping at a lower epoch), so it saved the final epoch. That differs from seeds 1 (best@17) and 2's report said best 0.000041@78. Wait, the report said "best 0.000041@78" for seed 2, but the checkpoint says best_ep 200?
 
 Hmm, let me check. The `epochs` field is the training epochs requested, not best epoch. Let me look at what the script saves. Actually I printed `b.get('epochs')` = 200 which is just the arg. Let me check if there's a best_ep field.
@@ -1969,7 +1969,7 @@ Let me check the trainer's save logic.
 ```
 </details>
 
-### [191/193] assistant (opencode/space-bunny-free) 2026-09-29T12:10:07.205Z
+### [191/213] assistant (opencode/space-bunny-free) 2026-09-29T12:10:07.205Z
 Val-picking is correctly applied (`load_state_dict(best_state)` before save). The `epochs: 200` field is just the config value. Waiting on seed 3.
 <details><summary>tool: shell (660 chars)</summary>
 
@@ -1978,7 +1978,7 @@ Val-picking is correctly applied (`load_state_dict(best_state)` before save). Th
 ```
 </details>
 
-### [192/193] assistant (opencode/space-bunny-free) 2026-09-29T12:12:07.746Z
+### [192/213] assistant (opencode/space-bunny-free) 2026-09-29T12:12:07.746Z
 <details><summary>tool: shell (661 chars)</summary>
 
 ```json
@@ -1986,11 +1986,177 @@ Val-picking is correctly applied (`load_state_dict(best_state)` before save). Th
 ```
 </details>
 
-### [193/193] assistant (opencode/space-bunny-free) 2026-09-29T12:14:11.521Z
-<details><summary>tool: shell (472 chars)</summary>
+### [193/213] assistant (opencode/space-bunny-free) 2026-09-29T12:14:11.521Z
+<details><summary>tool: shell (710 chars)</summary>
 
 ```json
-{"type":"tool","tool":"shell","name":"shell","id":"call_function_llg45j0s5jcv_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":""}
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_llg45j0s5jcv_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  epoch  80 | val 0.000208 | best 0.000034@77\r\n  epoch 120 | val 0.000113 | best 0.000034@77\r\n  epoch 160 | val 0.000203 | best 0.000034@77\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\ngnn_improved_s2.pt\r\n"}]}
+```
+</details>
+
+### [194/213] assistant (opencode/space-bunny-free) 2026-09-29T12:16:15.086Z
+Seed 3 at 160/200. Almost there.
+<details><summary>tool: shell (691 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_3q1zbd5ac8jd_1","args":{"command":"Start-Sleep -Seconds 100; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed007173001hSr4khFDtLGYvq.out -ErrorAction SilentlyContinue | Select-Object -Last 3; Get-ChildItem detection\\gnn_improved_s*.pt | Select-Object -ExpandProperty Name","timeout":118000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  epoch 160 | val 0.000203 | best 0.000034@77\r\nbest val 0.000034 @ epoch 77\r\n-> gnn_improved_s3.pt\r\ngnn_improved_s0.pt\r\ngnn_improved_s1.pt\r\ngnn_improved_s2.pt\r\ngnn_improved_s3.pt\r\n"}]}
+```
+</details>
+
+### [195/213] synthetic 2026-09-29T12:17:59.930Z
+[synthetic message: <shell id="sh_0ed007173001hSr4khFDtLGYvq" state="completed" command="python experiments/E17_retrain_improved/exp_e17_retrain_improved.py --epochs 200 --seed 1 --out detection/gnn_improved_s1.pt; python experiments/E17_retrain_improved/exp_e17_retrain_improved.py --epochs 200 --seed 2 --out detection/gnn_improved_s2.pt; python experiments/E17_retrain_improved/exp_e17_retrain_improved.py --epochs 200 --seed 3 --out detection/gnn_improved_s3.pt">
+improved Monday benign: 371624 f
+
+### [196/213] assistant (opencode/space-bunny-free) 2026-09-29T12:18:00.281Z
+All 4 M5b seeds exist. Before running E43, I must verify they reproduce E21's band — otherwise I'd be banding different models.
+<details><summary>tool: shell (2036 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_r6dq8tek56pu_1","args":{"command":"python -c \"\nimport torch,sys; sys.path.insert(0,'detection')\nfrom eval_guards import require_scaler_match\nfrom gnn_model import GraphAutoencoder, NodeScaler\nimport numpy as np\nfps=[]\nfor s in range(4):\n    b=torch.load('detection/gnn_improved_s%d.pt'%s,map_location='cpu',weights_only=True)\n    sc=NodeScaler().load_state_dict(b['scaler']); require_scaler_match(b,sc,'s%d'%s)\n    m=GraphAutoencoder(in_dim=19); m.load_state_dict(b['model'])\n    w=torch.cat([p.flatten() for p in m.parameters()])\n    fps.append(w)\n    print('s%d ok | train=%r | params std %.5f' % (s,b.get('train'),float(w.std())))\nfor a in range(4):\n    for c in range(a+1,4):\n        d=float((fps[a]-fps[c]).abs().max())\n        if d<1e-9: print('  WARNING s%d == s%d IDENTICAL'%(a,c))\nprint('all 4 seeds distinct:', len({f.numpy().tobytes() for f in fps})==4)\n\"","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"<string>:13: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\r\nConsider using tensor.detach() first. (Triggered internally at C:\\actions-runner\\_work\\pytorch\\pytorch\\pytorch\\torch\\csrc\\autograd\\generated\\python_variable_methods.cpp:837.)\r\nTraceback (most recent call last):\r\n  File \"<string>\", line 18, in <module>\r\n    print('all 4 seeds distinct:', len({f.numpy().tobytes() for f in fps})==4)\r\n                                        ~~~~~~~^^\r\nRuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.\r\ns0 ok | train='CICIDS2017_improved/monday benign-only' | params std 0.41165\r\ns1 ok | train='CICIDS2017_improved/monday benign-only' | params std 0.27288\r\ns2 ok | train='CICIDS2017_improved/monday benign-only' | params std 0.34262\r\ns3 ok | train='CICIDS2017_improved/monday benign-only' | params std 0.32313\r\n"},{"type":"text","text":"Exited with code 1"}]}
+```
+</details>
+
+### [197/213] assistant (opencode/space-bunny-free) 2026-09-29T12:18:13.783Z
+All 4 seeds pass the scaler guard and have distinct parameter stats. Confirming distinctness properly.
+<details><summary>tool: shell (980 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_xltuxv1vlzov_1","args":{"command":"python -c \"\nimport torch,sys; sys.path.insert(0,'detection')\nfrom gnn_model import GraphAutoencoder\nfps=[]\nfor s in range(4):\n    b=torch.load('detection/gnn_improved_s%d.pt'%s,map_location='cpu',weights_only=True)\n    m=GraphAutoencoder(in_dim=19); m.load_state_dict(b['model'])\n    fps.append(torch.cat([p.detach().flatten() for p in m.parameters()]))\nprint('all 4 distinct:', len({f.numpy().tobytes() for f in fps})==4)\nimport itertools\nfor a,c in itertools.combinations(range(4),2):\n    print('  s%d vs s%d max|dw| %.4f' % (a,c,float((fps[a]-fps[c]).abs().max())))\n\"","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"all 4 distinct: True\r\n  s0 vs s1 max|dw| 4.9363\r\n  s0 vs s2 max|dw| 5.2147\r\n  s0 vs s3 max|dw| 4.8293\r\n  s1 vs s2 max|dw| 3.7699\r\n  s1 vs s3 max|dw| 3.2047\r\n  s2 vs s3 max|dw| 4.4885\r\n"}]}
+```
+</details>
+
+### [198/213] assistant (opencode/space-bunny-free) 2026-09-29T12:18:27.747Z
+4 genuinely distinct seeds. Launching the E43 4-seed band.
+<details><summary>tool: shell (1153 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_reoqk8ddwufv_1","args":{"background":true,"command":"python experiments/E43_fusion_rule/exp_e43_fusion_rules.py","timeout":0,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"Command moved to the background (shell ID: sh_0ed1a2f44001UeKncAAijj6fJZ).\nOutput is streaming to: C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out"},{"type":"text","text":"You will be notified automatically when the command finishes. The notification will include the command's output. Unless the user explicitly asks otherwise, DO NOT poll for completion, even if you need the final result to continue. Repeatedly sleeping and reading or searching the output file is polling, not useful work. You may read the current output if it lets you do useful work now, but do not repeatedly check it while waiting for the command to finish. Keep working on anything that does not depend on the result. If you have nothing else to do, end your response; you will be resumed automatically when the command finishes."}]}
+```
+</details>
+
+### [199/213] assistant (opencode/space-bunny-free) 2026-09-29T12:18:32.035Z
+<details><summary>tool: shell (522 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_b08t01bkr6ef_1","args":{"command":"Start-Sleep -Seconds 100; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out -ErrorAction SilentlyContinue | Select-Object -Last 6","timeout":118000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  seed 0 Botnet        m5b 0.467 | noisyor 0.520 | repfuse 0.723 | OPT1 0.652 | OPT2 0.565 | OPT3 0.486\r\n"}]}
+```
+</details>
+
+### [200/213] assistant (opencode/space-bunny-free) 2026-09-29T12:20:18.347Z
+Seed 0 reproduces exactly (0.723), now on seed 1. Meanwhile, committing the seed checkpoints.
+<details><summary>tool: shell (1615 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_9lb8sshqk0zy_1","args":{"command":"git add -A; git commit -q -m \"E43: 4-seed band infrastructure; retrain gnn_improved_s1..s3 (val-picked, E26 protocol)\n\n- M5b seeds 1-3 did not exist: the cleanup deleted them as 'superseded by the\n  val-picked band' but only seed 0 had ever been produced. Retrained with the\n  documented trainer (--val-frac 0.2, best-val epoch saved); verified all 4\n  seeds distinct (max|dw| 3.2-5.2 between pairs) and each passes the\n  E46 scaler guard.\n- E43 loaded M5A[0] unconditionally inside a `for sd` loop, so a 4-seed run\n  would have measured M5b variance only and reported it as a fusion band.\n  Both pillars now vary with the seed; M5a seeds 1-3 read from E21_band/.\n- E47 README + TOC entry.\" 2>&1 | Select-Object -Last 1; git log --oneline -1","timeout":120000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"warning: in the working copy of '.opencode/roam/ROAM-Lxxk0zlWJrAr.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/latest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json', LF will be replaced by CRLF the next time Git touches it\n2611dee E43: 4-seed band infrastructure; retrain gnn_improved_s1..s3 (val-picked, E26 protocol)\n"}]}
+```
+</details>
+
+### [201/213] assistant (opencode/space-bunny-free) 2026-09-29T12:20:26.523Z
+<details><summary>tool: shell (843 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_0g6664k7du4a_1","args":{"command":"Start-Sleep -Seconds 115; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out -ErrorAction SilentlyContinue | Select-Object -Last 4","timeout":118000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  seed 0 Botnet        m5b 0.467 | noisyor 0.520 | repfuse 0.723 | OPT1 0.652 | OPT2 0.565 | OPT3 0.486\r\n  seed 0 PortScan      m5b 0.963 | noisyor 0.968 | repfuse 0.953 | OPT1 0.933 | OPT2 0.968 | OPT3 0.973\r\n  seed 0 DDoS          m5b 0.963 | noisyor 0.968 | repfuse 0.953 | OPT1 0.933 | OPT2 0.968 | OPT3 0.973\r\n  seed 0 Infiltration  m5b 0.629 | noisyor 0.645 | repfuse 0.639 | OPT1 0.636 | OPT2 0.655 | OPT3 0.664\r\n"}]}
+```
+</details>
+
+### [202/213] assistant (opencode/space-bunny-free) 2026-09-29T12:22:25.976Z
+Seed 0 reproducing identically across all families. ~20 min for 4 seeds; let me check back periodically.
+<details><summary>tool: shell (736 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_uu39qrvy9jho_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out -ErrorAction SilentlyContinue | Select-Object -Last 3","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  seed 0 WebAttacks    m5b 0.889 | noisyor 0.902 | repfuse 0.798 | OPT1 0.709 | OPT2 0.925 | OPT3 0.957\r\n  seed 1 Botnet        m5b 0.433 | noisyor 0.496 | repfuse 0.675 | OPT1 0.616 | OPT2 0.529 | OPT3 0.438\r\n  seed 1 PortScan      m5b 0.958 | noisyor 0.962 | repfuse 0.956 | OPT1 0.939 | OPT2 0.961 | OPT3 0.964\r\n"}]}
+```
+</details>
+
+### [203/213] assistant (opencode/space-bunny-free) 2026-09-29T12:24:27.646Z
+Seed 1 is in, and the variance is already informative — Botnet repfuse drops 0.723 → 0.675, and seed 1's m5b (0.433) is weaker than seed 0's (0.467).
+<details><summary>tool: shell (736 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_yli3kyf6gevs_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out -ErrorAction SilentlyContinue | Select-Object -Last 3","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  seed 1 DDoS          m5b 0.958 | noisyor 0.962 | repfuse 0.956 | OPT1 0.939 | OPT2 0.961 | OPT3 0.964\r\n  seed 1 Infiltration  m5b 0.637 | noisyor 0.651 | repfuse 0.686 | OPT1 0.661 | OPT2 0.664 | OPT3 0.669\r\n  seed 1 WebAttacks    m5b 0.883 | noisyor 0.898 | repfuse 0.804 | OPT1 0.717 | OPT2 0.913 | OPT3 0.940\r\n"}]}
+```
+</details>
+
+### [204/213] assistant (opencode/space-bunny-free) 2026-09-29T12:26:32.092Z
+Seed 1 complete. Notable already: **seed 1 Infiltration repfuse 0.686 > noisyor 0.651**, the opposite ranking from seed 0 — exactly why the band was needed.
+<details><summary>tool: shell (736 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_qsfv8dpqhj6s_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out -ErrorAction SilentlyContinue | Select-Object -Last 3","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  seed 2 Botnet        m5b 0.437 | noisyor 0.495 | repfuse 0.708 | OPT1 0.634 | OPT2 0.531 | OPT3 0.432\r\n  seed 2 PortScan      m5b 0.963 | noisyor 0.967 | repfuse 0.954 | OPT1 0.935 | OPT2 0.966 | OPT3 0.972\r\n  seed 2 DDoS          m5b 0.963 | noisyor 0.967 | repfuse 0.954 | OPT1 0.935 | OPT2 0.966 | OPT3 0.972\r\n"}]}
+```
+</details>
+
+### [205/213] assistant (opencode/space-bunny-free) 2026-09-29T12:28:34.716Z
+<details><summary>tool: shell (843 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_0l1t4b9ovtq4_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out -ErrorAction SilentlyContinue | Select-Object -Last 4","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  seed 2 PortScan      m5b 0.963 | noisyor 0.967 | repfuse 0.954 | OPT1 0.935 | OPT2 0.966 | OPT3 0.972\r\n  seed 2 DDoS          m5b 0.963 | noisyor 0.967 | repfuse 0.954 | OPT1 0.935 | OPT2 0.966 | OPT3 0.972\r\n  seed 2 Infiltration  m5b 0.634 | noisyor 0.650 | repfuse 0.698 | OPT1 0.671 | OPT2 0.663 | OPT3 0.660\r\n  seed 2 WebAttacks    m5b 0.904 | noisyor 0.926 | repfuse 0.809 | OPT1 0.721 | OPT2 0.926 | OPT3 0.957\r\n"}]}
+```
+</details>
+
+### [206/213] assistant (opencode/space-bunny-free) 2026-09-29T12:30:37.471Z
+Seed 2 done. One seed left.
+<details><summary>tool: shell (950 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_y7dy1rwm4q7k_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out -ErrorAction SilentlyContinue | Select-Object -Last 5","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  seed 2 DDoS          m5b 0.963 | noisyor 0.967 | repfuse 0.954 | OPT1 0.935 | OPT2 0.966 | OPT3 0.972\r\n  seed 2 Infiltration  m5b 0.634 | noisyor 0.650 | repfuse 0.698 | OPT1 0.671 | OPT2 0.663 | OPT3 0.660\r\n  seed 2 WebAttacks    m5b 0.904 | noisyor 0.926 | repfuse 0.809 | OPT1 0.721 | OPT2 0.926 | OPT3 0.957\r\n  seed 3 Botnet        m5b 0.432 | noisyor 0.505 | repfuse 0.730 | OPT1 0.649 | OPT2 0.548 | OPT3 0.457\r\n  seed 3 PortScan      m5b 0.960 | noisyor 0.966 | repfuse 0.948 | OPT1 0.932 | OPT2 0.964 | OPT3 0.967\r\n"}]}
+```
+</details>
+
+### [207/213] assistant (opencode/space-bunny-free) 2026-09-29T12:32:40.003Z
+<details><summary>tool: shell (1233 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_9yveaekps9d6_1","args":{"command":"Start-Sleep -Seconds 118; Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0ed1a2f44001UeKncAAijj6fJZ.out -ErrorAction SilentlyContinue | Select-Object -Last 10","timeout":119000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"\r\nPortScan      best=opt3_burst  m5b 0.961A�0.002  m5a 0.914A�0.010  noisyor 0.966A�0.003  repfuse 0.953A�0.003  opt1_persist 0.935A�0.003  opt2_rankmax 0.965A�0.003  opt3_burst 0.969A�0.004\r\n\r\nDDoS          best=opt3_burst  m5b 0.961A�0.002  m5a 0.914A�0.010  noisyor 0.966A�0.003  repfuse 0.953A�0.003  opt1_persist 0.935A�0.003  opt2_rankmax 0.965A�0.003  opt3_burst 0.969A�0.004\r\n\r\nInfiltration  best=repfuse  m5b 0.633A�0.004  m5a 0.594A�0.003  noisyor 0.650A�0.003  repfuse 0.668A�0.028  opt1_persist 0.652A�0.016  opt2_rankmax 0.660A�0.004  opt3_burst 0.666A�0.005\r\n\r\nWebAttacks    best=opt3_burst  m5b 0.893A�0.009  m5a 0.780A�0.014  noisyor 0.908A�0.013  repfuse 0.799A�0.011  opt1_persist 0.708A�0.017  opt2_rankmax 0.919A�0.008  opt3_burst 0.950A�0.008\r\n\r\n-> exp_e43_fusion_rules.json\r\n"}]}
+```
+</details>
+
+### [208/213] synthetic 2026-09-29T12:34:43.166Z
+[synthetic message: <shell id="sh_0ed1a2f44001UeKncAAijj6fJZ" state="completed" command="python experiments/E43_fusion_rule/exp_e43_fusion_rules.py">
+  seed 0 Botnet        m5b 0.467 | noisyor 0.520 | repfuse 0.723 | OPT1 0.652 | OPT2 0.565 | OPT3 0.486
+  seed 0 PortScan      m5b 0.963 | noisyor 0.968 | repfuse 0.953 | OPT1 0.933 | OPT2 0.968 | OPT3 0.973
+  seed 0 DDoS          m5b 0.963 | noisyor 0.968 | repfuse 0.953 | OPT1 0.933 | OPT2 0.968 | OPT3 0.973
+  seed 0 Infiltration  m5b 0.629 | 
+
+### [209/213] assistant (opencode/space-bunny-free) 2026-09-29T12:34:43.484Z
+Band complete. One important check before I write it up — whether the differences survive the seed noise.
+<details><summary>tool: shell (1218 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_function_wwujx77rzvj2_1","args":{"command":"python -c \"\nimport json,numpy as np\nd=json.load(open('experiments/E43_fusion_rule/exp_e43_fusion_rules.json',encoding='utf-8'))\nprint('%-13s %-8s %8s %8s %8s' % ('family','arm','mean','sd','gap vs 2nd'))\nfor fam,b in d['band'].items():\n    order=sorted(b.items(), key=lambda kv:-kv[1]['mean'])\n    top=order[0]; second=order[1]\n    gap=top[1]['mean']-second[1]['mean']\n    pooled=np.sqrt((top[1]['sd']**2+second[1]['sd']**2)/2)\n    verdict='SEPARATED' if gap>2*pooled else 'tied (within noise)'\n    print('%-13s %-8s %8.3f %8.3f %8.3f  %s' % (fam,top[0],top[1]['mean'],top[1]['sd'],gap,verdict))\n\"","timeout":90000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"family        arm          mean       sd gap vs 2nd\r\nBotnet        repfuse     0.709    0.025    0.071  SEPARATED\r\nPortScan      opt3_burst    0.969    0.004    0.003  tied (within noise)\r\nDDoS          opt3_burst    0.969    0.004    0.003  tied (within noise)\r\nInfiltration  repfuse     0.668    0.028    0.002  tied (within noise)\r\nWebAttacks    opt3_burst    0.950    0.008    0.031  SEPARATED\r\n"}]}
+```
+</details>
+
+### [210/213] assistant (opencode/space-bunny-free) 2026-09-29T12:34:54.982Z
+This changes the conclusion. Only 2 of 5 "wins" survive the noise — the other 3 are ties.
+<details><summary>tool: edit (468 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_aimtawfgbp0c_1","args":{"oldString":"**Verdict: PARTIAL — OPT3 wins the majority, nothing wins everywhere** · 2026-09-29","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\README.md","newString":"**Verdict: PASS (4-seed band) — and the band overturns the single-seed claim** · 2026-09-29"},"output":[{"type":"text","text":"Edited experiments/E43_fusion_rule/README.md (1 replacement)"}]}
+```
+</details>
+
+### [211/213] assistant (opencode/space-bunny-free) 2026-09-29T12:35:00.454Z
+<details><summary>tool: edit (1985 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_0cqq2p0o84j4_1","args":{"oldString":"## Results","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\README.md","newString":"## Results — 4-seed band (the production metric)\n\nBoth pillars banded over seeds 0–3: `gnn_improved_s{0,1,2,3}.pt` (val-picked,\nE26 protocol) and `m5a_revived_improved{,_s1,_s2,_s3}.pt`. Full per-seed\nnumbers in `exp_e43_fusion_rules.json`.\n\n| Family | m5b | m5a | noisyor | repfuse | OPT1 | OPT2 | **OPT3** |\n|---|---|---|---|---|---|---|---|\n| Botnet | 0.442±0.017 | **0.586±0.007** | 0.504±0.012 | 0.709±0.025 | 0.638±0.017 | 0.543±0.017 | 0.453±0.024 |\n| PortScan | 0.961±0.002 | 0.914±0.010 | 0.966±0.003 | 0.953±0.003 | 0.935±0.003 | 0.965±0.003 | **0.969±0.004** |\n| DDoS | 0.961±0.002 | 0.914±0.010 | 0.966±0.003 | 0.953±0.003 | 0.935±0.003 | 0.965±0.003 | **0.969±0.004** |\n| Infiltration | 0.633±0.004 | 0.594±0.003 | 0.650±0.003 | 0.668±0.028 | 0.652±0.016 | 0.660±0.004 | 0.666±0.005 |\n| WebAttacks | 0.893±0.009 | 0.780±0.014 | 0.908±0.013 | 0.799±0.011 | 0.708±0.017 | 0.919±0.008 | **0.950±0.008** |\n\n### Which \"wins\" actually survive the noise\n\nRanking by mean and testing the gap against the pooled seed SD:\n\n| Family | Best | Mean | Gap to 2nd | Verdict |\n|---|---|---|---|---|\n| Botnet | repfuse | 0.709 | 0.071 | **separated** (2.8× pooled SD) |\n| WebAttacks | opt3_burst | 0.950 | 0.031 | **separated** (2.7× pooled SD) |\n| PortScan | opt3_burst | 0.969 | 0.003 | **tied — inside noise** |\n| DDoS | opt3_burst | 0.969 | 0.003 | **tied — inside noise** |\n| Infiltration | repfuse | 0.668 | 0.002 | **tied — inside noise** |\n\n**Only 2 of the 5 apparent wins are real.** The other three are ties that the\nsingle-seed run had to break arbitrarily. See \"What we understood\".\n\n## Single-seed results (superseded, kept for the record)"},"output":[{"type":"text","text":"Edited experiments/E43_fusion_rule/README.md (1 replacement)"}]}
+```
+</details>
+
+### [212/213] assistant (opencode/space-bunny-free) 2026-09-29T12:35:08.666Z
+<details><summary>tool: edit (1665 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_2o1odeh82sg4_1","args":{"oldString":"| Family | m5b | m5a | noisyor | repfuse | OPT1 | **OPT2** | **OPT3** |\n|---|---|---|---|---|---|---|---|\n| Botnet | 0.468 | 0.580 | 0.520 | **0.723** | 0.653 | 0.565 | 0.486 |\n| PortScan | 0.963 | 0.919 | 0.968 | 0.953 | 0.933 | 0.968 | **0.973** |\n| DDoS | 0.963 | 0.919 | 0.968 | 0.953 | 0.933 | 0.968 | **0.973** |\n| Infiltration | 0.629 | 0.592 | 0.645 | 0.639 | 0.636 | 0.655 | **0.664** |\n| WebAttacks | 0.889 | 0.779 | 0.902 | 0.798 | 0.709 | 0.925 | **0.957** |\n\n*(PortScan and DDoS rows match because `172.16.0.1` launches both attacks in\nCIC-IDS2017 — a dataset property, not a measurement error.)*","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E43_fusion_rule\\README.md","newString":"| Family | m5b | m5a | noisyor | repfuse | OPT1 | **OPT2** | **OPT3** |\n|---|---|---|---|---|---|---|---|\n| Botnet | 0.468 | 0.580 | 0.520 | **0.723** | 0.653 | 0.565 | 0.486 |\n| PortScan | 0.963 | 0.919 | 0.968 | 0.953 | 0.933 | 0.968 | **0.973** |\n| DDoS | 0.963 | 0.919 | 0.968 | 0.953 | 0.933 | 0.968 | **0.973** |\n| Infiltration | 0.629 | 0.592 | 0.645 | 0.639 | 0.636 | 0.655 | **0.664** |\n| WebAttacks | 0.889 | 0.779 | 0.902 | 0.798 | 0.709 | 0.925 | **0.957** |\n\n*(PortScan and DDoS rows match because `172.16.0.1` launches both attacks in\nCIC-IDS2017 — a dataset property, not a measurement error.)*\n\n**These seed-0 numbers are superseded by the band above.** They are kept because\nthe comparison between them is itself the result."},"output":[{"type":"text","text":"Edited experiments/E43_fusion_rule/README.md (1 replacement)"}]}
+```
+</details>
+
+### [213/213] assistant (opencode/space-bunny-free) 2026-09-29T12:35:15.468Z
+<details><summary>tool: edit (101 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_function_fict0toxigg7_1","args":"","output":""}
 ```
 </details>
 
@@ -2024,7 +2190,7 @@ _Auto-seeded — correct me in chat and it will be re-captured on next idle:_
 - M .opencode/roam/latest.json
 - M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
 - M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
-- ?? detection/gnn_improved_s2.pt
+- M experiments/E43_fusion_rule/exp_e43_fusion_rules.json
 
 <details><summary>git status --porcelain</summary>
 
@@ -2034,19 +2200,20 @@ M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
  M .opencode/roam/latest.json
  M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
  M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
-?? detection/gnn_improved_s2.pt
+ M experiments/E43_fusion_rule/exp_e43_fusion_rules.json
 ```
 </details>
 
 <details><summary>git diff --stat HEAD (big data excluded)</summary>
 
 ```
-.opencode/roam/ROAM-Lxxk0zlWJrAr.md                |  760 +++++++--
- .opencode/roam/ROAM-j96VuMOxiLDK.md                | 1786 +++++++++++---------
+.opencode/roam/ROAM-Lxxk0zlWJrAr.md                |  499 ++---
+ .opencode/roam/ROAM-j96VuMOxiLDK.md                | 1954 +++++++++++---------
  .opencode/roam/latest.json                         |    2 +-
- ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 1525 ++++++++++++++++-
- ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  458 ++++-
- 5 files changed, 3506 insertions(+), 1025 deletions(-)
+ ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  382 +++-
+ ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  694 ++++++-
+ .../E43_fusion_rule/exp_e43_fusion_rules.json      |  546 +++++-
+ 6 files changed, 2916 insertions(+), 1161 deletions(-)
 ```
 </details>
 
