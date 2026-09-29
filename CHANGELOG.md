@@ -22,11 +22,11 @@ Append-only log of what changed and why. **Pull, then read the top of this file.
 * **E46 guards fire on all real bugs** (8/8 regressions) and all three wired scripts reproduced their published numbers exactly.
 
 ### Still open
-* E01 seq-AE — INCOMPLETE, killed 3× (2 restarts, 1 silent CPU death). The only unanswered *modelling* question.
-* Fusion rule — single seed; needs the 4-seed band E21 showed is mandatory.
-* Sub-threshold ×10 — genuinely unfixed, Pillar 3's problem.
-* Cross-testbed root cause — E27 showed pooling learns neither; E42 shows replay-tuning is a workaround with a recipe, not a solution.
-* **Back-fill checkpoint provenance** — 6 of 9 checkpoints carry no `train` field, so the dataset guard is silent on the legacy models. `provenance_report()` reports the current state.
+* **E01 seq-AE** — INCOMPLETE, killed 3× by the machine (2 restarts, 1 silent process death), never by the code. Only unanswered *modelling* question. Fix the runner first: split the HMM arm out, since `hmmlearn` has no Python 3.14 wheel and forces the whole job onto CPU-only `venv312`.
+* **Botnet host fusion** — blocked on Person A's LID-DS loader; network ceiling 0.709±0.025 (E43 band).
+* **Cross-testbed root cause** — method finished (E17 exonerates the architecture, E27 rules out pooling, E29/E42 find and scale the replay fix), **mechanism still unexplained**. Replay-tuning is a workaround with a recipe: deploy one base + one tune per site.
+* **Sub-threshold ×10** — **removed from the to-do list by decision, not fixed.** Disclosed limitation; belongs to Pillar 3. E44's positive result stands: IP rotation alone is not an evasion.
+* **TLS wording** — a constraint, not a task. Quote the feature audit, never "evaluated on encrypted traffic" (E45: 0.24% of attack traffic is on encrypted ports).
 
 ---
 
