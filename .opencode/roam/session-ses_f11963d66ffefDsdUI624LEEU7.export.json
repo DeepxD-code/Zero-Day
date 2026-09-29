@@ -1,7 +1,7 @@
 {
  "format": "roam-export-v1",
  "sessionID": "ses_f11963d66ffefDsdUI624LEEU7",
- "captured": "2026-09-29T18-38-37Z",
+ "captured": "2026-09-29T18-59-08Z",
  "device": "Rex",
  "projectID": "DeepxD-code-Zero-Day",
  "originModel": "opencode/space-bunny-free",
@@ -42,8 +42,8 @@
   "root": "E:/Potential-gold/Zero-Day",
   "branch": "exp/host-seqae-p37",
   "remote": "https://github.com/DeepxD-code/Zero-Day.git",
-  "status": "M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/ROAM-j96VuMOxiLDK.md\n M .opencode/roam/ROAM-tDDfUI26FvHO.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json\n?? .opencode/roam/ROAM-1O2A2W8CXLrh.md\n?? .opencode/roam/ROAM-sdUI624LEEU7.md\n?? .opencode/roam/session-ses_f11963d66ffefDsdUI624LEEU7.export.json\n?? .opencode/roam/session-ses_f11a9c5daffenq1O2A2W8CXLrh.export.json\n?? experiments/E52_edge_head/",
-  "diffStat": ".opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1644 ++++++++++++++------\n .opencode/roam/ROAM-j96VuMOxiLDK.md                |   28 +-\n .opencode/roam/ROAM-tDDfUI26FvHO.md                |   30 +-\n .opencode/roam/latest.json                         |    8 +-\n ...sion-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json |    6 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 1296 ++++++++++++++-\n ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-\n 7 files changed, 2494 insertions(+), 524 deletions(-)"
+  "status": "M .opencode/roam/ROAM-1O2A2W8CXLrh.md\n M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/ROAM-j96VuMOxiLDK.md\n M .opencode/roam/ROAM-sdUI624LEEU7.md\n M .opencode/roam/ROAM-tDDfUI26FvHO.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f11963d66ffefDsdUI624LEEU7.export.json\n M .opencode/roam/session-ses_f11a9c5daffenq1O2A2W8CXLrh.export.json\n M .opencode/roam/session-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json\n M experiments/E52_edge_head/exp_e52_edge_head.py\n?? .opencode/roam/ROAM-x08NqvzVIRMv.md\n?? .opencode/roam/session-ses_f118593e8ffeKEx08NqvzVIRMv.export.json",
+  "diffStat": ".opencode/roam/ROAM-1O2A2W8CXLrh.md                |   45 +-\n .opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1414 ++++++++++++--------\n .opencode/roam/ROAM-j96VuMOxiLDK.md                |   43 +-\n .opencode/roam/ROAM-sdUI624LEEU7.md                |   30 +-\n .opencode/roam/ROAM-tDDfUI26FvHO.md                |   43 +-\n .opencode/roam/latest.json                         |    8 +-\n ...sion-ses_f11963d66ffefDsdUI624LEEU7.export.json |    6 +-\n ...sion-ses_f11a9c5daffenq1O2A2W8CXLrh.export.json |    6 +-\n ...sion-ses_f11bce8a9ffewhtDDfUI26FvHO.export.json |    6 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  817 ++++++++++-\n ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-\n experiments/E52_edge_head/exp_e52_edge_head.py     |  117 +-\n 12 files changed, 1867 insertions(+), 674 deletions(-)"
  },
  "messages": [
   {

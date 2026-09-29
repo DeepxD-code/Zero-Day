@@ -190,28 +190,47 @@ def main():
             Ptr = (Ptr - feat_mu) / feat_sd
             Ptr_t = torch.tensor(Ptr, dtype=torch.float32, device=device)
 
-            head = EdgeHead().to(device)
-            opt = torch.optim.Adam(head.parameters(), lr=1e-2)
-            lossf = nn.MSELoss()
-            best, best_state = float("inf"), None
+            # --- CORRECTED (see README) -----------------------------------
+            # TARGET: the mean edge error, phi[:, 7] -- the quantity the fixed
+            # symmetric mean already uses. SCORE: the RESIDUAL, not the
+            # prediction. The first version regressed phi[:,0] (n_src) and used
+            # the prediction directly as the score, which measures familiarity
+            # with an edge's shape rather than anomaly -- a category error.
+            # A second head predicts the ASYMMETRY term phi[:,2] so the
+            # asymmetry residual is measured directly, not only as a feature.
+            HEADS = {"mean": 7, "asym": 2}
+            heads, losses = {}, {}
             n_val = max(1, int(len(Ptr_t) * 0.2))
-            tr_i, va_i = np.arange(len(Ptr_t) - n_val), np.arange(len(Ptr_t) - n_val,
-                                                                  len(Ptr_t))
-            for ep in range(30):
-                head.train()
-                perm = np.random.default_rng(sd * 100 + ep).permutation(tr_i)
-                for i in range(0, len(perm), 4096):
-                    b = torch.tensor(perm[i:i + 4096], device=device)
-                    opt.zero_grad()
-                    loss = lossf(head(Ptr_t[b]), Ptr_t[b][:, 0])
-                    loss.backward(); opt.step()
-                head.eval()
-                with torch.no_grad():
-                    vl = lossf(head(Ptr_t[torch.tensor(va_i, device=device)]),
-                               Ptr_t[torch.tensor(va_i, device=device)][:, 0]).item()
-                if vl < best:
-                    best, best_state = vl, {k: v.detach().clone()
-                                            for k, v in head.state_dict().items()}
+            tr_i = np.arange(len(Ptr_t) - n_val)
+            va_i = np.arange(len(Ptr_t) - n_val, len(Ptr_t))
+            va_t = torch.tensor(va_i, device=device)
+            for hname, col in HEADS.items():
+                h = EdgeHead().to(device)
+                opt = torch.optim.Adam(h.parameters(), lr=1e-2)
+                lossf = nn.MSELoss()
+                best, best_state = float("inf"), None
+                tgt = Ptr_t[:, col]
+                for ep in range(30):
+                    h.train()
+                    perm = np.random.default_rng(sd * 100 + ep).permutation(tr_i)
+                    for i in range(0, len(perm), 4096):
+                        b = torch.tensor(perm[i:i + 4096], device=device)
+                        opt.zero_grad()
+                        loss = lossf(h(Ptr_t[b]), tgt[b])
+                        loss.backward(); opt.step()
+                    h.eval()
+                    with torch.no_grad():
+                        vl = lossf(h(Ptr_t[va_t]), tgt[va_t]).item()
+                    if vl < best:
+                        best, best_state = vl, {k: v.detach().clone()
+                                                for k, v in h.state_dict().items()}
+                # the first version computed best_state and never loaded it, so
+                # val-picking was silently discarded and the LAST epoch shipped
+                h.load_state_dict(best_state)
+                h.eval()
+                heads[hname] = h
+                losses[hname] = best
+            head = heads["mean"]
 
             ev = scan(fam, model, scaler, device, labelled=True)
             require_window_groups(np.concatenate(
@@ -225,46 +244,66 @@ def main():
 
             R = pd.DataFrame(Pev_n)
             R["win"] = WIN
-            # within-window rank for BOTH arms -> like-for-like production metric
+            Pt = torch.tensor(Pev_n, dtype=torch.float32, device=device)
+            with torch.no_grad():
+                pred_m = heads["mean"](Pt).cpu().numpy()
+                pred_a = heads["asym"](Pt).cpu().numpy()
+            # standardise the observed quantities with the TRAIN statistics so
+            # the residual lives in the same units the head was fitted in
+            z_mean = (MEAN - feat_mu[7]) / feat_sd[7]
+            z_asym = (Pev[:, 2] - feat_mu[2]) / feat_sd[2]
             R["_m"] = MEAN
+            R["_h"] = np.abs(z_mean - pred_m)              # residual, not prediction
+            R["_ha"] = np.abs(z_asym - pred_a)
+            R["_both"] = R["_h"].to_numpy() + R["_ha"].to_numpy()
             mean_rank = R.groupby("win")["_m"].transform(rk).to_numpy()
-            R["_h"] = head(torch.tensor(Pev_n, dtype=torch.float32,
-                                        device=device)).detach().cpu().numpy()
             head_rank = R.groupby("win")["_h"].transform(rk).to_numpy()
+            both_rank = R.groupby("win")["_both"].transform(rk).to_numpy()
 
             a_mean = auc(Y, mean_rank)
             a_head = auc(Y, head_rank)
+            a_both = auc(Y, both_rank)
             res["families"][fam][str(sd)] = {
                 "fixed_mean": None if a_mean is None else round(a_mean, 4),
-                "learned_head": None if a_head is None else round(a_head, 4),
+                "head_resid": None if a_head is None else round(a_head, 4),
+                "head_resid_plus_asym": None if a_both is None else round(a_both, 4),
                 "delta": None if (a_mean is None or a_head is None)
                          else round(a_head - a_mean, 4),
+                "delta_both": None if (a_mean is None or a_both is None)
+                              else round(a_both - a_mean, 4),
                 "n_edges": int(len(Y)), "n_atk": int(Y.sum()),
-                "head_val_loss": round(float(best), 6),
+                "val_loss": {k: round(float(v), 6) for k, v in losses.items()},
                 "head_params": sum(p.numel() for p in head.parameters()),
             }
-            print(f"  {fam:13s} seed {sd}  fixed {a_mean:.4f}  head {a_head:.4f}"
-                  f"  delta {a_head - a_mean:+.4f}", flush=True)
+            print(f"  {fam:13s} seed {sd}  fixed {a_mean:.4f}  resid {a_head:.4f}"
+                  f"  +asym {a_both:.4f}  delta {a_head - a_mean:+.4f}"
+                  f" / {a_both - a_mean:+.4f}", flush=True)
 
     print("\n" + "=" * 74)
     for fam in FAMS:
         v = res["families"][fam]
         fm = np.array([x["fixed_mean"] for x in v.values() if x["fixed_mean"]])
-        hd = np.array([x["learned_head"] for x in v.values()
-                       if x["learned_head"]])
+        hd = np.array([x["head_resid"] for x in v.values() if x["head_resid"]])
+        bo = np.array([x["head_resid_plus_asym"] for x in v.values()
+                       if x["head_resid_plus_asym"]])
         if len(fm) < 2:
             continue
-        dlt = hd - fm
-        pooled = np.sqrt((fm.std(ddof=1) ** 2 + hd.std(ddof=1) ** 2) / 2)
-        z = dlt.mean() / max(pooled, 1e-9)
+        def _z(a):
+            p = np.sqrt((fm.std(ddof=1) ** 2 + a.std(ddof=1) ** 2) / 2)
+            return round(float((a - fm).mean() / max(p, 1e-9)), 2)
         res["families"][fam]["band"] = {
-            "fixed_mean": round(float(fm.mean()), 4), "fixed_sd": round(float(fm.std(ddof=1)), 4),
-            "learned_head": round(float(hd.mean()), 4), "head_sd": round(float(hd.std(ddof=1)), 4),
-            "delta": round(float(dlt.mean()), 4), "z": round(float(z), 2),
-            "verdict": "separated" if abs(z) > 2 else "inside noise"}
+            "fixed_mean": round(float(fm.mean()), 4),
+            "fixed_sd": round(float(fm.std(ddof=1)), 4),
+            "head_resid": round(float(hd.mean()), 4),
+            "head_resid_sd": round(float(hd.std(ddof=1)), 4),
+            "head_resid_plus_asym": round(float(bo.mean()), 4),
+            "delta": round(float((hd - fm).mean()), 4), "z": _z(hd),
+            "delta_both": round(float((bo - fm).mean()), 4), "z_both": _z(bo),
+            "verdict": ("separated" if abs(_z(hd)) > 2 or abs(_z(bo)) > 2
+                        else "inside noise")}
         print(f"{fam:13s} fixed {fm.mean():.4f}+-{fm.std(ddof=1):.4f}  "
-              f"head {hd.mean():.4f}+-{hd.std(ddof=1):.4f}  "
-              f"delta {dlt.mean():+.4f}  z={z:+.2f}  "
+              f"resid {hd.mean():.4f} (z={_z(hd):+.2f})  "
+              f"+asym {bo.mean():.4f} (z={_z(bo):+.2f})  "
               f"[{res['families'][fam]['band']['verdict']}]")
 
     OUT.write_text(json.dumps(res, indent=1), encoding="utf-8")
