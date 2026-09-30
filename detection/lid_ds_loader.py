@@ -53,9 +53,26 @@ CANDIDATE_ROOTS = [
 # SyscallSplitPart from dataloader/syscall_2021.py
 F_TIMESTAMP, F_USER, F_PROC, F_PROC_NAME, F_THREAD, F_NAME, F_DIR, F_PARAMS = range(8)
 
-NORMAL_MARKERS = ("Training_Data_Master", "Validation_Data_Master")
-# Upstream records a recording as empty when the first syscall cannot be
-# yielded; a trace file with no syscall lines is the same thing.
+# LID-DS 2021 label rule, read from the upstream source
+# (dataloader/dataloader_real_world.py:34-37):
+#
+#     if 'malicious' in path:  return NORMAL_AND_ATTACK
+#     return NORMAL
+#
+# i.e. normal data is the DEFAULT and is not named "normal" or "benign" -- it is
+# whatever is left after the attack scenarios. The first version of this loader
+# used the ADFA-LD / LID-DS-2019 convention (Training_Data_Master /
+# Validation_Data_Master), which is wrong for 2021 and would have labelled every
+# 2021 recording as an attack.
+#
+# `data_loader_2021.py:60` additionally keys off a container whose
+# `container["role"] == "normal"`, so a JSON sidecar may carry the role.
+ATTACK_MARKERS = ("malicious", "attack", "cve-", "cve_", "cwe-", "cwe_",
+                   "juice-shop", "juice_shop", "zipslip", "zip-slip",
+                   "bruteforce", "sql-injection", "sqlinjection")
+# Legacy markers, kept only so an ADFA-style tree still loads if someone points
+# this at LID-DS 2019. They are NOT the 2021 convention.
+LEGACY_NORMAL_MARKERS = ("Training_Data_Master", "Validation_Data_Master")
 MIN_SYSCALLS = 1
 
 
@@ -73,11 +90,28 @@ def available() -> tuple[bool, str]:
 
 
 def _classify(path: Path) -> str:
-    parts = {p for p in path.parts}
-    for m in NORMAL_MARKERS:
-        if m in parts:
-            return "normal"
-    return "attack"
+    """LID-DS 2021: 'malicious' in the path means the recording contains an
+    attack; everything else is normal behaviour."""
+    low = str(path).lower()
+    if any(m in low for m in ATTACK_MARKERS):
+        return "attack"
+    parts = {p.lower() for p in path.parts}
+    if parts & {m.lower() for m in LEGACY_NORMAL_MARKERS}:
+        return "normal"          # LID-DS 2019 / ADFA-style tree
+    return "normal"              # the 2021 default
+
+
+def _role_from_json(path: Path) -> str | None:
+    """Honour `container["role"] == "normal"` from a JSON sidecar, if present."""
+    import json as _json
+    try:
+        d = _json.loads(path.read_text(encoding="utf-8", errors="replace"))
+    except Exception:
+        return None
+    c = d.get("container") if isinstance(d, dict) else None
+    if isinstance(c, dict) and c.get("role"):
+        return str(c["role"]).lower()
+    return None
 
 
 def parse_trace(path: Path) -> list[str]:
@@ -134,9 +168,16 @@ def load_lid_ds(root: Path | None = None, max_traces: int | None = None,
         seq = parse_trace(p)
         if len(seq) < MIN_SYSCALLS:
             continue
-        label = _classify(p)
+        role = _role_from_json(p)
+        if role == "normal":
+            label = "normal"
+        elif role in ("malicious", "attack"):
+            label = "attack"
+        else:
+            label = _classify(p)
         if label == "normal":
-            split = "val" if any("Validation" in q for q in p.parts) else "train"
+            split = "val" if any("validation" in q.lower() for q in p.parts) \
+                else "train"
         else:
             split = "test"
         traces.append({"seq": seq, "label": label, "split": split,
@@ -149,8 +190,29 @@ def load_lid_ds(root: Path | None = None, max_traces: int | None = None,
         raise ValueError(
             f"{n_atk} attack traces found under {root}. LID-DS is only useful "
             "with attacks; check that the download included the attack "
-            "recordings, not just Training_Data_Master.")
+            "recordings.")
     return traces
+
+
+def label_audit(traces: list[dict]) -> dict:
+    """Flag files where the name heuristic disagrees with upstream's rule.
+
+    Upstream (dataloader_real_world.py) says an attack recording is one whose
+    PATH CONTAINS 'malicious'; everything else is normal. The extra name
+    markers in ATTACK_MARKERS are a heuristic layered on top, because the real
+    distribution may not use that literal path prefix everywhere. This reports
+    any file where the two disagree, so a mislabel is visible rather than
+    silently baked into an AUC.
+    """
+    disagree = []
+    for t in traces:
+        low = t["path"].lower()
+        upstream = "attack" if "malicious" in low else "normal"
+        if upstream != t["label"]:
+            disagree.append({"path": t["path"], "loader": t["label"],
+                             "upstream_rule": upstream})
+    return {"n": len(traces), "n_disagree": len(disagree),
+            "disagreements": disagree[:25]}
 
 
 def summary(traces: list[dict]) -> dict:
@@ -187,6 +249,12 @@ def main() -> int:
     s = summary(load_lid_ds())
     for k, v in s.items():
         print(f"  {k}: {v}")
+    a = label_audit(load_lid_ds())
+    print(f"\n  label audit: {a['n_disagree']}/{a['n']} files where the name "
+          f"heuristic disagrees with upstream's 'malicious in path' rule")
+    for d in a["disagreements"]:
+        print(f"    {d['path']}  loader={d['loader']} "
+              f"upstream={d['upstream_rule']}")
     return 0
 
 
