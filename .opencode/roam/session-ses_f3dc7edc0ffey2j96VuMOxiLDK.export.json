@@ -1,7 +1,7 @@
 {
  "format": "roam-export-v1",
  "sessionID": "ses_f3dc7edc0ffey2j96VuMOxiLDK",
- "captured": "2026-09-30T18-37-40Z",
+ "captured": "2026-09-30T19-17-40Z",
  "device": "Rex",
  "projectID": "DeepxD-code-Zero-Day",
  "originModel": "opencode/muse-spark-1.3-contributor-free",
@@ -41,8 +41,8 @@
   "root": "E:/Potential-gold/Zero-Day",
   "branch": "exp/host-seqae-p37",
   "remote": "https://github.com/DeepxD-code/Zero-Day.git",
-  "status": "M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/ROAM-j96VuMOxiLDK.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json\n M detection/lid_ds_loader.py\n?? experiments/E58_lidds_host/",
-  "diffStat": ".opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 2036 +++++++++++++-------\n .opencode/roam/ROAM-j96VuMOxiLDK.md                |   16 +-\n .opencode/roam/latest.json                         |   10 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 1590 ++++++++++++++-\n ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-\n detection/lid_ds_loader.py                         |   29 +-\n 6 files changed, 2926 insertions(+), 761 deletions(-)"
+  "status": "M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/ROAM-j96VuMOxiLDK.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json",
+  "diffStat": ".opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1635 ++++++++++----------\n .opencode/roam/ROAM-j96VuMOxiLDK.md                |   15 +-\n .opencode/roam/latest.json                         |   10 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  171 +-\n ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-\n 5 files changed, 1028 insertions(+), 809 deletions(-)"
  },
  "messages": [
   {
