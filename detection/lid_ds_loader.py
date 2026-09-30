@@ -90,8 +90,7 @@ def available() -> tuple[bool, str]:
 
 
 def _classify(path: Path) -> str:
-    """LID-DS 2021: 'malicious' in the path means the recording contains an
-    attack; everything else is normal behaviour."""
+    """Fallback only. The JSON sidecar is authoritative -- see _label_from_json."""
     low = str(path).lower()
     if any(m in low for m in ATTACK_MARKERS):
         return "attack"
@@ -101,16 +100,36 @@ def _classify(path: Path) -> str:
     return "normal"              # the 2021 default
 
 
-def _role_from_json(path: Path) -> str | None:
-    """Honour `container["role"] == "normal"` from a JSON sidecar, if present."""
+def _label_from_json(sidecar: Path) -> tuple[str, dict] | None:
+    """Authoritative label from the recording's JSON sidecar.
+
+    Read from the real CVE-2014-0160 extract, not from the docs:
+
+        "exploit": true|false        <- whether the attack fired
+        "container": [{"role": "attacker"|"victim"|"normal", ...}]
+
+    `exploit` is the ground truth for whether this recording is an attack. An
+    `attacker` container marks the host that ran it. Both beat any path
+    heuristic, so the path rule is only a fallback for recordings with no
+    sidecar.
+    """
     import json as _json
     try:
-        d = _json.loads(path.read_text(encoding="utf-8", errors="replace"))
+        d = _json.loads(sidecar.read_text(encoding="utf-8", errors="replace"))
     except Exception:
         return None
-    c = d.get("container") if isinstance(d, dict) else None
-    if isinstance(c, dict) and c.get("role"):
-        return str(c["role"]).lower()
+    if not isinstance(d, dict):
+        return None
+    roles = [str(c.get("role", "")).lower()
+             for c in (d.get("container") or []) if isinstance(c, dict)]
+    expl = d.get("exploit")
+    info = {"exploit": expl, "roles": sorted(set(roles)),
+            "exploit_name": d.get("exploit_name"),
+            "recording_time": d.get("recording_time")}
+    if isinstance(expl, bool):
+        return ("attack" if expl else "normal"), info
+    if "attacker" in roles or "malicious" in roles:
+        return "attack", info
     return None
 
 
@@ -160,28 +179,42 @@ def load_lid_ds(root: Path | None = None, max_traces: int | None = None,
 
     traces: list[dict] = []
     for p in sorted(root.rglob("*")):
-        if not p.is_file() or p.suffix.lower() not in (".txt", ".log", ".json",
-                                                       ".csv", ""):
+        if not p.is_file():
+            continue
+        # `.sc` is the syscall-record format and is THE file we want. The first
+        # version's allow-list omitted it, so the loader silently fell through
+        # to the binary .zip files and reported 6 "syscalls" per trace.
+        suf = p.suffix.lower()
+        if suf in (".zip", ".pcap", ".scap", ".res", ".png", ".jpg"):
+            continue
+        if suf in (".ds_store",) or p.name.startswith("._"):
+            continue
+        if suf not in (".sc", ".txt", ".log", ""):
+            # .json is the SIDECAR (read by _label_from_json), never a trace.
+            # Parsing it too double-counted every recording and produced
+            # "syscalls" like '[', 'true,', '"default",'.
             continue
         if p.name.lower() in ("readme.md", "license", "version"):
             continue
         seq = parse_trace(p)
         if len(seq) < MIN_SYSCALLS:
             continue
-        role = _role_from_json(p)
-        if role == "normal":
-            label = "normal"
-        elif role in ("malicious", "attack"):
-            label = "attack"
-        else:
-            label = _classify(p)
-        if label == "normal":
+        sidecar = p.with_suffix(".json")
+        meta = {}
+        lab = None
+        if sidecar.exists():
+            got = _label_from_json(sidecar)
+            if got:
+                lab, meta = got
+        if lab is None:
+            lab = _classify(p)          # fallback: no sidecar
+        if lab == "normal":
             split = "val" if any("validation" in q.lower() for q in p.parts) \
                 else "train"
         else:
             split = "test"
-        traces.append({"seq": seq, "label": label, "split": split,
-                       "path": str(p)})
+        traces.append({"seq": seq, "label": lab, "split": split,
+                       "path": str(p), "meta": meta})
         if max_traces and len(traces) >= max_traces:
             break
 
