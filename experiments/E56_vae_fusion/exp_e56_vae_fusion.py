@@ -45,7 +45,9 @@ from eval_guards import require_scaler_match, require_window_groups
 
 CLEAN = ROOT / "data" / "CICIDS2017_improved"
 DET = ROOT / "detection"
-CKPT = DET / "vae_improved_s{}.pt"
+# NOTE: string first, .format, THEN join with DET -- `DET / "x{}.pt".format(s)`
+# binds a Path and then has no .format attribute.
+CKPT_TMPL = "vae_improved_s{}.pt"
 OUT = Path(__file__).resolve().parent / "exp_e56_vae_fusion.json"
 SEEDS = [0, 1, 2, 3]
 IN_DIM = 19
@@ -147,14 +149,13 @@ def main():
                 best, best_state = vl, {k2: v.detach().clone()
                                         for k2, v in vae.state_dict().items()}
         vae.load_state_dict(best_state); vae.eval()
+        ck = DET / CKPT_TMPL.format(seed)
         torch.save({"state_dict": best_state, "scaler": sc.state_dict(),
                     "in_dim": IN_DIM, "beta": BETA, "epochs": EPOCHS,
                     "seed": seed,
                     "train": "CICIDS2017_improved/monday benign-only",
-                    "val_reconstruction": best},
-                   CKPT.format(seed))
-        print(f"  seed {seed} vae val {best:.3e} -> {CKPT.format(seed).name}",
-              flush=True)
+                    "val_reconstruction": best}, ck)
+        print(f"  seed {seed} vae val {best:.3e} -> {ck.name}", flush=True)
 
         blob = torch.load(DET / GNN[seed], map_location="cpu", weights_only=True)
         gsc = NodeScaler().load_state_dict(blob["scaler"])
