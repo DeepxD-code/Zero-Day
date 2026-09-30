@@ -100,6 +100,27 @@ def _classify(path: Path) -> str:
     return "normal"              # the 2021 default
 
 
+def _split_from_path(path: Path) -> str:
+    """LID-DS 2021 puts the split in the scenario directory.
+
+        <scenario>/training/<recording>.sc
+        <scenario>/validation/<recording>.sc
+        <scenario>/test/normal/<recording>.sc
+        <scenario>/test/normal_and_attack/<recording>.sc
+
+    So "validation" anywhere in the path is the right test, but ONLY against the
+    scenario directory -- the first version tested the whole path and then
+    defaulted everything else to "train", which swept test/normal/ into the
+    training set.
+    """
+    parts = [p.lower() for p in path.parts]
+    for i, p in enumerate(parts):
+        if p in ("training", "validation", "test"):
+            return {"training": "train", "validation": "val",
+                    "test": "test"}[p]
+    return "train"
+
+
 def _label_from_json(sidecar: Path) -> tuple[str, dict] | None:
     """Authoritative label from the recording's JSON sidecar.
 
@@ -209,8 +230,12 @@ def load_lid_ds(root: Path | None = None, max_traces: int | None = None,
         if lab is None:
             lab = _classify(p)          # fallback: no sidecar
         if lab == "normal":
-            split = "val" if any("validation" in q.lower() for q in p.parts) \
-                else "train"
+            # Split comes from the SCENARIO directory (training/ validation/
+            # test/), not from the label. The first version keyed off
+            # "validation" appearing anywhere in the path, which put
+            # test/normal/ traces into TRAIN -- a leak, since those are
+            # held-out benign recordings.
+            split = _split_from_path(p)
         else:
             split = "test"
         traces.append({"seq": seq, "label": lab, "split": split,

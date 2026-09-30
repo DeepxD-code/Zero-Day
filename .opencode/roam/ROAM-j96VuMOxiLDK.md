@@ -2,7 +2,7 @@
 
 - project_id: DeepxD-code-Zero-Day
 - session_id: ses_f3dc7edc0ffey2j96VuMOxiLDK
-- captured: 2026-09-30T18-17-35Z (reason: auto-10min)
+- captured: 2026-09-30T18-37-40Z (reason: auto-10min)
 - device: LAPTOP
 - title: Pull and explore
 - origin_model: opencode/muse-spark-1.3-contributor-free (if your model differs, roam_resume adapts — see roam.json modelMap)
@@ -8251,6 +8251,8 @@ result: [structured value — see export JSON] [{"type":"text","text":"<task id=
 - M .opencode/roam/latest.json
 - M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
 - M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
+- M detection/lid_ds_loader.py
+- ?? experiments/E58_lidds_host/
 
 <details><summary>git status --porcelain</summary>
 
@@ -8260,18 +8262,21 @@ M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
  M .opencode/roam/latest.json
  M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
  M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
+ M detection/lid_ds_loader.py
+?? experiments/E58_lidds_host/
 ```
 </details>
 
 <details><summary>git diff --stat HEAD (big data excluded)</summary>
 
 ```
-.opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1619 +++++++++-------
- .opencode/roam/ROAM-j96VuMOxiLDK.md                | 1997 +++++++++++---------
- .opencode/roam/latest.json                         |    2 +-
- ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  475 ++++-
- ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  584 +++++-
- 5 files changed, 3014 insertions(+), 1663 deletions(-)
+.opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 2036 +++++++++++++-------
+ .opencode/roam/ROAM-j96VuMOxiLDK.md                |   16 +-
+ .opencode/roam/latest.json                         |   10 +-
+ ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 1590 ++++++++++++++-
+ ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-
+ detection/lid_ds_loader.py                         |   29 +-
+ 6 files changed, 2926 insertions(+), 761 deletions(-)
 ```
 </details>
 
