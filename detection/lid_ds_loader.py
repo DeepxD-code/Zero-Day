@@ -37,6 +37,7 @@ that produced ADFA's E06/E23 numbers, so it must be loud.
 from __future__ import annotations
 
 import sys
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -119,6 +120,21 @@ def _split_from_path(path: Path) -> str:
             return {"training": "train", "validation": "val",
                     "test": "test"}[p]
     return "train"
+
+
+def _family_from_path(path: Path) -> str:
+    """The CVE scenario directory, e.g. CVE-2012-2122.
+
+    Each CVE ships its OWN benign recordings -- the file names differ entirely
+    between archives (abundant_dhawan_6184 vs delicious_kirch_1509), so the two
+    scenarios are independent capture sessions, not overlapping normal traffic.
+    That is what makes them usable as separate families and separate training
+    pools rather than duplicates.
+    """
+    for p in path.parts:
+        if p.upper().startswith("CVE-"):
+            return p
+    return "unknown"
 
 
 def _label_from_json(sidecar: Path) -> tuple[str, dict] | None:
@@ -239,6 +255,7 @@ def load_lid_ds(root: Path | None = None, max_traces: int | None = None,
         else:
             split = "test"
         traces.append({"seq": seq, "label": lab, "split": split,
+                       "family": _family_from_path(p),
                        "path": str(p), "meta": meta})
         if max_traces and len(traces) >= max_traces:
             break
@@ -277,12 +294,18 @@ def summary(traces: list[dict]) -> dict:
     seqs = [t["seq"] for t in traces]
     L = np.array([len(s) for s in seqs]) if seqs else np.array([0])
     vocab = sorted({c for s in seqs for c in s})
+    fam: dict[str, Counter] = {}
+    for t in traces:
+        c = fam.setdefault(t.get("family", "unknown"), Counter())
+        c[t["label"]] += 1
+        c[t["split"]] += 1
     return {
         "traces": len(traces),
         "normal": sum(1 for t in traces if t["label"] == "normal"),
         "attack": sum(1 for t in traces if t["label"] == "attack"),
         "splits": {sp: sum(1 for t in traces if t["split"] == sp)
                    for sp in ("train", "val", "test")},
+        "families": {k: dict(v) for k, v in sorted(fam.items())},
         "seq_len": {"min": int(L.min()), "median": int(np.median(L)),
                     "mean": round(float(L.mean()), 1), "max": int(L.max())},
         "vocab_size": len(vocab),
