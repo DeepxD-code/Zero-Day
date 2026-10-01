@@ -1,7 +1,7 @@
 {
  "format": "roam-export-v1",
  "sessionID": "ses_f3dc7edc0ffey2j96VuMOxiLDK",
- "captured": "2026-09-30T19-17-40Z",
+ "captured": "2026-10-01T05-17-41Z",
  "device": "Rex",
  "projectID": "DeepxD-code-Zero-Day",
  "originModel": "opencode/muse-spark-1.3-contributor-free",
@@ -16,19 +16,19 @@
   },
   "cost": 0,
   "tokens": {
-   "input": 8228775,
-   "output": 235815,
-   "reasoning": 105823,
+   "input": 8846217,
+   "output": 236685,
+   "reasoning": 105977,
    "cache": {
-    "read": 286826094,
+    "read": 287443039,
     "write": 0
    }
   },
   "outcome": "succeeded",
   "time": {
    "created": 1789964849727,
-   "updated": 1790788625322,
-   "idle": 1790789761623
+   "updated": 1790830850634,
+   "idle": 1790830897856
   },
   "title": "Pull and explore",
   "location": {
@@ -41,8 +41,8 @@
   "root": "E:/Potential-gold/Zero-Day",
   "branch": "exp/host-seqae-p37",
   "remote": "https://github.com/DeepxD-code/Zero-Day.git",
-  "status": "M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/ROAM-j96VuMOxiLDK.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json",
-  "diffStat": ".opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1635 ++++++++++----------\n .opencode/roam/ROAM-j96VuMOxiLDK.md                |   15 +-\n .opencode/roam/latest.json                         |   10 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  171 +-\n ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |    6 +-\n 5 files changed, 1028 insertions(+), 809 deletions(-)"
+  "status": "M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/ROAM-j96VuMOxiLDK.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json\n?? experiments/E59_lidds_curves/",
+  "diffStat": ".opencode/roam/ROAM-Lxxk0zlWJrAr.md                | 1876 +++++++++++--------\n .opencode/roam/ROAM-j96VuMOxiLDK.md                | 1951 ++++++++++----------\n .opencode/roam/latest.json                         |   10 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  673 ++++++-\n ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  132 +-\n 5 files changed, 2891 insertions(+), 1751 deletions(-)"
  },
  "messages": [
   {
@@ -29652,6 +29652,120 @@
     "role": "idle",
     "time": {
      "created": 1790789761623
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "[idle message: "
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "system",
+    "time": {
+     "created": 1790830768253
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "[system message: Today's date is now: Thu Oct 01 2026"
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "user",
+    "time": {
+     "created": 1790830768257
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "ok whats the next paper"
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "muse-spark-1.3-contributor-free",
+     "providerID": "opencode",
+     "variant": "high"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790830768862,
+     "streamed": 1790830819212,
+     "completed": 1790830819639
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "Next is **Paper 5: Kitsune** — I already taught it (ensemble of small autoencoders, per-cluster experts, online/streaming), and its viva question is still open. Quick refresher of the three anchors before you explain back:\n\n1. **Why experts, not one model** — 100+ mixed features through a single bottleneck serves neither timing nor flags; per-cluster autoencoders with incremental damped statistics run online on weak hardware.\n2. **The blindness** — still per-flow/packet scoring, so a scanner whose every probe looks benign passes every expert; plus poisonable incremental statistics (slowly shaping traffic becomes the new normal).\n3. **Our answer** — five-member checkpoint borrows the ensemble instinct for percentile stability; frozen benign scaler + drift flags trade immediacy for an unpoisonable reference.\n\nExplain it back — then the standing question: *\"Kitsune runs live on a router; yours waits for windows to close. Isn't yours strictly worse for a real deployment?\"*"
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "idle",
+    "time": {
+     "created": 1790830819645
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "[idle message: "
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "user",
+    "time": {
+     "created": 1790830850716
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "can you do it again please"
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "muse-spark-1.3-contributor-free",
+     "providerID": "opencode",
+     "variant": "high"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790830851209,
+     "streamed": 1790830897457,
+     "completed": 1790830897851
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "# Paper 5 (again): Kitsune — the ensemble that watches the wire live\n\n**One-line:** an online, unsupervised detector that splits one big autoencoder into a team of small experts so it can run on a home router — the strongest per-flow system our project moves beyond.\n\n## 1. The problem (why it exists)\n\nBatch detectors train offline and score later. But a home router or IoT gateway sees packets *right now*, on a weak chip, with no labels and no second chances. And there's a modelling problem too: one autoencoder stretched over 100+ mixed features forces packet-timing structure and flag-count structure through a single bottleneck that serves neither well. Kitsune's question: can unsupervised detection run *online, on weak hardware*, without cramming everything through one throat?\n\n## 2. How it works (three ideas, in order — learn the sequence)\n\n1. **Damped incremental statistics.** Packet features (sizes, counts, timing jitter) are kept as running statistics that decay with time. Constant memory, no stored history: old traffic fades, so the model always describes *recent* normal.\n2. **Feature clustering.** On benign traffic, correlated features are grouped (a dendrogram cut); **each cluster gets its own tiny autoencoder**. Timing experts judge timing, size experts judge sizes — specialists instead of one overwhelmed generalist.\n3. **Ensemble scoring.** The layer above scores by expert *disagreement*: one confused expert is noise, a chorus of them is an attack. Per-expert adaptive thresholds, no labels anywhere in the pipeline.\n\n## 3. Results (frame them honestly)\n\nStrong detection on realistic traffic, including the IoT botnet captures of its era, at throughput and memory footprints that fit Raspberry-Pi-class hardware. Quote it as an *efficiency* result — online, lightweight, unsupervised — never as a leaderboard number against batch detectors. Different race, different medals.\n\n## 4. Limits (three, each maps to something we built)\n\n- **Still per-flow.** A scanner whose every probe looks benign passes each expert, because fan-out across destinations is invisible to every one of them. This is *the* blindness our host windows exist to cure.\n- **Poisonable normal.** Incremental statistics learn whatever flows past — including an attacker shaping traffic slowly enough to *become* the new normal. Our frozen benign scaler plus drift flags are the direct answer: up to one window of detection delay, in exchange for a reference that can't be poisoned.\n- **No drift policy, no explanations.** Damping forgets, but forgetting isn't a policy; scores arrive bare. Our M6 monitor and SHAP layer cover both gaps.\n\n## 5. Role in OUR project\n\nKitsune is the \"strongest rival we outgrow\": online, unsupervised, adaptive — everything except relational. Our five-member checkpoint inherits its ensemble instinct (stabilising percentiles, not adding ideas), while deliberately trading its immediacy for our integrity.\n\n---\n\nExplain it back — then: *\"Kitsune runs live on a router; yours waits for windows to close. Isn't yours strictly worse for a real deployment?\"*"
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "idle",
+    "time": {
+     "created": 1790830897856
     }
    },
    "parts": [

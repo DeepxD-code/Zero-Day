@@ -1,0 +1,130 @@
+{
+ "seeds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "epochs": 20,
+ "sizes": [
+  25,
+  50,
+  100,
+  210
+ ],
+ "fprs": [
+  0.01,
+  0.02,
+  0.05,
+  0.1,
+  0.2,
+  0.3
+ ],
+ "curve": {
+  "seqae": {
+   "0.01": {
+    "detection_rate": 0.15,
+    "sd": 0.0874
+   },
+   "0.02": {
+    "detection_rate": 0.1875,
+    "sd": 0.0702
+   },
+   "0.05": {
+    "detection_rate": 0.3958,
+    "sd": 0.1684
+   },
+   "0.1": {
+    "detection_rate": 0.45,
+    "sd": 0.2237
+   },
+   "0.2": {
+    "detection_rate": 0.5625,
+    "sd": 0.1673
+   },
+   "0.3": {
+    "detection_rate": 0.6667,
+    "sd": 0.0531
+   },
+   "auc_mean": 0.7709,
+   "auc_sd": 0.0114
+  },
+  "countae": {
+   "0.01": {
+    "detection_rate": 0.0,
+    "sd": 0.0
+   },
+   "0.02": {
+    "detection_rate": 0.0,
+    "sd": 0.0
+   },
+   "0.05": {
+    "detection_rate": 0.0,
+    "sd": 0.0
+   },
+   "0.1": {
+    "detection_rate": 0.0,
+    "sd": 0.0
+   },
+   "0.2": {
+    "detection_rate": 0.2,
+    "sd": 0.0
+   },
+   "0.3": {
+    "detection_rate": 0.3,
+    "sd": 0.0
+   },
+   "auc_mean": 0.5605,
+   "auc_sd": 0.0043
+  }
+ },
+ "learning": {
+  "25": {
+   "seqae": {
+    "mean": 0.6418,
+    "sd": 0.0811
+   },
+   "countae": {
+    "mean": 0.583,
+    "sd": 0.0642
+   },
+   "delta": 0.0588
+  },
+  "50": {
+   "seqae": {
+    "mean": 0.6514,
+    "sd": 0.0741
+   },
+   "countae": {
+    "mean": 0.5802,
+    "sd": 0.0515
+   },
+   "delta": 0.0712
+  },
+  "100": {
+   "seqae": {
+    "mean": 0.6991,
+    "sd": 0.0362
+   },
+   "countae": {
+    "mean": 0.5691,
+    "sd": 0.0143
+   },
+   "delta": 0.13
+  },
+  "210": {
+   "seqae": {
+    "mean": 0.7709,
+    "sd": 0.0118
+   },
+   "countae": {
+    "mean": 0.5605,
+    "sd": 0.0043
+   },
+   "delta": 0.2104
+  }
+ },
+ "n_val": 60,
+ "n_test": 878,
+ "n_attack": 120
+}
