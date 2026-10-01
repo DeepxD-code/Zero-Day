@@ -1,0 +1,349 @@
+{
+ "device": "cuda",
+ "W": 1024,
+ "K": 3,
+ "families": {
+  "CVE-2012-2122": {
+   "family": "CVE-2012-2122",
+   "V": 31,
+   "W": 1024,
+   "K": 3,
+   "seeds": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "grid": [
+    10,
+    20,
+    40,
+    80
+   ],
+   "n_raw": {
+    "train": 210,
+    "val": 60,
+    "test_benign": 762,
+    "test_attack": 120
+   },
+   "n_windows": {
+    "train": 500,
+    "val": 150,
+    "test_benign": 600,
+    "test_attack": 360
+   },
+   "windows_capped_out": {
+    "train": 100,
+    "test_benign": 1656
+   },
+   "dropped_short": {
+    "train": 10,
+    "val": 10,
+    "test_benign": 10,
+    "test_attack": 0
+   },
+   "raw_len_median": {
+    "train": 16076,
+    "val": 15720,
+    "test_benign": 15934,
+    "test_attack": 72446
+   },
+   "guard": {
+    "raw_length_only_auc": 1.0,
+    "window_length_only_auc": 0.5,
+    "all_windows_exactly_W": true
+   },
+   "arms": {
+    "seqae": [
+     {
+      "seed": 0,
+      "epochs": 80,
+      "thr90": 0.35365046560764307,
+      "auc_max": 0.990125,
+      "auc_mean": 0.9894166666666666,
+      "det_max@10fpr": 0.9916666666666667,
+      "det_mean@10fpr": 0.8833333333333333
+     },
+     {
+      "seed": 1,
+      "epochs": 80,
+      "thr90": 0.3514816880226135,
+      "auc_max": 0.963875,
+      "auc_mean": 0.9672916666666667,
+      "det_max@10fpr": 0.9916666666666667,
+      "det_mean@10fpr": 0.85
+     },
+     {
+      "seed": 2,
+      "epochs": 80,
+      "thr90": 0.3425106048583984,
+      "auc_max": 0.9711666666666666,
+      "auc_mean": 0.9744166666666667,
+      "det_max@10fpr": 0.9916666666666667,
+      "det_mean@10fpr": 0.85
+     },
+     {
+      "seed": 3,
+      "epochs": 80,
+      "thr90": 0.33654748797416684,
+      "auc_max": 0.9673333333333334,
+      "auc_mean": 0.9704999999999999,
+      "det_max@10fpr": 0.9916666666666667,
+      "det_mean@10fpr": 0.85
+     }
+    ],
+    "countae": [
+     {
+      "seed": 0,
+      "epochs": 80,
+      "thr90": 0.05021830275654793,
+      "auc_max": 0.9119999999999999,
+      "auc_mean": 0.9374166666666667,
+      "det_max@10fpr": 0.8833333333333333,
+      "det_mean@10fpr": 0.8166666666666667
+     },
+     {
+      "seed": 1,
+      "epochs": 80,
+      "thr90": 0.058952003717422485,
+      "auc_max": 0.876375,
+      "auc_mean": 0.9202916666666666,
+      "det_max@10fpr": 0.8833333333333333,
+      "det_mean@10fpr": 0.8166666666666667
+     },
+     {
+      "seed": 2,
+      "epochs": 80,
+      "thr90": 0.05483023449778557,
+      "auc_max": 0.8781249999999999,
+      "auc_mean": 0.921625,
+      "det_max@10fpr": 0.8833333333333333,
+      "det_mean@10fpr": 0.8166666666666667
+     },
+     {
+      "seed": 3,
+      "epochs": 20,
+      "thr90": 0.19115568697452545,
+      "auc_max": 0.8444166666666666,
+      "auc_mean": 0.6397916666666665,
+      "det_max@10fpr": 0.8166666666666667,
+      "det_mean@10fpr": 0.008333333333333333
+     }
+    ],
+    "seqae_summary": {
+     "auc_max": {
+      "mean": 0.9731,
+      "sd": 0.0117
+     },
+     "auc_mean": {
+      "mean": 0.9754,
+      "sd": 0.0098
+     },
+     "det_max@10fpr": {
+      "mean": 0.9917,
+      "sd": 0.0
+     },
+     "det_mean@10fpr": {
+      "mean": 0.8583,
+      "sd": 0.0167
+     }
+    },
+    "countae_summary": {
+     "auc_max": {
+      "mean": 0.8777,
+      "sd": 0.0276
+     },
+     "auc_mean": {
+      "mean": 0.8548,
+      "sd": 0.1435
+     },
+     "det_max@10fpr": {
+      "mean": 0.8667,
+      "sd": 0.0333
+     },
+     "det_mean@10fpr": {
+      "mean": 0.6146,
+      "sd": 0.4042
+     }
+    }
+   },
+   "comparison_max": {
+    "delta": 0.0954,
+    "pooled_sd": 0.0212,
+    "z": 4.5,
+    "verdict": "separated"
+   }
+  },
+  "CVE-2014-0160": {
+   "family": "CVE-2014-0160",
+   "V": 38,
+   "W": 1024,
+   "K": 3,
+   "seeds": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "grid": [
+    10,
+    20,
+    40,
+    80
+   ],
+   "n_raw": {
+    "train": 210,
+    "val": 60,
+    "test_benign": 758,
+    "test_attack": 120
+   },
+   "n_windows": {
+    "train": 462,
+    "val": 119,
+    "test_benign": 600,
+    "test_attack": 129
+   },
+   "windows_capped_out": {
+    "train": 0,
+    "test_benign": 1123
+   },
+   "dropped_short": {
+    "train": 22,
+    "val": 11,
+    "test_benign": 41,
+    "test_attack": 45
+   },
+   "raw_len_median": {
+    "train": 3463,
+    "val": 3166,
+    "test_benign": 3391,
+    "test_attack": 1399
+   },
+   "guard": {
+    "raw_length_only_auc": 0.1850098944591029,
+    "window_length_only_auc": 0.5,
+    "all_windows_exactly_W": true
+   },
+   "arms": {
+    "seqae": [
+     {
+      "seed": 0,
+      "epochs": 10,
+      "thr90": 0.9003167867660522,
+      "auc_max": 0.648953488372093,
+      "auc_mean": 0.6951162790697674,
+      "det_max@10fpr": 0.37209302325581395,
+      "det_mean@10fpr": 0.0
+     },
+     {
+      "seed": 1,
+      "epochs": 10,
+      "thr90": 0.9490808248519897,
+      "auc_max": 0.6429069767441861,
+      "auc_mean": 0.6887209302325582,
+      "det_max@10fpr": 0.37209302325581395,
+      "det_mean@10fpr": 0.0
+     },
+     {
+      "seed": 2,
+      "epochs": 10,
+      "thr90": 0.9341675996780395,
+      "auc_max": 0.6295348837209302,
+      "auc_mean": 0.6766279069767441,
+      "det_max@10fpr": 0.3488372093023256,
+      "det_mean@10fpr": 0.0
+     },
+     {
+      "seed": 3,
+      "epochs": 10,
+      "thr90": 0.9255027770996094,
+      "auc_max": 0.6462790697674419,
+      "auc_mean": 0.6931395348837209,
+      "det_max@10fpr": 0.3488372093023256,
+      "det_mean@10fpr": 0.0
+     }
+    ],
+    "countae": [
+     {
+      "seed": 0,
+      "epochs": 80,
+      "thr90": 0.05797610059380531,
+      "auc_max": 0.5252325581395348,
+      "auc_mean": 0.5305813953488372,
+      "det_max@10fpr": 0.20930232558139536,
+      "det_mean@10fpr": 0.023255813953488372
+     },
+     {
+      "seed": 1,
+      "epochs": 80,
+      "thr90": 0.05600152164697647,
+      "auc_max": 0.5254651162790698,
+      "auc_mean": 0.5393023255813953,
+      "det_max@10fpr": 0.20930232558139536,
+      "det_mean@10fpr": 0.0
+     },
+     {
+      "seed": 2,
+      "epochs": 80,
+      "thr90": 0.06330834329128265,
+      "auc_max": 0.5247674418604651,
+      "auc_mean": 0.5322093023255814,
+      "det_max@10fpr": 0.20930232558139536,
+      "det_mean@10fpr": 0.023255813953488372
+     },
+     {
+      "seed": 3,
+      "epochs": 80,
+      "thr90": 0.05633334815502167,
+      "auc_max": 0.532093023255814,
+      "auc_mean": 0.5467441860465116,
+      "det_max@10fpr": 0.20930232558139536,
+      "det_mean@10fpr": 0.023255813953488372
+     }
+    ],
+    "seqae_summary": {
+     "auc_max": {
+      "mean": 0.6419,
+      "sd": 0.0086
+     },
+     "auc_mean": {
+      "mean": 0.6884,
+      "sd": 0.0083
+     },
+     "det_max@10fpr": {
+      "mean": 0.3605,
+      "sd": 0.0134
+     },
+     "det_mean@10fpr": {
+      "mean": 0.0,
+      "sd": 0.0
+     }
+    },
+    "countae_summary": {
+     "auc_max": {
+      "mean": 0.5269,
+      "sd": 0.0035
+     },
+     "auc_mean": {
+      "mean": 0.5372,
+      "sd": 0.0074
+     },
+     "det_max@10fpr": {
+      "mean": 0.2093,
+      "sd": 0.0
+     },
+     "det_mean@10fpr": {
+      "mean": 0.0174,
+      "sd": 0.0116
+     }
+    }
+   },
+   "comparison_max": {
+    "delta": 0.115,
+    "pooled_sd": 0.0066,
+    "z": 17.52,
+    "verdict": "separated"
+   }
+  }
+ }
+}
