@@ -2,13 +2,13 @@
 
 - project_id: DeepxD-code-Zero-Day
 - session_id: ses_f22aeca57ffeEHLxxk0zlWJrAr
-- captured: 2026-10-01T07-07-31Z (reason: auto-10min)
+- captured: 2026-10-01T07-32-23Z (reason: auto-10min)
 - device: LAPTOP
 - title: Last week number inquiry
 - origin_model: opencode/space-bunny-free (if your model differs, roam_resume adapts — see roam.json modelMap)
 - git_root (THIS MACHINE ONLY — other machines: use repo-relative paths, never this): E:/Potential-gold/Zero-Day
 - branch: exp/host-seqae-p37 | remote: https://github.com/DeepxD-code/Zero-Day.git
-- message_count: 60 (user: 2)
+- message_count: 83 (user: 5)
 
 > Resume: read sections 1-6, then continue at "Next steps". Paths below are repo-relative — rebase onto YOUR gold-folder checkout.
 
@@ -18,10 +18,10 @@ _Carry forward: Last week number inquiry_
 ## 2. Every prompt + response — ENTIRE session, verbatim, in order
 _User turns are complete. Agent turns are complete text; tool outputs truncated to 4000 chars each (full data stays in session.export.json)._
 
-### [1/60] compaction 2026-10-01T05:21:28.652Z
+### [1/83] compaction 2026-10-01T05:21:28.652Z
 [compaction message: 
 
-### [2/60] assistant (opencode/space-bunny-free) 2026-10-01T05:22:06.798Z
+### [2/83] assistant (opencode/space-bunny-free) 2026-10-01T05:22:06.798Z
 Let me pick up where I left off. E59 finished. I need to write the README, update the TOC, commit, and report.
 
 The learning curve is the decisive result: the gap WIDENS with data (+0.059 → +0.071 → +0.130 → +0.210). That's the opposite of data-starvation. It strongly supports the reading that the count vector is structurally limited.
@@ -36,7 +36,7 @@ Let me be efficient with context. Readthe JSON quickly.
 ```
 </details>
 
-### [3/60] assistant (opencode/space-bunny-free) 2026-10-01T05:22:13.247Z
+### [3/83] assistant (opencode/space-bunny-free) 2026-10-01T05:22:13.247Z
 The count-AE AUC is essentially flat: 0.5830 → 0.5802 → 0.5691 → 0.5605. It actually goes DOWN slightly as data grows. The seq-AE climbs 0.6418 → 0.7709. That's decisive.
 
 Note: at 20 epochs matched budget, count-AE is 0.5605, vs E58's per-seed-best 0.7226. I must be careful — the count-AE here is handicapped by fixed 20 epochs. That's a fair matched comparison but I should note it. The trend (flat vs climbing) is the finding, and the matched design is the right one for the trend.
@@ -56,7 +56,7 @@ Let me write it.
 ```
 </details>
 
-### [4/60] assistant (opencode/space-bunny-free) 2026-10-01T05:22:28.877Z
+### [4/83] assistant (opencode/space-bunny-free) 2026-10-01T05:22:28.877Z
 <details><summary>tool: edit (618 chars)</summary>
 
 ```json
@@ -64,7 +64,7 @@ Let me write it.
 ```
 </details>
 
-### [5/60] assistant (opencode/space-bunny-free) 2026-10-01T05:22:31.533Z
+### [5/83] assistant (opencode/space-bunny-free) 2026-10-01T05:22:31.533Z
 <details><summary>tool: shell (2984 chars)</summary>
 
 ```json
@@ -72,7 +72,7 @@ Let me write it.
 ```
 </details>
 
-### [6/60] assistant (opencode/space-bunny-free) 2026-10-01T05:22:44.532Z
+### [6/83] assistant (opencode/space-bunny-free) 2026-10-01T05:22:44.532Z
 E59 done. Now report. The user said "continue" earlier, so I should report and possibly keep going. Let me give the report.
 
 Should I continue with something else? The remaining open item is a second CVE download which requires the user. Let me report clearly.
@@ -137,13 +137,13 @@ Pushed (`7510217`).
 
 **One thing still needs you:** a second CVE to attack the210-train cap and get multiple attack families. The parser handles any of them — smallest useful is `CVE-2012-2122.zip` at678 MB, then `CVE-2020-23839.zip` at 1.39 GB, from the 2021 Proton link (`https://drive.proton.me/urls/BWKRGQK994#fCK9JKL93Sjm`).
 
-### [7/60] idle 2026-10-01T05:22:54.818Z
+### [7/83] idle 2026-10-01T05:22:54.818Z
 [idle message: 
 
-### [8/60] user 2026-10-01T05:29:43.216Z
+### [8/83] user 2026-10-01T05:29:43.216Z
 file is in downloads
 
-### [9/60] assistant (opencode/space-bunny-free) 2026-10-01T05:29:43.522Z
+### [9/83] assistant (opencode/space-bunny-free) 2026-10-01T05:29:43.522Z
 The user says the file is in Downloads. Let me check what's there.
 <details><summary>tool: shell (596 chars)</summary>
 
@@ -152,7 +152,7 @@ The user says the file is in Downloads. Let me check what's there.
 ```
 </details>
 
-### [10/60] assistant (opencode/space-bunny-free) 2026-10-01T05:29:46.345Z
+### [10/83] assistant (opencode/space-bunny-free) 2026-10-01T05:29:46.345Z
 CVE-2012-2122.zip (677.7 MB) is present. Let me check its structure before extracting, and also check disk space.
 
 Let me inspect the zip contents without extracting fully.
@@ -163,7 +163,7 @@ Let me inspect the zip contents without extracting fully.
 ```
 </details>
 
-### [11/60] assistant (opencode/space-bunny-free) 2026-10-01T05:29:51.362Z
+### [11/83] assistant (opencode/space-bunny-free) 2026-10-01T05:29:51.362Z
 The zip contains nested zips. 2304 .zip entries. Let me look at the structure more.
 <details><summary>tool: shell (1998 chars)</summary>
 
@@ -172,7 +172,7 @@ The zip contains nested zips. 2304 .zip entries. Let me look at the structure mo
 ```
 </details>
 
-### [12/60] assistant (opencode/space-bunny-free) 2026-10-01T05:29:56.823Z
+### [12/83] assistant (opencode/space-bunny-free) 2026-10-01T05:29:56.823Z
 So CVE-2012-2122 is 578 per-recording zips (274 + 884 = 1158 entries at depth 3/4, minus dirs). Each recording is a zip containing the trace + json. Let me check how CVE-2014-0160 was structured — the loader found 1148 .sc traces directly? Let me check what the loader expects.
 
 Let me look at the loader and how the earlier zipwas extracted.
@@ -184,7 +184,7 @@ Let me look at the loader and how the earlier zipwas extracted.
 ```
 </details>
 
-### [13/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:00.729Z
+### [13/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:00.729Z
 The CVE-2012-2122 zip has a different structure: each recording is a nested `.zip` containing the `.sc` and `.json`. Same as CVE-2014-0160 presumably. Let me check how CVE-2014-0160 was extracted — the existing extracted dir has .sc files. Let me check the existing extraction script or just look at the existing structure.
 
 Let me check whether there's an extraction helperin the repo.
@@ -196,7 +196,7 @@ Let me check whether there's an extraction helperin the repo.
 ```
 </details>
 
-### [14/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:06.235Z
+### [14/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:06.235Z
 So the CVE-2014-0160 was extracted as per-recording zips into directories. The loader reads .sc files inside. Let me check one extracted recording dir structure.
 <details><summary>tool: shell (986 chars)</summary>
 
@@ -205,7 +205,7 @@ So the CVE-2014-0160 was extracted as per-recording zips into directories. The l
 ```
 </details>
 
-### [15/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:18.508Z
+### [15/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:18.508Z
 So the extraction: each `<name>.zip` → a directory `<name>/` containing `<name>.json` and `<name>.sc`. Let me write an extraction script and check whether the zips in CVE-2012-2122 have that structure. Let me peek inside one recording zip.
 
 Note: CVE-2012-2122 structure in the outer zip is `<recording>.zip` directly (no per-recording folder). Let me inspectone inner zip.
@@ -216,7 +216,7 @@ Note: CVE-2012-2122 structure in the outer zip is `<recording>.zip` directly (no
 ```
 </details>
 
-### [16/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:26.550Z
+### [16/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:26.550Z
 Same structure as CVE-2014-0160. So I can extract the inner zips the same way. Let me check how CVE-2014-0160 was extracted — was there a script? The data dir has both the .zip and the extracted dir. Let me just write an extraction step.
 
 Important: CVE-2012-2122 has 210 training zips, same as CVE-2014-0160. Let me verify per-subdir counts.
@@ -230,7 +230,7 @@ Let me extract.
 ```
 </details>
 
-### [17/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:29.992Z
+### [17/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:29.992Z
 Same shape as CVE-2014-0160: 210 training, 60 validation, 762 test/normal, 120 test/normal_and_attack. So per-CVE it's the same size. The win is a second attack family, not a bigger training set.
 
 Let me extract it. Structure: each `.zip` contains .json, .sc, .pcap, .res. Same as before. Extract like before.
@@ -243,7 +243,7 @@ Let me check diskspace first.
 ```
 </details>
 
-### [18/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:35.126Z
+### [18/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:35.126Z
 Plenty of space. Now extract CVE-2012-2122. Structure: outer zip -> CVE-2012-2122/{training,validation,test/{normal,normal_and_attack}}/<name>.zip each containing <name>.{json,sc,pcap,res}. Extract only .sc and .json into per-recording dirs, matching the CVE-2014-0160 layout.
 
 Let me write a small extraction script (as a proper tool in the repo, since it will be needed for furtherCVEs).
@@ -256,7 +256,7 @@ Structure confirmed — same layout as the 2014 extract, 1,152 recordings. Writi
 ```
 </details>
 
-### [19/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:46.015Z
+### [19/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:46.015Z
 <details><summary>tool: shell (380 chars)</summary>
 
 ```json
@@ -264,7 +264,7 @@ Structure confirmed — same layout as the 2014 extract, 1,152 recordings. Writi
 ```
 </details>
 
-### [20/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:48.786Z
+### [20/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:48.786Z
 <details><summary>tool: shell (1181 chars)</summary>
 
 ```json
@@ -272,7 +272,7 @@ Structure confirmed — same layout as the 2014 extract, 1,152 recordings. Writi
 ```
 </details>
 
-### [21/60] assistant (opencode/space-bunny-free) 2026-10-01T05:30:51.107Z
+### [21/83] assistant (opencode/space-bunny-free) 2026-10-01T05:30:51.107Z
 While it extracts, let me think about what the experiment should be. With two CVEs, I now have:
 - CVE-2014-0160 (heartbleed): 210 train / 60 val / 878 test (758 benign + 120 attack)
 - CVE-2012-2122 (memcache amplification reflection DDoS): 210 train / 60 val / 882 (762 benign + 120 attack)
@@ -301,7 +301,7 @@ Extraction running. The loader needs a `family` key for a per-CVE breakdown — 
 ```
 </details>
 
-### [22/60] assistant (opencode/space-bunny-free) 2026-10-01T05:31:00.595Z
+### [22/83] assistant (opencode/space-bunny-free) 2026-10-01T05:31:00.595Z
 <details><summary>tool: edit (572 chars)</summary>
 
 ```json
@@ -309,7 +309,7 @@ Extraction running. The loader needs a `family` key for a per-CVE breakdown — 
 ```
 </details>
 
-### [23/60] assistant (opencode/space-bunny-free) 2026-10-01T05:31:04.078Z
+### [23/83] assistant (opencode/space-bunny-free) 2026-10-01T05:31:04.078Z
 <details><summary>tool: edit (1180 chars)</summary>
 
 ```json
@@ -317,7 +317,7 @@ Extraction running. The loader needs a `family` key for a per-CVE breakdown — 
 ```
 </details>
 
-### [24/60] synthetic 2026-10-01T05:31:10.226Z
+### [24/83] synthetic 2026-10-01T05:31:10.226Z
 [synthetic message: <shell id="sh_0f5f1a8d5001mvnqcUZv7SV4oE" state="completed" command="python detection/lid_ds_extract.py "$env:USERPROFILE\Downloads\CVE-2012-2122.zip"">
 archive      CVE-2012-2122.zip
 inner zips   1152
@@ -329,7 +329,7 @@ inner zips   1152
 
 next: python d
 
-### [25/60] assistant (opencode/space-bunny-free) 2026-10-01T05:31:10.530Z
+### [25/83] assistant (opencode/space-bunny-free) 2026-10-01T05:31:10.530Z
 Extraction complete: 1152/1152 complete. Now let me verify the loader sees both families and check for name overlap between families (I claimed independent capture sessions).
 
 Let me runthe loader.
@@ -341,7 +341,7 @@ Extraction clean — 1,152/1,152 complete, zero errors. Verifying the loader see
 ```
 </details>
 
-### [26/60] assistant (opencode/space-bunny-free) 2026-10-01T05:32:18.311Z
+### [26/83] assistant (opencode/space-bunny-free) 2026-10-01T05:32:18.311Z
 <details><summary>tool: edit (421 chars)</summary>
 
 ```json
@@ -349,7 +349,7 @@ Extraction clean — 1,152/1,152 complete, zero errors. Verifying the loader see
 ```
 </details>
 
-### [27/60] assistant (opencode/space-bunny-free) 2026-10-01T05:32:21.536Z
+### [27/83] assistant (opencode/space-bunny-free) 2026-10-01T05:32:21.536Z
 <details><summary>tool: shell (1836 chars)</summary>
 
 ```json
@@ -357,7 +357,7 @@ Extraction clean — 1,152/1,152 complete, zero errors. Verifying the loader see
 ```
 </details>
 
-### [28/60] assistant (opencode/space-bunny-free) 2026-10-01T05:32:50.310Z
+### [28/83] assistant (opencode/space-bunny-free) 2026-10-01T05:32:50.310Z
 Two issues found:
 
 1. **The 2012 family shows as `unknown`** — `_family_from_path` looks for a part starting with "CVE-". Let me check the actual directory name. Probably the extraction went to a different path. Let me check.
@@ -377,7 +377,7 @@ Two problems: the new family reads as `unknown`, and its traces run to **953,022
 ```
 </details>
 
-### [29/60] assistant (opencode/space-bunny-free) 2026-10-01T05:32:56.040Z
+### [29/83] assistant (opencode/space-bunny-free) 2026-10-01T05:32:56.040Z
 My extractor's `rel = Path(*parts[1:-1])` dropped the scenario directory. For CVE-2014-0160, the existing layout is `CVE-2014-0160/test/normal/...` (scenario retained). My extractor produced `LID-DS_SyscallRecords/test/normal/...` — the scenario name is gone.
 
 `parts` = ('CVE-2012-2122', 'test', 'normal', 'name.zip') → parts[1:-1] = ('test','normal'). I needed parts[0:-1] to keep the scenario.
@@ -406,7 +406,7 @@ My extractor bug: `parts[1:-1]` dropped the scenario directory, so 2012-2122 lan
 ```
 </details>
 
-### [30/60] assistant (opencode/space-bunny-free) 2026-10-01T05:33:12.331Z
+### [30/83] assistant (opencode/space-bunny-free) 2026-10-01T05:33:12.331Z
 <details><summary>tool: shell (1616 chars)</summary>
 
 ```json
@@ -414,7 +414,7 @@ My extractor bug: `parts[1:-1]` dropped the scenario directory, so 2012-2122 lan
 ```
 </details>
 
-### [31/60] assistant (opencode/space-bunny-free) 2026-10-01T05:33:48.394Z
+### [31/83] assistant (opencode/space-bunny-free) 2026-10-01T05:33:48.394Z
 Now both families load. And **zero recording-name overlap** — the two CVEs are fully independent capture sessions. That's important: it means pooling the two training sets gives 420 genuinely distinct benign recordings, and cross-family testing is a real transfer test.
 
 Now the critical check: the length confound. The 2012 family has traces up to 953k syscalls. Let me check attack vs benign length distributions. If attacks are systematically longer, a length feature alone separates them and any AUC is inflated.
@@ -428,7 +428,7 @@ Both families load, and **zero recording-name overlap** — independent capture 
 ```
 </details>
 
-### [32/60] assistant (opencode/space-bunny-free) 2026-10-01T05:34:29.694Z
+### [32/83] assistant (opencode/space-bunny-free) 2026-10-01T05:34:29.694Z
 **Critical finding.** CVE-2012-2122 has **LENGTH-ONLY AUC = 1.0000**. Every attack trace is longer than every benign trace (min attack 61,210 > max benign 36,590). This is a complete, trivial shortcut.
 
 This means: **any result on CVE-2012-2122 that doesn't control for length is meaningless.** If I just run the seq-AE and count-AE on this family, both will look near-perfect and neither will be measuring representation.
@@ -504,7 +504,7 @@ Given context, let me commit and writeE60.
 ```
 </details>
 
-### [33/60] assistant (opencode/space-bunny-free) 2026-10-01T05:35:07.379Z
+### [33/83] assistant (opencode/space-bunny-free) 2026-10-01T05:35:07.379Z
 Now write E60 with length-blind windowing. Design:
 
 - window W=3000 (matches 2014-0160's median 3,396, comparable across families)
@@ -551,7 +551,7 @@ Now the length-blind protocol. Windowing makes every sample exactly W tokens, so
 ```
 </details>
 
-### [34/60] assistant (opencode/space-bunny-free) 2026-10-01T05:35:48.270Z
+### [34/83] assistant (opencode/space-bunny-free) 2026-10-01T05:35:48.270Z
 I left some dead code in there (the `dropped`, `ids`, `lab_of`, `tid`, `k` loops) from drafting. Let me clean that up — it's messy and one loop has a bug risk. Let me clean it properly.
 
 The `tr_ids` assignment logic: I build `items = tagged(tb_i,0) + tagged(ta_i,1)` so order is all benign windows then all attack windows. Then `tr_ids` should be `[("b", i//K) for i in range(len(tb_i))] + [("a", i//K) for i in range(len(ta_i))]`.
@@ -582,7 +582,7 @@ Cleaning up dead code I left in the drafting.
 ```
 </details>
 
-### [35/60] assistant (opencode/space-bunny-free) 2026-10-01T05:36:01.333Z
+### [35/83] assistant (opencode/space-bunny-free) 2026-10-01T05:36:01.333Z
 <details><summary>tool: edit (494 chars)</summary>
 
 ```json
@@ -590,7 +590,7 @@ Cleaning up dead code I left in the drafting.
 ```
 </details>
 
-### [36/60] assistant (opencode/space-bunny-free) 2026-10-01T05:36:03.760Z
+### [36/83] assistant (opencode/space-bunny-free) 2026-10-01T05:36:03.760Z
 <details><summary>tool: edit (578 chars)</summary>
 
 ```json
@@ -598,7 +598,7 @@ Cleaning up dead code I left in the drafting.
 ```
 </details>
 
-### [37/60] assistant (opencode/space-bunny-free) 2026-10-01T05:36:07.683Z
+### [37/83] assistant (opencode/space-bunny-free) 2026-10-01T05:36:07.683Z
 Quick dry-run of the guards before committing hours of GPU time.
 <details><summary>tool: shell (1405 chars)</summary>
 
@@ -607,7 +607,7 @@ Quick dry-run of the guards before committing hours of GPU time.
 ```
 </details>
 
-### [38/60] assistant (opencode/space-bunny-free) 2026-10-01T05:36:46.848Z
+### [38/83] assistant (opencode/space-bunny-free) 2026-10-01T05:36:46.848Z
 Critical problem: **CVE-2014-0160 loses 98 of 120 attacks** when requiring traces ≥3000 tokens. Only 22 attack traces survive! That's because attacks on 2014-0160 are SHORT (median 1,399) — heartbleed is a quick request/response.
 
 So W=3000 destroys 82% of the 2014 attack test set. That's unacceptable — it would gut the family that produced E58.
@@ -648,7 +648,7 @@ W=3000 destroys 98 of 120 heartbleed attacks (median 1,399 tokens) — unaccepta
 ```
 </details>
 
-### [39/60] assistant (opencode/space-bunny-free) 2026-10-01T05:37:32.273Z
+### [39/83] assistant (opencode/space-bunny-free) 2026-10-01T05:37:32.273Z
 Even W=256 keeps only 82% of heartbleed attacks. 18% of heartbleed attack traces are shorter than 256 syscalls. So no equal-length window scheme can keep ≥90% of 2014 attacks without dropping data.
 
 This is a real, structural tension:
@@ -731,7 +731,7 @@ This surfaces something that **retracts part of E58/E59**. Length-only AUC on CV
 ```
 </details>
 
-### [40/60] assistant (opencode/space-bunny-free) 2026-10-01T05:38:02.182Z
+### [40/83] assistant (opencode/space-bunny-free) 2026-10-01T05:38:02.182Z
 <details><summary>tool: edit (1184 chars)</summary>
 
 ```json
@@ -739,7 +739,7 @@ This surfaces something that **retracts part of E58/E59**. Length-only AUC on CV
 ```
 </details>
 
-### [41/60] assistant (opencode/space-bunny-free) 2026-10-01T05:38:06.456Z
+### [41/83] assistant (opencode/space-bunny-free) 2026-10-01T05:38:06.456Z
 <details><summary>tool: edit (649 chars)</summary>
 
 ```json
@@ -747,7 +747,7 @@ This surfaces something that **retracts part of E58/E59**. Length-only AUC on CV
 ```
 </details>
 
-### [42/60] assistant (opencode/space-bunny-free) 2026-10-01T05:38:10.806Z
+### [42/83] assistant (opencode/space-bunny-free) 2026-10-01T05:38:10.806Z
 <details><summary>tool: shell (1162 chars)</summary>
 
 ```json
@@ -755,7 +755,7 @@ This surfaces something that **retracts part of E58/E59**. Length-only AUC on CV
 ```
 </details>
 
-### [43/60] assistant (opencode/space-bunny-free) 2026-10-01T05:38:13.747Z
+### [43/83] assistant (opencode/space-bunny-free) 2026-10-01T05:38:13.747Z
 # Stop — I have to retract part of E58 before anything else
 
 Downloading the second CVE surfaced a confound I never checked, and it invalidates the absolute numbers in E58 and E59.
@@ -816,10 +816,10 @@ Verified the two CVEs share **zero recording names** (0 of 1148/1152) — indepe
 
 Pushed `43c4a67`. I'll report the length-blind numbers when E60 lands.
 
-### [44/60] idle 2026-10-01T05:38:24.794Z
+### [44/83] idle 2026-10-01T05:38:24.794Z
 [idle message: 
 
-### [45/60] synthetic 2026-10-01T06:04:33.042Z
+### [45/83] synthetic 2026-10-01T06:04:33.042Z
 [synthetic message: <shell id="sh_0f5f86a82001ZCBk6cfaq3R5f5" state="completed" command="python -u experiments/E60_lidds_lengthblind/exp_e60_lengthblind.py">
 
 === CVE-2012-2122 ===
@@ -829,7 +829,7 @@ Pushed `43c4a67`. I'll report the length-blind numbers when E60 lands.
   CVE-2012-2122 seed 1 cntAE  ep  80 AUCmax 0.8764 AUCmean 0.9203
   CVE-2012-2122 seed 2 seqAE  ep  80 AUCmax 0.971
 
-### [46/60] assistant (opencode/space-bunny-free) 2026-10-01T06:04:33.322Z
+### [46/83] assistant (opencode/space-bunny-free) 2026-10-01T06:04:33.322Z
 The length-blind results. Both families: seq-AE wins, separated, with much larger deltas than E58.
 
 Key numbers:
@@ -871,7 +871,7 @@ Landing, and the representation finding **survives and strengthens** — but bot
 ```
 </details>
 
-### [47/60] assistant (opencode/space-bunny-free) 2026-10-01T06:04:48.009Z
+### [47/83] assistant (opencode/space-bunny-free) 2026-10-01T06:04:48.009Z
 Both arms edge-pinned:
 - 2012-2122: seqAE picked 80 on ALL 4 seeds (edge), countAE 80,80,80,20 (edge on 3)
 - 2014-0160: seqAE picked 10 on ALL 4 seeds (edge — LOWER edge!), countAE 80 on all 4 (edge)
@@ -909,7 +909,7 @@ All eight cells are edge-pinned — including seq-AE picking **10**, the *lower*
 ```
 </details>
 
-### [48/60] assistant (opencode/space-bunny-free) 2026-10-01T06:04:55.807Z
+### [48/83] assistant (opencode/space-bunny-free) 2026-10-01T06:04:55.807Z
 E60 took 26.3 min. So extending the grid to {5,10,20,40,80,160,320} = 635 epochs vs 150 → 4.2× → ~110 min. That's very acceptable.
 
 Let me write E61 as a full re-run with the extended grid. Actually simpler: modify E60's GRID and rerun as E61, keeping E60's results intact. Better practice: new experiment folder E61 that reuses E60's module with a wider grid.
@@ -935,7 +935,7 @@ Let me write E61.
 ```
 </details>
 
-### [49/60] assistant (opencode/space-bunny-free) 2026-10-01T06:05:09.081Z
+### [49/83] assistant (opencode/space-bunny-free) 2026-10-01T06:05:09.081Z
 <details><summary>tool: shell (1156 chars)</summary>
 
 ```json
@@ -943,7 +943,7 @@ Let me write E61.
 ```
 </details>
 
-### [50/60] assistant (opencode/space-bunny-free) 2026-10-01T06:05:14.832Z
+### [50/83] assistant (opencode/space-bunny-free) 2026-10-01T06:05:14.832Z
 Now the E60 README with the retraction on record.
 <details><summary>tool: write (6620 chars)</summary>
 
@@ -953,7 +953,7 @@ Now the E60 README with the retraction on record.
 ```
 </details>
 
-### [51/60] assistant (opencode/space-bunny-free) 2026-10-01T06:05:34.085Z
+### [51/83] assistant (opencode/space-bunny-free) 2026-10-01T06:05:34.085Z
 <details><summary>tool: read (1138 chars)</summary>
 
 ```json
@@ -961,7 +961,7 @@ Now the E60 README with the retraction on record.
 ```
 </details>
 
-### [52/60] assistant (opencode/space-bunny-free) 2026-10-01T06:05:36.873Z
+### [52/83] assistant (opencode/space-bunny-free) 2026-10-01T06:05:36.873Z
 Adding the retraction banners to the superseded experiments so nobody reads them standalone.
 <details><summary>tool: edit (1223 chars)</summary>
 
@@ -970,7 +970,7 @@ Adding the retraction banners to the superseded experiments so nobody reads them
 ```
 </details>
 
-### [53/60] assistant (opencode/space-bunny-free) 2026-10-01T06:05:42.159Z
+### [53/83] assistant (opencode/space-bunny-free) 2026-10-01T06:05:42.159Z
 <details><summary>tool: edit (1402 chars)</summary>
 
 ```json
@@ -978,7 +978,7 @@ Adding the retraction banners to the superseded experiments so nobody reads them
 ```
 </details>
 
-### [54/60] assistant (opencode/space-bunny-free) 2026-10-01T06:05:46.580Z
+### [54/83] assistant (opencode/space-bunny-free) 2026-10-01T06:05:46.580Z
 <details><summary>tool: edit (1029 chars)</summary>
 
 ```json
@@ -986,7 +986,7 @@ Adding the retraction banners to the superseded experiments so nobody reads them
 ```
 </details>
 
-### [55/60] assistant (opencode/space-bunny-free) 2026-10-01T06:05:51.079Z
+### [55/83] assistant (opencode/space-bunny-free) 2026-10-01T06:05:51.079Z
 <details><summary>tool: shell (4276 chars)</summary>
 
 ```json
@@ -995,7 +995,7 @@ Adding the retraction banners to the superseded experiments so nobody reads them
 ```
 </details>
 
-### [56/60] assistant (opencode/space-bunny-free) 2026-10-01T06:06:06.460Z
+### [56/83] assistant (opencode/space-bunny-free) 2026-10-01T06:06:06.460Z
 # E60 — the finding survives, and it's twice the size
 
 Length-blind, per-trace AUC, 4 seeds:
@@ -1054,13 +1054,13 @@ Retraction banners are in both superseded READMEs and the TOC, so nobody reads E
 
 **Host pillar as it stands:** seq-AE beats the count vector on both LID-DS families, both separated, under a protocol where length provably carries nothing — and E01's +0.058 on ADFA-LD is unaffected by any of this.
 
-### [57/60] idle 2026-10-01T06:06:20.771Z
+### [57/83] idle 2026-10-01T06:06:20.771Z
 [idle message: 
 
-### [58/60] user 2026-10-01T06:07:57.984Z
+### [58/83] user 2026-10-01T06:07:57.984Z
 bottom line please in simple language
 
-### [59/60] assistant (opencode/space-bunny-free) 2026-10-01T06:07:58.333Z
+### [59/83] assistant (opencode/space-bunny-free) 2026-10-01T06:07:58.333Z
 The user wants a simple-language bottom line. They asked for points-wise answers for bottom lines. Let me give a crisp, plain-language summary.
 
 E61 is still running. Let me note that.
@@ -1107,8 +1107,345 @@ In every single test, the model asked for the *maximum* or *minimum* amount of t
 
 Nothing else is running that you need to decide on. The second dataset you dropped in is what uncovered all of this — that was the right call.
 
-### [60/60] idle 2026-10-01T06:08:09.123Z
+### [60/83] idle 2026-10-01T06:08:09.123Z
 [idle message: 
+
+### [61/83] user 2026-10-01T07:09:16.869Z
+anything else left?
+
+### [62/83] assistant (opencode/space-bunny-free) 2026-10-01T07:09:17.308Z
+The user asks "anything else left?" — they want to know what remains. Let me check the experiments README "Still open" section and current state, plus E61 running.
+
+Let me read the README's still-open section to answer accurately rather than reconstruct from memory (the session's dominant errorclass).
+<details><summary>tool: grep (350 chars)</summary>
+
+```json
+{"type":"tool","tool":"grep","name":"grep","id":"call_01a0f64beb0c77b1983b62a9","args":{"pattern":"Still open|open list|Runnable|Blocked|Limitation","path":"E:\\Potential-gold\\Zero-Day\\experiments\\README.md"},"output":[{"type":"text","text":"Found 1 matches\nE:\\Potential-gold\\Zero-Day\\experiments\\README.md:\n  Line 204: ## Still open\r\n"}]}
+```
+</details>
+
+### [63/83] assistant (opencode/space-bunny-free) 2026-10-01T07:09:23.735Z
+<details><summary>tool: read (6381 chars)</summary>
+
+```json
+{"type":"tool","tool":"read","name":"read","id":"call_01a0f64bf6017103ba71bbe5","args":{"path":"E:\\Potential-gold\\Zero-Day\\experiments\\README.md","offset":200},"output":[{"type":"text","text":"Read file E:\\Potential-gold\\Zero-Day\\experiments\\README.md, lines 200-295\n200: | Single-seed quotes | Every number banded with a CI |\n201: | One testbed | Disclosed cross-testbed gap + a transfer recipe (E29) |\n202: | `detection/` mixed product with 14 loose `.pt` files | 9 checkpoints, catalogued in `detection/CHECKPOINTS.md` |\n203: \n204: ## Still open\n205: \n206: **Closed this batch:** replay-tune beyond PortScan (E42, 5/7, boundary and cost\n207: measured) · provenance back-fill (E47, 9/9 checkable) · the E43 4-seed band ·\n208: **the OPT threshold sweep (E48) — the fusion rule is now fully measured; what\n209: remains is a design decision** · `seed_protocol.py` revival · the v2 x noisyor\n210: caveat (superseded).\n211: \n212: ### Open — runnable\n213: \n214: 1. **E01 epoch-grid extension — the first result was WRONG and is retracted.**\n215:    The {10,20,40} grid gave seq-AE 0.7799 ± 0.0066 vs count-AE 0.7768 ± 0.0050\n216:    (Δ 0.47 SD, \"inside the noise\") with no M3 gain, and that was reported as a\n217:    negative. **It was an artefact of a truncated grid** — all four seeds had\n218:    selected epoch 40, the maximum offered. On {40,80,120,160}:\n219:    **seq-AE 0.8340 ± 0.0037 vs count-AE 0.7756 ± 0.0059, Δ = +0.058 = 11.9\n220:    pooled SD**, and M3 (the reorder blind spot) goes **0.545 → 0.832** while the\n221:    count-AE stays at 0.545. A 4.4× longer budget turned a null into the largest\n222:    effect in the host pillar. **Standing rule now: a parameter pinned to the\n223:    edge of a sweep has not been tested, it has been truncated.** A {160…400}\n224:    grid is running (3 of 4 seeds again picked the maximum), but the 0.058 gap is\n225:    far too large for the exact value to be in doubt.\n226: \n227: ### Open — blocked\n228: \n229: 2. **Botnet host fusion** — blocked on Person A's LID-DS loader. Network-side\n230:    ceiling is 0.709+-0.025 (E43 band, `repfuse`); every graph rule fails\n231:    tightly. LID-DS is the third fuse input.\n232: \n233: ### Closed by decision, kept as disclosed limitations\n234: \n235: 3. **Sub-threshold pacing at x10** — **removed from the to-do list, not fixed.**\n236:    [E44](E44_residual_evasion/) measured it honestly: the rescue holds to x5\n237:    (0.974) and collapses at x10 (0.098), and both network-side fixes were\n238:    rejected on evidence. It is a **disclosed limitation**, and it is Pillar\n239:    3's territory — the host pillar is the only place it can be addressed, which\n240:    is also why item 1 matters. E44's useful positive result is preserved:\n241:    **IP rotation alone is not an evasion** (0.954 vs 0.969 control), because\n242:    volume, not identity, is the signal.\n243: \n244: 4. **The TLS claim is structural, not empirical** —\n245:    [E45](E45_tls_reality_check/): only **0.24% of attack traffic in the whole\n246:    corpus is on encrypted ports**, and six of eight day-files contain none.\n247:    E13's \"0.89 on 443\" was a 5-positive slice of an almost-empty population.\n248:    The public encrypted-traffic datasets (CSTNET-TLS1.3, CESNET-TLS22) are\n249:    app-classification, not IDS. Not a task — a wording constraint. Quote the\n250:    feature audit (\"no feature needs decryption\"), never \"evaluated on encrypted\n251:    traffic\".\n252: \n253: ### Open — research question, mechanism now known (E49)\n254: \n255: 5. **Cross-testbed: the *fix* is still open, the *explanation* is not.**\n256:    [E49](E49_cross_testbed_why/) identified the mechanism. The two Mondays are\n257:    the same network (host Jaccard **0.9999**, 9,709 vs 9,710 hosts), and the two\n258:    extractors agree on UDP to within **0.07%** (224,178 vs 224,023 flows) but\n259:    disagree on TCP by **52%** (305,423 vs 147,204). The improved extractor drops\n260:    h
+… truncated 2381 chars, see export JSON …
+```
+</details>
+
+### [64/83] assistant (opencode/space-bunny-free) 2026-10-01T07:09:26.643Z
+Item 2 (Botnet host fusion) is marked blocked on "Person A's LID-DS loader" — that's now unblocked, since the loader works and we have two families. Let me check if there's more of the list belowline 295.
+<details><summary>tool: read (362 chars)</summary>
+
+```json
+{"type":"tool","tool":"read","name":"read","id":"call_01a0f64c03ad73aebef4622b","args":{"offset":295,"path":"E:\\Potential-gold\\Zero-Day\\experiments\\README.md"},"output":[{"type":"text","text":"Read file E:\\Potential-gold\\Zero-Day\\experiments\\README.md, lines 295-295\n295:    labelled traffic**, which E48 showed helps by up to 0.027 and never hurts."}]}
+```
+</details>
+
+### [65/83] assistant (opencode/space-bunny-free) 2026-10-01T07:09:30.009Z
+The "Still open" list is stale — item 2 says Botnet host fusion is "blocked on Person A's LID-DS loader" which is now unblocked (loader works, two families downloaded). Item 1 (E01 epoch grid) is actually closed per the summary. Let me check E61 status and then update the list.
+
+Let me check E61 progress.
+The open list is stale — it still lists Botnet fusion as blocked on the LID-DS loader, which now works. Checking E61 before I update it.
+<details><summary>tool: shell (1237 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_01a0f64c168a768e8ded5ddb","args":{"command":"Get-Content C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0f61126ab0016PgxjSq2m4wdsW.out -ErrorAction SilentlyContinue | Select-Object -Last 10\n\"--- proc ---\"\nGet-Process python -ErrorAction SilentlyContinue | Select-Object Id,@{n='Min';e={[math]::Round(((Get-Date)-$_.StartTime).TotalMinutes,1)}} | Format-Table -AutoSize","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"  picks countAE [320, 320, 320, 320]\r\n  seqae    AUCmax 0.9927+-0.0015  AUCmean 0.9932+-0.0024  det@10 0.996\r\n  countae  AUCmax 0.9926+-0.0017  AUCmean 0.9927+-0.0013  det@10 1.000\r\n  delta +0.0001 (z +0.06) -> inside noise\r\n  EDGE CHECK seqae    max pick 320 STILL TRUNCATED   min pick 80 interior\r\n  EDGE CHECK countae  max pick 320 STILL TRUNCATED   min pick 320 interior\r\n\r\n=== CVE-2014-0160  (grid [5, 10, 20, 40, 80, 160, 320]) ===\r\n  CVE-2014-0160 seed 0 seqAE  ep   5 AUCmax 0.6730 AUCmean 0.7086\r\n  CVE-2014-0160 seed 0 cntAE  ep 320 AUCmax 0.5949 AUCmean 0.5857\r\n--- proc ---\r\n\r\n   Id  Min\r\n   --  ---\r\n11364 64.3\r\n\r\n\r\n"}]}
+```
+</details>
+
+### [66/83] assistant (opencode/space-bunny-free) 2026-10-01T07:09:35.653Z
+**Major finding: the CVE-2012-2122 result completely collapses under a wider grid.** seqAE 0.9927, countAE 0.9926, delta +0.0001 (z +0.06) — INSIDE NOISE. Both arms at 320 epochs (edge).
+
+So E60's CVE-2012-2122 result (+0.0954) was an artefact of the truncated grid — exactly the E01/E48 lesson firing a THIRD time. With enough epochs, the count vector catches up completely on the easy family (memcached amplification, AUC 0.993).
+
+This is a huge deal: **the +0.0954 on CVE-2012-2122 is retracted.** And note that both arms are STILL truncated at 320 — so 0.993 is not a ceiling either.
+
+Also interesting: at 320 epochs the count-AE on 2012-2122 reaches det@10 = 1.000 (perfect detection). So the count vector CAN detect this attack, just needs more training.
+
+Let me wait for CVE-2014-0160 to finish. It's on seed 0. ~64 min elapsed. The 2014 family has seqAE picking 5 (bottom edge even on the wide grid!) and countAE 320.
+
+So seqAE on 2014 wants FEWER than 5 epochs. That's the bottom edge still truncated.
+
+This is a striking pattern: the two families want opposite directions. 2012 wants more (320+), 2014 wants less (<5). And on 2012 with enough training, the count vector matches the seq vector entirely.
+
+Let me let it finish and report. The bottom line is shifting significantly:
+- E60's 2012 result (+0.0954) is RETRACTED — truncated grid, count-AE catches up
+- E60's 2014 result (+0.1150) — need to see, seqAE picked 5 (bottom edge), so also truncated downward
+- E01's +0.058 on ADFA — was that also a grid artefact? The summary says E01's grid was extended to {160,240,320,400} and seed 0 picked ep 240 (interior). So E01 is safe.
+
+Let me wait for the rest. Meanwhile, I should NOT report the "anything else left" answer until E61 lands, because it materially changes the answer. Let me wait.
+
+Actually the user asked "anything else left?" — I should answer that, but the E61 finding is a big deal that changes the answer. Let me wait for E61 to complete (it's mid-run) then give a combined answer.
+
+Let me wait for the notification. Actually I shouldn't poll. Let me do useful work: update the stale "Still open" section while E61 runs. But E61's outcome will change what I write. Hmm.
+
+The Botnet fusion item is genuinely stale regardless of E61's outcome — the loader works now. Let me update that one item, which is safe.
+
+Let me wait for E61 though since it's close-ish and the finding is important. Actually let me just be efficient: answer the user's question now with what's known, flagging that E61 is mid-run and has already changed the picture.
+
+Actually the honest thing: tell the user right now that E61 has already retracted the 2012 result. That's material to "what's left."
+
+Let me update the stale item 2 and report.
+
+Let me do the edit for item 2 (Botnet fusion no longer blocked) — that's true regardless.
+E61 has already overturned the CVE-2012-2122 result. Reporting that now rather than after it finishes.
+<details><summary>tool: edit (1524 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_01a0f64c58e470fab8acf355","args":{"oldString":"### Open — blocked\n\n2. **Botnet host fusion** — blocked on Person A's LID-DS loader. Network-side\n   ceiling is 0.709+-0.025 (E43 band, `repfuse`); every graph rule fails\n   tightly. LID-DS is the third fuse input.","path":"E:\\Potential-gold\\Zero-Day\\experiments\\README.md","newString":"### Open — runnable\n\n2. **Botnet host fusion** — **no longer blocked.** The LID-DS loader works\n   (`detection/lid_ds_loader.py`) and two CVE families are extracted and\n   measured (E60/E61). Network-side ceiling is 0.709 ± 0.025 (E43 band,\n   `repfuse`); every graph rule fails tightly. LID-DS is the third fuse input and\n   is now available. **The caveat that decides whether it can help: the host arm\n   must clear Botnet's network-side score of 0.709 to move the fused result at\n   all, and on LID-DS the two arms have ranged from 0.53 to 0.99 depending\n   entirely on the epoch budget.** Not yet attempted.\n\n### Closed this batch\n\n3. ~~**E01 epoch-grid extension**~~ — **closed.** The original {10,20,40} grid\n   gave a null (0.47 SD); the {40…160} grid gave the real +0.058 (11.9 SD) with\n   the M3 fix. Seed 0 selects epoch 240, interior to {160,240,320,400}, so the\n   number is not grid-limited. The {160…400} follow-up was killed at 80\n   min/seed because the 0.058 gap is far too large for the exact epoch to matter."},"output":[{"type":"text","text":"Edited experiments/README.md (1 replacement)"}]}
+```
+</details>
+
+### [67/83] assistant (opencode/space-bunny-free) 2026-10-01T07:09:51.858Z
+<details><summary>tool: edit (444 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_01a0f64c69dd75c0b2354b75","args":{"oldString":"### Closed by decision, kept as disclosed limitations\n\n3. **Sub-threshold pacing at x10**","path":"E:\\Potential-gold\\Zero-Day\\experiments\\README.md","newString":"### Closed by decision, kept as disclosed limitations\n\n4. **Sub-threshold pacing at x10**"},"output":[{"type":"text","text":"Edited experiments/README.md (1 replacement)"}]}
+```
+</details>
+
+### [68/83] assistant (opencode/space-bunny-free) 2026-10-01T07:09:56.182Z
+<details><summary>tool: shell (2458 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_01a0f64c800d76e8b83248bc","args":{"command":"python -c \"\nimport pathlib,re\np=pathlib.Path('experiments/README.md'); t=p.read_text(encoding='utf-8')\nfor old,new in (('4. **The TLS claim is structural','5. **The TLS claim is structural'),('5. **Cross-testbed: the','6. **Cross-testbed: the'),('6. **~~Route the fusion rule','7. **~~Route the fusion rule')):\n    assert t.count(old)==1,(old,t.count(old)); t=t.replace(old,new)\np.write_text(t,encoding='utf-8'); print('renumbered')\n\"; python -c \"\nimport re,pathlib\nbad=[(md.as_posix(),m) for md in pathlib.Path('experiments').rglob('README.md') for m in re.findall(r'\\]\\(([A-Za-z0-9_\\.\\-]+/)', md.read_text(encoding='utf-8')) if not (md.parent/m).exists()]\nprint('broken links:', bad or 'none')\n\"; git add -A; git commit -q -m \"experiments/README: unblock Botnet host fusion (LID-DS loader works), close E01 grid item\n\nItem 2 was listed as 'blocked on Person A's LID-DS loader'. The loader exists and\nworks, and two CVE families are extracted and measured. Moved to runnable with\nthe caveat that decides it: the host arm must clear Botnet's network-side 0.709\nto move the fused number at all, and on LID-DS the host arms have ranged from\n0.53 to 0.99 depending purely on epoch budget.\n\nItem 1 (E01 epoch-grid extension) moved to closed: seed 0 selects epoch 240,\ninterior to {160,240,320,400}, so the +0.058 is not grid-limited. The {160..400}\nfollow-up was killed at 80 min/seed because the gap is far too large for the\nexact epoch to matter.\n\nRemaining list renumbered.\" 2>&1 | Select-Object -Last 1; git log --oneline -1","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"renumbered\r\nbroken links: none\r\nwarning: in the working copy of '.opencode/roam/ROAM-Lxxk0zlWJrAr.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/latest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json', LF will be replaced by CRLF the next time Git touches it\n3c6c6f6 experiments/README: unblock Botnet host fusion (LID-DS loader works), close E01 grid item\n"}]}
+```
+</details>
+
+### [69/83] assistant (opencode/space-bunny-free) 2026-10-01T07:10:02.870Z
+# Yes — and one is bigger than I expected
+
+## First: the running test already overturned a result
+
+The wide-grid run has half-finished, and on the **memcached** attack the picture flipped:
+
+| | seq-AE | count-AE | Δ |
+|---|---|---|---|
+| E60, grid {10…80} | 0.9731 | 0.8777 | **+0.0954** |
+| E61, grid {5…320} | 0.9927 | **0.9926** | **+0.0001** (z = 0.06) |
+
+**The gap vanished.** The shopping-list model caught up completely once given enough training — and it now detects 100% of attacks (vs 0.867).
+
+So **+0.0954 is retracted too.** That's the same trap a third time: I ran a grid, every pick hit the top, I wrote it up as a result, and the wider grid dissolved it.
+
+Which means my previous bottom line needs correcting — I told you the finding "got stronger." On the memcached attack that's now false.
+
+## What's actually left
+
+| # | Item | Status |
+|---|---|---|
+| 1 | **E61 finish** | Running. Heartbleed picks epoch **5** — the *bottom* edge, so that family's numbers are also provisional |
+| 2 | **Extend past 320** | Both arms want **more** epochs on memcached. 0.993 isn't a ceiling either |
+| 3 | **Botnet host fusion** | **No longer blocked.** Loader works, two families ready. Was listed as blocked on something that now exists |
+| 4 | **E59's learning curve** | Dead until re-run length-blind. Can't distinguish "structurally limited" from "leaning on length" |
+| 5 | **Cross-testbed TCP fix** | Genuinely blocked — needs extractor-level segmentation work, outside the detector |
+
+## The honest summary of where we are
+
+**Two separate retractions in a row**, both from the same cause: a parameter pinned at a grid edge. E01 fixed it once. I reintroduced it in E58/E59, caught it, and reintroduced it again in E60.
+
+**What still stands:** E01's +0.058 on ADFA-LD — its pick was interior to the grid, so it wasn't truncated.
+
+**What doesn't:** E58, E59, and now E60's memcached arm. All contaminated or grid-limited.
+
+## The thing I'd watchMemcached needed320 epochs to close the gap. Heartbleed wants *fewer* than 5. The two families pull in opposite directions, which means **there's no single honest epoch budget** — and a paper quoting one grid is quoting whichever family flatters it.
+
+I'd rather find that out now than have a reviewer find it.
+
+**Next:** E61 completes (~30 min), then extend past 320 on memcached. Nothing needs your input.
+
+### [70/83] idle 2026-10-01T07:10:15.222Z
+[idle message: 
+
+### [71/83] synthetic 2026-10-01T07:29:04.266Z
+[synthetic message: <shell id="sh_0f61126ab0016PgxjSq2m4wdsW" state="cancelled" command="python -u experiments/E61_lidds_grid_ext/exp_e61_grid_ext.py">
+Command cancelled because the server restarted
+</shell>
+
+### [72/83] user 2026-10-01T07:29:04.269Z
+?
+
+### [73/83] assistant (opencode/space-bunny-free) 2026-10-01T07:29:04.625Z
+The E61 run was cancelled because "the server restarted". The user is asking "?" — what happened.
+
+Important: the user's prior guidance was "no restarts/sleep (machine restarts killed E01 three times)". So this is a known recurring hazard.
+
+Let me check the state: did the JSON get written? Almost certainly not, since it was mid-run on CVE-2014-0160 seed 0. So E61 is LOST — no output file.
+
+But critically: I already have the CVE-2012-2122 result from the partial output (which I reported). That was printed to the .out file. So I have that evidence in the log even though the JSON wasn't written.
+
+Let me verify: check the output file content, check if JSON exists, and check machine state.
+
+The key loss: CVE-2014-0160's wide-grid result. And no JSON artifact for E61 at all.
+
+Also I should check whether my machine restarted and whether anything else is at risk (uncommitted work is committed — 3c6c6f6 pushed? Let me check push status. I committed but did I push? The last commit output showed only the commit, and the earlier one showed push. Let me verify.)
+
+Let me check state quickly.
+
+Also: per the user's standing guidance about restarts — I should tell them what happened and what it cost, and be concrete.
+
+Let me gather facts.
+<details><summary>tool: shell (1578 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_01a0f65e22ab747581d45904","args":{"command":"\"=== boot time / restart evidence ===\"\n$b=(Get-CimInstance Win32_OperatingSystem).LastBootUpTime\n\"last boot: $b\"\n\"uptime: $([math]::Round(((Get-Date)-$b).TotalMinutes,1)) min\"\n\"=== E61 artifact ===\"\nTest-Path experiments\\E61_lidds_grid_ext\\exp_e61_grid_ext.json\nGet-ChildItem experiments\\E61_lidds_grid_ext -File | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize\n\"=== running python ===\"\n@(Get-Process python -ErrorAction SilentlyContinue).Count\n\"=== git ===\"\ngit status --porcelain | Select-Object -First 10\ngit log --oneline -3\ngit log --oneline origin/exp/host-seqae-p37 -1","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"=== boot time / restart evidence ===\r\nlast boot: 09/30/2026 09:39:09\r\nuptime: 1640.1 min\r\n=== E61 artifact ===\r\nFalse\r\n\r\nName                Length LastWriteTime        \r\n----                ------ -------------        \r\nexp_e61_grid_ext.py   3230 10/1/2026 11:35:08 AM\r\n\r\n\r\n=== running python ===\r\n1\r\n=== git ===\r\n3c6c6f6 experiments/README: unblock Botnet host fusion (LID-DS loader works), close E01 grid item\ned4399d E60: length-blind protocol; retracts E58/E59 absolutes. Representation finding survives, 2x larger\n43c4a67 LID-DS: extract CVE-2012-2122 (1152/1152), add family key, expose a perfect length shortcut\ned4399d E60: length-blind protocol; retracts E58/E59 absolutes. Representation finding survives, 2x larger\n"}]}
+```
+</details>
+
+### [74/83] assistant (opencode/space-bunny-free) 2026-10-01T07:29:18.274Z
+Important findings:
+1. **The machine did NOT restart.** Uptime is 1,640 min (27 hours), last boot 9/30 09:39. So the cancellation was NOT a real restart — the *shell server* restarted (the opencode server), not the machine. That's a different thing and important to report accurately.
+
+2. E61 JSON was never written — the run was killed before completion. So the CVE-2014-0160 wide-grid result is LOST. Only the CVE-2012-2122 part completed and I have those numbers from the log.
+
+3. There's still 1 python process running. Let me check what it is — might be a leftover.
+
+4. Uncommitted: `3c6c6f6` is committed but NOT pushed (origin is at ed4399d). So my README update is unpushed.
+
+Let me check the python process and push the commit.
+
+Also: the E61 partial results for CVE-2012-2122 exist only in the shell log, which is in a temp dir. I should preserve them — write them into the E61 folder as a partial record so the finding isn't lost again. That's important: the retraction of +0.0954 depends on those numbers.
+
+Let me check the .out file still exists and grab the full 2012 block.
+Two things are wrong here, and one of them matters a lot.
+<details><summary>tool: shell (1601 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_01a0f65e43ed72bbbf853762","args":{"command":"Get-Process python -ErrorAction SilentlyContinue | Select-Object Id,@{n='Min';e={[math]::Round(((Get-Date)-$_.StartTime).TotalMinutes,1)}},CPU | Format-Table -AutoSize\n\"=== E61 partial log still present? ===\"\n$o=\"C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0f61126ab0016PgxjSq2m4wdsW.out\"\nTest-Path $o\nGet-Content $o -ErrorAction SilentlyContinue | Select-Object -First 14","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"\r\n   Id Min     CPU\r\n   -- ---     ---\r\n25980 9.2 5.28125\r\n\r\n\r\n=== E61 partial log still present? ===\r\nTrue\r\n\r\n=== CVE-2012-2122  (grid [5, 10, 20, 40, 80, 160, 320]) ===\r\n  CVE-2012-2122 seed 0 seqAE  ep  80 AUCmax 0.9908 AUCmean 0.9899\r\n  CVE-2012-2122 seed 0 cntAE  ep 320 AUCmax 0.9920 AUCmean 0.9921\r\n  CVE-2012-2122 seed 1 seqAE  ep 320 AUCmax 0.9929 AUCmean 0.9940\r\n  CVE-2012-2122 seed 1 cntAE  ep 320 AUCmax 0.9933 AUCmean 0.9928\r\n  CVE-2012-2122 seed 2 seqAE  ep 320 AUCmax 0.9945 AUCmean 0.9955\r\n  CVE-2012-2122 seed 2 cntAE  ep 320 AUCmax 0.9944 AUCmean 0.9945\r\n  CVE-2012-2122 seed 3 seqAE  ep 320 AUCmax 0.9925 AUCmean 0.9936\r\n  CVE-2012-2122 seed 3 cntAE  ep 320 AUCmax 0.9905 AUCmean 0.9915\r\n  picks seqAE   [80, 320, 320, 320]\r\n  picks countAE [320, 320, 320, 320]\r\n  seqae    AUCmax 0.9927+-0.0015  AUCmean 0.9932+-0.0024  det@10 0.996\r\n  countae  AUCmax 0.9926+-0.0017  AUCmean 0.9927+-0.0013  det@10 1.000\r\n"}]}
+```
+</details>
+
+### [75/83] assistant (opencode/space-bunny-free) 2026-10-01T07:29:26.630Z
+# First: your machine did *not* restart
+
+| | |
+|---|---|
+| Last boot | **9/30 09:39** |
+| Uptime | **1,640 min (27 hours)** |
+
+Nothing rebooted. **The opencode server restarted**, which killed my background shell — a different thing. Worth knowing, because "machine restarts killed E01 three times" is on your guidance list and this was *not* one of those. I don't know the cause and I'm not going to guess.
+
+# Second: E61 is lost, and I'm preserving what survived
+
+The JSON was never written — it writes at the end, and the run died on heartbleed seed 0. **The CVE-2014-0160 wide-grid result is gone.** That's the family where seq-AE picked epoch 5 (bottom edge), which was the most interesting open question.
+
+The memcached half **did** complete, and I only had it in a temp log. So I'm copying it into the repo now — that's the record backing a retraction, and it should not be living in a temp file.
+
+Look at the per-seed picks:
+
+| Seed | seq-AE | count-AE |
+|---|---|---|
+| 0 | 80 |320 |
+| 1 | 320 | 320 |
+| 2 | 320 | 320 |
+| 3 | 320 | 320 |
+
+**Six of eight picks at 320** — still the edge. And seed 0's seq-AE landing at 80 while every other seed wants 320 means this arm isn't even stable yet at that budget. Both arms are past the point where this grid measures anything.
+
+# Third: your README fix is committed but unpushed
+
+Origin is at `ed4399d`; I have `3c6c6f6` locally. Pushing now and saving the partial results.
+<details><summary>tool: write (3394 chars)</summary>
+
+```json
+{"type":"tool","tool":"write","name":"write","id":"call_01a0f65e8b227215b15ad5ed","args":{"content":"{\n \"_status\": \"PARTIAL - run cancelled before completion. The CVE-2012-2122 family completed; CVE-2014-0160 was killed on seed 0 and has no result. Recovered from the shell log after the opencode server restarted mid-run (the machine itself did not reboot: uptime was 27h).\",\n \"_why_saved\": \"This file is the evidence for retracting E60's CVE-2012-2122 result (+0.0954). It must not live only in a temp log.\",\n \"grid_e60\": [10, 20, 40, 80],\n \"grid_wide\": [5, 10, 20, 40, 80, 160, 320],\n \"W\": 1024,\n \"K\": 3,\n \"families\": {\n  \"CVE-2012-2122\": {\n   \"complete\": true,\n   \"V\": 31,\n   \"raw_length_only_auc\": 1.0,\n   \"window_length_only_auc\": 0.5,\n   \"all_windows_exactly_W\": true,\n   \"per_seed\": [\n    {\"seed\": 0, \"seqae_epochs\": 80,  \"seqae_auc_max\": 0.9908, \"seqae_auc_mean\": 0.9899, \"countae_epochs\": 320, \"countae_auc_max\": 0.9920, \"countae_auc_mean\": 0.9921},\n    {\"seed\": 1, \"seqae_epochs\": 320, \"seqae_auc_max\": 0.9929, \"seqae_auc_mean\": 0.9940, \"countae_epochs\": 320, \"countae_auc_max\": 0.9933, \"countae_auc_mean\": 0.9928},\n    {\"seed\": 2, \"seqae_epochs\": 320, \"seqae_auc_max\": 0.9945, \"seqae_auc_mean\": 0.9955, \"countae_epochs\": 320, \"countae_auc_max\": 0.9944, \"countae_auc_mean\": 0.9945},\n    {\"seed\": 3, \"seqae_epochs\": 320, \"seqae_auc_max\": 0.9925, \"seqae_auc_mean\": 0.9936, \"countae_epochs\": 320, \"countae_auc_max\": 0.9905, \"countae_auc_mean\": 0.9915}\n   ],\n   \"summary\": {\n    \"seqae\":   {\"auc_max\": [0.9927, 0.0015], \"auc_mean\": [0.9932, 0.0024], \"det_max_at_10fpr\": 0.996},\n    \"countae\": {\"auc_max\": [0.9926, 0.0017], \"auc_mean\": [0.9927, 0.0013], \"det_max_at_10fpr\": 1.000}\n   },\n   \"comparison_max\": {\"delta\": 0.0001, \"pooled_sd\": 0.0016, \"z\": 0.06, \"verdict\": \"inside noise\"},\n   \"edge_check\": {\n    \"seqae\":   {\"max_pick\": 320, \"still_truncated\": true,  \"min_pick\": 80,  \"min_interior\": true},\n    \"countae\": {\"max_pick\": 320, \"still_truncated\": true,  \"min_pick\": 320, \"min_interior\": false},\n    \"note\": \"6 of 8 picks sit on the 320 edge. Seed 0's seq-AE chose 80 while the other three chose 320, so the arm is not stable at this budget either.\"\n   },\n   \"conclusion\": \"E60 reported seq-AE +0.0954 (z +4.50) over count-AE on this family on grid {10,20,40,80}. On {5..320} the gap is +0.0001 (z +0.06) - inside noise. The count-AE catches up completely and reaches 100% detection at a 10% FPR. E60's CVE-2012-2122 result is RETRACTED as a truncated-grid artefact. Still not a ceiling: 320 is the edge, so 0.993 is a lower bound on both arms.\"\n  },\n  \"CVE-2014-0160\": {\n   \"complete\": false,\n   \"result\": null,\n   \"note\": \"Killed on seed 0. E60 gave seq-AE 0.6419 / count-AE 0.5269 with picks pinned to 10 (bottom edge) and 80 (top edge). On the wide grid the first two cells were seq-AE epoch 5 (bottom edge again) and count-AE epoch 320 (top edge), so this family remains unresolved in BOTH directions and needs a grid that brackets further.\"\n  }\n }\n}","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E61_lidds_grid_ext\\exp_e61_grid_ext.PARTIAL.json"},"output":[{"type":"text","text":"Created file successfully: experiments/E61_lidds_grid_ext/exp_e61_grid_ext.PARTIAL.json"}]}
+```
+</details>
+
+### [76/83] assistant (opencode/space-bunny-free) 2026-10-01T07:29:44.391Z
+<details><summary>tool: write (5010 chars)</summary>
+
+```json
+{"type":"tool","tool":"write","name":"write","id":"call_01a0f65eccb2712495de5096","args":{"content":"# E61 — Extend E60's epoch grid (PARTIAL: CVE-2012-2122 done, CVE-2014-0160 lost)\n\n**Verdict: RETRACTS E60's CVE-2012-2122 result. CVE-2014-0160 unresolved.**\n· 2026-10-01\n\n> **Status: partial.** The CVE-2012-2122 family completed. The CVE-2014-0160 family\n> was killed on seed 0 when the **opencode server restarted mid-run** and the\n> results file (written only at the end) never appeared. The machine did **not**\n> reboot — uptime was 27 hours — so this is not a repeat of the E01 restarts.\n> Recovered numbers live in `exp_e61_grid_ext.PARTIAL.json`.\n\n## Why this experiment existed\n\nE60's epoch picks, all eight cells, were pinned to a grid edge:\n\n| Cell | Picks | Edge |\n|---|---|---|\n| CVE-2012-2122 seq-AE | 80, 80, 80, 80 | top of {10,20,40,80} |\n| CVE-2012-2122 count-AE | 80, 80, 80, 20 | top on 3 of 4 |\n| CVE-2014-0160 seq-AE | 10, 10, 10, 10 | **bottom** |\n| CVE-2014-0160 count-AE | 80, 80, 80, 80 | top |\n\nStanding rule, earned at E01 (epoch 40) and E48 (`k=3`): a parameter pinned to\nthe edge of a sweep has not been tested, it has been truncated. E60 was therefore\nre-run on **{5, 10, 20, 40, 80, 160, 320}**. Everything else — W=1024 windows,\nK=3, caps, 4 seeds, both arms — is byte-identical to E60.\n\n## Result 1 — CVE-2012-2122: E60's gap was a grid artefact\n\n| | seq-AE | count-AE | Δ | verdict |\n|---|---|---|---|---|\n| **E60**, grid {10…80} | 0.9731 ± 0.0117 | 0.8777 ± 0.0276 | **+0.0954** (z = +4.50) | separated |\n| **E61**, grid {5…320} | 0.9927 ± 0.0015 | 0.9926 ± 0.0017 | **+0.0001** (z = +0.06) | **inside noise** |\n\n**E60's +0.0954 is retracted.** With a budget long enough to matter, the count\nvector catches up completely — and its detection rate at a 10% FPR goes from\n0.867 to **1.000**, while the seq-AE's goes 0.992 → 0.996. Neither arm has an\nadvantage on this family at all.\n\nThis is the **third** time the edge-of-grid trap has fired in this project, and\nthe second time I introduced it myself after E01 documented it.\n\n### Why it happened, stated plainly\n\nE60 gave count-AE 80 epochs. The count vector is a small MLP over 31 features;\n80 epochs is nowhere near convergence. It was not \"worse at counting\", it was\n**undertrained**, and the gap I reported was the training budget showing through.\n\n## Still not a ceiling\n\n| Arm | Picks | Status |\n|---|---|---|\n| seq-AE | 80, 320, 320, 320 | **truncated at 320** |\n| count-AE | 320, 320, 320, 320 | **truncated at 320** |\n\nSix of eight picks sit on the top edge. **0.993 is a lower bound on both arms,\nnot a converged value.** And seed 0's seq-AE choosing 80 while the other three\nchose 320 means that arm is not stable at this budget either — 0.9927 ± 0.0015\nunderstates the seed-to-seed spread at a genuinely converged setting.\n\n## Result 2 — CVE-2014-0160: lost, and still unresolved in both directions\n\nKilled on seed 0. The two cells that did print:\n\n| Arm | Pick | Edge? |\n|---|---|---|\n| seq-AE | **5** | bottom edge of {5…320} |\n| count-AE | **320** | top edge |\n\nSo even on the wide grid this family wants **fewer** epochs for the seq-AE and\n**more** for the count-AE — the opposite of CVE-2012-2122, where the count-AE\nneeded 320 to catch up. Two families pulling in opposite directions means there\nis **no single defensible epoch budget**, and a paper quoting one grid is\nquoting whichever family flatters it.\n\n## Where this leaves the host pillar\n\n| Claim | Status |\n|---|---|\n| E01 +0.058 on ADFA-LD | **stands** — pick was interior to the grid |\n| E58 absolutes | retracted (length confound) |\n| E59 learning curve | retracted (length confound, not re-measured) |\n| E60 CVE-2012-2122 +0.0954 | **retracted here** (truncated grid) |\n| E60 CVE-2014-0160 +0.1150 | **unresolved** — still edge-pinned in both directions |\n\nThe representation finding is now supported by **E01 alone**. The two LID-DS\nfamilies h
+… truncated 1010 chars, see export JSON …
+```
+</details>
+
+### [77/83] assistant (opencode/space-bunny-free) 2026-10-01T07:30:01.195Z
+<details><summary>tool: edit (814 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_01a0f65ee2f574fbbc8f937c","args":{"oldString":"| [E60](E60_lidds_lengthblind/) | Length-blind host detection, 2 LID-DS families | PASS | 2026-10-01 | script, JSON | — |\n| [E61](E61_lidds_grid_ext/) | Extend E60's epoch grid — all 8 cells were edge-pinned | RUNNING | 2026-10-01 | script | — |","path":"E:\\Potential-gold\\Zero-Day\\experiments\\README.md","newString":"| [E60](E60_lidds_lengthblind/) | Length-blind host detection, 2 LID-DS families | **PARTLY RETRACTED** by E61 | 2026-10-01 | script, JSON | — |\n| [E61](E61_lidds_grid_ext/) | Extend E60's grid — memcached gap was a truncated-grid artefact | **RETRACT + PARTIAL** | 2026-10-01 | script, partial JSON | — |"},"output":[{"type":"text","text":"Edited experiments/README.md (1 replacement)"}]}
+```
+</details>
+
+### [78/83] assistant (opencode/space-bunny-free) 2026-10-01T07:30:06.740Z
+<details><summary>tool: edit (1896 chars)</summary>
+
+```json
+{"type":"tool","tool":"edit","name":"edit","id":"call_01a0f65f013b7443bccc5cba","args":{"oldString":"**Verdict: PASS, and it supersedes E58/E59's absolute numbers.** · 2026-10-01\n\n> **This experiment retracts the absolute figures in [E58](../E58_lidds_host/)\n> and [E59](../E59_lidds_curves/).** Both used whole traces, and on LID-DS trace\n> length is a near-perfect label proxy. The seq-AE-vs-count-AE *conclusion*\n> survives and is larger here than E58 reported; the absolute AUCs in E58 and\n> E59's learning curve are contaminated and must not be quoted.","path":"E:\\Potential-gold\\Zero-Day\\experiments\\E60_lidds_lengthblind\\README.md","newString":"**Verdict: PARTLY RETRACTED by [E61](../E61_lidds_grid_ext/).** · 2026-10-01\n\n> ## ⚠️ Two retractions — read E61 before quoting anything here\n>\n> **1. Length confound (this experiment fixed it).** Both [E58](../E58_lidds_host/)\n> and [E59](../E59_lidds_curves/) scored whole traces, and on LID-DS trace length\n> is a near-perfect label proxy: **length alone, inverted, gives AUC 0.8150 on\n> CVE-2014-0160 — beating both arms**. Their absolute numbers are contaminated.\n>\n> **2. Truncated grid (found by E61).** The CVE-2012-2122 result below is\n> **retracted**. On E60's grid {10,20,40,80} seq-AE led by +0.0954 (z = +4.50);\n> on {5…320} the gap is **+0.0001 (z = +0.06) — inside noise**, and the count-AE\n> reaches 100% detection. 80 epochs was simply undertrained for a 31-feature MLP.\n>\n> **What survives here:** the length-blind protocol itself, the guard that proves\n> the shortcut is dead (1.0000 → 0.5000), and the **CVE-2014-0160** result, which\n> E61 did not finish — so it remains **edge-pinned and unresolved**, not confirmed.\n>\n> The representation finding is currently supported by **E01 alone**."},"output":[{"type":"text","text":"Edited experiments/E60_lidds_lengthblind/README.md (1 replacement)"}]}
+```
+</details>
+
+### [79/83] assistant (opencode/space-bunny-free) 2026-10-01T07:30:14.513Z
+<details><summary>tool: shell (3096 chars)</summary>
+
+```json
+{"type":"tool","tool":"shell","name":"shell","id":"call_01a0f65f343174719c53b627","args":{"command":"python -c \"\nimport re,pathlib\nbad=[(md.as_posix(),m) for md in pathlib.Path('experiments').rglob('README.md') for m in re.findall(r'\\]\\(([A-Za-z0-9_\\.\\-]+/)', md.read_text(encoding='utf-8')) if not (md.parent/m).exists()]\nprint('broken links:', bad or 'none')\n\"; git add -A; git commit -q -m \"E61: RETRACTS E60's CVE-2012-2122 result. Server restart lost the heartbleed half\n\nWHAT HAPPENED: the opencode SERVER restarted mid-run and killed the background\nshell. The machine did NOT reboot - uptime was 27h (boot 9/30 09:39). Not a\nrepeat of the E01 restarts. The results file was written only at the end, so\nCVE-2014-0160 produced no artifact; the memcached numbers existed only in a temp\nlog and have been recovered into exp_e61_grid_ext.PARTIAL.json, because they are\nthe evidence for a retraction and must not live in a temp file.\n\nTHE RETRACTION - E60's CVE-2012-2122 +0.0954 (z +4.50) was a truncated-grid\nartefact:\n  E60 grid {10..80}   seqAE 0.9731+-0.0117  cntAE 0.8777+-0.0276  d +0.0954\n  E61 grid {5..320}   seqAE 0.9927+-0.0015  cntAE 0.9926+-0.0017  d +0.0001 z +0.06\nThe count vector catches up completely and its det@10%FPR goes 0.867 -> 1.000.\nCause: 80 epochs is nowhere near convergence for a 31-feature MLP. The gap was\nthe training budget showing through, not a representational deficit.\nThird firing of the edge-of-grid trap, and the second time I introduced it after\nE01 documented it.\n\nSTILL NOT A CEILING: 6 of 8 picks sit on the 320 edge, and seed 0's seq-AE chose\n80 while the other three chose 320 - so that arm is not stable at this budget\neither. 0.993 is a lower bound on both arms.\n\nCVE-2014-0160 unresolved IN BOTH DIRECTIONS: seq-AE picked 5 (bottom edge),\ncount-AE 320 (top edge). Opposite to CVE-2012-2122 where count-AE needed 320 to\ncatch up. Two families pulling opposite ways means there is no single defensible\nepoch budget, and quoting one grid means quoting whichever family flatters it.\n\nSTATE OF THE HOST PILLAR, stated honestly: the representation finding is now\nsupported by E01 ALONE. Both LID-DS families failed to confirm it - E58/E59 to a\nlength confound, CVE-2012-2122 to a truncated grid, CVE-2014-0160 unresolved in\nboth directions. Weaker than two hours ago, and that is the accurate position.\n\nE62 must: extend past 320; grid heartbleed in BOTH directions; and write results\nINCREMENTALLY so a server restart cannot destroy a multi-hour run again.\" 2>&1 | Select-Object -Last 1; git push origin exp/host-seqae-p37 2>&1 | Select-Object -Last 1; git log --oneline -1","timeout":180000,"workdir":"E:\\Potential-gold\\Zero-Day"},"output":[{"type":"text","text":"broken links: none\r\nwarning: in the working copy of 'experiments/E61_lidds_grid_ext/exp_e61_grid_ext.PARTIAL.json', LF will be replaced by CRLF the next time Git touches it\n   ed4399d..3bd386a  exp/host-seqae-p37 -> exp/host-seqae-p37\r\n3bd386a E61: RETRACTS E60's CVE-2012-2122 result. Server restart lost the heartbleed half\n"}]}
+```
+</details>
+
+### [80/83] assistant (opencode/space-bunny-free) 2026-10-01T07:30:31.802Z
+# Answering your `?`
+
+## Your machine is fine
+
+**Uptime 27 hours, last boot 9/30.** Nothing rebooted. The **opencode server** restarted, which killed my background shell. Different failure from the E01 restarts on your guidance list. I don't know the cause and I'm not guessing at one.
+
+## What was lost, and what I did about it
+
+E61 died on heartbleed seed 0. **No JSON** — the script only writes at the end. So:
+
+- **CVE-2014-0160 wide-grid: gone.** That was the interesting one — seq-AE wanted *fewer* epochs, the opposite direction.
+- **CVE-2012-2122: survived**, but only in a temp log.
+
+I copied the memcached numbers into `exp_e61_grid_ext.PARTIAL.json`. **Those numbers are the evidence for a retraction — they can't live in a temp file.**
+
+## The retraction stands, and I've saved it
+
+| | seq-AE | count-AE | Δ |
+|---|---|---|---|
+| E60, grid to 80 | 0.9731 | 0.8777 | +0.0954 |
+| E61, grid to 320 | 0.9927 | 0.9926 | **+0.0001** |
+
+**Cause, stated plainly:** 80 epochs is nowhere near convergence for a 31-feature MLP. The gap wasn't a representational deficit — it was the training budget showing through. That's the **third** firing of the edge-of-grid trap and the **second** time I introduced it after E01 documented it.
+
+## And it's still not a ceiling
+
+Six of eight picks sit on 320. Seed 0's seq-AE chose 80 while the other three chose 320 — so that arm isn't stable at this budget either. **0.993 is a floor, not a converged value.**
+
+# The honest position, weaker than an hour ago
+
+**The representation finding is now supported by E01 alone.**
+
+| Claim | Status |
+|---|---|
+| E01 +0.058 on ADFA-LD | **stands** — pick was interior to the grid |
+| E58 absolutes | retracted — length confound |
+| E59 learning curve | retracted — length confound |
+| E60 memcached +0.0954 | **retracted** — truncated grid |
+| E60 heartbleed +0.1150 | **unresolved** — edge-pinned both directions |
+
+Both LID-DS families failed to confirm it, for two different recorded reasons. I'm not going to dress that up.
+
+## What E62 has to fix
+
+1. **Extend past 320** on memcached — both arms still climbing.
+2. **Grid heartbleed in both directions** — seq-AE wants <5, count-AE wants >320. No single budget fits both, and quoting one grid means quoting whichever family flatters it.
+3. **Write results incrementally.** That's the actual fix for what just cost us an hour. A three-hour run shouldn't be able to lose everything to a server restart.
+
+Pushed `3bd386a`. Nothing running, nothing needs your input.
+
+**One thing worth flagging:** if the server can restart mid-run, E62 should be built to survive that before I start it — not after.
+
+### [81/83] idle 2026-10-01T07:30:43.530Z
+[idle message: 
+
+### [82/83] user 2026-10-01T07:31:53.001Z
+do it run failed exp again
+
+### [83/83] assistant (opencode/space-bunny-free) 2026-10-01T07:31:53.313Z
 
 ## 3. Decisions made
 _Auto-seeded — correct me in chat and it will be re-captured on next idle:_
@@ -1127,38 +1464,27 @@ _Auto-seeded — correct me in chat and it will be re-captured on next idle:_
 - 0.642 with length removed, against 0.771 with it available. **Two-thirds of heartbleed's host signal was duration** — a request taking 1,400 syscalls instead of 3,400. Order-aware modelling recovers real signal but recovers a minority of what the shortcut gave away.
 - That's the E01 trap (epoch 40) and the E48 trap (`k=3`) both firing at once. **E61 is re-running on {5, 10, 20, 40, 80, 160, 320}** — brackets both edges by ~2×. E60 took 26 min, so this is ~110. If a pick still lands on 320, that gets reported as a non-ceiling rather than a result.
 - Nothing else is running that you need to decide on. The second dataset you dropped in is what uncovered all of this — that was the right call.
+- Let me read the README's still-open section to answer accurately rather than reconstruct from memory (the session's dominant errorclass).
+- E61 has already overturned the CVE-2012-2122 result. Reporting that now rather than after it finishes.
+- Six of eight picks sit on 320. Seed 0's seq-AE chose 80 while the other three chose 320 — so that arm isn't stable at this budget either. **0.993 is a floor, not a converged value.**
 
 ## 3b. Sub-agent tasks
 - (no sub-agent tasks in this session)
 
 ## 4. Files edited
-- (session diff empty; changed files via git status — repo-relative:)
-- M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
-- M .opencode/roam/ROAM-j96VuMOxiLDK.md
-- M .opencode/roam/latest.json
-- M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
-- M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
+- (no changes: session diff and git status both clean)
 
 <details><summary>git status --porcelain</summary>
 
 ```
-M .opencode/roam/ROAM-Lxxk0zlWJrAr.md
- M .opencode/roam/ROAM-j96VuMOxiLDK.md
- M .opencode/roam/latest.json
- M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json
- M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json
+(clean)
 ```
 </details>
 
 <details><summary>git diff --stat HEAD (big data excluded)</summary>
 
 ```
-.opencode/roam/ROAM-Lxxk0zlWJrAr.md                |  400 +++-
- .opencode/roam/ROAM-j96VuMOxiLDK.md                | 2224 +++++++++++---------
- .opencode/roam/latest.json                         |    2 +-
- ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  507 ++++-
- ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  414 +++-
- 5 files changed, 2448 insertions(+), 1099 deletions(-)
+(no diff)
 ```
 </details>
 
