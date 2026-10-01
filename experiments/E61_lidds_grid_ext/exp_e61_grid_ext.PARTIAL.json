@@ -1,0 +1,39 @@
+{
+ "_status": "PARTIAL - run cancelled before completion. The CVE-2012-2122 family completed; CVE-2014-0160 was killed on seed 0 and has no result. Recovered from the shell log after the opencode server restarted mid-run (the machine itself did not reboot: uptime was 27h).",
+ "_why_saved": "This file is the evidence for retracting E60's CVE-2012-2122 result (+0.0954). It must not live only in a temp log.",
+ "grid_e60": [10, 20, 40, 80],
+ "grid_wide": [5, 10, 20, 40, 80, 160, 320],
+ "W": 1024,
+ "K": 3,
+ "families": {
+  "CVE-2012-2122": {
+   "complete": true,
+   "V": 31,
+   "raw_length_only_auc": 1.0,
+   "window_length_only_auc": 0.5,
+   "all_windows_exactly_W": true,
+   "per_seed": [
+    {"seed": 0, "seqae_epochs": 80,  "seqae_auc_max": 0.9908, "seqae_auc_mean": 0.9899, "countae_epochs": 320, "countae_auc_max": 0.9920, "countae_auc_mean": 0.9921},
+    {"seed": 1, "seqae_epochs": 320, "seqae_auc_max": 0.9929, "seqae_auc_mean": 0.9940, "countae_epochs": 320, "countae_auc_max": 0.9933, "countae_auc_mean": 0.9928},
+    {"seed": 2, "seqae_epochs": 320, "seqae_auc_max": 0.9945, "seqae_auc_mean": 0.9955, "countae_epochs": 320, "countae_auc_max": 0.9944, "countae_auc_mean": 0.9945},
+    {"seed": 3, "seqae_epochs": 320, "seqae_auc_max": 0.9925, "seqae_auc_mean": 0.9936, "countae_epochs": 320, "countae_auc_max": 0.9905, "countae_auc_mean": 0.9915}
+   ],
+   "summary": {
+    "seqae":   {"auc_max": [0.9927, 0.0015], "auc_mean": [0.9932, 0.0024], "det_max_at_10fpr": 0.996},
+    "countae": {"auc_max": [0.9926, 0.0017], "auc_mean": [0.9927, 0.0013], "det_max_at_10fpr": 1.000}
+   },
+   "comparison_max": {"delta": 0.0001, "pooled_sd": 0.0016, "z": 0.06, "verdict": "inside noise"},
+   "edge_check": {
+    "seqae":   {"max_pick": 320, "still_truncated": true,  "min_pick": 80,  "min_interior": true},
+    "countae": {"max_pick": 320, "still_truncated": true,  "min_pick": 320, "min_interior": false},
+    "note": "6 of 8 picks sit on the 320 edge. Seed 0's seq-AE chose 80 while the other three chose 320, so the arm is not stable at this budget either."
+   },
+   "conclusion": "E60 reported seq-AE +0.0954 (z +4.50) over count-AE on this family on grid {10,20,40,80}. On {5..320} the gap is +0.0001 (z +0.06) - inside noise. The count-AE catches up completely and reaches 100% detection at a 10% FPR. E60's CVE-2012-2122 result is RETRACTED as a truncated-grid artefact. Still not a ceiling: 320 is the edge, so 0.993 is a lower bound on both arms."
+  },
+  "CVE-2014-0160": {
+   "complete": false,
+   "result": null,
+   "note": "Killed on seed 0. E60 gave seq-AE 0.6419 / count-AE 0.5269 with picks pinned to 10 (bottom edge) and 80 (top edge). On the wide grid the first two cells were seq-AE epoch 5 (bottom edge again) and count-AE epoch 320 (top edge), so this family remains unresolved in BOTH directions and needs a grid that brackets further."
+  }
+ }
+}
