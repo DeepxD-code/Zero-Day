@@ -1,7 +1,7 @@
 {
  "format": "roam-export-v1",
  "sessionID": "ses_f22aeca57ffeEHLxxk0zlWJrAr",
- "captured": "2026-10-01T05-57-32Z",
+ "captured": "2026-10-01T07-07-31Z",
  "device": "Rex",
  "projectID": "DeepxD-code-Zero-Day",
  "originModel": "opencode/space-bunny-free",
@@ -16,19 +16,19 @@
   },
   "cost": 0,
   "tokens": {
-   "input": 12218985,
-   "output": 468820,
-   "reasoning": 122296,
+   "input": 12297763,
+   "output": 476114,
+   "reasoning": 123938,
    "cache": {
-    "read": 310646345,
+    "read": 311519103,
     "write": 0
    }
   },
   "outcome": "succeeded",
   "time": {
    "created": 1790419482134,
-   "updated": 1790832664850,
-   "idle": 1790833104794
+   "updated": 1790834877969,
+   "idle": 1790834889123
   },
   "title": "Last week number inquiry",
   "location": {
@@ -41,8 +41,8 @@
   "root": "E:/Potential-gold/Zero-Day",
   "branch": "exp/host-seqae-p37",
   "remote": "https://github.com/DeepxD-code/Zero-Day.git",
-  "status": "M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/ROAM-j96VuMOxiLDK.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json\n?? experiments/E60_lidds_lengthblind/",
-  "diffStat": ".opencode/roam/ROAM-Lxxk0zlWJrAr.md                |  732 +++++-\n .opencode/roam/ROAM-j96VuMOxiLDK.md                | 2364 ++++++++++++--------\n .opencode/roam/latest.json                         |    2 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json | 1374 +++++++++++-\n ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json | 1629 +++++++++++++-\n 5 files changed, 5104 insertions(+), 997 deletions(-)"
+  "status": "M .opencode/roam/ROAM-Lxxk0zlWJrAr.md\n M .opencode/roam/ROAM-j96VuMOxiLDK.md\n M .opencode/roam/latest.json\n M .opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json\n M .opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json",
+  "diffStat": ".opencode/roam/ROAM-Lxxk0zlWJrAr.md                |  400 +++-\n .opencode/roam/ROAM-j96VuMOxiLDK.md                | 2224 +++++++++++---------\n .opencode/roam/latest.json                         |    2 +-\n ...sion-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json |  507 ++++-\n ...sion-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json |  414 +++-\n 5 files changed, 2448 insertions(+), 1099 deletions(-)"
  },
  "messages": [
   {
@@ -1592,6 +1592,495 @@
     "role": "idle",
     "time": {
      "created": 1790833104794
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "[idle message: "
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "synthetic",
+    "time": {
+     "created": 1790834673042
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "[synthetic message: <shell id=\"sh_0f5f86a82001ZCBk6cfaq3R5f5\" state=\"completed\" command=\"python -u experiments/E60_lidds_lengthblind/exp_e60_lengthblind.py\">\n\r\n=== CVE-2012-2122 ===\r\n  CVE-2012-2122 seed 0 seqAE  ep  80 AUCmax 0.9901 AUCmean 0.9894\r\n  CVE-2012-2122 seed 0 cntAE  ep  80 AUCmax 0.9120 AUCmean 0.9374\r\n  CVE-2012-2122 seed 1 seqAE  ep  80 AUCmax 0.9639 AUCmean 0.9673\r\n  CVE-2012-2122 seed 1 cntAE  ep  80 AUCmax 0.8764 AUCmean 0.9203\r\n  CVE-2012-2122 seed 2 seqAE  ep  80 AUCmax 0.971"
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834673322,
+     "streamed": 1790834687271,
+     "completed": 1790834687762
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "The length-blind results. Both families: seq-AE wins, separated, with much larger deltas than E58.\n\nKey numbers:\n- CVE-2012-2122: seqAE 0.9731, countAE 0.8777, delta +0.0954 (z=+4.50)\n- CVE-2014-0160: seqAE 0.6419, countAE 0.5269, delta +0.1150 (z=+17.52)\n\nCRITICAL: seq-AE picked **ep 80** on CVE-2012-2122 — that's the EDGE of the grid {10,20,40,80}. This is EXACTLY the E01/E48 lesson: a parameter pinned to the edge of a sweep has not been tested, it has been truncated. I must flag this and extend the grid for that family.\n\nAlso count-AE picked ep 80 on 2014-0160 — also edge-pinned (3 of 4 seeds). Both arms edge-pinned.\n\nSo E60 is truncated on the edge for 2014-0160 count-AE and 2012-2122 seq-AE. Per my standing rule, I must extend the grid.\n\nAlso note: the guard worked — raw length-only AUC 1.0000 → windowed 0.5 for 2012-2122, and 0.1850 → 0.5 for 2014-0160. Length is dead.\n\nLet me verify the guard value 0.5 — window_length_only_auc is 0.5, which for a constant feature is the sklearn convention. Actually for a constant, roc_auc_score returns 0.5. Confirms all windows are exactly W. Good.\n\nAlso important: mean aggregation is HIGHER than max for seq-AE on 2014-0160 (0.6884 vs 0.6419) and roughly equal on 2012. So the aggregation isn't doing the work — good, the seq-AE win holds under both. That's a robustness win.\n\nThe count-AE's mean-aggregation SD on 2012-2122 is huge (0.1435) driven by seed 3 (0.6398) where it picked ep 20 and collapsed. Another instability.\n\nSo: the finding SURVIVES and gets STRONGER. seq-AE > count-AE by +0.095 and +0.115 under a length-blind protocol, versus +0.048 in contaminated E58. The representation finding is real and larger than E58 claimed.\n\nBut E59's learning curve is still unverified (it used whole traces).\n\nImmediate action: extend the epoch grid since both arms are edge-pinned. That's the standing rule. Let me run an extended grid {10,20,40,80,160,320} for the edge-pinned cells.\n\nLet me check the JSON for details first, then extend.\n\nGiven context, let me be efficient. Let me look at the JSON summary and then launch an extended-grid run.\n\nLet me verify the dropped counts too.\n\nActually let me just check key JSONfields and launch the extension."
+    },
+    {
+     "type": "text",
+     "text": "Landing, and the representation finding **survives and strengthens** — but both arms are edge-pinned on the grid, which by my standing rule means unmeasured, not measured."
+    },
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_01a0f610c7a6748e828ccdf4",
+     "args": {
+      "command": "python -c \"\nimport json\nd=json.load(open('experiments/E60_lidds_lengthblind/exp_e60_lengthblind.json',encoding='utf-8'))\nfor f,r in d['families'].items():\n    print('==',f,'W',r['W'],'K',r['K'],'V',r['V'])\n    print('  dropped_short',r['dropped_short'],' capped_out',r['windows_capped_out'])\n    print('  guard',r['guard'])\n    for a in ('seqae','countae'):\n        print('  %-8s epochs picked: %s' % (a,[x['epochs'] for x in r['arms'][a]]))\n        s=r['arms'][a+'_summary']\n        for m in ('auc_max','auc_mean','det_max@10fpr','det_mean@10fpr'):\n            print('      %-14s %.4f +- %.4f' % (m,s[m]['mean'],s[m]['sd']))\n    print('  comparison',r['comparison_max'])\n\"",
+      "timeout": 300000,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "== CVE-2012-2122 W 1024 K 3 V 31\r\n  dropped_short {'train': 10, 'val': 10, 'test_benign': 10, 'test_attack': 0}  capped_out {'train': 100, 'test_benign': 1656}\r\n  guard {'raw_length_only_auc': 1.0, 'window_length_only_auc': 0.5, 'all_windows_exactly_W': True}\r\n  seqae    epochs picked: [80, 80, 80, 80]\r\n      auc_max        0.9731 +- 0.0117\r\n      auc_mean       0.9754 +- 0.0098\r\n      det_max@10fpr  0.9917 +- 0.0000\r\n      det_mean@10fpr 0.8583 +- 0.0167\r\n  countae  epochs picked: [80, 80, 80, 20]\r\n      auc_max        0.8777 +- 0.0276\r\n      auc_mean       0.8548 +- 0.1435\r\n      det_max@10fpr  0.8667 +- 0.0333\r\n      det_mean@10fpr 0.6146 +- 0.4042\r\n  comparison {'delta': 0.0954, 'pooled_sd': 0.0212, 'z': 4.5, 'verdict': 'separated'}\r\n== CVE-2014-0160 W 1024 K 3 V 38\r\n  dropped_short {'train': 22, 'val': 11, 'test_benign': 41, 'test_attack': 45}  capped_out {'train': 0, 'test_benign': 1123}\r\n  guard {'raw_length_only_auc': 0.1850098944591029, 'window_length_only_auc': 0.5, 'all_windows_exactly_W': True}\r\n  seqae    epochs picked: [10, 10, 10, 10]\r\n      auc_max        0.6419 +- 0.0086\r\n      auc_mean       0.6884 +- 0.0083\r\n      det_max@10fpr  0.3605 +- 0.0134\r\n      det_mean@10fpr 0.0000 +- 0.0000\r\n  countae  epochs picked: [80, 80, 80, 80]\r\n      auc_max        0.5269 +- 0.0035\r\n      auc_mean       0.5372 +- 0.0074\r\n      det_max@10fpr  0.2093 +- 0.0000\r\n      det_mean@10fpr 0.0174 +- 0.0116\r\n  comparison {'delta': 0.115, 'pooled_sd': 0.0066, 'z': 17.52, 'verdict': 'separated'}\r\n"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834688009,
+     "streamed": 1790834695090,
+     "completed": 1790834695569
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "Both arms edge-pinned:\n- 2012-2122: seqAE picked 80 on ALL 4 seeds (edge), countAE 80,80,80,20 (edge on 3)\n- 2014-0160: seqAE picked 10 on ALL 4 seeds (edge — LOWER edge!), countAE 80 on all 4 (edge)\n\nSo ALL EIGHT edge-pinned cells. Per the standing rule, every one of these is truncated.\n\nNotably seqAE on 2014-0160 picked **10 — the lower edge**. That means it might want FEWER epochs, or the val-selection is picking the floor. In E01 this exact thing happened (epoch 40 at the edge) and extending the grid found ep 240 interior. So I must extend both directions.\n\nLet me build E61: extended grid {5,10,20,40,80,160,320} to cover both edges. This is exactly the E01 lesson applied again.\n\nRuntime: E60 took how long? It finished within the notification — let me estimate ~2h. Extending to 320 epochs roughly triples the seq-AE cost. That's significant but the rule demands it.\n\nLet me be smart: extend only where edge-pinned, and use a finer grid. Actually the cleanest: run grid {5,10,20,40,80,160,320} for all cells. Cost: total epochs per seed per arm = 5+10+20+40+80+160+320 = 635 vs E60's 150. 4.2×. E60 took ~2h → ~8.5h. Too long.\n\nCompromise that respects the rule: extend the grid but only in the direction needed, and only for the edge-pinned cells:\n- 2014-0160 seqAE picked 10 (lower edge) → extend DOWN: {2,5,10}\n- 2014-0160 countAE picked 80 (upper edge) → extend UP: {80,160,320}\n- 2012-2122 seqAE picked 80 (upper) → extend UP: {80,160,320}\n- 2012-2122 countAE picked 80 (upper, 3/4) → extend UP: {80,160,320}\n\nThe extensions: down is cheap (2+5=7 extra epochs). Up is 160+320=480 extra epochs — that's 3.2× the original grid.\n\nTotal additional: 3 cells × 480 epochs × 4 seeds. Hmm.\n\nLet me estimate from E60: let me just check how long E60 actually took by file timestamps. Let me measure and then decide.\n\nActually simpler and principled: write E61 to extend only the edge-pinned cells in the needed direction, reusing E60's data pipeline. Let me make it a focused script that only runs the extra epoch counts.\n\nLet me check E60 runtimefirst."
+    },
+    {
+     "type": "text",
+     "text": "All eight cells are edge-pinned — including seq-AE picking **10**, the *lower* edge. That's the E01 trap exactly. Measuring E60's runtime to size the extension."
+    },
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_01a0f610e62a727994539705",
+     "args": {
+      "command": "$f=Get-Item \"experiments\\E60_lidds_lengthblind\\exp_e60_lengthblind.json\"\n\"json written: $($f.LastWriteTime)\"\n$src=Get-Item \"experiments\\E60_lidds_lengthblind\\exp_e60_lengthblind.py\"\n\"script written: $($src.LastWriteTime)\"\n\"elapsed (script->json): $([math]::Round(($f.LastWriteTime - $src.LastWriteTime).TotalMinutes,1)) min\"",
+      "timeout": 120000,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "json written: 10/01/2026 11:34:31\r\nscript written: 10/01/2026 11:08:10\r\nelapsed (script->json): 26.3 min\r\n"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834695807,
+     "streamed": 1790834708447,
+     "completed": 1790834708804
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "E60 took 26.3 min. So extending the grid to {5,10,20,40,80,160,320} = 635 epochs vs 150 → 4.2× → ~110 min. That's very acceptable.\n\nLet me write E61 as a full re-run with the extended grid. Actually simpler: modify E60's GRID and rerun as E61, keeping E60's results intact. Better practice: new experiment folder E61 that reuses E60's module with a wider grid.\n\nLet me write E61 that imports E60's helpers and runs the extended grid.\n\nActually cleanest and least code: E61 imports run_family-ish logic. But E60's run_family hardcodes GRID as a module global. I can set `e60.GRID = [5,10,20,40,80,160,320]` and call `e60.run_family(...)`. That's minimal and reuses everything.\n\nLet me do that.\n\nAlso I should re-examine: the seqAE picking ep 10 on all 4 seeds for 2014-0160 — extending DOWN to 2 and 5 will tell us if it wants even fewer. And extending up is needed for countAE.\n\nLet me write E61.\n\nOne consideration: with 320 epochs on 500 windows of 1024 tokens, the count-AE (a simple MLP) is fast. The seq-AE with 320 epochs is the expensive part. Total estimate 110 min. Fine.\n\nLet me write E61."
+    },
+    {
+     "type": "text",
+     "text": "26 min — so a full grid extension to {5…320} is ~110 min. Cheap enough to do properly rather than declare the edge."
+    },
+    {
+     "type": "tool",
+     "tool": "write",
+     "name": "write",
+     "id": "call_01a0f6111a48719ca17faaa3",
+     "args": {
+      "content": "\"\"\"E61: extend E60's epoch grid, because every cell in it was edge-pinned.\n\nE60's epoch picks, all eight cells:\n\n    CVE-2012-2122  seq-AE   80, 80, 80, 80     <- TOP edge of {10,20,40,80}\n    CVE-2012-2122  count-AE 80, 80, 80, 20     <- TOP edge on 3 of 4\n    CVE-2014-0160  seq-AE   10, 10, 10, 10     <- BOTTOM edge\n    CVE-2014-0160  count-AE 80, 80, 80, 80     <- TOP edge\n\nStanding rule, earned twice already (E01's epoch 40, E48's k=3): a parameter\npinned to the edge of a sweep has not been tested, it has been truncated. E60 is\ntherefore reported as truncated on both edges and re-run here on\n\n    {5, 10, 20, 40, 80, 160, 320}\n\nwhich brackets both edges by a factor of ~2. If a pick still lands on 320 the\nmodel wants more and this still is not a ceiling -- that gets reported as such\nrather than as a result.\n\nEverything else is byte-identical to E60: same length-blind W=1024 windows, same\nK=3, same caps, same 4 seeds, same arms. The only change is the epoch grid.\n\n    python experiments/E61_lidds_grid_ext/exp_e61_grid_ext.py\n\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport sys\nfrom pathlib import Path\n\nimport torch\n\nROOT = Path(__file__).resolve().parents[2]\nsys.path.insert(0, str(ROOT / \"detection\"))\nsys.path.insert(0, str(ROOT / \"experiments\" / \"E60_lidds_lengthblind\"))\n\nimport exp_e60_lengthblind as e60\nfrom lid_ds_loader import load_lid_ds\n\nOUT = Path(__file__).resolve().parent / \"exp_e61_grid_ext.json\"\nWIDE = [5, 10, 20, 40, 80, 160, 320]\n\n\ndef main():\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    e60.GRID = WIDE                      # the one change\n    traces = load_lid_ds(e60.DATA)\n    fams = sorted({t[\"family\"] for t in traces if t[\"family\"] != \"unknown\"})\n    out = {\"device\": str(device), \"W\": e60.W, \"K\": e60.K,\n           \"grid_wide\": WIDE,\n           \"grid_e60\": [10, 20, 40, 80],\n           \"families\": {}}\n    for fam in fams:\n        print(f\"\\n=== {fam}  (grid {WIDE}) ===\", flush=True)\n        out[\"families\"][fam] = e60.run_family(traces, fam, device)\n        r = out[\"families\"][fam]\n        print(f\"  picks seqAE   {[x['epochs'] for x in r['arms']['seqae']]}\")\n        print(f\"  picks countAE {[x['epochs'] for x in r['arms']['countae']]}\")\n        for a in (\"seqae\", \"countae\"):\n            s = r[\"arms\"][a + \"_summary\"]\n            print(f\"  {a:8s} AUCmax {s['auc_max']['mean']:.4f}+-{s['auc_max']['sd']:.4f}\"\n                  f\"  AUCmean {s['auc_mean']['mean']:.4f}+-{s['auc_mean']['sd']:.4f}\"\n                  f\"  det@10 {s['det_max@10fpr']['mean']:.3f}\")\n        print(f\"  delta {r['comparison_max']['delta']:+.4f} \"\n              f\"(z {r['comparison_max']['z']:+.2f}) -> \"\n              f\"{r['comparison_max']['verdict']}\")\n        for a in (\"seqae\", \"countae\"):\n            picks = [x[\"epochs\"] for x in r[\"arms\"][a]]\n            print(f\"  EDGE CHECK {a:8s} max pick {max(picks)} \"\n                  f\"{'STILL TRUNCATED' if max(picks) == WIDE[-1] else 'interior'}\"\n                  f\"   min pick {min(picks)} \"\n                  f\"{'STILL TRUNCATED' if min(picks) == WIDE[0] else 'interior'}\")\n    OUT.write_text(json.dumps(out, indent=1), encoding=\"utf-8\")\n    print(f\"\\n-> {OUT.name}\")\n\n\nif __name__ == \"__main__\":\n    main()",
+      "path": "E:\\Potential-gold\\Zero-Day\\experiments\\E61_lidds_grid_ext\\exp_e61_grid_ext.py"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Created file successfully: experiments/E61_lidds_grid_ext/exp_e61_grid_ext.py"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834709081,
+     "streamed": 1790834714278,
+     "completed": 1790834714559
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_01a0f611308f7690914dae95",
+     "args": {
+      "background": true,
+      "command": "python -u experiments/E61_lidds_grid_ext/exp_e61_grid_ext.py",
+      "timeout": 0,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Command moved to the background (shell ID: sh_0f61126ab0016PgxjSq2m4wdsW).\nOutput is streaming to: C:\\Users\\trex2\\.local\\share\\opencode\\shell\\dc5d2b4937b9f9433f93b52a19667b2b9a80c012\\sh_0f61126ab0016PgxjSq2m4wdsW.out"
+      },
+      {
+       "type": "text",
+       "text": "You will be notified automatically when the command finishes. The notification will include the command's output. Unless the user explicitly asks otherwise, DO NOT poll for completion, even if you need the final result to continue. Repeatedly sleeping and reading or searching the output file is polling, not useful work. You may read the current output if it lets you do useful work now, but do not repeatedly check it while waiting for the command to finish. Keep working on anything that does not depend on the result. If you have nothing else to do, end your response; you will be resumed automatically when the command finishes."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834714832,
+     "streamed": 1790834733543,
+     "completed": 1790834733817
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "Now the E60 README with the retraction on record."
+    },
+    {
+     "type": "tool",
+     "tool": "write",
+     "name": "write",
+     "id": "call_01a0f6117c4b7748853d12f4",
+     "args": {
+      "content": "# E60 — Length-blind host detection on two LID-DS families\n\n**Verdict: PASS, and it supersedes E58/E59's absolute numbers.** · 2026-10-01\n\n> **This experiment retracts the absolute figures in [E58](../E58_lidds_host/)\n> and [E59](../E59_lidds_curves/).** Both used whole traces, and on LID-DS trace\n> length is a near-perfect label proxy. The seq-AE-vs-count-AE *conclusion*\n> survives and is larger here than E58 reported; the absolute AUCs in E58 and\n> E59's learning curve are contaminated and must not be quoted.\n\n## Why this protocol exists\n\nDownloading a second CVE (CVE-2012-2122) to attack E58's 210-trace training cap\nexposed a confound nobody had checked: **trace length alone separates the\nclasses**, with the direction depending on the family.\n\n| Family | normal median | attack median | length-only AUC | inverted |\n|---|---|---|---|---|\n| CVE-2014-0160 | 3,396 | 1,399 | 0.1850 | **0.8150** |\n| CVE-2012-2122 | 15,934 | 72,446 | **1.0000** | 1.0000 |\n\nTwo separate problems:\n\n1. **CVE-2012-2122 is perfectly separable by duration alone.** Every attack\n   trace (min 61,210 syscalls) is longer than every benign one (max 36,590). Any\n   raw AUC there measures recording length, not behaviour.\n2. **CVE-2014-0160 was already contaminated, less obviously.** Length alone,\n   inverted, gives **0.8150 — which beats both host arms** (seq-AE 0.7709,\n   count-AE 0.7226). E58 reported 0.771 for the seq-AE without ever checking\n   whether a one-line length feature did better. It did.\n\n## The fix\n\nEvery sample is a fixed **W = 1024**-token window, so no sample ever encodes its\nown duration. Traces shorter than W are **dropped, never padded** — padding would\nleak length back in through the PAD count.\n\nW was set by a rule fixed before results were seen: the largest window retaining\nthe majority of every (family, label) cell.\n\n| W | 2014 normal | 2014 attack | 2012 normal | 2012 attack |\n|---|---|---|---|---|\n| 256 | 97% | 82% | 100% | 100% |\n| 1024 | 93% | 62% | 97% | 100% |\n| 3000 | 57% | **18%** | 97% | 100% |\n\n**No W retains 90% of the heartbleed attacks** — 18% are under 256 syscalls,\nbecause heartbleed is a single request/response and is simply short. The rule was\nrelaxed to \"majority of every cell\" and the cost is stated below.\n\n### The guard actually fires\n\n| Family | raw length-only AUC | windowed |\n|---|---|---|\n| CVE-2012-2122 | 1.0000 | **0.5000** |\n| CVE-2014-0160 | 0.1850 | **0.5000** |\n\nThe shortcut is dead by construction, and `all_windows_exactly_W` is True for\nevery family.\n\n## Results — length-blind, 4 seeds, AUC per trace\n\n| Family | Arm | AUC (max agg) | AUC (mean agg) | det@10%FPR |\n|---|---|---|---|---|\n| **CVE-2012-2122** | **seq-AE** | **0.9731 ± 0.0117** | 0.9754 ± 0.0098 | 0.992 |\n| | count-AE | 0.8777 ± 0.0276 | 0.8548 ± 0.1435 | 0.867 |\n| | **Δ** | **+0.0954 (z = +4.50)** | | separated |\n| **CVE-2014-0160** | **seq-AE** | **0.6419 ± 0.0086** | 0.6884 ± 0.0083 | 0.360 |\n| | count-AE | 0.5269 ± 0.0035 | 0.5372 ± 0.0074 | 0.209 |\n| | **Δ** | **+0.1150 (z = +17.52)** | | separated |\n\n## What we understood\n\n**The representation finding survives, and is bigger than E58 claimed.** E58\nreported +0.048 on CVE-2014-0160. Length-blind, that family gives **+0.115\n(z = 17.5)**, and a second family gives **+0.095 (z = 4.5)**. The contamination\nwas not inflating the seq-AE's advantage — it was masking it, because length was\nhelping the count vector along with everything else.\n\n**The count-AE is at chance on heartbleed once length is removed: 0.527 ± 0.004.**\nTwenty-two attack windows against 600 benign, and a histogram ranks them barely\nbetter than a coin flip. Combined with E59's finding that the count vector was\nflat across an 8× increase in training data, the picture is consistent: on this\ncorpus the count vector was largely reading duration.\n\n**The win is not an artefact of the aggregation choice.** This mattered more\nthan usual, because `max` is the natural detector semantics for an attack\noccurring *somewhere* in a long trace, …[truncated 2196 chars]",
+      "path": "E:\\Potential-gold\\Zero-Day\\experiments\\E60_lidds_lengthblind\\README.md"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Created file successfully: experiments/E60_lidds_lengthblind/README.md"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834734085,
+     "streamed": 1790834736304,
+     "completed": 1790834736574
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "read",
+     "name": "read",
+     "id": "call_01a0f6118726766d9796f1e5",
+     "args": {
+      "path": "E:\\Potential-gold\\Zero-Day\\experiments\\E58_lidds_host\\README.md",
+      "offset": 1,
+      "limit": 20
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Read file E:\\Potential-gold\\Zero-Day\\experiments\\E58_lidds_host\\README.md, lines 1-20\n1: # E58 — First LID-DS 2021 host-pillar result\n2: \n3: **Verdict: PASS — seq-AE beats count-AE by +0.0483 (2.19 SD), replicating E01\n4: on a different corpus.** · 2026-10-01\n5: \n6: ## Aim\n7: \n8: LID-DS 2021 unblocks the host pillar's third corpus. [E01](../E01_host_seqae/)\n9: found the count vector→sequence change worth **+0.058 (11.9 SD)** on ADFA-LD and\n10: fixed its M3 reorder blind spot (0.545 → 0.832). **The open question is whether\n11: that replicates** on a different attack family, a different capture method, and\n12: traces 10× longer.\n13: \n14: ## The corpus\n15: \n16: Downloaded `CVE-2014-0160` (392 MB), extracted 1,148 `.sc` syscall traces\n17: (skipping `.pcap`), loaded by `detection/lid_ds_loader.py`.\n18: \n19: | | |\n20: |---|---|\n[Output truncated. Continue reading with offset: 21]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834736873,
+     "streamed": 1790834741595,
+     "completed": 1790834741876
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "Adding the retraction banners to the superseded experiments so nobody reads them standalone."
+    },
+    {
+     "type": "tool",
+     "tool": "edit",
+     "name": "edit",
+     "id": "call_01a0f6119bd8708d934f0a09",
+     "args": {
+      "oldString": "# E58 — First LID-DS 2021 host-pillar result\n\n**Verdict: PASS — seq-AE beats count-AE by +0.0483 (2.19 SD), replicating E01\non a different corpus.** · 2026-10-01",
+      "path": "E:\\Potential-gold\\Zero-Day\\experiments\\E58_lidds_host\\README.md",
+      "newString": "# E58 — First LID-DS 2021 host-pillar result\n\n> ## ⚠️ SUPERSEDED — absolute numbers are contaminated\n>\n> This experiment scored **whole traces**, and on LID-DS trace length is a\n> near-perfect label proxy. Measured in\n> [E60](../E60_lidds_lengthblind/): **length alone, inverted, gives AUC 0.8150 on\n> this very corpus — higher than either arm reported here** (seq-AE 0.7709,\n> count-AE 0.7226).\n>\n> The seq-AE-beats-count-AE *conclusion* survives and is larger under a\n> length-blind protocol (+0.115, z = 17.5). **The absolute AUCs and the F1 = 0.0000\n> finding below are contaminated and must not be quoted.**\n\n**Verdict: SUPERSEDED by [E60](../E60_lidds_lengthblind/)** — was PASS\n(seq-AE +0.0483, 2.19 SD) on a contaminated protocol. · 2026-10-01"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Edited experiments/E58_lidds_host/README.md (1 replacement)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834742159,
+     "streamed": 1790834746011,
+     "completed": 1790834746283
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "edit",
+     "name": "edit",
+     "id": "call_01a0f611acf87192a722d814",
+     "args": {
+      "oldString": "# E59 — Closing E58's two caveats: FPR curve and learning curve\n\n**Verdict: PASS — the gap widens with data; the count vector is not data-starved,\nit is structurally limited.** · 2026-10-01",
+      "path": "E:\\Potential-gold\\Zero-Day\\experiments\\E59_lidds_curves\\README.md",
+      "newString": "# E59 — Closing E58's two caveats: FPR curve and learning curve\n\n> ## ⚠️ SUPERSEDED — length-blindness was never controlled\n>\n> Both parts of this experiment scored **whole traces**. Per\n> [E60](../E60_lidds_lengthblind/), **trace length alone gives AUC 0.8150 on this\n> corpus (inverted), beating both arms.** The FPR curve and the learning curve\n> were therefore both computed with a near-perfect label-correlated feature\n> available to both arms.\n>\n> The learning-curve conclusion in particular is **not established**: a\n> widening gap is exactly what you would see if the count vector leaned harder on\n> a length shortcut than the seq-AE did. Re-measuring it length-blind is required\n> before the \"structurally limited, not data-starved\" claim can stand.\n\n**Verdict: SUPERSEDED by [E60](../E60_lidds_lengthblind/)** — was PASS, but the\nprotocol did not control for trace length. · 2026-10-01"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Edited experiments/E59_lidds_curves/README.md (1 replacement)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834746580,
+     "streamed": 1790834750481,
+     "completed": 1790834750796
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "edit",
+     "name": "edit",
+     "id": "call_01a0f611be97738ca257df2c",
+     "args": {
+      "oldString": "| [E58](E58_lidds_host/) | First LID-DS 2021 host result — E01 replicates | PASS | 2026-10-01 | script, JSON | — |\n| [E59](E59_lidds_curves/) | FPR curve + learning curve — gap widens with data (3.6×) | PASS | 2026-10-01 | script, JSON | — |",
+      "path": "E:\\Potential-gold\\Zero-Day\\experiments\\README.md",
+      "newString": "| [E58](E58_lidds_host/) | First LID-DS host result — E01 replicates | **SUPERSEDED** by E60 (length confound) | 2026-10-01 | script, JSON | — |\n| [E59](E59_lidds_curves/) | FPR curve + learning curve | **SUPERSEDED** by E60 (length confound) | 2026-10-01 | script, JSON | — |\n| [E60](E60_lidds_lengthblind/) | Length-blind host detection, 2 LID-DS families | PASS | 2026-10-01 | script, JSON | — |\n| [E61](E61_lidds_grid_ext/) | Extend E60's epoch grid — all 8 cells were edge-pinned | RUNNING | 2026-10-01 | script | — |"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "Edited experiments/README.md (1 replacement)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834751079,
+     "streamed": 1790834759589,
+     "completed": 1790834766198
+    }
+   },
+   "parts": [
+    {
+     "type": "tool",
+     "tool": "shell",
+     "name": "shell",
+     "id": "call_01a0f611e238731a960fe7ec",
+     "args": {
+      "command": "python -c \"\nimport re,pathlib\nbad=[(md.as_posix(),m) for md in pathlib.Path('experiments').rglob('README.md') for m in re.findall(r'\\]\\(([A-Za-z0-9_\\.\\-]+/)', md.read_text(encoding='utf-8')) if not (md.parent/m).exists()]\nprint('broken links:', bad or 'none')\n\"; git add -A; git commit -q -m \"E60: length-blind protocol; retracts E58/E59 absolutes. Representation finding survives, 2x larger\n\nTHE CONFOUND: trace length is a near-perfect label proxy on LID-DS.\n  CVE-2014-0160  length-only AUC 0.1850 -> INVERTED 0.8150\n  CVE-2012-2122  length-only AUC 1.0000 (attack min 61,210 > benign max 36,590)\nInverted 0.8150 BEATS both E58 host arms (seqAE 0.7709, cntAE 0.7226). A\none-line length feature beat the sequence autoencoder on E58's own corpus and\nnobody checked until a second CVE was downloaded.\n\nRETRACTION: E58 and E59 both scored whole traces with this feature available to\nboth arms. Their absolute AUCs, E58's F1=0.0000 finding, and E59's learning-curve\nconclusion are contaminated and are now marked SUPERSEDED in both READMEs and the\nroot TOC. E59's claim is specifically NOT established - a widening gap is exactly\nwhat you would see if the count vector leaned harder on a length shortcut.\nE01/ADFA-LD is untouched.\n\nFIX: every sample is a fixed W=1024 window, so no sample encodes its own\nduration. Short traces are DROPPED not padded - padding leaks length via the PAD\ncount. W set by a rule fixed before results: largest window keeping the majority\nof every (family,label) cell. No W keeps 90% of heartbleed attacks (18% are under\n256 syscalls - it is a single request/response), so the rule was relaxed and the\nselection cost is disclosed: 45 of 120 attack traces dropped as too short, so the\nsurviving population is not E58's.\n\nGUARD FIRES: raw length-only AUC 1.0000 and 0.1850 -> 0.5000 windowed, both\nfamilies. Shortcut dead by construction; all_windows_exactly_W True.\n\nRESULT (length-blind, 4 seeds, per-trace AUC):\n  CVE-2012-2122  seqAE 0.9731+-0.0117  cntAE 0.8777+-0.0276  d +0.0954 z +4.50\n  CVE-2014-0160  seqAE 0.6419+-0.0086  cntAE 0.5269+-0.0035  d +0.1150 z +17.52\nseq-AE > count-AE on BOTH families, both separated. E58 reported +0.048 on the\nsame family; length-blind it is +0.115. The contamination was MASKING the effect,\nnot inflating it - length was helping the count vector along with everything else.\n\nCount-AE is at chance on heartbleed once length is gone: 0.527+-0.004.\nWin is NOT an aggregation artefact: seq-AE wins under both max and mean, and mean\nis the HIGHER of the two on CVE-2014-0160 (+0.151). Checked because max is the\nnatural detector semantics and could have manufactured the result.\n\nSTILL TRUNCATED, all 8 cells edge-pinned: seqAE picked 80 (top edge) on 2012 and\n10 (BOTTOM edge) on 2014; both countAEs 80 (top). E61 re-runs on {5..320}.\nE60 is therefore reported as provisional, not final.\" 2>&1 | Select-Object -Last 1; git push origin exp/host-seqae-p37 2>&1 | Select-Object -Last 1; git log --oneline -1",
+      "timeout": 180000,
+      "workdir": "E:\\Potential-gold\\Zero-Day"
+     },
+     "output": [
+      {
+       "type": "text",
+       "text": "broken links: none\r\nwarning: in the working copy of '.opencode/roam/ROAM-Lxxk0zlWJrAr.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/latest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f22aeca57ffeEHLxxk0zlWJrAr.export.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.opencode/roam/session-ses_f3dc7edc0ffey2j96VuMOxiLDK.export.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiments/E60_lidds_lengthblind/exp_e60_lengthblind.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'experiments/E61_lidds_grid_ext/exp_e61_grid_ext.py', LF will be replaced by CRLF the next time Git touches it\n   7510217..ed4399d  exp/host-seqae-p37 -> exp/host-seqae-p37\r\ned4399d E60: length-blind protocol; retracts E58/E59 absolutes. Representation finding survives, 2x larger\n"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834766460,
+     "streamed": 1790834780510,
+     "completed": 1790834780767
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "# E60 — the finding survives, and it's twice the size\n\nLength-blind, per-trace AUC, 4 seeds:\n\n| Family | seq-AE | count-AE | Δ |\n|---|---|---|---|\n| **CVE-2012-2122** | **0.9731 ± 0.0117** | 0.8777 ± 0.0276 | **+0.0954** (z = +4.50) |\n| **CVE-2014-0160** | **0.6419 ± 0.0086** | 0.5269 ± 0.0035 | **+0.1150** (z = +17.52) |\n\n## The guard fires\n\n| Family | raw length-only AUC | windowed |\n|---|---|---|\n| CVE-2012-2122 | 1.0000 | **0.5000** |\n| CVE-2014-0160 | 0.1850 | **0.5000** |\n\nShortcut dead by construction, and `all_windows_exactly_W` is True everywhere.\n\n## What changed my mind\n\n**E58 reported +0.048 on heartbleed. Length-blind, the same family gives +0.115.** The contamination wasn't inflating the seq-AE's advantage — it was **masking** it, because length was helping the count vector along with everything else. So the retractions cost me the contaminated numbers, not the finding.\n\n**The count-AE is at chance on heartbleed once length is removed: 0.527 ± 0.004.** Twenty-two attack windows against 600 benign, and a histogram ranks them barely better than a coin flip.\n\n**E59's learning curve is not established** — and that's the one I most wanted to be wrong about. A widening gap is *exactly* what you'd see if the count vector leaned harder on a length shortcut than the seq-AE did. I can't distinguish those from what I measured. Marked SUPERSEDED, not re-argued.\n\n## I checked the thing most likely to be faking it\n\n`max` aggregation is the natural detector semantics for an attack occurring *somewhere* in a long trace, so it could manufacture a win. seq-AE wins under **both** max and mean — and on heartbleed, **mean is the higher of the two** (+0.151 vs +0.115). The aggregation isn't doing the work.\n\n## Heartbleed is genuinely hard, and that's informative\n\n0.642 with length removed, against 0.771 with it available. **Two-thirds of heartbleed's host signal was duration** — a request taking 1,400 syscalls instead of 3,400. Order-aware modelling recovers real signal but recovers a minority of what the shortcut gave away.\n\n## Still truncated — all eight cells\n\nI haven't called these final. Every epoch pick sat on a grid edge:\n\n| Cell | Picks | Edge |\n|---|---|---|\n| 2012 seq-AE | 80 ×4 | top |\n| 2012 count-AE | 80, 80, 80, 20 | top (3/4) |\n| 2014 seq-AE | 10 ×4 | **bottom** |\n| 2014 count-AE | 80 ×4 | top |\n\nThat's the E01 trap (epoch 40) and the E48 trap (`k=3`) both firing at once. **E61 is re-running on {5, 10, 20, 40, 80, 160, 320}** — brackets both edges by ~2×. E60 took 26 min, so this is ~110. If a pick still lands on 320, that gets reported as a non-ceiling rather than a result.\n\n## Limitations I'm carrying\n\n- **Dropping short traces selects on length** — the variable I'm neutralising. 45 of 120 heartbleed attacks dropped as too short. Equal-length windows kill length as a *feature*; they don't make the trace *population* length-matched. The surviving population isn't E58's.\n- **E60 absolutes aren't comparable to E58** — unit of modelling is a window, not a recording. The seq-vs-count contrast inside E60 is like-for-like.\n- **K=3 evenly-spaced windows** — a sparse exploit confined to a narrow span could be missed. Defensible for memcached amplification (repeating flood); untested for sparse attacks.\n- No W retains 90% of heartbleed attacks. 18% are under 256 syscalls — it's a single request/response.\n\nRetraction banners are in both superseded READMEs and the TOC, so nobody reads E58/E59 standalone. Pushed `ed4399d`.\n\n**Host pillar as it stands:** seq-AE beats the count vector on both LID-DS families, both separated, under a protocol where length provably carries nothing — and E01's +0.058 on ADFA-LD is unaffected by any of this."
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "idle",
+    "time": {
+     "created": 1790834780771
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "[idle message: "
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "user",
+    "time": {
+     "created": 1790834877984
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "bottom line please in simple language"
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "modelID": {
+     "id": "space-bunny-free",
+     "providerID": "opencode",
+     "variant": "max"
+    },
+    "agent": "build",
+    "time": {
+     "created": 1790834878333,
+     "streamed": 1790834888876,
+     "completed": 1790834889119
+    }
+   },
+   "parts": [
+    {
+     "type": "text",
+     "text": "The user wants a simple-language bottom line. They asked for points-wise answers for bottom lines. Let me give a crisp, plain-language summary.\n\nE61 is still running. Let me note that.\n\nKeep it genuinely simple. No jargon. Points-wise."
+    },
+    {
+     "type": "text",
+     "text": "# Bottom line\n\n**1. We had a good result. Then we found out it was partly fake.**\n\nOn the new dataset, you could detect attacks just by checking **how long the recording was**. Not by looking at what happened — just length. On one attack that's a perfect detector.\n\nAnd on the *old* dataset we already had results for, length alone also beat our model. So the earlier numbers were inflated. **I marked them as wrong and said so.**\n\n**2. The main finding survived anyway — and got stronger.**\n\nWe compare two ways of showing the model what a computer did:\n\n- **count version** — like a shopping list: \"47 file reads, 12 network calls\"\n- **order version** — like a sentence: what happened, in what sequence\n\nThe order version wins. Before the fix it won by a little. After removing the length trick, **it wins by double.**\n\nIt wins on **both** attack types. That's the important part — it's not a fluke of one dataset.\n\n**3. On the \"does more data help?\" question — I can't answer it.**\n\nI wanted to say \"the shopping list is just starved of data.\" But I can't rule out that it was secretly leaning on the length trick all along. **I don't know. I'd rather say that than claim a result I can't back up.**\n\n**4. One attack type is a lot easier than the other.**\n\nThe heartbleed attack: before removing the length trick we scored 0.77. After, **0.64.**\n\nMeaning: **most of what we \"detected\" there was really just noticing the attack was shorter than normal.** That's uncomfortable, but it's the truth, and it's the kind of thing that would embarrass us if a reviewer found it.\n\n**5. We're not done — the settings are still pinned at the edges.**\n\nIn every single test, the model asked for the *maximum* or *minimum* amount of training we allowed. That means we never found its real limit. This is the exact mistake that already bit us twice before.\n\n**A wider test is running now.** Until it lands, the numbers above are provisional.\n\n---\n\n**The one-line version:** the main result holds up and got stronger, but we caught ourselves using a cheap trick that inflated our earlier numbers — and the honest version of the finding is still being confirmed.\n\nNothing else is running that you need to decide on. The second dataset you dropped in is what uncovered all of this — that was the right call."
+    }
+   ]
+  },
+  {
+   "info": {
+    "role": "idle",
+    "time": {
+     "created": 1790834889123
     }
    },
    "parts": [
