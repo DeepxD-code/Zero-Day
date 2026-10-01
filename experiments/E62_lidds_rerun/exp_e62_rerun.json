@@ -1,0 +1,178 @@
+{
+ "cells": {
+  "CVE-2014-0160|seqae|0": {
+   "auc_max": 0.6730232558139535,
+   "auc_mean": 0.7086046511627907,
+   "det_max@10fpr": 0.27906976744186046,
+   "det_mean@10fpr": 0.0,
+   "epoch": 5,
+   "secs": 8.6,
+   "seed": 0,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2014-0160|seqae|1": {
+   "auc_max": 0.6795348837209302,
+   "auc_mean": 0.7158139534883721,
+   "det_max@10fpr": 0.3023255813953488,
+   "det_mean@10fpr": 0.023255813953488372,
+   "epoch": 5,
+   "secs": 6.2,
+   "seed": 1,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2014-0160|seqae|2": {
+   "auc_max": 0.661860465116279,
+   "auc_mean": 0.690813953488372,
+   "det_max@10fpr": 0.27906976744186046,
+   "det_mean@10fpr": 0.0,
+   "epoch": 5,
+   "secs": 6.2,
+   "seed": 2,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2014-0160|seqae|3": {
+   "auc_max": 0.671046511627907,
+   "auc_mean": 0.6993023255813953,
+   "det_max@10fpr": 0.23255813953488372,
+   "det_mean@10fpr": 0.0,
+   "epoch": 5,
+   "secs": 6.3,
+   "seed": 3,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2014-0160|countae|0": {
+   "auc_max": 0.5948837209302326,
+   "auc_mean": 0.5856976744186047,
+   "det_max@10fpr": 0.27906976744186046,
+   "det_mean@10fpr": 0.0,
+   "epoch": 320,
+   "secs": 0.9,
+   "seed": 0,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2014-0160|countae|1": {
+   "auc_max": 0.575813953488372,
+   "auc_mean": 0.5794186046511629,
+   "det_max@10fpr": 0.3953488372093023,
+   "det_mean@10fpr": 0.0,
+   "epoch": 160,
+   "secs": 0.7,
+   "seed": 1,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2014-0160|countae|2": {
+   "auc_max": 0.5247674418604651,
+   "auc_mean": 0.5322093023255814,
+   "det_max@10fpr": 0.20930232558139536,
+   "det_mean@10fpr": 0.023255813953488372,
+   "epoch": 80,
+   "secs": 0.5,
+   "seed": 2,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2014-0160|countae|3": {
+   "auc_max": 0.5583720930232559,
+   "auc_mean": 0.5612790697674419,
+   "det_max@10fpr": 0.2558139534883721,
+   "det_mean@10fpr": 0.0,
+   "epoch": 160,
+   "secs": 0.7,
+   "seed": 3,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2012-2122|seqae|0": {
+   "auc_max": 0.9957083333333334,
+   "auc_mean": 0.9963333333333333,
+   "det_max@10fpr": 1.0,
+   "det_mean@10fpr": 0.95,
+   "epoch": 320,
+   "secs": 419.0,
+   "seed": 0,
+   "thr90": null,
+   "truncated_top": false,
+   "truncated_bottom": false
+  },
+  "CVE-2012-2122|seqae|1": {
+   "auc_max": 0.9986250000000001,
+   "auc_mean": 0.9990416666666666,
+   "det_max@10fpr": 1.0,
+   "det_mean@10fpr": 0.9916666666666667,
+   "epoch": 640,
+   "secs": 717.6,
+   "seed": 1,
+   "thr90": null,
+   "truncated_top": true,
+   "truncated_bottom": false
+  }
+ },
+ "meta": {
+  "grid": [
+   2,
+   5,
+   10,
+   20,
+   40,
+   80,
+   160,
+   320,
+   640
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "W": 1024,
+  "K": 3,
+  "device": "cuda",
+  "caps": {
+   "train": 500,
+   "test_benign": 600
+  },
+  "updated": "2026-10-01 16:50:26",
+  "n_cells": 10,
+  "guard": {
+   "CVE-2014-0160": {
+    "raw_length_only_auc": 0.1850098944591029,
+    "window_length_only_auc": 0.5,
+    "all_windows_exactly_W": true
+   },
+   "CVE-2012-2122": {
+    "raw_length_only_auc": 1.0,
+    "window_length_only_auc": 0.5,
+    "all_windows_exactly_W": true
+   }
+  },
+  "n_windows": {
+   "CVE-2014-0160": {
+    "train": 462,
+    "val": 119,
+    "test_benign": 600,
+    "test_attack": 129
+   },
+   "CVE-2012-2122": {
+    "train": 500,
+    "val": 150,
+    "test_benign": 600,
+    "test_attack": 360
+   }
+  }
+ }
+}
